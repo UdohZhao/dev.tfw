@@ -275,6 +275,12 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                     <span class=\"site-menu-title\">租房条目列表</span>
                   </a>
                 </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/sellHouseInfo/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">卖房条目列表</span>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class=\"site-menu-item has-sub active open\">
@@ -300,9 +306,9 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
 
 
   ";
-        // line 271
+        // line 277
         $this->displayBlock('content', $context, $blocks);
-        // line 274
+        // line 280
         echo "
 
     <!-- Footer -->
@@ -351,9 +357,9 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
   <script src=\"/public/jquery-validation-1.16.0/lib/jquery.form.js\"></script>
 
   ";
-        // line 321
+        // line 327
         $this->displayBlock('js', $context, $blocks);
-        // line 324
+        // line 330
         echo "
   <script>
     (function(document, window, \$) {
@@ -381,18 +387,18 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
   ";
     }
 
-    // line 271
+    // line 277
     public function block_content($context, array $blocks = array())
     {
-        // line 272
+        // line 278
         echo "
   ";
     }
 
-    // line 321
+    // line 327
     public function block_js($context, array $blocks = array())
     {
-        // line 322
+        // line 328
         echo "
   ";
     }
@@ -409,7 +415,7 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
 
     public function getDebugInfo()
     {
-        return array (  396 => 322,  393 => 321,  388 => 272,  385 => 271,  380 => 37,  377 => 36,  357 => 324,  355 => 321,  306 => 274,  304 => 271,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
+        return array (  402 => 328,  399 => 327,  394 => 278,  391 => 277,  386 => 37,  383 => 36,  363 => 330,  361 => 327,  312 => 280,  310 => 277,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
     }
 
     public function getSourceContext()
@@ -658,6 +664,12 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                   <a class=\"animsition-link\" href=\"/admin/tenmentCatalog/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">租房条目列表</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/sellHouseInfo/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">卖房条目列表</span>
                   </a>
                 </li>
               </ul>

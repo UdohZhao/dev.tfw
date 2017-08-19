@@ -1,14 +1,14 @@
 <?php
 
-/* tenmentCatalog/add.html */
-class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a80200 extends Twig_Template
+/* sellHouseInfo/add.html */
+class __TwigTemplate_9e5f9147234c8afcddb1b633233788a13bcd766558af92fb04607acf66130006 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("layouts.html", "tenmentCatalog/add.html", 1);
+        $this->parent = $this->loadTemplate("layouts.html", "sellHouseInfo/add.html", 1);
         $this->blocks = array(
             'css' => array($this, 'block_css'),
             'content' => array($this, 'block_content'),
@@ -47,7 +47,7 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
     <div class=\"page-content\">
         <div class=\"panel\">
             <div class=\"panel-heading\">
-                <h3 class=\"panel-title\">@ 添加出租房条目</h3>
+                <h3 class=\"panel-title\">@ 添加卖房房条目</h3>
             </div>
             <div id=\"wrapper\">
                 <div id=\"container\">
@@ -56,7 +56,7 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
                         <div class=\"queueList\">
                             <div id=\"dndArea\" class=\"placeholder\">
                                 <div id=\"filePicker\"></div>
-                                <p>请选择需要上传的轮播图片，单次最多可选300张</p>
+                                <p>请选择需要上传的房屋图片，单次最多可选300张</p>
                             </div>
                         </div>
                         <div class=\"statusBar\" style=\"display:none;\">
@@ -72,7 +72,7 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
                 </div>
             </div>
             <div class=\"panel-body\">
-                <form class=\"form-horizontal\" id=\"newHouseCatalogForm\" action=\"/admin/tenmentCatalog/add/id/";
+                <form class=\"form-horizontal\" id=\"newHouseCatalogForm\" action=\"/admin/sellHouseInfo/add/id/";
         // line 40
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "id", array()), "html", null, true);
         echo "\" method=\"post\">
@@ -89,28 +89,10 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "slideshow", array()), "html", null, true);
         echo "\">
                     <div class=\"form-group\">
-                        <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">关联城市</label>
-                        <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"cid\" value=\"";
-        // line 47
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "cid", array()), "html", null, true);
-        echo "\" placeholder=\"请输入城市名称\">
-                        </div>
-                    </div>
-                    <div class=\"form-group\">
-                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">标题</label>
-                        <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"title\" value=\"";
-        // line 53
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "title", array()), "html", null, true);
-        echo "\" placeholder=\"请输入标题\">
-                        </div>
-                    </div>
-                    <div class=\"form-group\">
                         <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">小区</label>
                         <div class=\"col-sm-10\">
                             <input type=\"text\" class=\"form-control\" name=\"community\" value=\"";
-        // line 59
+        // line 47
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "community", array()), "html", null, true);
         echo "\" placeholder=\"请输入小区\">
                         </div>
@@ -119,36 +101,54 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
                         <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">房型</label>
                         <div class=\"col-sm-10\">
                             <input type=\"text\" class=\"form-control\" name=\"house_type\" value=\"";
-        // line 65
+        // line 53
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "house_type", array()), "html", null, true);
-        echo "\" placeholder=\"请输入房型，以英文逗号隔开，例如：AAA,BBB,CCC\">
+        echo "\" placeholder=\"请输入房型，几室几厅几卫生，以英文逗号隔开，例如：AAA,BBB,CCC\">
                         </div>
                     </div>
                     <div class=\"form-group\">
-                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">租金</label>
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">售价</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"rent\" value=\"";
+                            <input type=\"text\" class=\"form-control\" name=\"selling_price\" value=\"";
+        // line 59
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "selling_price", array()), "html", null, true);
+        echo "\" placeholder=\"请输入售价\">
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">房屋类型</label>
+                        <div class=\"col-sm-10\">
+                            <input type=\"text\" class=\"form-control\" name=\"htype\" value=\"";
+        // line 65
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "htype", array()), "html", null, true);
+        echo "\" placeholder=\"请输入房屋类型\">
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">朝向</label>
+                        <div class=\"col-sm-10\">
+                            <input type=\"text\" class=\"form-control\" name=\"orientation\" value=\"";
         // line 71
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "rent", array()), "html", null, true);
-        echo "\" placeholder=\"请输入租金\">
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "orientation", array()), "html", null, true);
+        echo "\" placeholder=\"请输入朝向\">
                         </div>
                     </div>
                     <div class=\"form-group\">
-                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">展示祖金</label>
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">姓名</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"show_rent\" value=\"";
+                            <input type=\"text\" class=\"form-control\" name=\"cname\" value=\"";
         // line 77
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "show_rent", array()), "html", null, true);
-        echo "\" placeholder=\"请输入展示价格\">
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "cname", array()), "html", null, true);
+        echo "\" placeholder=\"请输入姓名\">
                         </div>
                     </div>
                     <div class=\"form-group\">
-                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">备注</label>
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">联系电话</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"remark\" value=\"";
+                            <input type=\"text\" class=\"form-control\" name=\"phone\" value=\"";
         // line 83
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "remark", array()), "html", null, true);
-        echo "\" placeholder=\"请输入备注\">
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "phone", array()), "html", null, true);
+        echo "\" placeholder=\"请输入联系电话\">
                         </div>
                     </div>
                     <div class=\"form-group\">
@@ -163,8 +163,17 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
                     <div class=\"form-group\">
                         <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">租房类型</label>
                         <div class=\"col-sm-10\">
-                                <input type=\"radio\" class=\"htype\" name=\"htype\"  value=\"0\"> 整租
-                                <input type=\"radio\" class=\"htype\" name=\"htype\" value=\"1\"> 合租
+                            <input type=\"radio\" class=\"htype\" name=\"htype\"  value=\"0\"> 整租
+                            <input type=\"radio\" class=\"htype\" name=\"htype\" value=\"1\"> 合租
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">房源概况</label>
+                        <div class=\"col-sm-10\">
+                            <script id=\"container1\" name=\"general_situation\" type=\"text/plain\" style=\"height: 300px;\">";
+        // line 105
+        echo twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "general_situation", array());
+        echo "</script>
                         </div>
                     </div>
                     <div class=\"form-group\">
@@ -182,29 +191,23 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
 ";
     }
 
-    // line 115
+    // line 121
     public function block_js($context, array $blocks = array())
     {
-        // line 116
+        // line 122
         echo "<script src=\"/public/webuploader-0.1.5/dist/webuploader.js\"></script>
 <script type=\"text/javascript\" src=\"/public/webuploader-0.1.5/examples/image-upload/upload.js\"></script>
-<script src=\"/apps/admin/views/tenmentCatalog/js/add.js\"></script>
+<script src=\"/public/ueditor/ueditor.config.js\"></script>
+<script src=\"/public/ueditor/ueditor.all.js\"></script>
 <script>
-    var _htype='";
-        // line 120
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "htype", array()), "html", null, true);
-        echo "';
-    var _dtype='";
-        // line 121
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "dtype", array()), "html", null, true);
-        echo "';
+    var ue = UE.getEditor('container1');
 </script>
 ";
     }
 
     public function getTemplateName()
     {
-        return "tenmentCatalog/add.html";
+        return "sellHouseInfo/add.html";
     }
 
     public function isTraitable()
@@ -214,7 +217,7 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
 
     public function getDebugInfo()
     {
-        return array (  199 => 121,  195 => 120,  189 => 116,  186 => 115,  150 => 83,  141 => 77,  132 => 71,  123 => 65,  114 => 59,  105 => 53,  96 => 47,  89 => 43,  85 => 42,  81 => 41,  77 => 40,  42 => 7,  39 => 6,  33 => 3,  30 => 2,  11 => 1,);
+        return array (  198 => 122,  195 => 121,  175 => 105,  150 => 83,  141 => 77,  132 => 71,  123 => 65,  114 => 59,  105 => 53,  96 => 47,  89 => 43,  85 => 42,  81 => 41,  77 => 40,  42 => 7,  39 => 6,  33 => 3,  30 => 2,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -233,7 +236,7 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
     <div class=\"page-content\">
         <div class=\"panel\">
             <div class=\"panel-heading\">
-                <h3 class=\"panel-title\">@ 添加出租房条目</h3>
+                <h3 class=\"panel-title\">@ 添加卖房房条目</h3>
             </div>
             <div id=\"wrapper\">
                 <div id=\"container\">
@@ -242,7 +245,7 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
                         <div class=\"queueList\">
                             <div id=\"dndArea\" class=\"placeholder\">
                                 <div id=\"filePicker\"></div>
-                                <p>请选择需要上传的轮播图片，单次最多可选300张</p>
+                                <p>请选择需要上传的房屋图片，单次最多可选300张</p>
                             </div>
                         </div>
                         <div class=\"statusBar\" style=\"display:none;\">
@@ -258,22 +261,10 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
                 </div>
             </div>
             <div class=\"panel-body\">
-                <form class=\"form-horizontal\" id=\"newHouseCatalogForm\" action=\"/admin/tenmentCatalog/add/id/{{ data.id }}\" method=\"post\">
+                <form class=\"form-horizontal\" id=\"newHouseCatalogForm\" action=\"/admin/sellHouseInfo/add/id/{{ data.id }}\" method=\"post\">
                     <input type=\"hidden\" name=\"pid\" value=\"{{ pid }}\">
                     <input type=\"hidden\" name=\"hcid\" value=\"{{ hcid }}\">
                     <input type=\"hidden\" name=\"slideshow\" value=\"{{ data.slideshow }}\">
-                    <div class=\"form-group\">
-                        <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">关联城市</label>
-                        <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"cid\" value=\"{{ data.cid }}\" placeholder=\"请输入城市名称\">
-                        </div>
-                    </div>
-                    <div class=\"form-group\">
-                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">标题</label>
-                        <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"title\" value=\"{{ data.title }}\" placeholder=\"请输入标题\">
-                        </div>
-                    </div>
                     <div class=\"form-group\">
                         <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">小区</label>
                         <div class=\"col-sm-10\">
@@ -283,25 +274,37 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
                     <div class=\"form-group\">
                         <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">房型</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"house_type\" value=\"{{ data.house_type }}\" placeholder=\"请输入房型，以英文逗号隔开，例如：AAA,BBB,CCC\">
+                            <input type=\"text\" class=\"form-control\" name=\"house_type\" value=\"{{ data.house_type }}\" placeholder=\"请输入房型，几室几厅几卫生，以英文逗号隔开，例如：AAA,BBB,CCC\">
                         </div>
                     </div>
                     <div class=\"form-group\">
-                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">租金</label>
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">售价</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"rent\" value=\"{{ data.rent }}\" placeholder=\"请输入租金\">
+                            <input type=\"text\" class=\"form-control\" name=\"selling_price\" value=\"{{ data.selling_price }}\" placeholder=\"请输入售价\">
                         </div>
                     </div>
                     <div class=\"form-group\">
-                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">展示祖金</label>
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">房屋类型</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"show_rent\" value=\"{{ data.show_rent }}\" placeholder=\"请输入展示价格\">
+                            <input type=\"text\" class=\"form-control\" name=\"htype\" value=\"{{ data.htype }}\" placeholder=\"请输入房屋类型\">
                         </div>
                     </div>
                     <div class=\"form-group\">
-                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">备注</label>
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">朝向</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"text\" class=\"form-control\" name=\"remark\" value=\"{{ data.remark }}\" placeholder=\"请输入备注\">
+                            <input type=\"text\" class=\"form-control\" name=\"orientation\" value=\"{{ data.orientation }}\" placeholder=\"请输入朝向\">
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">姓名</label>
+                        <div class=\"col-sm-10\">
+                            <input type=\"text\" class=\"form-control\" name=\"cname\" value=\"{{ data.cname }}\" placeholder=\"请输入姓名\">
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">联系电话</label>
+                        <div class=\"col-sm-10\">
+                            <input type=\"text\" class=\"form-control\" name=\"phone\" value=\"{{ data.phone }}\" placeholder=\"请输入联系电话\">
                         </div>
                     </div>
                     <div class=\"form-group\">
@@ -316,8 +319,14 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
                     <div class=\"form-group\">
                         <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">租房类型</label>
                         <div class=\"col-sm-10\">
-                                <input type=\"radio\" class=\"htype\" name=\"htype\"  value=\"0\"> 整租
-                                <input type=\"radio\" class=\"htype\" name=\"htype\" value=\"1\"> 合租
+                            <input type=\"radio\" class=\"htype\" name=\"htype\"  value=\"0\"> 整租
+                            <input type=\"radio\" class=\"htype\" name=\"htype\" value=\"1\"> 合租
+                        </div>
+                    </div>
+                    <div class=\"form-group\">
+                        <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">房源概况</label>
+                        <div class=\"col-sm-10\">
+                            <script id=\"container1\" name=\"general_situation\" type=\"text/plain\" style=\"height: 300px;\">{% autoescape false %}{{ data.general_situation }}{% endautoescape %}</script>
                         </div>
                     </div>
                     <div class=\"form-group\">
@@ -336,11 +345,11 @@ class __TwigTemplate_11c7beaffd042afd67a4a93ad3c43f9d3bbaa97be36bdbc6740e4382a0a
 {% block js %}
 <script src=\"/public/webuploader-0.1.5/dist/webuploader.js\"></script>
 <script type=\"text/javascript\" src=\"/public/webuploader-0.1.5/examples/image-upload/upload.js\"></script>
-<script src=\"/apps/admin/views/tenmentCatalog/js/add.js\"></script>
+<script src=\"/public/ueditor/ueditor.config.js\"></script>
+<script src=\"/public/ueditor/ueditor.all.js\"></script>
 <script>
-    var _htype='{{data.htype}}';
-    var _dtype='{{data.dtype}}';
+    var ue = UE.getEditor('container1');
 </script>
-{% endblock %}", "tenmentCatalog/add.html", "F:\\UPUPW_AP7.0_64-1512.1\\UPUPW_AP7.0_64\\vhosts\\dev.tfw.local\\apps\\admin\\views\\tenmentCatalog\\add.html");
+{% endblock %}", "sellHouseInfo/add.html", "F:\\UPUPW_AP7.0_64-1512.1\\UPUPW_AP7.0_64\\vhosts\\dev.tfw.local\\apps\\admin\\views\\sellHouseInfo\\add.html");
     }
 }

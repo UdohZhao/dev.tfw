@@ -1,0 +1,97 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+    <div class="page-header">
+        <h1 class="page-title"># 房屋管理</h1>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">@ 租房条目列表</h3>
+            </div>
+
+            <form action="/admin/sellHouseInfo/index" method="get">
+                <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
+                    <input type="text" class="form-control" name="search" placeholder="请输入小区名">
+                    <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+                </div>
+            </form>
+            <ul class="nav nav-pills" style="margin-left: 25px;">
+                <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/sellHouseInfo/index/status/0">未读</a></li>
+                <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/sellHouseInfo/index/status/1">已读</a></li>
+            </ul>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>小区</th>
+                        <th>面积</th>
+                        <th>房型</th>
+                        <th>售价</th>
+                        <th>房屋类型</th>
+                        <th>姓名</th>
+                        <th>联系电话</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if data %}
+                    {% for k,v in data %}
+                    <tr>
+                        <td>
+                            {% if status == 4 %}
+                            {% if v.type == 1 %}
+                            <span class="text-danger">{隐藏}</span>
+                            {% else %}
+                            <span class="text-success">{展示}</span>
+                            {% endif %}
+                            {% endif %}
+                        </td>
+                        <td>{{ v.community }}</td>
+                        <td>{{ v.area }}</td>
+                        <td>{{ v.house_type }}</td>
+                        <td>{{ v.selling_price }}</td>
+                        <td>{{ v.htype }}</td>
+                        <td>{{ v.cname }}</td>
+                        <td>{{ v.phone }}</td>
+                        <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="shInfo({{ v.id }});">详细信息</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4">
+                            <blockquote>
+                                <p>暂无数据 :(</p>
+                            </blockquote>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+                <div style="float: right;">
+                    {% autoescape false %}
+                    {{ page }}
+                    {% endautoescape %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
