@@ -1,0 +1,138 @@
+/* loan.wxss */
+page{
+  background-color: #fff;
+}
+.top_bcg{
+  position: relative;
+  height: 260rpx;
+}
+.top_bcg .bcg_img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tefangwang{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+}
+.tefangwang image{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300rpx;
+  height: 80rpx;
+  margin-top: -40rpx;
+  margin-left: -150rpx;
+}
+.abortus{
+  padding: 10px 15px;
+}
+.abortus .title{
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+}
+.each_class{
+  text-indent: 2em;
+  text-align: justify;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+.application_loan{
+  padding: 20px 15px;
+}
+.application_loan button{
+  background-color: #00ce3c;
+  color: #fff;
+  font-size: 14px;
+}
+.loan_modal .weui-cells{
+  background-color: #fafafc;
+}
+.loan_modal .weui-cells::after{
+  border-bottom: none;
+}
+.loan_modal .weui-cell::before{
+  border-top: none;
+}
+.loan_modal .weui-cells::before{
+  border-top: none;
+}
+.loan_modal .weui-cell__hd{
+  width: 60px;
+}
+.loan_modal .weui-cell__bd .weui-input{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 35px;
+  height: 35px;
+  min-height: 35px;
+  padding-left: 3px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.loan_modal .weui-cell{
+  margin-bottom: 10px;
+}
+.loan_modal .weui-cell__bd{
+  width: 400rpx;
+}
+.phone_personal{
+  width: 100%;
+  color:#8a8a8a;
+  height:35px;
+  line-height:35px;
+  text-align: left;
+  box-sizing: border-box;
+  padding-left: 5px;
+}
+.phone_one{
+  display: flex;  /*//用flex布局更方便。*/
+  position: relative;
+  justify-content: space-between;
+  background-color:transparent;
+  width:90%;
+  height:35px;
+  margin:0 auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.person_box{
+  position: relative;
+  padding: 0 13px;
+  box-sizing: border-box;
+}
+.phone_select{
+  margin-top:0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+.select_one{
+  width:100%;   /*//脱离文档后元素width不能再用百分比。*/
+  height:35px;
+  line-height:35px;
+  margin:0;
+  padding-left: 5px;
+  box-sizing: border-box;
+}
+.personal_image{
+  z-index: 100;
+  position: absolute;
+  right:2%;
+  top: 9px;
+  width: 17px;
+  height: 17px;
+  transition: All 0.4s ease; 
+  -webkit-transition: All 0.4s ease;
+}
+.rotateRight{
+  transform: rotate(180deg);  /*//180°旋转图片。*/
+}

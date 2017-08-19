@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/newhouse/newhouse",
+    "pages/oldhouse/oldhouse",
+    "pages/encyclopedia/encyclopedia",
+    "pages/search/search",
+    "pages/hxdetails/hxdetails",
+    "pages/nextstep/nextstep",
+    "pages/salehouse/salehouse",
+    "pages/loan/loan",
+    "pages/community/community",
+    "pages/oldhousedetails/oldhousedetails",
+    "pages/encyclopediadetails/encyclopediadetails",
+    "pages/modifypassword/modifypassword",
+    "pages/modifyname/modifyname",
+    "pages/allhousestyle/allhousestyle",
+    "pages/housedetails/housedetails",
+    "pages/recommend/recommend",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#00ce3c",
+    "navigationBarTitleText": "特房网i",
+    "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "#ededed",
+    "list": [
+      {
+        "selectedIconPath": "images/首页(1).png",
+        "iconPath": "images/首页 .png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/推荐(1).png",
+        "iconPath": "images/推荐.png",
+        "pagePath": "pages/recommend/recommend",
+        "text": "推荐"
+      },
+      {
+        "selectedIconPath": "images/我的(1).png",
+        "iconPath": "images/我的.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": true
+}

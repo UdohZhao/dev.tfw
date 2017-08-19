@@ -1,0 +1,31 @@
+/* hxdetails.wxss */
+.house_swiper image{
+  width: 100%;
+  height: 100%;
+}
+.house_name{
+  background-color: #fff;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+.introduction{
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  margin-bottom: 3px;
+}
+.content_details{
+  line-height: 22px;
+}
+.belong{
+  color: #8a8a8a;
+  font-size: 16px;
+}
+.belong text{
+  color: #00ce3c;
+}
+.weui-cells::after{
+  border-bottom: none;
+}

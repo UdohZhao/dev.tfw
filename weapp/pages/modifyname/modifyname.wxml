@@ -1,0 +1,15 @@
+<!--modifyname.wxml-->
+<view class="weui-cells__title">用户名修改</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">用户名</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入新的用户名"/>
+        </view>
+    </view>
+</view>
+<view class="confirm_modify">
+  <button>确认修改</button>
+</view>

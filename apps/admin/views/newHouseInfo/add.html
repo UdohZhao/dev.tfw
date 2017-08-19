@@ -1,0 +1,51 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 房屋管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 添加新房详细</h3>
+      </div>
+      <div class="panel-body">
+      <form id="newHouseInfoForm" action="/admin/newHouseInfo/add/nhcid/{{ nhcid }}" method="post">
+        <div class="row" id="column">
+          <div class="col-md-6 form-group">
+            <input type="text" class="form-control" name="k[]" placeholder="请输入键名">
+          </div>
+          <div class="col-md-6 form-group">
+            <input type="text" class="form-control" name="v[]" placeholder="请输入键值">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <h4>选择置业顾问：</h4>
+            <select multiple class="form-control" name="pcid">
+            {% for k,v in pcData %}
+              {% if k == 0 %}
+                <option value="{{ v.id }}" selected="selected">{{ v.cname }} # {{ v.phone }} # {{ v.belong_company }}</option>
+              {% else %}
+                <option value="{{ v.id }}">{{ v.cname }} # {{ v.phone }} # {{ v.belong_company }}</option>
+              {% endif %}
+            {% endfor %}
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">下一步</button>
+      </form>
+      <button type="button" class="btn btn-danger btn-lg btn-block" style="width: 20%;float: right;" onclick="addColumn();">+ 添加一栏</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+{% block js %}
+<script src="/apps/admin/views/newHouseInfo/js/add.js"></script>
+{% endblock %}

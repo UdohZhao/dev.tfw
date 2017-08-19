@@ -1,0 +1,60 @@
+/* recommend.wxss */
+.page__bd{
+  padding-bottom: 0;
+}
+.my_availability{
+  padding-bottom: 0;
+}
+.my_availability .weui-panel__hd{
+  padding: 10px 0px;
+}
+.my_availability .weui-panel__hd .hd_title{
+  padding-left: 15px;
+  border-left: 3px solid #00ce3c;
+  height: 18px;
+  line-height: 18px;
+  font-weight: bold;
+  color: #000;
+}
+.my_availability .weui-panel::before{
+  border-top: none;
+}
+.my_availability .introduction{
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+.my_availability .weui-media-box__desc{
+  margin-bottom: 3px;
+}
+.my_availability .weui-media-box__desc text{
+  float: right;
+  color: #fd811f;
+}
+.my_availability .weui-media-box__desc text.money{
+  font-size: 16px;
+  margin-top: -2px;
+  margin-right: 3px;
+}
+.my_availability .weui-media-box__hd_in-appmsg{
+  width: 70px;
+  height: 65px;
+  margin-right: 5px;
+  position: relative;
+}
+.house_status{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  background-color: rgba(0,0,0,.5);
+  font-size: 12px;
+  color: #fff;
+}

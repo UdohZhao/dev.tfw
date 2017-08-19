@@ -1,0 +1,64 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 后台用户管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 添加用户</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" id="adminUserForm" action="/admin/adminUser/add" method="post">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">密码 </label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">确认密码 </label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" name="rPassword" placeholder="请输入确认密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">类型 </label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="type" value="1" checked="checked"> 资料审核员
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="type" value="2"> 新房发布员
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="type" value="3"> 二手房发布员
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">提 交</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+{% block js %}
+<script src="/apps/admin/views/adminUser/js/add.js"></script>
+{% endblock %}

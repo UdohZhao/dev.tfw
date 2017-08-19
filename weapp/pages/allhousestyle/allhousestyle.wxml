@@ -1,0 +1,22 @@
+<!--allhousestyle.wxml-->
+<view class="weui-panel weui-panel_access">
+  <view class="weui-panel__bd">
+    <block wx:for="{{allhuxing}}" wx:key="*this">
+      <navigator url="../hxdetails/hxdetails" class="weui-media-box weui-media-box_appmsg">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" src="{{item.imgUrl}}" />
+              <view class="house_status">
+                {{item.status}}
+              </view>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title">{{item.name}}
+                <text>{{item.size}}</text>
+              </view>
+              <view class="weui-media-box__desc">{{item.style}}</view>
+              <view class="weui-media-box__desc">{{item.money}}</view>
+          </view>
+      </navigator>
+    </block>
+  </view>
+</view>

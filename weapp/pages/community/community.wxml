@@ -1,0 +1,42 @@
+<!--community.wxml-->
+<swiper class="house_swiper" circular="true" indicator-active-color="#00ce3c" indicator-color="" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for-items="{{imgUrls}}" wx:key="*this">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
+<view class="community">
+  <view class="community_name">{{communityName}}</view>
+  <view class="address">
+    <view>{{address}}</view>
+    <view>
+      <form bindsubmit="openLocation">
+        <input hidden="true" class="page-body-form-value" type="text" value="116.4500804174" name="longitude"></input>
+        <input hidden="true" class="page-body-form-value" type="text"  value="39.9277919936" name="latitude"></input>
+        <input hidden="true"  class="page-body-form-value" type="text"  value="北京市朝阳区" name="name"></input>
+        <input hidden="true"  class="page-body-form-value" type="text"  value="北京市朝阳区朝外街道天福园" name="address"></input>
+        <button type="primary" formType="submit"><image src="../../images/定位.png"></image></button>
+      </form>
+    </view>
+  </view>
+</view>
+<view class="community_introduce">
+  <block wx:for="{{communityIntroduce}}" wx:key="*this">
+    <view class="box_type">
+      <view class="type_name">{{item.typename}}</view>
+    </view>
+    <view class="introduce_list">
+      <block wx:for="{{item.list}}" wx:for-item="list" wx:key="list">
+        <view class="list">{{list.listname}}：<text>{{list.content}}</text></view>
+      </block>
+    </view>
+  </block>
+  <block wx:for="{{community_profile}}" wx:key="*this">
+    <view class="introduce_list">
+      <view class="profile_name">{{item.name}}：</view>
+      <view class="profile_content">{{item.content}}</view>
+    </view>
+  </block>
+</view>
+

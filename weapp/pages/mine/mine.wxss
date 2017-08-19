@@ -1,0 +1,50 @@
+/* mine.wxss */
+page{
+  background-color: #fff;
+}
+.top_bcg{
+  position: relative;
+  height: 260rpx;
+}
+.top_bcg .bcg_img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tefangwang{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+}
+.tefangwang image{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300rpx;
+  height: 80rpx;
+  margin-top: -40rpx;
+  margin-left: -150rpx;
+}
+.bottom_button{
+  padding: 0 15px;
+  position: absolute;
+  bottom: 40rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.bottom_button button{
+  width: 100%;
+  margin-top: 10px;
+  color: #fff;
+}
+.modify{
+  background-color: #fd811f;
+}
+.dropout{
+  background-color: #00ce3c;
+}

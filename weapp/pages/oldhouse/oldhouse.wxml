@@ -1,0 +1,77 @@
+<!--oldhouse.wxml-->
+<view class="page">
+  <view class="page__bd newhouse_search">
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="挑好房，上特房网" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">挑好房，上特房网</view>
+            </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+
+
+  <!--选项卡-->
+<view class="tabTit box tc bg_f">
+    <view class="flex1{{!tab[index]?' active':''}}" wx:for="{{tabTxt}}" wx:key="" data-index="{{index}}" bindtap="filterTab"><text>{{item}}</text><image src="../../images/下拉三角形.png"></image></view>
+</view>
+<!--筛选项-->
+<scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[0]}}">
+    <view class="{{house_type==0?'active':''}} tabLayer_list" data-id="0" data-index="0" data-txt="户型" bindtap="filter">不限</view>
+    <view class="{{house_type==item.id?'active':''}} tabLayer_list" wx:for="{{filterList.housetype_list}}" wx:key="" data-id="{{item.id}}" data-index="0" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
+</scroll-view>
+<scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[1]}}">
+    <view class="{{house_style==0?'active':''}} tabLayer_list" data-id="0" data-index="1" data-txt="风格" bindtap="filter">不限</view>
+    <view class="{{house_style==item.id?'active':''}} tabLayer_list" wx:for="{{filterList.style_list}}" wx:key="" data-id="{{item.id}}" data-index="1" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
+</scroll-view>
+<scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[2]}}">
+    <view class="{{house_area==0?'active':''}} tabLayer_list" data-id="0" data-index="2" data-txt="面积" bindtap="filter">不限</view>
+    <view class="{{house_area==item.id?'active':''}} tabLayer_list" wx:for="{{filterList.area_list}}" wx:key="" data-id="{{item.id}}" data-index="2" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
+</scroll-view>
+
+  <!-- 结果 -->
+  <scroll-view scroll-y="true" class="w" bindscrolltolower="lower" lower-threshold="5px">
+    <view class="page__bd my_availability" id="{{viewId}}">
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <block wx:for="{{data}}" wx:key="" wx:key="id">
+            <navigator url="../housedetails/housedetails" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+              <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                <image class="weui-media-box__thumb" src="{{item.cover_img}}" />
+              </view>
+              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                <view class="weui-media-box__title">{{item.subject}}</view>
+                <view class="weui-media-box__desc">{{item.type_name}}<text class="money">{{item.designer_name}}</text></view>
+                <view class="weui-media-box__desc">
+                    {{item.area_name}} | {{item.house_price}}
+                </view>
+              </view>
+            </navigator>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view hidden="{{completeList}}" class="completeList">
+      到底啦！
+    </view>
+    <!-- 加载更多按钮
+    <view wx:if="{{hasMore}}">
+        <button type="warn" plain="true" disabled="{{disabled}}" bindtap="getMore" class="mt20">{{moreTxt}}</button>
+    </view> -->
+    <!--无数据提示-->
+    <view class="null tc" hidden="{{dataNull}}">
+        <icon type="clear" size="100" color="#ccc"/>
+        <view class="txt1">当前筛选无结果</view>
+        <view class="txt2">您可以尝试筛选其他分类看看</view>
+    </view>
+  </scroll-view>
+</view>

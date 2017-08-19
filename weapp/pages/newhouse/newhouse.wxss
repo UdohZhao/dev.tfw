@@ -1,0 +1,158 @@
+/* newhouse.wxss */
+.page__bd{
+  padding-bottom: 0;
+}
+.newhouse_search{
+  height: 50px;
+}
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.newhouse_search .weui-search-bar{
+  background-color: transparent;
+  border-top: none;
+  border-bottom: none;
+  padding: 10px 15px;
+}
+.rotateRight{
+    transform: rotate(180deg); /*180°旋转图片。*/
+}
+.my_availability{
+  margin-top: 0px;
+  padding-bottom: 0;
+}
+.my_availability .weui-panel__hd{
+  padding: 10px 0px;
+}
+.my_availability .weui-panel__hd .hd_title{
+  padding-left: 15px;
+  border-left: 3px solid #00ce3c;
+  height: 18px;
+  line-height: 18px;
+  font-weight: bold;
+  color: #000;
+}
+.my_availability .weui-panel::before{
+  border-top: none;
+}
+.my_availability .introduction{
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+.my_availability .weui-media-box__desc{
+  margin-bottom: 3px;
+}
+.my_availability .weui-media-box__desc text{
+  float: right;
+  color: #fd811f;
+}
+.my_availability .weui-media-box__desc text.money{
+  font-size: 16px;
+  margin-top: -2px;
+  margin-right: 3px;
+}
+.my_availability .weui-media-box__hd_in-appmsg{
+  width: 70px;
+  height: 65px;
+  margin-right: 5px;
+  position: relative;
+}
+.house_status{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  background-color: rgba(0,0,0,.5);
+  font-size: 12px;
+  color: #fff;
+}
+.tabTit{ 
+  font-size: 14px;
+  position: relative; 
+  padding:0 15px; 
+  box-sizing: border-box; 
+  height:16px;
+  line-height: 32rpx;
+  width: 750rpx;
+  z-index: 999; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+}
+.tabTit .active{
+  color:#00ce3c;
+}
+.tabTit .active image{
+  transform: rotate(180deg);
+  background: none;
+}
+.tabTit image{
+  width:26rpx;
+  height:26rpx;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+.tabLayer{
+  box-shadow: 0 5px 5px rgba(0,0,0,.15);
+  width:750rpx;
+  height: 250px;
+  overflow: hidden;
+  position: fixed;
+  top:76px;
+  z-index: 1;
+  background: #fff;
+  padding-bottom: 26rpx;
+  border-bottom: solid 1px #eee;
+  padding-left: 15px;
+}
+.tabLayer .tabLayer_list{
+  font-size: 14px;
+  line-height: 40px;
+  border-bottom: 1px solid #ededed;
+}
+.tabLayer text{
+  width:210rpx;
+  height:60rpx;
+  line-height:60rpx;
+  float:left;
+  border: solid 1px #eee;
+  margin:20rpx 0 0 26rpx;
+}
+.tabLayer .active{
+  color:#00ce3c;
+  border-color:#00ce3c;
+}
+.w{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 76px;
+  box-sizing: border-box;
+}
+.null{
+  text-align: center;
+  padding-top: 20px;
+}
+.weui-search-bar__cancel-btn{
+  position: relative;
+  z-index:999;
+}
+.completeList{
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+}

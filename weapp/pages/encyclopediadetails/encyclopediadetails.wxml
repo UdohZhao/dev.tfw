@@ -1,0 +1,12 @@
+<!--encyclopediadetails.wxml-->
+<block wx:for="{{encyclopediadetails}}" wx:key="*this">
+  <view class="title" id="{{detailId}}">
+    {{item.title}}
+  </view>
+  <block wx:for="{{item.content}}" wx:for-item="list" wx:key="list">
+    <view class="list">
+      <view class="title_list">{{list.titleList}}</view>
+      <view class="content_list">{{list.contentList}}</view>
+    </view>
+  </block>
+</block>

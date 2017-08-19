@@ -1,0 +1,110 @@
+<!--nextstep.wxml-->
+<view class="features">
+  <view class="weui-cells__title">请填写您的房屋信息</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">房屋类型</view>
+      <view class="weui-cell__ft">
+        <picker mode="selector" bindchange="bindPickerChangetype" value="{{objectArraytype.id}}" range="{{arraytype}}" range-key="{{objectArraytype.id}}">
+          <button wx:if="{{housetype==0}}" class="chioce_huxing" type="default">请选择类型</button>
+          <button wx:if="{{housetype==1}}" class="chioce_huxing" type="default">{{arraytype[id]}}</button>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">房屋朝向</view>
+      <view class="weui-cell__ft">
+        <picker mode="selector" bindchange="bindPickerChangeorientation" value="{{objectArrayorientation.ido}}" range="{{arrayorientation}}" range-key="{{objectArrayorientation.ido}}">
+          <button wx:if="{{houseorientation==0}}" class="chioce_huxing" type="default">请选择朝向</button>
+          <button wx:if="{{houseorientation==1}}" class="chioce_huxing" type="default">{{arrayorientation[ido]}}</button>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">房屋楼层</view>
+      <view class="weui-cell__ft">
+        <picker mode="selector" bindchange="bindPickerChangefloor" value="{{objectArrayfloor.idfloor}}" range="{{arrayfloor}}" range-key="{{objectArrayorientation.idfloor}}">
+          <button wx:if="{{housefloor==0}}" class="chioce_huxing" type="default">请选择楼层</button>
+          <button wx:if="{{housefloor==1}}" class="chioce_huxing" type="default">{{arrayfloor[idfloor]}}</button>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">房屋装修</view>
+      <view class="weui-cell__ft">
+        <picker mode="selector" bindchange="bindPickerChangedecoration" value="{{objectArraydecoration.iddecoration}}" range="{{arraydecoration}}" range-key="{{objectArrayorientation.iddecoration}}">
+          <button wx:if="{{housedecoration==0}}" class="chioce_huxing" type="default">请选择装修</button>
+          <button wx:if="{{housedecoration==1}}" class="chioce_huxing" type="default">{{arraydecoration[iddecoration]}}</button>
+        </picker>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="introduction">
+  <view class="weui-cells__title">房屋介绍</view>
+  <view class="introduction_content">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell mytexteara">
+        <view class="weui-cell__bd">
+          <textarea maxlength="200" bindinput="textaeralength" bindfocus="textaeralength" bindblur="textaeralength" class="weui-textarea" placeholder="简单介绍房屋情况" style="height: 3.3em" />
+          <view class="weui-textarea-counter"><text>{{textaeraLen}}</text>/200</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="upload">
+  <view class="weui-cells__title">房屋图片</view>
+  <view class="weui-cells">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                      <view class="weui-uploader__info">{{files.length}}/4</view>
+                  </view>
+                  <view class="weui-uploader__bd">
+                      <view class="weui-uploader__files" id="uploaderFiles">
+                          <block wx:for="{{files}}" wx:key="*this">
+                              <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                              </view>
+                          </block>
+                      </view>
+                      <view class="weui-uploader__input-box">
+                          <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                      </view>
+                  </view>
+              </view>
+          </view>
+      </view>
+  </view>
+</view>
+<view class="upload">
+  <view class="weui-cells__title">户型图片</view>
+  <view class="weui-cells">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                      <view class="weui-uploader__info">{{files1.length}}/4</view>
+                  </view>
+                  <view class="weui-uploader__bd">
+                      <view class="weui-uploader__files" id="uploaderFiles">
+                          <block wx:for="{{files1}}" wx:key="*this">
+                              <view class="weui-uploader__file" bindtap="previewImage1" id="{{item}}">
+                                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                              </view>
+                          </block>
+                      </view>
+                      <view class="weui-uploader__input-box">
+                          <view class="weui-uploader__input" bindtap="chooseImage1"></view>
+                      </view>
+                  </view>
+              </view>
+          </view>
+      </view>
+  </view>
+</view>
+<view class="commissioned">
+  <button>立即委托</button>
+</view>

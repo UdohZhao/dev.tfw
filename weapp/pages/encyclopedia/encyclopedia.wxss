@@ -1,0 +1,21 @@
+/* encyclopedia.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.encycle_content{
+  width: 100%;
+  height: 100%;
+}
+scroll-view{
+  width: 100%;
+  height: 100%;
+}
+.encycle_content .weui-media-box__desc{
+  font-size: 14px;
+  color: #000;
+}
+.encycle_content .weui-media-box__hd_in-appmsg{
+  width: 80px;
+  height: 60px;
+}

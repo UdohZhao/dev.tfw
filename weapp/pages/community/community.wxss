@@ -1,0 +1,72 @@
+/* community.wxss */
+.house_swiper image{
+  width: 100%;
+  height: 100%;
+}
+.wx-swiper-dot-active{
+  background-color: #00ce3c;
+}
+.community{
+  background-color: #fff;
+  padding: 10px 15px;
+}
+.address{
+  color: #aaa;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+}
+.address button{
+  background-color: transparent;
+  border: 0px solid #ccc;
+  padding: 0;
+  line-height: 20px;
+  margin-left: 10px;
+  position: static;
+}
+.address image{
+  width: 24px;
+  height: 20px;
+}
+.community_introduce{
+  background-color: #fff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.box_type{
+  padding: 10px 0;
+  border-bottom: 1px solid #f8f8f8;
+}
+.type_name{
+  padding-left: 15px;
+  border-left: 3px solid #00ce3c;
+  font-size: 14px;
+  font-weight: bold;
+}
+.introduce_list{
+  padding: 10px 15px;
+  border-bottom: 1px solid #f8f8f8;
+}
+.list{
+  font-size: 14px;
+  margin: 3px 0;
+  color: #aaa;
+}
+.list text{
+  color: #000;
+  margin-left: 10px;
+}
+.profile_name{
+  color: #aaa;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.profile_content{
+  text-indent: 2em;
+  font-size: 12px;
+  text-align: justify;
+}
+button::after{
+  width: auto;
+  height: auto;
+}

@@ -1,0 +1,89 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 房屋管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 房类别列表</h3>
+      </div>
+      <form action="/admin/houseCategory/index" method="post">
+        <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
+          <input type="text" class="form-control" name="search" placeholder="请输入关键字">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>图标</th>
+              <th>名称</th>
+              <th>排序</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% if data %}
+          {% for k,v in data %}
+            <tr>
+              <td>
+              {% if v.status == 1 %}
+                <span class="text-danger">{禁用}</span>
+              {% else %}
+                <span class="text-success">{启用}</span>
+              {% endif %}
+              </td>
+              <td>
+                <img src="{{ v.icon_path }}" class="img-responsive" style="width: 50px; height: 50px;">
+              </td>
+              <td>{{ v.cname }}</td>
+              <td>{{ v.sort }}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
+                {% if v.status == 1 %}
+                  <button type="button" class="btn btn-success btn-xs" onclick="flag({{ v.id }},0);">启用</button>
+                {% else %}
+                  <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},1);">禁用</button>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="4">
+                <blockquote>
+                  <p>暂无数据 :(</p>
+                </blockquote>
+              </td>
+            </tr>
+          {% endif %}
+          </tbody>
+        </table>
+
+          <div style="float: right;">
+            {% autoescape false %}
+              {{ page }}
+            {% endautoescape %}
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block js %}
+<script src="/apps/admin/views/houseCategory/js/index.js"></script>
+{% endblock %}

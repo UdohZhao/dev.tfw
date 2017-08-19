@@ -1,0 +1,249 @@
+/* index.wxss */
+.page__bd{
+  padding-bottom: 0;
+}
+.top_search{
+  height: 200rpx;
+  position: relative;
+}
+.top_search .top_bcg{
+  width: 750rpx;
+  height: 200rpx;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+}
+.phone_personal{
+    width: 120rpx;
+    color:#fff;
+    height:60rpx;
+    line-height:60rpx;
+    text-align: left;
+    padding-left: 15px;
+    font-size: 14px;
+}
+.phone_one{
+    display: flex; 
+    position: relative;
+    justify-content: space-between;
+    background-color:transparent;
+    height:60rpx;
+    width: 150rpx;
+}
+.person_box{
+    position: relative;
+}
+.phone_select{
+    margin-top:0;
+    z-index: 100;
+    position: absolute; /*小程序中z-index和absolute需要同时存在，元素才能脱离文档。*/
+}
+.select_one{
+    text-align: center;
+    background-color:rgba(0, 0, 0,.5);
+    width:180rpx;   /*脱离文档后元素width不能再用百分比。*/
+    height:60rpx;
+    line-height:60rpx;
+    border-bottom:1rpx solid #fff;
+    font-size: 14px;
+    color: #fff;
+}
+.personal_image{
+    z-index: 100;
+    position: absolute;
+    right:0;
+    width: 34rpx;
+    height: 20rpx;
+    margin-top:20rpx;
+    transition: All 0.4s ease;  
+    -webkit-transition: All 0.4s ease;
+}
+.rotateRight{
+    transform: rotate(180deg); /*180°旋转图片。*/
+}
+.clear{
+  clear: both;
+}
+.tefangwang{
+  width: 276rpx;
+  height: 70rpx;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -138rpx;
+}
+.tefangwang image{
+  width: 100%;
+  height: 100%;
+}
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+    z-index: 999;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+.my_search{
+  margin-top: 30rpx;
+  padding-bottom:0;
+}
+.my_search .weui-search-bar{
+  background-color: transparent;
+  border: none;
+  height: 48px;
+}
+.my_search .weui-search-bar__cancel-btn{
+  color: #fff;
+}
+.my_grids{
+  padding-bottom: 0;
+  background-color: #fff;
+}
+.my_grids .weui-grids,.my_grids .weui-grid{
+  border: none;
+}
+.my_grids .weui-grid{
+  width: 25%;
+  padding: 10px 10px;
+}
+.my_grids .weui-grid__icon{
+  width: 44px;
+  height: 44px;
+}
+.my_encyclopedia{
+  margin-top: 10px;
+  background-color: #fff;
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.encyclopedia_list{
+  width: 50%;
+  float: left;
+  padding: 10px 5px;
+  box-sizing: border-box;
+}
+.encyclopedia_list .list_box{
+  background-color: #f8f8f8;
+  padding: 0 8px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  position: relative;
+}
+.encyclopedia_list .list_box .content{
+  font-size: 12px;
+  color: #aaa;
+}
+.encyclopedia_list .list_box .list_box_left{
+  float: left;
+  width: 70%;
+}
+.encyclopedia_list .list_box .list_box_left image{
+  width: 100%;
+  height: 60rpx;
+}
+.encyclopedia_list .list_box .list_box_right{
+  float: left;
+  width: 30%;
+  padding-top: 10px;
+}
+.encyclopedia_list .list_box .list_box_right image{
+  width: 100%;
+  height: 60rpx;
+}
+.encyclopedia_list .list_box .left_sanjiao{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 80rpx solid #00ce3c;
+  border-left: 80rpx solid transparent; 
+}
+.encyclopedia_list .list_box .right_sanjiao{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 80rpx solid #fd811f;
+  border-left: 80rpx solid transparent; 
+}
+.words{
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  font-size: 12px;
+  color: #fff;
+}
+.my_availability{
+  margin-top: 10px;
+  padding-bottom: 0;
+}
+.my_availability .weui-panel__hd{
+  padding: 10px 0px;
+}
+.my_availability .weui-panel__hd .hd_title{
+  padding-left: 15px;
+  border-left: 3px solid #00ce3c;
+  height: 18px;
+  line-height: 18px;
+  font-weight: bold;
+  color: #000;
+}
+.my_availability .weui-panel::before{
+  border-top: none;
+}
+.my_availability .introduction{
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+.my_availability .weui-media-box__desc{
+  margin-bottom: 3px;
+}
+.my_availability .weui-media-box__desc text{
+    float: right;  
+  color: #fd811f;
+}
+.my_availability .weui-media-box__desc text.money{
+  font-size: 16px;
+  margin-top: -2px;
+  margin-right: 3px;
+}
+.my_availability .weui-media-box__hd_in-appmsg{
+  width: 70px;
+  height: 65px;
+  margin-right: 5px;
+  position: relative;
+}
+.house_status{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  background-color: rgba(0,0,0,.5);
+  font-size: 12px;
+  color: #fff;
+}
+.weui-icon-clear{
+  padding:0 8px;
+  font-size: 14px;
+  line-height:28px;
+}
+.complete_data{
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+}

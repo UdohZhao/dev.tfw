@@ -1,0 +1,87 @@
+/* housedetails.wxss */
+page{
+  padding-bottom: 10px;
+}
+.house_swiper image{
+  width: 100%;
+  height: 100%;
+}
+.wx-swiper-dot-active{
+  background-color: #00ce3c;
+}
+.house_content{
+  background-color: #fff;
+  padding: 10px 15px;
+}
+.money{
+  font-size: 18px;
+  color: #fd811f;
+}
+.introduction{
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  margin-bottom: 3px;
+}
+.weui-media-box__desc{
+  margin: 5px;
+}
+.huxing{
+  background-color: #fff;
+  margin-top: 10px;
+}
+.huxing_box{
+  padding: 10px 10px;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: auto;
+}
+.huxing_all_box{
+  display: flex; 
+  display: -webkit-box; 
+  flex-direction: column;
+}
+.huxing_list{
+  width: 33.3333%;
+  padding:0 5px;
+  box-sizing: border-box;
+}
+.list_img{
+  width: 100%;
+  height: 160rpx;
+}
+.list_img image{
+  width: 100%;
+  height: 100%;
+}
+.consultant .weui-cells::before, .huxing .weui-cells::before{
+  border-top: none;
+}
+.list_title,.list_style{
+  font-size: 12px;
+}
+.list_style{
+  color: #8a8a8a;
+}
+.consultant{
+  margin-top: 10px;
+}
+.consultant .weui-panel{
+  margin-top: 0;
+}
+.consultant .weui-panel:before{
+  border-top: none;
+}
+.consultant .weui-panel:after{
+  border-bottom: none;
+}
+.consultant .weui-media-box__hd_in-appmsg{
+  border-radius: 100%;
+  overflow: hidden;
+}
+.phone_img{
+  width: 20px;
+  height: 17px;
+}

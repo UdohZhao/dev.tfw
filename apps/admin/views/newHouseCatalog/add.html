@@ -1,0 +1,149 @@
+{% extends "layouts.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/webuploader-0.1.5/dist/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/public/webuploader-0.1.5/examples/image-upload/style.css" />
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 房屋管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 添加新房条目</h3>
+      </div>
+      <div id="wrapper">
+          <div id="container">
+              <!--头部，相册选择和格式选择-->
+              <div id="uploader">
+                  <div class="queueList">
+                      <div id="dndArea" class="placeholder">
+                          <div id="filePicker"></div>
+                          <p>请选择需要上传的轮播图片，单次最多可选300张</p>
+                      </div>
+                  </div>
+                  <div class="statusBar" style="display:none;">
+                      <div class="progress">
+                          <span class="text">0%</span>
+                          <span class="percentage"></span>
+                      </div><div class="info"></div>
+                      <div class="btns">
+                          <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" id="newHouseCatalogForm" action="/admin/newHouseCatalog/add/id/{{ data.id }}" method="post">
+        <input type="hidden" name="hcid" value="{{ hcid }}">
+        <input type="hidden" name="pid" value="{{ pid }}">
+        <input type="hidden" name="slideshow" value="{{ data.slideshow }}">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">关联城市</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="cid" value="{{ data.cid }}" placeholder="请输入城市名称">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">标题</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="title" value="{{ data.title }}" placeholder="请输入标题">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">小区</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="community" value="{{ data.community }}" placeholder="请输入小区">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">价格</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="price" value="{{ data.price }}" placeholder="请输入价格">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">展示价格</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="show_price" value="{{ data.show_price }}" placeholder="请输入展示价格">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">特点</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="trait" value="{{ data.trait }}" placeholder="请输入特点（以英文逗号分隔）例如：AAA,BBB,CCC">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">面积</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="area" value="{{ data.area }}" placeholder="请输入面积">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="address" value="{{ data.address }}" placeholder="请输入地址">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">户型</label>
+            <div class="col-sm-10">
+            {% for k,v in htype %}
+              <label class="checkbox-inline">
+                  <input type="checkbox" id="htype" name="htype[]" value="{{ v }}"> {{ v }}
+              </label>
+            {% endfor %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">产权类型</label>
+            <div class="col-sm-10">
+            {% for k,v in prtype %}
+              <label class="radio-inline">
+                  <input type="radio" name="prtype" value="{{ v }}"> {{ v }}
+              </label>
+            {% endfor %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">房屋类型</label>
+            <div class="col-sm-10">
+            {% for k,v in house_type %}
+              <label class="radio-inline">
+                  <input type="radio" name="house_type" value="{{ v }}"> {{ v }}
+              </label>
+            {% endfor %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">物业类型</label>
+            <div class="col-sm-10">
+            {% for k,v in ptype %}
+              <label class="checkbox-inline">
+                  <input type="checkbox" id="ptype" name="ptype[]" value="{{ v }}"> {{ v }}
+              </label>
+            {% endfor %}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-success">下一步</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+{% block js %}
+<script src="/public/webuploader-0.1.5/dist/webuploader.js"></script>
+<script type="text/javascript" src="/public/webuploader-0.1.5/examples/image-upload/upload.js"></script>
+<script src="/apps/admin/views/newHouseCatalog/js/add.js"></script>
+{% endblock %}

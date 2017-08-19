@@ -1,0 +1,38 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 房屋管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ （{{ title }}）新房详细信息</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group list-group-bordered">
+        <li class="list-group-item"><h4>详细信息</h4></li>
+        {% for k,v in data.k %}
+          <li class="list-group-item">{{ data.k[k] }} : {{ data.v[k] }}</li>
+        {% endfor %}
+        <li class="list-group-item"><h4>置业顾问</h4></li>
+        <li class="list-group-item">
+          <img src="{{ pcInfo.head_portrait }}" class="img-responsive" style="width: 90px; height: 90px;">
+          <div style="font-size: 20px;">{{ pcInfo.cname }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.phone }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+{% block js %}
+
+{% endblock %}

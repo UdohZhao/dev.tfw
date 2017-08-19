@@ -1,0 +1,71 @@
+/* nextstep.wxss */
+button[type="default"]{
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: #999;
+  position: static;
+  padding-right: 0;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  border-radius: 0;
+}
+button::after{
+  content: none;
+}
+.features{
+  background-color: #fff;
+}
+.weui-cells__title{
+  margin: 0;
+  padding: 10px 15px;
+  font-weight: bold;
+  color: #000;
+}
+.weui-cells::after{
+  border-bottom: none;
+}
+.features .weui-cell__bd{
+  font-size: 14px;
+}
+.introduction{
+  background-color: #fff;
+  margin-top: 10px;
+}
+.introduction .weui-cells__title{
+  border-bottom: 1px solid #d9d9d9;
+}
+.introduction_content{
+  padding: 10px 15px;
+}
+.mytexteara{
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
+.introduction .weui-cells::before{
+  border-top: none;
+}
+.weui-textarea-counter,.weui-textarea{
+  font-size: 12px;
+}
+.weui-uploader__info{
+  text-align: right;
+  width: 100%;
+}
+.upload{
+  background-color: #fff;
+  margin-top: 10px;
+}
+.upload .weui-cells{
+  margin-top: 0;
+}
+.commissioned{
+  padding: 0 15px;
+  margin-top: 100rpx;
+  margin-bottom: 60rpx;
+}
+.commissioned button{
+  background-color: #00ce3c;
+  color: #fff;
+}

@@ -1,0 +1,48 @@
+<!--search.wxml-->
+ <view class="page">
+  <view class="page__bd mysearch">
+    <view class="phone_one" bindtap="clickPerson">
+      <view class="phone_personal">{{firstPerson}}</view>
+        <image src="../../images/下拉三角形3.png" class="personal_image {{selectArea ? 'rotateRight' :''}}"></image>
+      </view>
+      <view class="person_box">
+      <view class="phone_select" hidden="{{selectPerson}}">
+        <view class="select_one" bindtap="mySelect" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="新房">新房</view>
+        <view class="select_one" bindtap="mySelect" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="二手房">二手房</view>
+        <view class="select_one" bindtap="mySelect" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="租房">租房</view>
+      </view>
+    </view>
+  </view>
+  <view class="nav-header"> 
+    <view class="search"> 
+        <!--<view class="search-select" hidden="{{selectHide}}">
+          <navigator>Content</navigator>
+          <navigator>Content</navigator>
+        </view>-->
+        <input class="search-input" placeholder="请输入小区名" auto-focus bindinput="bindInput"  bindchange="bindchange" value="{{inputValue}}"/>
+        <view class="clearInput" bindtap="clearInput">×</view>
+    </view>
+        <text class="search_right" style="display:inline-block" bindtap="setSearchStorage">搜索</text>
+  </view>
+  <view class="history">
+    <text>历史记录</text>
+  </view>
+  <scroll-view scroll-y="true" class="zong">
+    <!-- <view class="local" wx:for="{{getSearch}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" >
+      <view wx:if="{{itemName != ''}}"> {{itemName}} </view>
+    </view> -->
+    <view class="page__bd">
+      <view class="weui-cells weui-cells_after-title" wx:for="{{getSearch}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+          <view class="weui-cell" wx:if="{{itemName != ''}}">
+              <view class="weui-cell__bd">{{itemName}}</view>
+          </view>
+      </view>
+    </view>
+    <modal class="modal" hidden="{{modalHidden}}" bindconfirm="modalChangeConfirm" bindcancel="modalChangeCancel">
+      <view> 确定要清空历史记录吗？ </view>
+    </modal>
+    <view hidden="{{claer_hidden}}">
+      <text class="clear_history" style="display:inline-block" bindtap="clearSearchStorage">清空浏览记录</text>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,55 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 房屋管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ （{{ title }}）新房主力户型</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>封面图片</th>
+            <th>户型</th>
+            <th>名称</th>
+            <th>特点</th>
+            <th>价格</th>
+            <th>建筑面积</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for k,v in data %}
+          <tr>
+            <td></td>
+            <td>
+              <img src="{{ v.cover_path }}" class="img-responsive" style="width: 90px; height: 90px;">
+            </td>
+            <td>{{ v.house_type_name }}</td>
+            <td>{{ v.cname }}</td>
+            <td>{{ v.trait }}</td>
+            <td>{{ v.price }}</td>
+            <td>{{ v.covered_area }}</td>
+            <td>111</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+{% block js %}
+
+{% endblock %}

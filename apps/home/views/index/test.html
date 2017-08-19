@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<form onsubmit="return sub()" enctype="multipart/form-data" action="/index/save" method="post">
+
+<div class="yanzRight">
+    <input style="margin-top:5px;float: left;"  multiple="multiple" name="evidence[]" onchange="previewImage(this)" type="file"/>
+    <span class="dui" id="imgOrder_dui" style="display: none;"></span>
+</div>
+<div id="preview" style="margin-left: 150px;">
+
+</div>
+<input type="submit" value="提交">
+</form>
+</body>
+</html>
+<script type="text/javascript" language="javascript">
+    function fun(obj){
+        obj.style.display='block';
+    }
+    function outFun(obj){
+        obj.style.display='none';
+    }
+    function cancel(){
+        console.log('dede')
+        return false;
+    }
+//图片预览功能
+    var imgPath=new Array();
+    var j=0;
+function previewImage(file)
+{
+    for(var i=0;i<file.files.length;i++,j++){
+        var div = document.getElementById('preview');
+        if (file.files && file.files[i])
+        {
+            div.innerHTML +='<div style="float: left;height: 180px;width: 200px;">' +
+                    '<img width="200" height="180" name="mulUpload" onmouseover=fun(this.nextSibling) onmouseout="outFun(this.nextSibling)"  />' +
+                    '<button type="button" onclick="cancel()" onmouseover=fun(this) style=" display: none; position: relative;z-index: 2;left: 80px;top: -180px; background-color: #3F7F7F">取消上传</button>' +
+                    '</div>';
+            var img=document.getElementsByName('mulUpload');
+            img[j].src = window.URL.createObjectURL(file.files[i]);   //获取上传图片文件的物理路径
+            imgPath[j]=window.URL.createObjectURL(file.files[i]);
+    }
+console.log(file.files.length);
+}
+
+
+}
+
+function sub(){
+    if(imgPath.length){
+
+    }else{
+        return false;
+    }
+}
+function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+    var param = {top:0, left:0, width:width, height:height};
+    if( width>maxWidth || height>maxHeight )
+    {
+        rateWidth = width / maxWidth;
+        rateHeight = height / maxHeight;
+
+        if( rateWidth > rateHeight )
+        {
+            param.width =  maxWidth;
+            param.height = Math.round(height / rateWidth);
+        }else
+        {
+            param.width = Math.round(width / rateHeight);
+            param.height = maxHeight;
+        }
+    }
+    param.left = Math.round((maxWidth - param.width) / 2);
+    param.top = Math.round((maxHeight - param.height) / 2);
+    return param;
+}
+
+</script>
+<script type="text/javascript" language="javascript">
+
+    function Bold()
+    {
+        var r =  document.selection.createRange().text;
+        //var r = window.getSelection();;
+        alert(r);
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    //下面用于多图片上传预览功能
+    function setImagePreviews(avalue) {
+        //获取选择图片的对象
+        var docObj = document.getElementById("doc");
+        //后期显示图片区域的对象
+        var dd = document.getElementById("dd");
+        dd.innerHTML = "";
+        //得到所有的图片文件
+        var fileList = docObj.files;
+        //循环遍历
+        for (var i = 0; i < fileList.length; i++) {
+            //动态添加html元素
+            dd.innerHTML += "<div style='float:left' > <img id='img" + i + "'  /> </div>";
+            //获取图片imgi的对象
+            var imgObjPreview = document.getElementById("img"+i);
+
+            if (docObj.files && docObj.files[i]) {
+                //火狐下，直接设img属性
+                imgObjPreview.style.display = 'block';
+                imgObjPreview.style.width = '200px';
+                imgObjPreview.style.height = '180px';
+                //imgObjPreview.src = docObj.files[0].getAsDataURL();
+                //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要以下方式
+                imgObjPreview.src = window.URL.createObjectURL(docObj.files[i]);   //获取上传图片文件的物理路径
+            }
+            else {
+                //IE下，使用滤镜
+                docObj.select();
+                var imgSrc = document.selection.createRange().text;
+                //alert(imgSrc)
+                var localImagId = document.getElementById("img" + i);
+                //必须设置初始大小
+                localImagId.style.width = "200px";
+                localImagId.style.height = "180px";
+                //图片异常的捕捉，防止用户修改后缀来伪造图片
+                try {
+                    localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                    localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+                }
+                catch (e) {
+                    alert("您上传的图片格式不正确，请重新选择!");
+                    return false;
+                }
+                imgObjPreview.style.display = 'none';
+                document.selection.empty();
+            }
+        }
+        return true;
+    }
+
+</script>
+
+

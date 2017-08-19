@@ -1,0 +1,22 @@
+/* allhousestyle.wxss */
+.weui-media-box__hd_in-appmsg{
+  width: 200rpx;
+  height: 160rpx;
+  position: relative;
+}
+.weui-media-box__desc{
+  font-size: 14px;
+  line-height: 22px;
+}
+.house_status{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 20px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  background-color: rgba(0,0,0,.5);
+}

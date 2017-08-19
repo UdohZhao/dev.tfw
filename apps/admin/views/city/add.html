@@ -1,0 +1,68 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 城市管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 添加城市{% if type %} -> [{{ data.cname }}] {% endif %}</h3>
+      </div>
+      <div class="panel-body">
+      {% if type %}
+        <form class="form-horizontal" id="cityForm" action="/admin/city/add" method="post">
+          <input type="hidden" name="pid" value="{{ data.id }}">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="cname" placeholder="请输入城市名称" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">排序 </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="sort" placeholder="请输入排序？数字越小越靠前">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">提 交</button>
+            </div>
+          </div>
+        </form>
+      {% else %}
+        <form class="form-horizontal" id="cityForm" action="/admin/city/add/id/{{ data.id }}" method="post">
+          <input type="hidden" name="pid" value="{{ pid }}">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="cname" placeholder="请输入城市名称" value="{{ data.cname }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">排序 </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="sort" placeholder="请输入排序？数字越小越靠前" value="{{ data.sort }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">提 交</button>
+            </div>
+          </div>
+        </form>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+{% block js %}
+<script src="/apps/admin/views/city/js/add.js"></script>
+{% endblock %}

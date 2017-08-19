@@ -1,0 +1,15 @@
+/* modifyname.wxss */
+page{
+  background-color: #fff;
+}
+.confirm_modify{
+  padding: 0 15px;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+}
+.confirm_modify button{
+  background-color: #00ce3c;
+  color: #fff;
+}

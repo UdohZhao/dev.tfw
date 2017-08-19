@@ -1,0 +1,101 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># 房屋管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 新房条目列表</h3>
+      </div>
+      <form action="/admin/newHouseCatalog/index" method="post">
+        <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
+          <input type="text" class="form-control" name="search" placeholder="请输入关键字">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+      <ul class="nav nav-pills" style="margin-left: 25px;">
+        <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/newHouseCatalog/index/status/0">默认</a></li>
+        <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/newHouseCatalog/index/status/1">待审核</a></li>
+        <li role="presentation" {% if status == 2 %}class="active"{% endif %}><a href="/admin/newHouseCatalog/index/status/2">未通过</a></li>
+        <li role="presentation" {% if status == 3 %}class="active"{% endif %}><a href="/admin/newHouseCatalog/index/status/3">已通过</a></li>
+      </ul>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>所属城市</th>
+              <th>标题</th>
+              <th>展示价格</th>
+              <th>特点</th>
+              <th>面积</th>
+              <th>地址</th>
+              <th>时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% if data %}
+          {% for k,v in data %}
+            <tr>
+              <td>
+                {% if status == 4 %}
+                  {% if v.type == 1 %}
+                    <span class="text-danger">{隐藏}</span>
+                  {% else %}
+                    <span class="text-success">{展示}</span>
+                  {% endif %}
+                {% endif %}
+              </td>
+              <td>{{ v.cityname }}</td>
+              <td>{{ v.title }}</td>
+              <td>{{ v.show_price }}</td>
+              <td>{{ v.trait }}</td>
+              <td>{{ v.area }}</td>
+              <td>{{ v.address }}</td>
+              <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-xs" onclick="nhInfo({{ v.id }});">详细信息</button>
+                <button type="button" class="btn btn-primary btn-xs" onclick="nhmInfo({{ v.id }});">主力户型</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">提交审核</button>
+                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
+              </td>
+            </tr>
+          {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="4">
+                <blockquote>
+                  <p>暂无数据 :(</p>
+                </blockquote>
+              </td>
+            </tr>
+          {% endif %}
+          </tbody>
+        </table>
+
+          <div style="float: right;">
+            {% autoescape false %}
+              {{ page }}
+            {% endautoescape %}
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block js %}
+<script src="/apps/admin/views/newHouseCatalog/js/index.js"></script>
+{% endblock %}

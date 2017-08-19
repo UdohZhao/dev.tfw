@@ -1,0 +1,227 @@
+/* search.wxss */
+page{
+  position: relative;
+}
+.phone_one{
+    display: flex; 
+    position: relative;
+    justify-content: space-between;
+    background-color:transparent;
+    height:60rpx;
+    width: 150rpx;
+}
+.person_box{
+    position: relative;
+}
+.phone_select{
+    margin-top:0;
+    z-index: 100;
+    position: absolute; /*小程序中z-index和absolute需要同时存在，元素才能脱离文档。*/
+}
+.select_one{
+    text-align: center;
+    background-color:rgba(0, 0, 0,.5);
+    width:180rpx;   /*脱离文档后元素width不能再用百分比。*/
+    height:60rpx;
+    line-height:60rpx;
+    border-bottom:1rpx solid #fff;
+    font-size: 14px;
+    color: #fff;
+}
+.personal_image{
+    z-index: 100;
+    position: absolute;
+    right:0;
+    width: 34rpx;
+    height: 20rpx;
+    margin-top:20rpx;
+    transition: All 0.4s ease;  
+    -webkit-transition: All 0.4s ease;
+}
+.rotateRight{
+    transform: rotate(180deg); /*180°旋转图片。*/
+}
+.clear{
+  clear: both;
+}
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+.mysearch{
+  position: relative;
+  background-color: #efeff4;
+  padding-bottom:0;
+}
+.mysearch .weui-search-bar{
+  padding-left: 90px;
+  border-bottom: none;
+}
+.mysearch .phone_one{
+  position: fixed;
+  top: 13px;
+  left: 0;
+  z-index: 999;
+  padding-left: 10px;
+  width: auto;
+  height: 30px;
+  font-size: 14px;
+  color: #bbb;
+}
+.phone_select{
+  top: 40px;
+}
+.personal_image{
+  top: -4px;
+  right: -22px;
+  width: 24rpx;
+  height: 26rpx;
+}
+.weui-icon-clear{
+  font-size: 12px;
+  line-height: 28px;
+  padding: 0;
+  padding-right: 3px;
+}
+
+
+.nav-header{
+  position:fixed;
+  z-index:99;
+  width:100%;
+  height: 100rpx;
+  background-color: #eee
+}
+.shaoyishao{
+  display: inline-block;
+  background: pink;
+   height: 30px;
+   width:30px
+}
+.search view{
+  display: inline-block;
+}
+.search .search-input{
+  display: inline-block;
+  background-color:#ff1;
+  position:relative;
+  height: 50rpx;
+  padding: 20rpx 75rpx 20rpx 30rpx;
+}
+.search-input icon{
+  position:absolute;
+  left:5px;
+  top:10px;
+}
+.outside{
+  position: absolute
+}
+.search-select{
+  display: inline-block
+}
+.local{
+  display: inline-block;
+  border: 1px red solid;
+  border-radius: 3px;
+  background-color: #eee;
+  margin-left: 10px;
+}
+.zong{
+    margin-top: 60px;
+}
+.nav-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ededed;
+  padding-left: 90px;
+  padding-right: 45px;
+  height: 48px;
+  padding-top: 6px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.search{
+  position: relative;
+  width:100%;
+}
+.search .search-input{
+  background-color: #fff;
+  height: 35px;
+  border-radius: 4px;
+  padding: 0;
+  padding-left: 5px;
+  padding-right: 30px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+
+}
+.clearInput{
+  background-color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+.clearInput::after{
+  content: normal;
+}
+.search_right{
+  line-height: 48px;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 14px;
+}
+.history{
+  padding-top: 48px;
+}
+.history text{
+  font-size: 14px;
+  margin-left: 10px;
+  line-height: 35px;
+  color: #ccc;
+}
+.zong{
+  background-color: #fff;
+  margin-top: 0;
+}
+.weui-cell{
+  padding: 10px 10px;
+}
+.weui-cells::before{
+  border-top: 1px solid #f8f8f8;
+}
+.weui-cells::after{
+  border-bottom: 1px solid #f8f8f8;
+}
+.zong .page__bd{
+  padding-bottom: 0;
+}
+.clear_history{
+  display: block;
+  width: 80%;
+  height: 40px;
+  background-color: #ededed;
+  color: #fff;
+  font-size: 14px;
+  margin: 10px 10%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  line-height: 40px;
+  text-align: center;
+}
