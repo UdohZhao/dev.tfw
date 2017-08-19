@@ -7,7 +7,7 @@ class tenmentInfoCtrl extends baseCtrl{
 
     public $tcid;
     public $pcdb;
-    public $uhdb;
+    public $thdb;
     public $id;
 
     // 构造方法
@@ -16,7 +16,7 @@ class tenmentInfoCtrl extends baseCtrl{
         $this->assign('tcid',$this->tcid);
         $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
         $this->pcdb = new propertyConsultant();
-        $this->uhdb = new tenmentInfo();
+        $this->thdb = new tenmentInfo();
     }
     public function add(){
         // Get
@@ -33,7 +33,7 @@ class tenmentInfoCtrl extends baseCtrl{
         if(IS_AJAX === true){
             $data=$this->getData();
             $result=array();
-            if($this->uhdb->add($data))  {
+            if($this->thdb->add($data))  {
                 $result['error'] = 0;
             }else{
 
@@ -44,18 +44,15 @@ class tenmentInfoCtrl extends baseCtrl{
 
     private function getData(){
         $data=array();
-        $data['uhcid']=intval($_POST['uhcid']);
+        $data['tcid']=intval($_POST['tcid']);
         $data['pcid']=intval($_POST['pcid']);
         $data['tage']=htmlspecialchars($_POST['tage']);
+        $data['area']=intval($_POST['area']);
         $data['orientation']=htmlspecialchars($_POST['orientation']);
-        $data['unit_price']=htmlspecialchars($_POST['unit_price']);
-        $data['type']=htmlspecialchars($_POST['type']);
-        $data['upfitter']=htmlspecialchars($_POST['upfitter']);
+        $data['htype']=htmlspecialchars($_POST['htype']);
         $data['ctime']=intval(time());
-        $data['rail_transit']=htmlspecialchars($_POST['rail_transit']);
-        $data['community']=htmlspecialchars($_POST['community']);
-        $data['selling_points']=$_POST['selling_points'];
-        $data['era']=htmlspecialchars($_POST['era']);
+        $data['general_situation']=$_POST['general_situation'];
+        $data['hconfig']=htmlspecialchars($_POST['hconfig']);
         return $data;
     }
 
@@ -67,17 +64,22 @@ class tenmentInfoCtrl extends baseCtrl{
             $this->assign('pcData',$pcData);
             if($this->id){
                 //获取该条房的详细信息
-                $this->assign('uhcid',$this->id);
-                $data = $this->uhdb->sel_info($this->id);
+                $this->assign('tcid',$this->id);
+                $data = $this->thdb->sel_info($this->id);
                 $this->assign('data',$data);
             }
-            $this->display('usedHouseInfo','index.html');
+            $this->display('tenmentInfo','index.html');
             die;
         }
 
         if(IS_AJAX === true){
             $update_data=$this->getData();
-            $re = $this->uhdb->update_info($this->id,$update_data);
+            if($this->thdb->sel_info($this->id)){
+                $re = $this->thdb->update_info($this->id,$update_data);
+            }else{
+                $re = $this->thdb->add($update_data);
+            }
+
             $result=array();
             if($re){
                 $result['error'] = 401;

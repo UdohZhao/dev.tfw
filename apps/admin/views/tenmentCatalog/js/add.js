@@ -132,3 +132,20 @@ function getCity(){
 
 
 }
+
+
+$(function(){
+    var dobj=document.getElementsByClassName('dtype');
+    for(var i=0;i<dobj.length;i++ ){
+        if(dobj[i].getAttribute('value')==_dtype){
+            dobj[i].setAttribute('checked','checked');
+        }
+    }
+
+    var hobj=document.getElementsByClassName('htype');
+    for(var j=0;j<hobj.length;j++ ){
+        if(hobj[j].getAttribute('value')==_htype){
+            hobj[j].setAttribute('checked','checked');
+        }
+    }
+})

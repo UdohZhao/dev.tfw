@@ -86,8 +86,9 @@
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">装修类型</label>
                         <div class="col-sm-10">
-                            <input type="radio" class="htype" name="dtype"  value="0"> 精装
-                            <input type="radio" class="htype" name="dtype" value="1"> 简装
+                            <input type="radio" class="dtype" name="dtype"  value="0"> 精装
+                            <input type="radio" class="dtype" name="dtype" value="1"> 中装
+                            <input type="radio" class="dtype" name="dtype" value="2"> 简装
                         </div>
                     </div>
 
@@ -115,4 +116,8 @@
 <script src="/public/webuploader-0.1.5/dist/webuploader.js"></script>
 <script type="text/javascript" src="/public/webuploader-0.1.5/examples/image-upload/upload.js"></script>
 <script src="/apps/admin/views/tenmentCatalog/js/add.js"></script>
+<script>
+    var _htype='{{data.htype}}';
+    var _dtype='{{data.dtype}}';
+</script>
 {% endblock %}

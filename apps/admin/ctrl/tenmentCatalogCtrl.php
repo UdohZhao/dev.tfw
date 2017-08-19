@@ -4,11 +4,13 @@ use core\lib\conf;
 use apps\admin\model\city;
 use apps\admin\model\houseCategory;
 use apps\admin\model\tenmentCatalog;
+use apps\admin\model\tenmentInfo;
 use vendor\page\Page;
 class tenmentCatalogCtrl extends baseCtrl{
     public $cdb;
     public $id;
     public $hcdb;
+    public $thidb;
     public $db;
 
     // 构造方法
@@ -16,6 +18,7 @@ class tenmentCatalogCtrl extends baseCtrl{
         $this->cdb = new city();
         $this->db=new tenmentCatalog();
         $this->hcdb = new houseCategory();
+        $this->thidb = new tenmentInfo();
 
         $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     }
@@ -35,7 +38,6 @@ class tenmentCatalogCtrl extends baseCtrl{
                 // 读取单条数据
                 $data = $this->db->getInfo($this->id);
                 $data['cid'] = $this->cdb->getCname($data['cid']);
-                $data['htype'] = explode(',', $data['htype']);
                 // assign
                 $this->assign('data',$data);
             }
@@ -132,5 +134,54 @@ class tenmentCatalogCtrl extends baseCtrl{
         $data['status'] = 0;
         $data['type'] = 0;
         return $data;
+    }
+
+
+    public function index(){
+        $status=isset($_GET['status'])?$_GET['status']:0;
+
+        //获取数据条数
+        $search=isset($_GET['search'])?$_GET['search']:'';
+        if(trim($search)){
+            $num  = $this->db->sel_num($status,$_GET['search']);
+        }else{
+            $num = $this->db->sel_num($status);
+        }
+
+        // 数据分页
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
+
+        //结果集
+        $res = $this->db->sel($status,$search,bcsub($p->page,1,0),$p->pagesize);
+        $this->assign('page',$p->showpage());
+        $this->assign('data',$res);
+        $this->assign('status',$status);
+        $this->display('tenmentCatalog','index.html');
+    }
+
+
+    //删除
+    // del
+    public function del(){
+        // Ajax
+        if (IS_AJAX === true) {
+            //先查询数据,删除照片文件
+            $info = $this->db->getInfo($this->id);
+            // delete
+            $res = $this->db->del($this->id);
+            $path=unserialize($info['slideshow']);
+            if ($res) {
+                foreach($path as $v){
+                    unlink_file($v);
+                }
+                $this->thidb->deluhcid($this->id);
+                echo json_encode(true);
+                die;
+            } else {
+                echo json_encode(false);
+                die;
+            }
+        }
     }
 }

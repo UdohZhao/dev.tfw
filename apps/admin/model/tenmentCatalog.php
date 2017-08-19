@@ -31,7 +31,7 @@ class tenmentCatalog extends model{
         $res = $this->delete($this->table,['id'=>$id]);
         return $res->rowCount();
     }
-    //查询二手房列表
+    //查询租房列表
 
     public function sel($status,$search='',$currPage,$subPages){
         $sql = "
