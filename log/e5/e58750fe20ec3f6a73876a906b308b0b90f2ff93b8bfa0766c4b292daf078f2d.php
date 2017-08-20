@@ -194,7 +194,7 @@ class __TwigTemplate_e19c2813013dd5b9aadb1c5b6b00c470f0cc2e3a8d4df7a658ff9fd3fda
     public function block_js($context, array $blocks = array())
     {
         // line 96
-        echo "<script src=\"/apps/admin/views/houseCategory/js/index.js\"></script>
+        echo "<script src=\"/apps/admin/views/buyHouseCatagory/js/index.js\"></script>
 ";
     }
 
@@ -310,7 +310,7 @@ class __TwigTemplate_e19c2813013dd5b9aadb1c5b6b00c470f0cc2e3a8d4df7a658ff9fd3fda
 {% endblock %}
 
 {% block js %}
-<script src=\"/apps/admin/views/houseCategory/js/index.js\"></script>
+<script src=\"/apps/admin/views/buyHouseCatagory/js/index.js\"></script>
 {% endblock %}", "buyHouseCatagory/index.html", "F:\\UPUPW_AP7.0_64\\vhosts\\dev.tfw.local\\apps\\admin\\views\\buyHouseCatagory\\index.html");
     }
 }
