@@ -23,6 +23,11 @@
 2017-08-21 17:06:14?"ctrl:loan\/action:index"
 >>>>>>> hejianqing
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> dev
 2017-08-21 17:13:53?"ctrl:buyHouseCatagory\/action:add_article"
 2017-08-21 17:14:24?"ctrl:loan\/action:index"
 2017-08-21 17:14:34?"ctrl:loan\/action:del_info"
@@ -47,6 +52,10 @@
 2017-08-21 17:52:41?"ctrl:loan\/action:del_info"
 2017-08-21 17:52:43?"ctrl:loan\/action:index"
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> hejianqing
+>>>>>>> dev
 2017-08-21 17:14:06?"ctrl:about\/action:index"
 2017-08-21 17:14:26?"ctrl:about\/action:index"
 2017-08-21 17:18:32?"ctrl:loan\/action:index"
@@ -89,4 +98,11 @@
 2017-08-21 17:59:11?"ctrl:about\/action:index"
 2017-08-21 17:59:24?"ctrl:about\/action:index"
 2017-08-21 17:59:48?"ctrl:loan\/action:index"
+<<<<<<< HEAD
+>>>>>>> dev
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> dev
+>>>>>>> hejianqing
 >>>>>>> dev
