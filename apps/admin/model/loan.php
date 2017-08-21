@@ -7,8 +7,8 @@ class loan extends model{
    public function getInfo($id){
         return $this->get($this->table,'*',['id'=>$id]);
     }
-  public function sel(){
-  	$sql = " SELECT * FROM $this->table " ;
+  public function sel($status){
+  	$sql = " SELECT * FROM $this->table where status=$status ";
   	$data = $this->query($sql)->fetchAll(2);
   	return $data; 
   }

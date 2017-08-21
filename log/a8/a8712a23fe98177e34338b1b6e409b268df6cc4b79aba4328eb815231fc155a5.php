@@ -49,7 +49,10 @@ class __TwigTemplate_12fc4ad644908cfd3206826352c266e021b1e06a2f108c14d2672366ac4
                 <h3 class=\"panel-title\">@ 添加金融贷款</h3>
             </div>
             <div class=\"panel-body\">
-                <form class=\"form-horizontal\" id=\"usedHouseInfoForm\" action=\"/admin/loan/add\" method=\"post\">
+                <form class=\"form-horizontal\" id=\"usedHouseInfoForm\" action=\"/admin/loan/add/id/";
+        // line 17
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "id", array()), "html", null, true);
+        echo "\" method=\"post\">
                     <div class=\"form-group\">
                         <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">姓名</label>
                         <div class=\"col-sm-10\">
@@ -71,9 +74,17 @@ class __TwigTemplate_12fc4ad644908cfd3206826352c266e021b1e06a2f108c14d2672366ac4
                      <div class=\"form-group\">
                         <label for=\"inputPassword3\"  class=\"col-sm-2 control-label\">类型</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"radio\" class=\"dtype\" id=\"dtype\" name=\"type\" value=\"0\"> 抵押贷款
-                            <input type=\"radio\" class=\"dtype\" id=\"dtype\" name=\"type\" value=\"1\"> 信用贷款
-                            <input type=\"radio\" class=\"dtype\" id=\"dtype\" name=\"type\" value=\"2\"> 组合贷款
+                        
+                       
+                           
+                            <input type=\"radio\" class=\"dtype\" id=\"type\" name=\"type\" value=\"0\">抵押贷款
+                            
+                            <input type=\"radio\" class=\"dtype\" id=\"type\" name=\"type\" value=\"1\">信用贷款 
+                           
+                            <input type=\"radio\" class=\"dtype\" id=\"type\" name=\"type\" value=\"2\">组合贷款
+                            
+                        
+                            
                         </div>
                     </div>
                     <div class=\"form-group\">
@@ -90,13 +101,17 @@ class __TwigTemplate_12fc4ad644908cfd3206826352c266e021b1e06a2f108c14d2672366ac4
 ";
     }
 
-    // line 50
+    // line 58
     public function block_js($context, array $blocks = array())
     {
-        // line 51
-        echo "<script src=\"/public/webuploader-0.1.5/dist/webuploader.js\"></script>
-<script type=\"text/javascript\" src=\"/public/webuploader-0.1.5/examples/image-upload/upload.js\"></script>
-<script src=\"/apps/admin/views/loan/js/add.js\"></script>
+        // line 59
+        echo "<script src=\"/apps/admin/views/loan/js/add.js\"></script>
+<script>
+var _dtype='";
+        // line 61
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "type", array()), "html", null, true);
+        echo "';
+</script>
 ";
     }
 
@@ -112,7 +127,7 @@ class __TwigTemplate_12fc4ad644908cfd3206826352c266e021b1e06a2f108c14d2672366ac4
 
     public function getDebugInfo()
     {
-        return array (  97 => 51,  94 => 50,  67 => 27,  58 => 21,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
+        return array (  112 => 61,  108 => 59,  105 => 58,  70 => 27,  61 => 21,  54 => 17,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -133,7 +148,7 @@ class __TwigTemplate_12fc4ad644908cfd3206826352c266e021b1e06a2f108c14d2672366ac4
                 <h3 class=\"panel-title\">@ 添加金融贷款</h3>
             </div>
             <div class=\"panel-body\">
-                <form class=\"form-horizontal\" id=\"usedHouseInfoForm\" action=\"/admin/loan/add\" method=\"post\">
+                <form class=\"form-horizontal\" id=\"usedHouseInfoForm\" action=\"/admin/loan/add/id/{{ data.id }}\" method=\"post\">
                     <div class=\"form-group\">
                         <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">姓名</label>
                         <div class=\"col-sm-10\">
@@ -149,9 +164,17 @@ class __TwigTemplate_12fc4ad644908cfd3206826352c266e021b1e06a2f108c14d2672366ac4
                      <div class=\"form-group\">
                         <label for=\"inputPassword3\"  class=\"col-sm-2 control-label\">类型</label>
                         <div class=\"col-sm-10\">
-                            <input type=\"radio\" class=\"dtype\" id=\"dtype\" name=\"type\" value=\"0\"> 抵押贷款
-                            <input type=\"radio\" class=\"dtype\" id=\"dtype\" name=\"type\" value=\"1\"> 信用贷款
-                            <input type=\"radio\" class=\"dtype\" id=\"dtype\" name=\"type\" value=\"2\"> 组合贷款
+                        
+                       
+                           
+                            <input type=\"radio\" class=\"dtype\" id=\"type\" name=\"type\" value=\"0\">抵押贷款
+                            
+                            <input type=\"radio\" class=\"dtype\" id=\"type\" name=\"type\" value=\"1\">信用贷款 
+                           
+                            <input type=\"radio\" class=\"dtype\" id=\"type\" name=\"type\" value=\"2\">组合贷款
+                            
+                        
+                            
                         </div>
                     </div>
                     <div class=\"form-group\">
@@ -167,9 +190,10 @@ class __TwigTemplate_12fc4ad644908cfd3206826352c266e021b1e06a2f108c14d2672366ac4
 <!-- End Page -->
 {% endblock %}
 {% block js %}
-<script src=\"/public/webuploader-0.1.5/dist/webuploader.js\"></script>
-<script type=\"text/javascript\" src=\"/public/webuploader-0.1.5/examples/image-upload/upload.js\"></script>
 <script src=\"/apps/admin/views/loan/js/add.js\"></script>
+<script>
+var _dtype='{{data.type}}';
+</script>
 {% endblock %}", "loan/add.html", "D:\\UPUPWAP\\vhosts\\dev.tfw.local\\apps\\admin\\views\\loan\\add.html");
     }
 }
