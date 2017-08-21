@@ -1,0 +1,54 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+    <div class="page-header">
+        <h1 class="page-title"># 金融贷款</h1>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">@ 添加金融贷款</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" id="usedHouseInfoForm" action="/admin/loan/add" method="post">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="cname" value="{{ data.cname }}" placeholder="请输入姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">电话号码</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="phone" value="{{ data.phone }}" placeholder="请输入电话号码">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="inputPassword3"  class="col-sm-2 control-label">类型</label>
+                        <div class="col-sm-10">
+                            <input type="radio" class="dtype" id="dtype" name="type" value="0"> 抵押贷款
+                            <input type="radio" class="dtype" id="dtype" name="type" value="1"> 信用贷款
+                            <input type="radio" class="dtype" id="dtype" name="type" value="2"> 组合贷款
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success">提交信息</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+{% block js %}
+<script src="/public/webuploader-0.1.5/dist/webuploader.js"></script>
+<script type="text/javascript" src="/public/webuploader-0.1.5/examples/image-upload/upload.js"></script>
+<script src="/apps/admin/views/loan/js/add.js"></script>
+{% endblock %}

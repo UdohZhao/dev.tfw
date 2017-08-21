@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2017-08-21 17:01:05?"ctrl:buyHouseCatagory\/action:article_list"
 2017-08-21 17:01:11?"ctrl:buyHouseCatagory\/action:del_article"
 2017-08-21 17:01:13?"ctrl:buyHouseCatagory\/action:article_list"
@@ -13,3 +14,11 @@
 2017-08-21 17:03:08?"ctrl:buyHouseCatagory\/action:article_list"
 2017-08-21 17:03:10?"ctrl:buyHouseCatagory\/action:add_article"
 2017-08-21 17:03:14?"ctrl:buyHouseCatagory\/action:article_list"
+=======
+2017-08-21 17:00:02?"ctrl:loan\/action:index"
+2017-08-21 17:00:31?"ctrl:loan\/action:index"
+2017-08-21 17:02:54?"ctrl:loan\/action:index"
+2017-08-21 17:04:21?"ctrl:loan\/action:index"
+2017-08-21 17:05:50?"ctrl:login\/action:verifyImg"
+2017-08-21 17:06:14?"ctrl:loan\/action:index"
+>>>>>>> hejianqing
