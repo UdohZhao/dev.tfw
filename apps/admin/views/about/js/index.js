@@ -40,14 +40,6 @@ function del(id){
   });
 }
 // 修改密码
-function ePass(id,content){
-  // 动态赋值
-  console.log( $("#container").eq(0).eq(0));
-  $("#container").eq(0).attr('value',content);
-  $("#ePassForm").attr("action","/admin/adminUser/ePass/id/"+id);
-  // modal
-  $('#ePassModal').modal({
-    backdrop: 'static',
-    keyboard: false
-  });
+function edit(id){
+    window.location.href='http://'+window.location.host+'/admin/about/add?id='+id;
 }

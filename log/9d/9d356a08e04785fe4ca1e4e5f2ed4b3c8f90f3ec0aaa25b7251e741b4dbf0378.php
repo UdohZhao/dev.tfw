@@ -1,14 +1,14 @@
 <?php
 
-/* usedHouseCatalog/index.html */
-class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715d59ae extends Twig_Template
+/* loan/index.html */
+class __TwigTemplate_81145f531433a68d1890f8efe28fdd47dff16b2791e8a20407689bfee7f56051 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("layouts.html", "usedHouseCatalog/index.html", 1);
+        $this->parent = $this->loadTemplate("layouts.html", "loan/index.html", 1);
         $this->blocks = array(
             'css' => array($this, 'block_css'),
             'content' => array($this, 'block_content'),
@@ -41,122 +41,113 @@ class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715
         echo "<!-- Page -->
 <div class=\"page animsition\">
     <div class=\"page-header\">
-        <h1 class=\"page-title\"># 房屋管理</h1>
+        <h1 class=\"page-title\"># 金融贷款</h1>
     </div>
     <div class=\"page-content\">
         <div class=\"panel\">
             <div class=\"panel-heading\">
-                <h3 class=\"panel-title\">@ 二手房条目列表</h3>
+                <h3 class=\"panel-title\">@ 金融贷款列表</h3>
             </div>
-
-            <form action=\"/admin/usedHouseCatalog/index\" method=\"get\">
-                <div class=\"input-group\" style=\"width: 300px;float: right;margin-right: 30px;\">
-                    <input type=\"text\" class=\"form-control\" name=\"search\" placeholder=\"请输入关键字\">
-                    <span class=\"input-group-btn\">
-            <button type=\"submit\" class=\"btn btn-primary\"><i class=\"icon wb-search\" aria-hidden=\"true\"></i></button>
-          </span>
-                </div>
-            </form>
             <ul class=\"nav nav-pills\" style=\"margin-left: 25px;\">
                 <li role=\"presentation\" ";
-        // line 26
+        // line 17
         if ((($context["status"] ?? null) == 0)) {
             echo "class=\"active\"";
         }
-        echo "><a href=\"/admin/usedHouseCatalog/index/status/0\">待审核</a></li>
+        echo "><a href=\"/admin/loan/index/status/0\">未读</a></li>
                 <li role=\"presentation\" ";
-        // line 27
+        // line 18
         if ((($context["status"] ?? null) == 1)) {
             echo "class=\"active\"";
         }
-        echo "><a href=\"/admin/usedHouseCatalog/index/status/1\">未通过</a></li>
-                <li role=\"presentation\" ";
-        // line 28
-        if ((($context["status"] ?? null) == 2)) {
-            echo "class=\"active\"";
-        }
-        echo "><a href=\"/admin/usedHouseCatalog/index/status/2\">已通过</a></li>
+        echo "><a href=\"/admin/loan/index/status/1\">已读</a></li>
             </ul>
             <div class=\"panel-body\">
                 <table class=\"table table-hover\">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>所属城市</th>
-                        <th>标题</th>
-                        <th>展示价格</th>
-                        <th>特点</th>
-                        <th>面积</th>
+                        <th>姓名</th>
+                        <th>联系电话</th>
+                        <th>贷款屋类型</th>
                         <th>时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     ";
-        // line 45
+        // line 33
         if (($context["data"] ?? null)) {
-            // line 46
+            // line 34
             echo "                    ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["data"] ?? null));
             foreach ($context['_seq'] as $context["k"] => $context["v"]) {
-                // line 47
+                // line 35
                 echo "                    <tr>
                         <td>
                             ";
-                // line 49
+                // line 37
                 if ((($context["status"] ?? null) == 4)) {
-                    // line 50
+                    // line 38
                     echo "                            ";
                     if ((twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "type", array()) == 1)) {
-                        // line 51
+                        // line 39
                         echo "                            <span class=\"text-danger\">{隐藏}</span>
                             ";
                     } else {
-                        // line 53
+                        // line 41
                         echo "                            <span class=\"text-success\">{展示}</span>
                             ";
                     }
-                    // line 55
+                    // line 43
                     echo "                            ";
                 }
-                // line 56
+                // line 44
                 echo "                        </td>
+                        
                         <td>";
+                // line 46
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "cname", array()), "html", null, true);
+                echo "</td>
+                        <td>";
+                // line 47
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "phone", array()), "html", null, true);
+                echo "</td>
+                        <td>
+                         ";
+                // line 49
+                if ((twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "type", array()) == 0)) {
+                    // line 50
+                    echo "                        
+                        <span>抵押贷款</span>
+                         ";
+                } elseif ((twig_get_attribute($this->env, $this->getSourceContext(),                 // line 52
+$context["v"], "type", array()) == 1)) {
+                    // line 53
+                    echo "                         <span>信用贷款</span>
+                         ";
+                } else {
+                    // line 55
+                    echo "                         <span>组合贷款</span>
+                          ";
+                }
                 // line 57
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "cityname", array()), "html", null, true);
-                echo "</td>
-                        <td>";
-                // line 58
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "title", array()), "html", null, true);
-                echo "</td>
-                        <td>";
-                // line 59
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "show_price", array()), "html", null, true);
-                echo "</td>
-                        <td>";
-                // line 60
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "trait", array()), "html", null, true);
-                echo "</td>
+                echo "                           
+                          
+
+                        </td>
                         <td>";
                 // line 61
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "area", array()), "html", null, true);
-                echo "</td>
-                        <td>";
-                // line 62
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "ctime", array()), "Y-m-d H:i"), "html", null, true);
                 echo "</td>
                         <td>
-                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"uhInfo(";
-                // line 64
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
-                echo ");\">详细信息</button>
-                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"update_info(";
-                // line 65
+                             <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"update_info(";
+                // line 63
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
                 echo ");\">修改</button>
                             <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"del_info(";
-                // line 66
+                // line 64
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
                 echo ");\">删除</button>
                         </td>
@@ -166,10 +157,10 @@ class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['k'], $context['v'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 70
+            // line 68
             echo "                    ";
         } else {
-            // line 71
+            // line 69
             echo "                    <tr>
                         <td colspan=\"4\">
                             <blockquote>
@@ -179,17 +170,17 @@ class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715
                     </tr>
                     ";
         }
-        // line 79
+        // line 77
         echo "                    </tbody>
                 </table>
                 <div style=\"float: right;\">
                     ";
-        // line 83
+        // line 81
         echo "                    ";
         echo ($context["page"] ?? null);
         echo "
                     ";
-        // line 85
+        // line 83
         echo "                </div>
 
             </div>
@@ -200,17 +191,17 @@ class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715
 ";
     }
 
-    // line 94
+    // line 92
     public function block_js($context, array $blocks = array())
     {
-        // line 95
-        echo "<script src=\"/apps/admin/views/usedHouseCatalog/js/index.js\"></script>
+        // line 93
+        echo "<script src=\"/apps/admin/views/loan/js/index.js\"></script>
 ";
     }
 
     public function getTemplateName()
     {
-        return "usedHouseCatalog/index.html";
+        return "loan/index.html";
     }
 
     public function isTraitable()
@@ -220,7 +211,7 @@ class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715
 
     public function getDebugInfo()
     {
-        return array (  207 => 95,  204 => 94,  193 => 85,  188 => 83,  183 => 79,  173 => 71,  170 => 70,  160 => 66,  156 => 65,  152 => 64,  147 => 62,  143 => 61,  139 => 60,  135 => 59,  131 => 58,  127 => 57,  124 => 56,  121 => 55,  117 => 53,  113 => 51,  110 => 50,  108 => 49,  104 => 47,  99 => 46,  97 => 45,  75 => 28,  69 => 27,  63 => 26,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
+        return array (  198 => 93,  195 => 92,  184 => 83,  179 => 81,  174 => 77,  164 => 69,  161 => 68,  151 => 64,  147 => 63,  142 => 61,  136 => 57,  132 => 55,  128 => 53,  126 => 52,  122 => 50,  120 => 49,  115 => 47,  111 => 46,  107 => 44,  104 => 43,  100 => 41,  96 => 39,  93 => 38,  91 => 37,  87 => 35,  82 => 34,  80 => 33,  60 => 18,  54 => 17,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -233,37 +224,25 @@ class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715
 <!-- Page -->
 <div class=\"page animsition\">
     <div class=\"page-header\">
-        <h1 class=\"page-title\"># 房屋管理</h1>
+        <h1 class=\"page-title\"># 金融贷款</h1>
     </div>
     <div class=\"page-content\">
         <div class=\"panel\">
             <div class=\"panel-heading\">
-                <h3 class=\"panel-title\">@ 二手房条目列表</h3>
+                <h3 class=\"panel-title\">@ 金融贷款列表</h3>
             </div>
-
-            <form action=\"/admin/usedHouseCatalog/index\" method=\"get\">
-                <div class=\"input-group\" style=\"width: 300px;float: right;margin-right: 30px;\">
-                    <input type=\"text\" class=\"form-control\" name=\"search\" placeholder=\"请输入关键字\">
-                    <span class=\"input-group-btn\">
-            <button type=\"submit\" class=\"btn btn-primary\"><i class=\"icon wb-search\" aria-hidden=\"true\"></i></button>
-          </span>
-                </div>
-            </form>
             <ul class=\"nav nav-pills\" style=\"margin-left: 25px;\">
-                <li role=\"presentation\" {% if status == 0 %}class=\"active\"{% endif %}><a href=\"/admin/usedHouseCatalog/index/status/0\">待审核</a></li>
-                <li role=\"presentation\" {% if status == 1 %}class=\"active\"{% endif %}><a href=\"/admin/usedHouseCatalog/index/status/1\">未通过</a></li>
-                <li role=\"presentation\" {% if status == 2 %}class=\"active\"{% endif %}><a href=\"/admin/usedHouseCatalog/index/status/2\">已通过</a></li>
+                <li role=\"presentation\" {% if status == 0 %}class=\"active\"{% endif %}><a href=\"/admin/loan/index/status/0\">未读</a></li>
+                <li role=\"presentation\" {% if status == 1 %}class=\"active\"{% endif %}><a href=\"/admin/loan/index/status/1\">已读</a></li>
             </ul>
             <div class=\"panel-body\">
                 <table class=\"table table-hover\">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>所属城市</th>
-                        <th>标题</th>
-                        <th>展示价格</th>
-                        <th>特点</th>
-                        <th>面积</th>
+                        <th>姓名</th>
+                        <th>联系电话</th>
+                        <th>贷款屋类型</th>
                         <th>时间</th>
                         <th>操作</th>
                     </tr>
@@ -281,15 +260,25 @@ class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715
                             {% endif %}
                             {% endif %}
                         </td>
-                        <td>{{ v.cityname }}</td>
-                        <td>{{ v.title }}</td>
-                        <td>{{ v.show_price }}</td>
-                        <td>{{ v.trait }}</td>
-                        <td>{{ v.area }}</td>
+                        
+                        <td>{{ v.cname }}</td>
+                        <td>{{ v.phone }}</td>
+                        <td>
+                         {% if v.type == 0%}
+                        
+                        <span>抵押贷款</span>
+                         {% elseif v.type == 1%}
+                         <span>信用贷款</span>
+                         {% else %}
+                         <span>组合贷款</span>
+                          {% endif %}
+                           
+                          
+
+                        </td>
                         <td>{{ v.ctime|date(\"Y-m-d H:i\") }}</td>
                         <td>
-                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"uhInfo({{ v.id }});\">详细信息</button>
-                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"update_info({{ v.id }});\">修改</button>
+                             <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"update_info({{ v.id }});\">修改</button>
                             <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"del_info({{ v.id }});\">删除</button>
                         </td>
                     </tr>
@@ -319,7 +308,7 @@ class __TwigTemplate_b461fc06dc7b3697d87c7dfa2808b1209d11d1726f1047b9a24529f2715
 {% endblock %}
 
 {% block js %}
-<script src=\"/apps/admin/views/usedHouseCatalog/js/index.js\"></script>
-{% endblock %}", "usedHouseCatalog/index.html", "D:\\UPUPWAP\\vhosts\\dev.tfw.local\\apps\\admin\\views\\usedHouseCatalog\\index.html");
+<script src=\"/apps/admin/views/loan/js/index.js\"></script>
+{% endblock %}", "loan/index.html", "F:\\UPUPW_AP7.0_64-1512.1\\UPUPW_AP7.0_64\\vhosts\\dev.tfw.local\\apps\\admin\\views\\loan\\index.html");
     }
 }

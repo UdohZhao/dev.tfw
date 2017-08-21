@@ -1,7 +1,7 @@
 <?php
 
 /* about/index.html */
-class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173fa259 extends Twig_Template
+class __TwigTemplate_7ef4991a443bee30026aa13f17d3be5a0d8fba5db587e5d19a01ab04914cbbfa extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -41,7 +41,7 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
         echo "<!-- Page -->
 <div class=\"page animsition\">
   <div class=\"page-header\">
-    <h1 class=\"page-title\"># Layouts</h1>
+    <h1 class=\"page-title\"># 关于我们</h1>
   </div>
   <div class=\"page-content\">
     <div class=\"panel\">
@@ -54,7 +54,7 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
             <tr>
               <th>#</th>
               <th>内容</th>
-              <th>时间</th>
+              <th>录入时间</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -84,11 +84,9 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "ctime", array()), "Y-m-d H:i"), "html", null, true);
                 echo "</td>
               <td>
-                <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"ePass('";
+                <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"edit('";
                 // line 37
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
-                echo "','";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "content", array()), "html", null, true);
                 echo "');\">修改内容</button>
                 <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"del('";
                 // line 38
@@ -132,50 +130,15 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
     </div>
   </div>
 </div>
-
-<div id=\"ePassModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">
-  <div class=\"modal-dialog\" role=\"document\">
-    <div class=\"modal-content\">
-      <div class=\"modal-header\">
-        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
-        <h4 class=\"modal-title\">修改密码</h4>
-      </div>
-      <div class=\"modal-body\">
-        <form class=\"form-horizontal\" id=\"ePassForm\" method=\"post\">
-          <div class=\"form-group\">
-            <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">用户名</label>
-          
-             <script class=\"form-control\" id=\"container\" readonly=\"readonly\" name=\"content\" type=\"text/plain\" style=\"height: 300px;\">";
-        // line 77
-        echo twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "content", array());
-        echo "</script>
-            
-          </div>
-          <div class=\"form-group\">
-            <div class=\"col-sm-offset-2 col-sm-10\">
-              <button type=\"submit\" class=\"btn btn-default\">提 交</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 ";
     }
 
-    // line 92
+    // line 66
     public function block_js($context, array $blocks = array())
     {
-        // line 93
+        // line 67
         echo "
 <script src=\"/apps/admin/views/about/js/index.js\"></script>
-
-<script src=\"/public/ueditor/ueditor.config.js\"></script>
-<script src=\"/public/ueditor/ueditor.all.js\"></script>
-<script>
-    var ue = UE.getEditor('container');
-</script>
 
 ";
     }
@@ -192,7 +155,7 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
 
     public function getDebugInfo()
     {
-        return array (  171 => 93,  168 => 92,  150 => 77,  129 => 58,  124 => 56,  118 => 51,  108 => 43,  105 => 42,  95 => 38,  89 => 37,  84 => 35,  81 => 34,  76 => 33,  71 => 29,  66 => 28,  64 => 27,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
+        return array (  140 => 67,  137 => 66,  127 => 58,  122 => 56,  116 => 51,  106 => 43,  103 => 42,  93 => 38,  89 => 37,  84 => 35,  81 => 34,  76 => 33,  71 => 29,  66 => 28,  64 => 27,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -205,7 +168,7 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
 <!-- Page -->
 <div class=\"page animsition\">
   <div class=\"page-header\">
-    <h1 class=\"page-title\"># Layouts</h1>
+    <h1 class=\"page-title\"># 关于我们</h1>
   </div>
   <div class=\"page-content\">
     <div class=\"panel\">
@@ -218,7 +181,7 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
             <tr>
               <th>#</th>
               <th>内容</th>
-              <th>时间</th>
+              <th>录入时间</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -233,7 +196,7 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
             {% endautoescape %}</td>
               <td>{{ v.ctime|date(\"Y-m-d H:i\") }}</td>
               <td>
-                <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"ePass('{{ v.id }}','{{ v.content }}');\">修改内容</button>
+                <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"edit('{{ v.id }}');\">修改内容</button>
                 <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"del('{{ v.id }}');\">删除</button>
               </td>
             </tr>
@@ -260,45 +223,13 @@ class __TwigTemplate_bf746f2300e5aa8f3a0b3cf85a5582251ab2ac9a9d78666068a41c1d173
     </div>
   </div>
 </div>
-
-<div id=\"ePassModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">
-  <div class=\"modal-dialog\" role=\"document\">
-    <div class=\"modal-content\">
-      <div class=\"modal-header\">
-        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
-        <h4 class=\"modal-title\">修改密码</h4>
-      </div>
-      <div class=\"modal-body\">
-        <form class=\"form-horizontal\" id=\"ePassForm\" method=\"post\">
-          <div class=\"form-group\">
-            <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">用户名</label>
-          
-             <script class=\"form-control\" id=\"container\" readonly=\"readonly\" name=\"content\" type=\"text/plain\" style=\"height: 300px;\">{% autoescape false %}{{ data.content }}{% endautoescape %}</script>
-            
-          </div>
-          <div class=\"form-group\">
-            <div class=\"col-sm-offset-2 col-sm-10\">
-              <button type=\"submit\" class=\"btn btn-default\">提 交</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}
 
 {% block js %}
 
 <script src=\"/apps/admin/views/about/js/index.js\"></script>
 
-<script src=\"/public/ueditor/ueditor.config.js\"></script>
-<script src=\"/public/ueditor/ueditor.all.js\"></script>
-<script>
-    var ue = UE.getEditor('container');
-</script>
-
 {% endblock %}
-", "about/index.html", "D:\\UPUPWAP\\vhosts\\dev.tfw.local\\apps\\admin\\views\\about\\index.html");
+", "about/index.html", "F:\\UPUPW_AP7.0_64-1512.1\\UPUPW_AP7.0_64\\vhosts\\dev.tfw.local\\apps\\admin\\views\\about\\index.html");
     }
 }

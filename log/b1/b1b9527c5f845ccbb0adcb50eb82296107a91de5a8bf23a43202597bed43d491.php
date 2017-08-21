@@ -1,14 +1,14 @@
 <?php
 
-/* tenmentCatalog/index.html */
-class __TwigTemplate_96adb9f12f2545d884b5885bc78f6930d4f97abd2e32ef15758b84fcb55d38b3 extends Twig_Template
+/* sellHouseInfo/index.html */
+class __TwigTemplate_811b8181a42d46fa83f0e749e2e929b604c696d88987a7260d9c3f7cadf3dc8c extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("layouts.html", "tenmentCatalog/index.html", 1);
+        $this->parent = $this->loadTemplate("layouts.html", "sellHouseInfo/index.html", 1);
         $this->blocks = array(
             'css' => array($this, 'block_css'),
             'content' => array($this, 'block_content'),
@@ -49,9 +49,9 @@ class __TwigTemplate_96adb9f12f2545d884b5885bc78f6930d4f97abd2e32ef15758b84fcb55
                 <h3 class=\"panel-title\">@ 租房条目列表</h3>
             </div>
 
-            <form action=\"/admin/tenmentCatalog/index\" method=\"get\">
+            <form action=\"/admin/sellHouseInfo/index\" method=\"get\">
                 <div class=\"input-group\" style=\"width: 300px;float: right;margin-right: 30px;\">
-                    <input type=\"text\" class=\"form-control\" name=\"search\" placeholder=\"请输入关键字\">
+                    <input type=\"text\" class=\"form-control\" name=\"search\" placeholder=\"请输入小区名\">
                     <span class=\"input-group-btn\">
             <button type=\"submit\" class=\"btn btn-primary\"><i class=\"icon wb-search\" aria-hidden=\"true\"></i></button>
           </span>
@@ -63,127 +63,98 @@ class __TwigTemplate_96adb9f12f2545d884b5885bc78f6930d4f97abd2e32ef15758b84fcb55
         if ((($context["status"] ?? null) == 0)) {
             echo "class=\"active\"";
         }
-        echo "><a href=\"/admin/tenmentCatalog/index/status/0\">待审核</a></li>
+        echo "><a href=\"/admin/sellHouseInfo/index/status/0\">未读</a></li>
                 <li role=\"presentation\" ";
         // line 27
         if ((($context["status"] ?? null) == 1)) {
             echo "class=\"active\"";
         }
-        echo "><a href=\"/admin/tenmentCatalog/index/status/1\">未通过</a></li>
-                <li role=\"presentation\" ";
-        // line 28
-        if ((($context["status"] ?? null) == 2)) {
-            echo "class=\"active\"";
-        }
-        echo "><a href=\"/admin/tenmentCatalog/index/status/2\">已通过</a></li>
+        echo "><a href=\"/admin/sellHouseInfo/index/status/1\">已读</a></li>
             </ul>
             <div class=\"panel-body\">
                 <table class=\"table table-hover\">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>所属城市</th>
-                        <th>标题</th>
-                        <th>展示租金</th>
-                        <th>装修类型</th>
-                        <th>出租类型</th>
+                        <th>小区</th>
+                        <th>面积</th>
+                        <th>房型</th>
+                        <th>售价</th>
+                        <th>房屋类型</th>
+                        <th>姓名</th>
+                        <th>联系电话</th>
                         <th>时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     ";
-        // line 45
+        // line 46
         if (($context["data"] ?? null)) {
-            // line 46
+            // line 47
             echo "                    ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["data"] ?? null));
             foreach ($context['_seq'] as $context["k"] => $context["v"]) {
-                // line 47
+                // line 48
                 echo "                    <tr>
                         <td>
                             ";
-                // line 49
+                // line 50
                 if ((($context["status"] ?? null) == 4)) {
-                    // line 50
+                    // line 51
                     echo "                            ";
                     if ((twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "type", array()) == 1)) {
-                        // line 51
+                        // line 52
                         echo "                            <span class=\"text-danger\">{隐藏}</span>
                             ";
                     } else {
-                        // line 53
+                        // line 54
                         echo "                            <span class=\"text-success\">{展示}</span>
                             ";
                     }
-                    // line 55
+                    // line 56
                     echo "                            ";
                 }
-                // line 56
+                // line 57
                 echo "                        </td>
                         <td>";
-                // line 57
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "cityname", array()), "html", null, true);
-                echo "</td>
-                        <td>";
                 // line 58
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "title", array()), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "community", array()), "html", null, true);
                 echo "</td>
                         <td>";
                 // line 59
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "show_rent", array()), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "area", array()), "html", null, true);
                 echo "</td>
-                        <td>
-                            ";
-                // line 61
-                if ((twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "dtype", array()) == 0)) {
-                    // line 62
-                    echo "                            精装
-                            ";
-                } elseif ((twig_get_attribute($this->env, $this->getSourceContext(),                 // line 63
-$context["v"], "dtype", array()) == 1)) {
-                    // line 64
-                    echo "                            中装
-                            ";
-                } else {
-                    // line 66
-                    echo "                            简装
-                            ";
-                }
-                // line 68
-                echo "                        </td>
-                        <td>
-                            ";
-                // line 70
-                if ((twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "htype", array()) == 0)) {
-                    // line 71
-                    echo "                            整租
-                            ";
-                } else {
-                    // line 73
-                    echo "                            合租
-                            ";
-                }
-                // line 75
-                echo "                        </td>
                         <td>";
-                // line 76
+                // line 60
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "house_type", array()), "html", null, true);
+                echo "</td>
+                        <td>";
+                // line 61
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "selling_price", array()), "html", null, true);
+                echo "</td>
+                        <td>";
+                // line 62
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "htype", array()), "html", null, true);
+                echo "</td>
+                        <td>";
+                // line 63
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "cname", array()), "html", null, true);
+                echo "</td>
+                        <td>";
+                // line 64
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "phone", array()), "html", null, true);
+                echo "</td>
+                        <td>";
+                // line 65
                 echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "ctime", array()), "Y-m-d H:i"), "html", null, true);
                 echo "</td>
                         <td>
-                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"uhInfo(";
-                // line 78
+                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"shInfo(";
+                // line 67
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
                 echo ");\">详细信息</button>
-                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"update_info(";
-                // line 79
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
-                echo ");\">修改</button>
-                            <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"del_info(";
-                // line 80
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
-                echo ");\">删除</button>
                         </td>
                     </tr>
                     ";
@@ -191,10 +162,10 @@ $context["v"], "dtype", array()) == 1)) {
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['k'], $context['v'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 84
+            // line 71
             echo "                    ";
         } else {
-            // line 85
+            // line 72
             echo "                    <tr>
                         <td colspan=\"4\">
                             <blockquote>
@@ -204,17 +175,17 @@ $context["v"], "dtype", array()) == 1)) {
                     </tr>
                     ";
         }
-        // line 93
+        // line 80
         echo "                    </tbody>
                 </table>
                 <div style=\"float: right;\">
                     ";
-        // line 97
+        // line 84
         echo "                    ";
         echo ($context["page"] ?? null);
         echo "
                     ";
-        // line 99
+        // line 86
         echo "                </div>
 
             </div>
@@ -225,17 +196,17 @@ $context["v"], "dtype", array()) == 1)) {
 ";
     }
 
-    // line 108
+    // line 95
     public function block_js($context, array $blocks = array())
     {
-        // line 109
-        echo "<script src=\"/apps/admin/views/tenmentCatalog/js/index.js\"></script>
+        // line 96
+        echo "
 ";
     }
 
     public function getTemplateName()
     {
-        return "tenmentCatalog/index.html";
+        return "sellHouseInfo/index.html";
     }
 
     public function isTraitable()
@@ -245,7 +216,7 @@ $context["v"], "dtype", array()) == 1)) {
 
     public function getDebugInfo()
     {
-        return array (  232 => 109,  229 => 108,  218 => 99,  213 => 97,  208 => 93,  198 => 85,  195 => 84,  185 => 80,  181 => 79,  177 => 78,  172 => 76,  169 => 75,  165 => 73,  161 => 71,  159 => 70,  155 => 68,  151 => 66,  147 => 64,  145 => 63,  142 => 62,  140 => 61,  135 => 59,  131 => 58,  127 => 57,  124 => 56,  121 => 55,  117 => 53,  113 => 51,  110 => 50,  108 => 49,  104 => 47,  99 => 46,  97 => 45,  75 => 28,  69 => 27,  63 => 26,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
+        return array (  203 => 96,  200 => 95,  189 => 86,  184 => 84,  179 => 80,  169 => 72,  166 => 71,  156 => 67,  151 => 65,  147 => 64,  143 => 63,  139 => 62,  135 => 61,  131 => 60,  127 => 59,  123 => 58,  120 => 57,  117 => 56,  113 => 54,  109 => 52,  106 => 51,  104 => 50,  100 => 48,  95 => 47,  93 => 46,  69 => 27,  63 => 26,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -266,29 +237,30 @@ $context["v"], "dtype", array()) == 1)) {
                 <h3 class=\"panel-title\">@ 租房条目列表</h3>
             </div>
 
-            <form action=\"/admin/tenmentCatalog/index\" method=\"get\">
+            <form action=\"/admin/sellHouseInfo/index\" method=\"get\">
                 <div class=\"input-group\" style=\"width: 300px;float: right;margin-right: 30px;\">
-                    <input type=\"text\" class=\"form-control\" name=\"search\" placeholder=\"请输入关键字\">
+                    <input type=\"text\" class=\"form-control\" name=\"search\" placeholder=\"请输入小区名\">
                     <span class=\"input-group-btn\">
             <button type=\"submit\" class=\"btn btn-primary\"><i class=\"icon wb-search\" aria-hidden=\"true\"></i></button>
           </span>
                 </div>
             </form>
             <ul class=\"nav nav-pills\" style=\"margin-left: 25px;\">
-                <li role=\"presentation\" {% if status == 0 %}class=\"active\"{% endif %}><a href=\"/admin/tenmentCatalog/index/status/0\">待审核</a></li>
-                <li role=\"presentation\" {% if status == 1 %}class=\"active\"{% endif %}><a href=\"/admin/tenmentCatalog/index/status/1\">未通过</a></li>
-                <li role=\"presentation\" {% if status == 2 %}class=\"active\"{% endif %}><a href=\"/admin/tenmentCatalog/index/status/2\">已通过</a></li>
+                <li role=\"presentation\" {% if status == 0 %}class=\"active\"{% endif %}><a href=\"/admin/sellHouseInfo/index/status/0\">未读</a></li>
+                <li role=\"presentation\" {% if status == 1 %}class=\"active\"{% endif %}><a href=\"/admin/sellHouseInfo/index/status/1\">已读</a></li>
             </ul>
             <div class=\"panel-body\">
                 <table class=\"table table-hover\">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>所属城市</th>
-                        <th>标题</th>
-                        <th>展示租金</th>
-                        <th>装修类型</th>
-                        <th>出租类型</th>
+                        <th>小区</th>
+                        <th>面积</th>
+                        <th>房型</th>
+                        <th>售价</th>
+                        <th>房屋类型</th>
+                        <th>姓名</th>
+                        <th>联系电话</th>
                         <th>时间</th>
                         <th>操作</th>
                     </tr>
@@ -306,30 +278,16 @@ $context["v"], "dtype", array()) == 1)) {
                             {% endif %}
                             {% endif %}
                         </td>
-                        <td>{{ v.cityname }}</td>
-                        <td>{{ v.title }}</td>
-                        <td>{{ v.show_rent }}</td>
-                        <td>
-                            {% if v.dtype == 0 %}
-                            精装
-                            {% elseif v.dtype == 1 %}
-                            中装
-                            {% else %}
-                            简装
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if v.htype == 0 %}
-                            整租
-                            {% else %}
-                            合租
-                            {% endif %}
-                        </td>
+                        <td>{{ v.community }}</td>
+                        <td>{{ v.area }}</td>
+                        <td>{{ v.house_type }}</td>
+                        <td>{{ v.selling_price }}</td>
+                        <td>{{ v.htype }}</td>
+                        <td>{{ v.cname }}</td>
+                        <td>{{ v.phone }}</td>
                         <td>{{ v.ctime|date(\"Y-m-d H:i\") }}</td>
                         <td>
-                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"uhInfo({{ v.id }});\">详细信息</button>
-                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"update_info({{ v.id }});\">修改</button>
-                            <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"del_info({{ v.id }});\">删除</button>
+                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"shInfo({{ v.id }});\">详细信息</button>
                         </td>
                     </tr>
                     {% endfor %}
@@ -358,7 +316,7 @@ $context["v"], "dtype", array()) == 1)) {
 {% endblock %}
 
 {% block js %}
-<script src=\"/apps/admin/views/tenmentCatalog/js/index.js\"></script>
-{% endblock %}", "tenmentCatalog/index.html", "D:\\UPUPWAP\\vhosts\\dev.tfw.local\\apps\\admin\\views\\tenmentCatalog\\index.html");
+
+{% endblock %}", "sellHouseInfo/index.html", "F:\\UPUPW_AP7.0_64-1512.1\\UPUPW_AP7.0_64\\vhosts\\dev.tfw.local\\apps\\admin\\views\\sellHouseInfo\\index.html");
     }
 }

@@ -13,14 +13,23 @@ class aboutCtrl extends baseCtrl{
 
   }
 	public function index(){
-		 $data = $this->db->sel();
-   
+
+        // 总记录数
+        $cou = $this->db->cou();
+        // 数据分页
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $p = new Page($cou,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
+        // 结果集
+        $data = $this->db->sel(bcsub($p->page,1,0),$p->pagesize);
       foreach($data as $k=>$v){
-        $data[$k]['content']=mb_substr($v['content'], 0,30).'...';
+          //$str=preg_replace("/<(\/?html.*?)>/si","",$v['content']);
+        $data[$k]['content']=mb_substr(trim(preg_replace("/<(\/?p.*?)>/si","",$v['content'])), 0,20).'...';
       }
 
     $this->assign('data',$data);
+        $this->assign('page',$p->showpage());
 		$this->display('about','index.html');
+
 		
 	}
 
@@ -28,6 +37,9 @@ class aboutCtrl extends baseCtrl{
     // Get
     if (IS_GET === true) {
       // display
+        if($this->id){
+            $this->assign('data',$this->db->sel_one($this->id));
+        }
       $this->display('about','add.html');
       die;
     }
@@ -36,9 +48,23 @@ class aboutCtrl extends baseCtrl{
       // data
        $data = $this->getData();
       // insert
+        if($this->id){
+            if($this->db->ePass($this->id,$data)){
+                echo "<script>alert('保存成功');
+                window.location.href='http://'+window.location.host+'/admin/about/index';</script>";
+
+                die;
+            }else{
+                echo "<script>alert('保存失败，尝试刷新后再试');
+                window.location.href='http://'+window.location.host+'/admin/about/index';</script>";
+
+                die;
+            }
+
+        }
       $res = $this->db->add($data);
       if ($res) {
-        echo "<script>alert('添加成功');
+        echo "<script>alert('保存成功');
          window.location.href='http://'+window.location.host+'/admin/about/index';</script>";
       
         die;
@@ -68,23 +94,6 @@ class aboutCtrl extends baseCtrl{
     }else{
        echo json_encode(false);
     }
-    }
-  }
-  // 修改密码
-  public function ePass(){
-    // Ajax
-    if (IS_AJAX === true) {
-      // password
-      $content = enContent(htmlspecialchars($_POST['content']));
-      // content
-      $res = $this->db->ePass($this->id,$content);
-      if ($res) {
-        echo json_encode(true);
-        die;
-      } else {
-        echo json_encode(false);
-        die;
-      }
     }
   }
 }

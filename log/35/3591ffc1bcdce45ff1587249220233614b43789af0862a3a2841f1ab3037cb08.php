@@ -1,7 +1,7 @@
 <?php
 
 /* about/add.html */
-class __TwigTemplate_df172eca2964107519362f9cbe6c609d0ebfcc7ad3cc46851cead6e5b5d3d52f extends Twig_Template
+class __TwigTemplate_344cef422319b08fdd71fa137fb9b2e361d0a3f0bbf0f38c810b5c2bf474f703 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -49,7 +49,10 @@ class __TwigTemplate_df172eca2964107519362f9cbe6c609d0ebfcc7ad3cc46851cead6e5b5d
                 <h3 class=\"panel-title\">@ 添加关于我们内容</h3>
             </div>
             <div class=\"panel-body\">
-                <form class=\"form-horizontal\" id=\"usedHouseInfoForm\" action=\"/admin/about/add\" method=\"post\">
+                <form class=\"form-horizontal\" id=\"usedHouseInfoForm\" action=\"/admin/about/add/id/";
+        // line 17
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["data"] ?? null), "id", array()), "html", null, true);
+        echo "\" method=\"post\">
                     <div class=\"form-group\">
                         <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">内容</label>
                         <div class=\"col-sm-10\">
@@ -98,7 +101,7 @@ class __TwigTemplate_df172eca2964107519362f9cbe6c609d0ebfcc7ad3cc46851cead6e5b5d
 
     public function getDebugInfo()
     {
-        return array (  81 => 38,  78 => 37,  58 => 21,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
+        return array (  84 => 38,  81 => 37,  61 => 21,  54 => 17,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -119,7 +122,7 @@ class __TwigTemplate_df172eca2964107519362f9cbe6c609d0ebfcc7ad3cc46851cead6e5b5d
                 <h3 class=\"panel-title\">@ 添加关于我们内容</h3>
             </div>
             <div class=\"panel-body\">
-                <form class=\"form-horizontal\" id=\"usedHouseInfoForm\" action=\"/admin/about/add\" method=\"post\">
+                <form class=\"form-horizontal\" id=\"usedHouseInfoForm\" action=\"/admin/about/add/id/{{data.id}}\" method=\"post\">
                     <div class=\"form-group\">
                         <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">内容</label>
                         <div class=\"col-sm-10\">
@@ -145,6 +148,6 @@ class __TwigTemplate_df172eca2964107519362f9cbe6c609d0ebfcc7ad3cc46851cead6e5b5d
 <script>
     var ue = UE.getEditor('container');
 </script>
-{% endblock %}", "about/add.html", "D:\\UPUPWAP\\vhosts\\dev.tfw.local\\apps\\admin\\views\\about\\add.html");
+{% endblock %}", "about/add.html", "F:\\UPUPW_AP7.0_64-1512.1\\UPUPW_AP7.0_64\\vhosts\\dev.tfw.local\\apps\\admin\\views\\about\\add.html");
     }
 }
