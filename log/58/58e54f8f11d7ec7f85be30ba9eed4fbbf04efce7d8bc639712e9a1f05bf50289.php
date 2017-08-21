@@ -136,22 +136,36 @@ class __TwigTemplate_a036ebca9fce5df8e752364875b8a2e95384ff0646dc3d99fe7ac1d37fe
                 // line 62
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
                 echo ");\">添加下一级</button>
-                            ";
+                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"view_next(";
                 // line 63
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
+                echo ");\">查看下一级</button>
+                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"add_article(";
+                // line 64
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
+                echo ",'";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "cname", array()), "html", null, true);
+                echo "');\">添加文章</button>
+                            <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"show_article_list(";
+                // line 65
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
+                echo ");\">查看文章列表</button>
+                            ";
+                // line 66
                 if ((twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "status", array()) == 1)) {
-                    // line 64
+                    // line 67
                     echo "                            <button type=\"button\" class=\"btn btn-success btn-xs\" onclick=\"flag(";
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
-                    echo ",0);\">启用</button>
+                    echo ",0);\">显示</button>
                             ";
                 } else {
-                    // line 66
+                    // line 69
                     echo "                            <button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"flag(";
                     echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["v"], "id", array()), "html", null, true);
-                    echo ",1);\">禁用</button>
+                    echo ",1);\">隐藏</button>
                             ";
                 }
-                // line 68
+                // line 71
                 echo "                        </td>
                     </tr>
                     ";
@@ -159,10 +173,10 @@ class __TwigTemplate_a036ebca9fce5df8e752364875b8a2e95384ff0646dc3d99fe7ac1d37fe
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['k'], $context['v'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 71
+            // line 74
             echo "                    ";
         } else {
-            // line 72
+            // line 75
             echo "                    <tr>
                         <td colspan=\"4\">
                             <blockquote>
@@ -172,18 +186,18 @@ class __TwigTemplate_a036ebca9fce5df8e752364875b8a2e95384ff0646dc3d99fe7ac1d37fe
                     </tr>
                     ";
         }
-        // line 80
+        // line 83
         echo "                    </tbody>
                 </table>
 
                 <div style=\"float: right;\">
                     ";
-        // line 85
+        // line 88
         echo "                    ";
         echo ($context["page"] ?? null);
         echo "
                     ";
-        // line 87
+        // line 90
         echo "                </div>
 
             </div>
@@ -194,10 +208,10 @@ class __TwigTemplate_a036ebca9fce5df8e752364875b8a2e95384ff0646dc3d99fe7ac1d37fe
 ";
     }
 
-    // line 96
+    // line 99
     public function block_js($context, array $blocks = array())
     {
-        // line 97
+        // line 100
         echo "<script src=\"/apps/admin/views/buyHouseCatagory/js/index.js\"></script>
 ";
     }
@@ -214,7 +228,7 @@ class __TwigTemplate_a036ebca9fce5df8e752364875b8a2e95384ff0646dc3d99fe7ac1d37fe
 
     public function getDebugInfo()
     {
-        return array (  201 => 97,  198 => 96,  187 => 87,  182 => 85,  176 => 80,  166 => 72,  163 => 71,  155 => 68,  149 => 66,  143 => 64,  141 => 63,  137 => 62,  133 => 61,  129 => 60,  124 => 58,  121 => 57,  117 => 55,  111 => 53,  109 => 52,  104 => 50,  99 => 48,  95 => 46,  91 => 44,  87 => 42,  85 => 41,  81 => 39,  76 => 38,  74 => 37,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
+        return array (  215 => 100,  212 => 99,  201 => 90,  196 => 88,  190 => 83,  180 => 75,  177 => 74,  169 => 71,  163 => 69,  157 => 67,  155 => 66,  151 => 65,  145 => 64,  141 => 63,  137 => 62,  133 => 61,  129 => 60,  124 => 58,  121 => 57,  117 => 55,  111 => 53,  109 => 52,  104 => 50,  99 => 48,  95 => 46,  91 => 44,  87 => 42,  85 => 41,  81 => 39,  76 => 38,  74 => 37,  41 => 6,  38 => 5,  33 => 3,  30 => 2,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -281,10 +295,13 @@ class __TwigTemplate_a036ebca9fce5df8e752364875b8a2e95384ff0646dc3d99fe7ac1d37fe
                             <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"edit({{ v.id }});\">修改</button>
                             <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"del({{ v.id }});\">删除</button>
                             <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"add({{ v.id }});\">添加下一级</button>
+                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"view_next({{ v.id }});\">查看下一级</button>
+                            <button type=\"button\" class=\"btn btn-primary btn-xs\" onclick=\"add_article({{ v.id }},'{{v.cname}}');\">添加文章</button>
+                            <button type=\"button\" class=\"btn btn-default btn-xs\" onclick=\"show_article_list({{ v.id }});\">查看文章列表</button>
                             {% if v.status == 1 %}
-                            <button type=\"button\" class=\"btn btn-success btn-xs\" onclick=\"flag({{ v.id }},0);\">启用</button>
+                            <button type=\"button\" class=\"btn btn-success btn-xs\" onclick=\"flag({{ v.id }},0);\">显示</button>
                             {% else %}
-                            <button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"flag({{ v.id }},1);\">禁用</button>
+                            <button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"flag({{ v.id }},1);\">隐藏</button>
                             {% endif %}
                         </td>
                     </tr>

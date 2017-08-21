@@ -6,14 +6,14 @@
 <!-- Page -->
 <div class="page animsition">
     <div class="page-header">
-        <h1 class="page-title"># 购房百科管理</h1>
+        <h1 class="page-title"># 购房百科文章管理</h1>
     </div>
     <div class="page-content">
         <div class="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">@ 购房百科列表</h3>
+                <h3 class="panel-title">@ 购房百科文章列表</h3>
             </div>
-            <form action="/admin/buyHouseCatagory/index" method="post">
+            <form action="/admin/buyHouseCatagory/article_list" method="post">
                 <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
                     <input type="text" class="form-control" name="search" placeholder="请输入关键字">
                     <span class="input-group-btn">
@@ -26,10 +26,8 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>图标</th>
-                        <th>名称</th>
-                        <th>父级名称</th>
-                        <th>排序</th>
+                        <th>标题</th>
+                        <th>添加时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -44,30 +42,13 @@
                             <span class="text-success">{显示}</span>
                             {% endif %}
                         </td>
-                        <td>
-                            <img src="{{ v.icon_path }}" class="img-responsive" style="width: 50px; height: 50px;">
-                        </td>
-                        <td>{{ v.cname }}</td>
-                        <td>
-                            {% if v.pcname %}
-                            {{ v.pcname }}
-                            {% else %}
-                            顶级
-                            {% endif %}
-                        </td>
-                        <td>{{ v.sort }}</td>
+
+                        <td>{{ v.title }}</td>
+
+                        <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
                             <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="add({{ v.id }});">添加下一级</button>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="view_next({{ v.id }});">查看下一级</button>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="add_article({{ v.id }},'{{v.cname}}');">添加文章</button>
-                            <button type="button" class="btn btn-default btn-xs" onclick="show_article_list({{ v.id }});">查看文章列表</button>
-                            {% if v.status == 1 %}
-                            <button type="button" class="btn btn-success btn-xs" onclick="flag({{ v.id }},0);">显示</button>
-                            {% else %}
-                            <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},1);">隐藏</button>
-                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
@@ -97,5 +78,5 @@
 {% endblock %}
 
 {% block js %}
-<script src="/apps/admin/views/buyHouseCatagory/js/index.js"></script>
+<script src="/apps/admin/views/buyHouseCatagory/js/article_list.js"></script>
 {% endblock %}

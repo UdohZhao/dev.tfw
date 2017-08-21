@@ -20,7 +20,7 @@ class buyHouseCatagory extends model{
     }
 
     // sel
-    public function sel($search,$limit){
+    public function sel($search,$limit,$pid){
         // sql
         $sql = "
         SELECT
@@ -31,6 +31,8 @@ class buyHouseCatagory extends model{
         ON tb1.pid=tb2.id
         WHERE
                 1 = 1
+        AND 
+               tb1.pid=$pid
         AND
                 tb1.cname like '%$search%'
         ORDER BY
@@ -58,9 +60,15 @@ class buyHouseCatagory extends model{
         return $res->rowCount();
     }
 
+    //del  pid
+    public function del_next($pid){
+        //查询当前id下面的所有id
+        $info = $this->select($this->table,'id',['pid'=>$pid]);
+        return $info;
+    }
     // cou
-    public function cou(){
-        return $this->count($this->table);
+    public function cou($pid){
+        return $this->count($this->table,['pid'=>$pid]);
     }
 
     // save
@@ -97,5 +105,31 @@ class buyHouseCatagory extends model{
         }else{
             return $this->get($this->table,['id'],['cname'=>$pcname])['id'];
         }
+    }
+
+    //添加文章
+    public function add_article($data){
+        return $this->insert('house_encyclopedia_article',$data);
+    }
+
+    //获取文章内容
+    public function show_article($id){
+        return $this->select('house_encyclopedia_article','*',['hecid'=>$id]);
+    }
+
+    //获取单条文章内容
+    public function article_detail($id){
+        return $this->get('house_encyclopedia_article','*',['id'=>$id]);
+    }
+
+    //修改文章
+    public function update_article($id,$data){
+         return    $this->update('house_encyclopedia_article',$data,['id'=>$id]);
+    }
+
+    //删除文章
+    public function del_article($id){
+        $res = $this->delete('house_encyclopedia_article',['id'=>$id]);
+        return $res->rowCount();
     }
 }
