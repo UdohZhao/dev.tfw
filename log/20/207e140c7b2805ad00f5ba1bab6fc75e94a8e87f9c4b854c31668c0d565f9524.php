@@ -295,6 +295,31 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
                 </li>
               </ul>
             </li>
+
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">金融贷款</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/loan/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">金融贷款列表</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/loan/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加金融贷款</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             <li class=\"site-menu-item has-sub active open\">
               <a href=\"javascript:void(0)\" data-slug=\"layout\">
                 <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
@@ -303,9 +328,17 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
               </a>
               <ul class=\"site-menu-sub\">
                 <li class=\"site-menu-item\">
-                  <a class=\"animsition-link\" href=\"menu-collapsed.html\" data-slug=\"layout-menu-collapsed\">
+                  <a class=\"animsition-link\" href=\"/admin/about/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
-                    <span class=\"site-menu-title\">Menu Collapsed</span>
+                    <span class=\"site-menu-title\">关于我们列表</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/about/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加关于我们内容</span>
                   </a>
                 </li>
               </ul>
@@ -318,9 +351,9 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
 
 
   ";
-        // line 289
+        // line 322
         $this->displayBlock('content', $context, $blocks);
-        // line 292
+        // line 325
         echo "
 
     <!-- Footer -->
@@ -369,9 +402,9 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
   <script src=\"/public/jquery-validation-1.16.0/lib/jquery.form.js\"></script>
 
   ";
-        // line 339
+        // line 372
         $this->displayBlock('js', $context, $blocks);
-        // line 342
+        // line 375
         echo "
   <script>
     (function(document, window, \$) {
@@ -399,18 +432,18 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
   ";
     }
 
-    // line 289
+    // line 322
     public function block_content($context, array $blocks = array())
     {
-        // line 290
+        // line 323
         echo "
   ";
     }
 
-    // line 339
+    // line 372
     public function block_js($context, array $blocks = array())
     {
-        // line 340
+        // line 373
         echo "
   ";
     }
@@ -427,7 +460,7 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
 
     public function getDebugInfo()
     {
-        return array (  414 => 340,  411 => 339,  406 => 290,  403 => 289,  398 => 37,  395 => 36,  375 => 342,  373 => 339,  324 => 292,  322 => 289,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
+        return array (  447 => 373,  444 => 372,  439 => 323,  436 => 322,  431 => 37,  428 => 36,  408 => 375,  406 => 372,  357 => 325,  355 => 322,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
     }
 
     public function getSourceContext()
@@ -698,6 +731,31 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
                 </li>
               </ul>
             </li>
+
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">金融贷款</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/loan/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">金融贷款列表</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/loan/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加金融贷款</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             <li class=\"site-menu-item has-sub active open\">
               <a href=\"javascript:void(0)\" data-slug=\"layout\">
                 <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
@@ -706,9 +764,17 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
               </a>
               <ul class=\"site-menu-sub\">
                 <li class=\"site-menu-item\">
-                  <a class=\"animsition-link\" href=\"menu-collapsed.html\" data-slug=\"layout-menu-collapsed\">
+                  <a class=\"animsition-link\" href=\"/admin/about/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
-                    <span class=\"site-menu-title\">Menu Collapsed</span>
+                    <span class=\"site-menu-title\">关于我们列表</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/about/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加关于我们内容</span>
                   </a>
                 </li>
               </ul>
