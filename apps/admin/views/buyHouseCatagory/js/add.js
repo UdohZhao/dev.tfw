@@ -14,7 +14,7 @@ $(function(){
         },
         messages: {
             cname: {
-                required: "<span style='color:red;'>房类别名称不能为空 :(</span>"
+                required: "<span style='color:red;'>购房百科名称不能为空 :(</span>"
             },
             sort: {
                 required: "<span style='color:red;'>排序不能为空 :(</span>",
@@ -33,8 +33,8 @@ $(function(){
                     success:function(res){
                         // res
                         if (res === true) {
-                            swal("提交成功", "即将跳转到房类别列表 :)", "success");
-                            window.setTimeout("window.location.href='/admin/houseCategory/index'",2000);
+                            swal("提交成功", "即将跳转到购房百科列表 :)", "success");
+                            window.setTimeout("window.location.href='/admin/buyHouseCatagory/index'",2000);
                         } else if (res === false) {
                             swal("提交失败", "请尝试刷新页面后重试 :(", "error");
                         } else {

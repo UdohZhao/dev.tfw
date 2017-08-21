@@ -95,7 +95,7 @@ class buyHouseCatagory extends model{
         if($pcname == '顶级'){
             return 0;
         }else{
-            return $this->get($this->table,['id'],['cname'=>$pcname]);
+            return $this->get($this->table,['id'],['cname'=>$pcname])['id'];
         }
     }
 }

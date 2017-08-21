@@ -281,6 +281,18 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                     <span class=\"site-menu-title\">卖房条目列表</span>
                   </a>
                 </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加购房百科</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">购房百科列表</span>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class=\"site-menu-item has-sub active open\">
@@ -306,9 +318,9 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
 
 
   ";
-        // line 277
+        // line 289
         $this->displayBlock('content', $context, $blocks);
-        // line 280
+        // line 292
         echo "
 
     <!-- Footer -->
@@ -357,9 +369,9 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
   <script src=\"/public/jquery-validation-1.16.0/lib/jquery.form.js\"></script>
 
   ";
-        // line 327
+        // line 339
         $this->displayBlock('js', $context, $blocks);
-        // line 330
+        // line 342
         echo "
   <script>
     (function(document, window, \$) {
@@ -387,18 +399,18 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
   ";
     }
 
-    // line 277
+    // line 289
     public function block_content($context, array $blocks = array())
     {
-        // line 278
+        // line 290
         echo "
   ";
     }
 
-    // line 327
+    // line 339
     public function block_js($context, array $blocks = array())
     {
-        // line 328
+        // line 340
         echo "
   ";
     }
@@ -415,7 +427,7 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
 
     public function getDebugInfo()
     {
-        return array (  402 => 328,  399 => 327,  394 => 278,  391 => 277,  386 => 37,  383 => 36,  363 => 330,  361 => 327,  312 => 280,  310 => 277,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
+        return array (  414 => 340,  411 => 339,  406 => 290,  403 => 289,  398 => 37,  395 => 36,  375 => 342,  373 => 339,  324 => 292,  322 => 289,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
     }
 
     public function getSourceContext()
@@ -670,6 +682,18 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                   <a class=\"animsition-link\" href=\"/admin/sellHouseInfo/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">卖房条目列表</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加购房百科</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">购房百科列表</span>
                   </a>
                 </li>
               </ul>
