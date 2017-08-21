@@ -6,13 +6,16 @@ use vendor\page\Page;
 class loanCtrl extends baseCtrl{
 	public $db;
 	public $id;
+  public $status;
 	public function _auto(){
 		  $this->db = new loan();
 		  $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+      $this->status = isset($_GET['status']) ? intval($_GET['status']) : 0;
 	}
 
 	public function index(){
-		 $data = $this->db->sel();
+		 $data = $this->db->sel($this->status);
+     $this->assign('status',$this->status);
 		$this->assign('data',$data);
 		$this->display('loan','index.html');
 	}
@@ -42,14 +45,21 @@ class loanCtrl extends baseCtrl{
       // data
        $data = $this->getData();
       // insert
-      $res = $this->db->add($data);
+      if($this->id){
+        $res = $this->db->save($this->id,$data);
+      }else{
+         $res = $this->db->add($data);
+      }
+    
       if ($res) {
-        echo "<script>alert('添加成功');
+        echo "<script>alert('保存成功');
          window.location.href='http://'+window.location.host+'/admin/loan/index';</script>";
       
         die;
       } else {
-        echo json_encode(false);
+          echo "<script>alert('保存失败，尝试刷新后再试');
+         location.reload()";
+      
         die;
       }
 
