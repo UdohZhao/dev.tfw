@@ -59,6 +59,7 @@
                         <td>
                             <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
                             <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="add({{ v.id }});">添加下一级</button>
                             {% if v.status == 1 %}
                             <button type="button" class="btn btn-success btn-xs" onclick="flag({{ v.id }},0);">启用</button>
                             {% else %}

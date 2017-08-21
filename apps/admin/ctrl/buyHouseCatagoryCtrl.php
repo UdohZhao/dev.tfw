@@ -6,10 +6,12 @@ use vendor\page\Page;
 class buyHouseCatagoryCtrl extends baseCtrl{
     public $db;
     public $id;
+    public $pid;
     // 构造方法
     public function _auto(){
         $this->db = new buyHouseCatagory();
         $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        $this->pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
     }
 
     // 添加房类别页面
@@ -26,6 +28,12 @@ class buyHouseCatagoryCtrl extends baseCtrl{
                 // assign
                 $this->assign('data',$data);
             }
+            if($this->pid){
+                $data['pcname']=$this->db->getInfo($this->pid)['cname'];
+                $data['pid']=$this->pid;
+                $this->assign('data',$data);
+                  var_dump($data);
+            }
             // display
             $this->display('buyHouseCatagory','add.html');
             die;
@@ -35,6 +43,12 @@ class buyHouseCatagoryCtrl extends baseCtrl{
             // data
             $data = $this->getData();
             // id
+            if($this->pid){
+                // 写入数据表,添加的下一级
+                $res = $this->db->add($data);
+                echo json_encode(true);
+                die;
+            }
             if ($this->id) {
                 $res = $this->db->save($this->id,$data);
             } else {
@@ -45,7 +59,7 @@ class buyHouseCatagoryCtrl extends baseCtrl{
                 echo json_encode(true);
                 die;
             } else {
-                echo json_encode(false);
+                echo json_encode($data);
                 die;
             }
         }
@@ -70,6 +84,7 @@ class buyHouseCatagoryCtrl extends baseCtrl{
         }
         $data['cname'] = htmlspecialchars($_POST['cname']);
         $data['pid']=$this->db->sel_pid(htmlspecialchars($_POST['pcname']));
+        unset($_POST['pcname']);
         $data['sort'] = intval($_POST['sort']);
         $data['status'] = 0;
         return $data;
