@@ -1,7 +1,7 @@
 <?php
 
 /* buyHouseCatagory/index.html */
-class __TwigTemplate_a036ebca9fce5df8e752364875b8a2e95384ff0646dc3d99fe7ac1d37fe2d21c extends Twig_Template
+class __TwigTemplate_725a5a446b30fc1c2753475f1e13c384c818b4dd1fc5a4838009680b3d2d41a0 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -333,6 +333,6 @@ class __TwigTemplate_a036ebca9fce5df8e752364875b8a2e95384ff0646dc3d99fe7ac1d37fe
 
 {% block js %}
 <script src=\"/apps/admin/views/buyHouseCatagory/js/index.js\"></script>
-{% endblock %}", "buyHouseCatagory/index.html", "F:\\UPUPW_AP7.0_64-1512.1\\UPUPW_AP7.0_64\\vhosts\\dev.tfw.local\\apps\\admin\\views\\buyHouseCatagory\\index.html");
+{% endblock %}", "buyHouseCatagory/index.html", "D:\\UPUPWAP\\vhosts\\dev.tfw.local\\apps\\admin\\views\\buyHouseCatagory\\index.html");
     }
 }

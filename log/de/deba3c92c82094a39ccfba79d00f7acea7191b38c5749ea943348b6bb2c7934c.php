@@ -195,8 +195,7 @@ $context["v"], "type", array()) == 1)) {
     public function block_js($context, array $blocks = array())
     {
         // line 93
-        echo "<script src=\"/apps/admin/views/loan/js/add.js\"></script>
-<script src=\"/apps/admin/views/loan/js/index.js\"></script>
+        echo "<script src=\"/apps/admin/views/loan/js/index.js\"></script>
 ";
     }
 
@@ -309,7 +308,6 @@ $context["v"], "type", array()) == 1)) {
 {% endblock %}
 
 {% block js %}
-<script src=\"/apps/admin/views/loan/js/add.js\"></script>
 <script src=\"/apps/admin/views/loan/js/index.js\"></script>
 {% endblock %}", "loan/index.html", "D:\\UPUPWAP\\vhosts\\dev.tfw.local\\apps\\admin\\views\\loan\\index.html");
     }

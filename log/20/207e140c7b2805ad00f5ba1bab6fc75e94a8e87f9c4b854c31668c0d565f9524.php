@@ -323,7 +323,7 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
             <li class=\"site-menu-item has-sub active open\">
               <a href=\"javascript:void(0)\" data-slug=\"layout\">
                 <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
-                <span class=\"site-menu-title\">Layouts</span>
+                <span class=\"site-menu-title\">关于我们</span>
                 <span class=\"site-menu-arrow\"></span>
               </a>
               <ul class=\"site-menu-sub\">
@@ -759,7 +759,7 @@ class __TwigTemplate_a5716d8b4f647fc28ae54115a4c86134de48c24742b660e8cd786b20030
             <li class=\"site-menu-item has-sub active open\">
               <a href=\"javascript:void(0)\" data-slug=\"layout\">
                 <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
-                <span class=\"site-menu-title\">Layouts</span>
+                <span class=\"site-menu-title\">关于我们</span>
                 <span class=\"site-menu-arrow\"></span>
               </a>
               <ul class=\"site-menu-sub\">

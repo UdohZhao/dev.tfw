@@ -22,6 +22,34 @@
 2017-08-21 17:05:50?"ctrl:login\/action:verifyImg"
 2017-08-21 17:06:14?"ctrl:loan\/action:index"
 >>>>>>> hejianqing
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+2017-08-21 17:13:53?"ctrl:buyHouseCatagory\/action:add_article"
+2017-08-21 17:14:24?"ctrl:loan\/action:index"
+2017-08-21 17:14:34?"ctrl:loan\/action:del_info"
+2017-08-21 17:14:36?"ctrl:loan\/action:index"
+2017-08-21 17:14:45?"ctrl:loan\/action:index"
+2017-08-21 17:15:26?"ctrl:loan\/action:index"
+2017-08-21 17:16:53?"ctrl:loan\/action:index"
+2017-08-21 17:18:16?"ctrl:loan\/action:index"
+2017-08-21 17:18:33?"ctrl:loan\/action:index"
+2017-08-21 17:26:30?"ctrl:loan\/action:index"
+2017-08-21 17:31:02?"ctrl:loan\/action:index"
+2017-08-21 17:31:14?"ctrl:loan\/action:index"
+2017-08-21 17:44:29?"ctrl:usedHouseCatalog\/action:index"
+2017-08-21 17:47:13?"ctrl:loan\/action:index"
+2017-08-21 17:47:50?"ctrl:loan\/action:index"
+2017-08-21 17:48:05?"ctrl:loan\/action:index"
+2017-08-21 17:52:07?"ctrl:loan\/action:index"
+2017-08-21 17:52:14?"ctrl:loan\/action:index"
+2017-08-21 17:52:29?"ctrl:loan\/action:index"
+2017-08-21 17:52:35?"ctrl:loan\/action:del_info"
+2017-08-21 17:52:37?"ctrl:loan\/action:index"
+2017-08-21 17:52:41?"ctrl:loan\/action:del_info"
+2017-08-21 17:52:43?"ctrl:loan\/action:index"
+=======
+>>>>>>> hejianqing
 2017-08-21 17:14:06?"ctrl:about\/action:index"
 2017-08-21 17:14:26?"ctrl:about\/action:index"
 2017-08-21 17:18:32?"ctrl:loan\/action:index"
@@ -64,3 +92,7 @@
 2017-08-21 17:59:11?"ctrl:about\/action:index"
 2017-08-21 17:59:24?"ctrl:about\/action:index"
 2017-08-21 17:59:48?"ctrl:loan\/action:index"
+<<<<<<< HEAD
+=======
+>>>>>>> dev
+>>>>>>> hejianqing
