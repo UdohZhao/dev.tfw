@@ -1,0 +1,102 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+  <div class="page-header">
+    <h1 class="page-title"># Layouts</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ 关于我们列表</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>内容</th>
+              <th>时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% if data %}
+          {% for k,v in data %}
+            <tr>
+              <td>
+              </td>
+              <td>{% autoescape false %}
+              {{ v.content }} 
+            {% endautoescape %}</td>
+              <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-xs" onclick="ePass('{{ v.id }}','{{ v.content }}');">修改内容</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del('{{ v.id }}');">删除</button>
+              </td>
+            </tr>
+          {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="4">
+                <blockquote>
+                  <p>暂无数据 :(</p>
+                </blockquote>
+              </td>
+            </tr>
+          {% endif %}
+          </tbody>
+        </table>
+
+          <div style="float: right;">
+            {% autoescape false %}
+              {{ page }}
+            {% endautoescape %}
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="ePassModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">修改密码</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" id="ePassForm" method="post">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+          
+             <script class="form-control" id="container" readonly="readonly" name="content" type="text/plain" style="height: 300px;">{% autoescape false %}{{ data.content }}{% endautoescape %}</script>
+            
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">提 交</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+<script src="/apps/admin/views/about/js/index.js"></script>
+
+<script src="/public/ueditor/ueditor.config.js"></script>
+<script src="/public/ueditor/ueditor.all.js"></script>
+<script>
+    var ue = UE.getEditor('container');
+</script>
+
+{% endblock %}
