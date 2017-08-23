@@ -94,7 +94,11 @@
             <div class="col-sm-10">
             {% for k,v in htype %}
               <label class="checkbox-inline">
+                {% if  v in data.htype %}
+                  <input type="checkbox" id="htype" checked name="htype[]" value="{{ v }}"> {{ v }}
+                {% else %}
                   <input type="checkbox" id="htype" name="htype[]" value="{{ v }}"> {{ v }}
+                {% endif %}
               </label>
             {% endfor %}
             </div>
@@ -104,7 +108,11 @@
             <div class="col-sm-10">
             {% for k,v in prtype %}
               <label class="radio-inline">
-                  <input type="radio" name="prtype" value="{{ v }}"> {{ v }}
+                {% if data.prtype == k %}
+                  <input type="radio" name="prtype" checked value="{{ k }}"> {{ v }}
+                {% else %}
+                <input type="radio" name="prtype" value="{{ k }}"> {{ v }}
+                {% endif %}
               </label>
             {% endfor %}
             </div>
@@ -114,7 +122,11 @@
             <div class="col-sm-10">
             {% for k,v in house_type %}
               <label class="radio-inline">
-                  <input type="radio" name="house_type" value="{{ v }}"> {{ v }}
+                {% if data.house_type == k %}
+                  <input type="radio" name="house_type" value="{{ k }}"> {{ v }}
+                {% else %}
+                  <input type="radio" checked name="house_type" value="{{ k }}"> {{ v }}
+                {% endif %}
               </label>
             {% endfor %}
             </div>
@@ -124,7 +136,11 @@
             <div class="col-sm-10">
             {% for k,v in ptype %}
               <label class="checkbox-inline">
-                  <input type="checkbox" id="ptype" name="ptype[]" value="{{ v }}"> {{ v }}
+                {% if v in data.ptype %}
+                  <input type="checkbox" id="ptype" checked name="ptype[]" value="{{ v }}"> {{ v }}
+                {% else %}
+                <input type="checkbox" id="ptype" name="ptype[]" value="{{ v }}"> {{ v }}
+                {% endif %}
               </label>
             {% endfor %}
             </div>
