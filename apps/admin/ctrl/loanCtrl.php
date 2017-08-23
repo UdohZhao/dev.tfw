@@ -8,6 +8,10 @@ class loanCtrl extends baseCtrl{
 	public $id;
   public $status;
 	public function _auto(){
+        if($_SESSION['userinfo']['type'] !=0 ){
+            echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
+            die;
+        }
 		  $this->db = new loan();
 		  $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
       $this->status = isset($_GET['status']) ? intval($_GET['status']) : 0;

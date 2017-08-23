@@ -20,8 +20,13 @@ class newHouseCatalog extends model{
   }
 
   // sel
-  public function sel($hcid,$auid,$status){
+  public function sel($hcid,$type,$auid,$status,$search='',$currPage,$subPages){
     // sql
+      if($type==0){
+          $where=' ';
+      }else{
+          $where=" AND NHC.auid = '$auid'";
+      }
     $sql = "
         SELECT
                 NHC.* , C.cname AS cityname
@@ -35,12 +40,16 @@ class newHouseCatalog extends model{
                 1 = 1
         AND
                 NHC.hcid = '$hcid'
-        AND
-                NHC.auid = '$auid'
+        
+                $where
         AND
                 NHC.status = '$status'
+        AND     NHC.title like '%$search%'  
+          
         ORDER BY
                 NHC.ctime DESC
+        LIMIT
+                $currPage , $subPages  
     ";
     return $this->query($sql)->fetchAll();
   }
@@ -69,8 +78,8 @@ class newHouseCatalog extends model{
   }
 
   // cou
-  public function cou(){
-    return $this->count($this->table);
+  public function cou($status,$search=''){
+    return $this->count($this->table,['AND'=>['title[~]'=>$search,'status'=>$status]]);
   }
 
   // getTitle
@@ -89,5 +98,11 @@ class newHouseCatalog extends model{
     return $this->get($this->table,'id',['title'=>$title]);
   }
 
+
+  //修改审核状态
+    public function up_status($status,$id){
+        $res = $this->update($this->table,['status'=>$status],['id'=>$id]);
+        return $res->rowCount();
+    }
 }
 

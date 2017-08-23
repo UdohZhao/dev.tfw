@@ -14,6 +14,10 @@ class usedHouseCatalogCtrl extends baseCtrl{
     public $uhidb;
     // 构造方法
     public function _auto(){
+        if($_SESSION['userinfo']['type'] !=3 && $_SESSION['userinfo']['type'] !=0){
+            echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
+            die;
+        }
         $this->cdb = new city();
         $this->db = new usedHouseCatalog();
         $this->hcdb = new houseCategory();
@@ -158,7 +162,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
 
         //结果集
-        $res = $this->db->sel($status,$search,bcsub($p->page,1,0),$p->pagesize);
+        $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,$search,bcsub($p->page,1,0),$p->pagesize);
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);
         $this->assign('status',$status);

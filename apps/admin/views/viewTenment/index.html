@@ -1,0 +1,108 @@
+{% extends "layouts.html" %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+    <div class="page-header">
+        <h1 class="page-title"># 房屋管理</h1>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">@ 租房条目列表</h3>
+            </div>
+
+            <form action="/admin/viewTenment/index" method="get">
+                <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
+                    <input type="text" class="form-control" name="search" placeholder="请输入关键字">
+                    <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+                </div>
+            </form>
+            <ul class="nav nav-pills" style="margin-left: 25px;">
+                <li role="presentation" class="active"><a href="/admin/viewTenment/index">待审核</a></li>
+            </ul>
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>所属城市</th>
+                        <th>标题</th>
+                        <th>展示租金</th>
+                        <th>装修类型</th>
+                        <th>出租类型</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if data %}
+                    {% for k,v in data %}
+                    <tr>
+                        <td>
+                            {% if status == 4 %}
+                            {% if v.type == 1 %}
+                            <span class="text-danger">{隐藏}</span>
+                            {% else %}
+                            <span class="text-success">{展示}</span>
+                            {% endif %}
+                            {% endif %}
+                        </td>
+                        <td>{{ v.cityname }}</td>
+                        <td>{{ v.title }}</td>
+                        <td>{{ v.show_rent }}</td>
+                        <td>
+                            {% if v.dtype == 0 %}
+                            精装
+                            {% elseif v.dtype == 1 %}
+                            中装
+                            {% else %}
+                            简装
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if v.htype == 0 %}
+                            整租
+                            {% else %}
+                            合租
+                            {% endif %}
+                        </td>
+                        <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="detail_info({{ v.id }});">详细信息</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="checkHouse({{ v.id }});">进入审核</button>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4">
+                            <blockquote>
+                                <p>暂无数据 :(</p>
+                            </blockquote>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+                <div style="float: right;">
+                    {% autoescape false %}
+                    {{ page }}
+                    {% endautoescape %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+
+{% block js %}
+<script src="/apps/admin/views/viewTenment/js/index.js"></script>
+{% endblock %}

@@ -6,7 +6,11 @@ use vendor\page\Page;
 class sellHouseInfoCtrl extends baseCtrl{
     public $db;
     public function _auto(){
-
+        //资料审核员可以查看
+        if($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=1){
+            echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
+            die;
+        }
         $this->db = new sellHouseInfo();
     }
     public function index(){

@@ -281,16 +281,32 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                     <span class=\"site-menu-title\">卖房条目列表</span>
                   </a>
                 </li>
+              </ul>
+            </li>
+
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">房屋审核管理</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
                 <li class=\"site-menu-item\">
-                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/add\" data-slug=\"layout-menu-collapsed\">
+                  <a class=\"animsition-link\" href=\"/admin/viewNewHouse/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
-                    <span class=\"site-menu-title\">添加购房百科</span>
+                    <span class=\"site-menu-title\">审核新房</span>
                   </a>
                 </li>
                 <li class=\"site-menu-item\">
-                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/index\" data-slug=\"layout-menu-collapsed\">
+                  <a class=\"animsition-link\" href=\"/admin/viewUsedHouse/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
-                    <span class=\"site-menu-title\">购房百科列表</span>
+                    <span class=\"site-menu-title\">审核二手房</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/viewTenment/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">审核租房</span>
                   </a>
                 </li>
               </ul>
@@ -315,6 +331,28 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                   <a class=\"animsition-link\" href=\"/admin/loan/add\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">添加金融贷款</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">购房百科管理</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加购房百科</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">购房百科列表</span>
                   </a>
                 </li>
               </ul>
@@ -351,9 +389,9 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
 
 
   ";
-        // line 322
+        // line 360
         $this->displayBlock('content', $context, $blocks);
-        // line 325
+        // line 363
         echo "
 
     <!-- Footer -->
@@ -402,9 +440,9 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
   <script src=\"/public/jquery-validation-1.16.0/lib/jquery.form.js\"></script>
 
   ";
-        // line 372
+        // line 410
         $this->displayBlock('js', $context, $blocks);
-        // line 375
+        // line 413
         echo "
   <script>
     (function(document, window, \$) {
@@ -416,7 +454,6 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
       });
     })(document, window, jQuery);
   </script>
-
 
 </body>
 
@@ -432,18 +469,18 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
   ";
     }
 
-    // line 322
+    // line 360
     public function block_content($context, array $blocks = array())
     {
-        // line 323
+        // line 361
         echo "
   ";
     }
 
-    // line 372
+    // line 410
     public function block_js($context, array $blocks = array())
     {
-        // line 373
+        // line 411
         echo "
   ";
     }
@@ -460,7 +497,7 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
 
     public function getDebugInfo()
     {
-        return array (  447 => 373,  444 => 372,  439 => 323,  436 => 322,  431 => 37,  428 => 36,  408 => 375,  406 => 372,  357 => 325,  355 => 322,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
+        return array (  484 => 411,  481 => 410,  476 => 361,  473 => 360,  468 => 37,  465 => 36,  446 => 413,  444 => 410,  395 => 363,  393 => 360,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
     }
 
     public function getSourceContext()
@@ -717,16 +754,32 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                     <span class=\"site-menu-title\">卖房条目列表</span>
                   </a>
                 </li>
+              </ul>
+            </li>
+
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">房屋审核管理</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
                 <li class=\"site-menu-item\">
-                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/add\" data-slug=\"layout-menu-collapsed\">
+                  <a class=\"animsition-link\" href=\"/admin/viewNewHouse/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
-                    <span class=\"site-menu-title\">添加购房百科</span>
+                    <span class=\"site-menu-title\">审核新房</span>
                   </a>
                 </li>
                 <li class=\"site-menu-item\">
-                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/index\" data-slug=\"layout-menu-collapsed\">
+                  <a class=\"animsition-link\" href=\"/admin/viewUsedHouse/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
-                    <span class=\"site-menu-title\">购房百科列表</span>
+                    <span class=\"site-menu-title\">审核二手房</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/viewTenment/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">审核租房</span>
                   </a>
                 </li>
               </ul>
@@ -751,6 +804,28 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                   <a class=\"animsition-link\" href=\"/admin/loan/add\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">添加金融贷款</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class=\"site-menu-item has-sub active open\">
+              <a href=\"javascript:void(0)\" data-slug=\"layout\">
+                <i class=\"site-menu-icon wb-layout\" aria-hidden=\"true\"></i>
+                <span class=\"site-menu-title\">购房百科管理</span>
+                <span class=\"site-menu-arrow\"></span>
+              </a>
+              <ul class=\"site-menu-sub\">
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/add\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">添加购房百科</span>
+                  </a>
+                </li>
+                <li class=\"site-menu-item\">
+                  <a class=\"animsition-link\" href=\"/admin/buyHouseCatagory/index\" data-slug=\"layout-menu-collapsed\">
+                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
+                    <span class=\"site-menu-title\">购房百科列表</span>
                   </a>
                 </li>
               </ul>
@@ -850,7 +925,6 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
       });
     })(document, window, jQuery);
   </script>
-
 
 </body>
 

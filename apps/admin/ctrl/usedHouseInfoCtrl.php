@@ -12,6 +12,10 @@ class usedHouseInfoCtrl extends baseCtrl{
 
     // 构造方法
     public function _auto(){
+        if($_SESSION['userinfo']['type'] !=3 && $_SESSION['userinfo']['type'] !=0){
+            echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
+            die;
+        }
         $this->uhcid = isset($_GET['uhcid']) ? intval($_GET['uhcid']) : 0;
         $this->assign('uhcid',$this->uhcid);
         $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;

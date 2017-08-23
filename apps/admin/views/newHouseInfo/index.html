@@ -14,6 +14,9 @@
         <h3 class="panel-title">@ （{{ title }}）新房详细信息</h3>
       </div>
       <div class="panel-body">
+        {% if data == '' %}
+        没有添加数据
+        {% else %}
         <ul class="list-group list-group-bordered">
         <li class="list-group-item"><h4>详细信息</h4></li>
         {% for k,v in data.k %}
@@ -27,6 +30,7 @@
           <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>
         </li>
         </ul>
+        {% endif %}
       </div>
     </div>
   </div>

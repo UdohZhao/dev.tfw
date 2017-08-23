@@ -8,6 +8,10 @@ class propertyConsultantCtrl extends baseCtrl{
   public $id;
   // 构造方法
   public function _auto(){
+      if($_SESSION['userinfo']['type'] !=0 ){
+          echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
+          die;
+      }
     $this->db = new propertyConsultant();
     $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
   }

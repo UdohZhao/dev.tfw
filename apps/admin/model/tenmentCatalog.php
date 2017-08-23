@@ -33,7 +33,12 @@ class tenmentCatalog extends model{
     }
     //查询租房列表
 
-    public function sel($status,$search='',$currPage,$subPages){
+    public function sel($type,$auid,$status,$search='',$currPage,$subPages){
+        if($type==0){
+            $where=' ';
+        }else{
+            $where=" AND uh.auid = '$auid'";
+        }
         $sql = "
         SELECT
                 uh.*,C.cname AS cityname
@@ -47,6 +52,8 @@ class tenmentCatalog extends model{
                 1 = 1
         AND 
                 uh.status = $status
+                
+                $where
         AND
                 uh.title like '%$search%'
         ORDER BY

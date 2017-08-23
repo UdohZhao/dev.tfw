@@ -1,0 +1,126 @@
+{% extends "layouts.html" %}
+{% block css %}
+<link rel="stylesheet" href="/public/webuploader-0.1.5/dist/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/public/webuploader-0.1.5/examples/image-upload/style.css" />
+{% endblock %}
+{% block content %}
+<!-- Page -->
+<div class="page animsition">
+    <div class="page-header">
+        <h1 class="page-title"># 房屋管理</h1>
+    </div>
+    <div class="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">@ 审核二手房条目</h3>
+            </div>
+            <div id="wrapper">
+                <div id="container">
+                    <!--头部，相册选择和格式选择-->
+                    <div id="uploader">
+                        <div class="queueList">
+
+                            {% for k,v in data.slideshow %}
+                            <img src="{{v}}" width="200" height="200"/>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" id="newHouseCatalogForm" action="/admin/usedHouseCatalog/add/id/{{ data.id }}" method="post">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">关联城市</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="cid" value="{{ data.cid }}" placeholder="请输入城市名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="title" value="{{ data.title }}" placeholder="请输入标题">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">小区</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="community" value="{{ data.community }}" placeholder="请输入小区">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">出售价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="selling_price" value="{{ data.selling_price }}" placeholder="请输入售价">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">展示价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="show_price" value="{{ data.show_price }}" placeholder="请输入展示价格">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">特点</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="trait" value="{{ data.trait }}" placeholder="请输入特点（以英文逗号分隔）例如：AAA,BBB,CCC">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">面积</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="area" value="{{ data.area }}" placeholder="请输入面积">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="remark" value="{{ data.remark }}" placeholder="请输入备注">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">户型</label>
+                        <div class="col-sm-10">
+                            {% for k,v in htype %}
+                            <label class="checkbox-inline">
+                                {% if v in data.htype %}
+                                <input type="checkbox" id="htype" name="htype[]" checked value="{{ v }}"> {{ v }}
+                                {% else %}
+                                <input type="checkbox" id="htype" name="htype[]"  value="{{ v }}"> {{ v }}
+                                {% endif %}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">产权类型</label>
+                        <div class="col-sm-10">
+                            {% for k,v in prtype %}
+                            <label class="radio-inline">
+                                {% if data.prtype == k and  data.prtype != '' %}
+                                <input type="radio" name="prtype" checked value="{{ k }}"> {{ v }}
+                                {% else %}
+                                <input type="radio" name="prtype" value="{{ k }}"> {{ v }}
+                                {% endif %}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="button" onclick="check_info(2,'{{data.id}}')" class="btn btn-success" value="审核通过"/>
+                            <input type="button" onclick="check_info(1,'{{data.id}}')" class="btn btn-success" value="拒绝通过"/>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page -->
+{% endblock %}
+{% block js %}
+<script src="/apps/admin/views/viewUsedHouse/js/checkHouse.js"></script>
+{% endblock %}

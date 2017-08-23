@@ -16,6 +16,10 @@ class newHouseCatalogCtrl extends baseCtrl{
   public $id;
   // 构造方法
   public function _auto(){
+      if($_SESSION['userinfo']['type'] !=2 && $_SESSION['userinfo']['type'] !=0 ){
+          echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
+          die;
+      }
     $this->cdb = new city();
     $this->hcdb = new houseCategory();
     $this->db = new newHouseCatalog();
@@ -155,16 +159,28 @@ class newHouseCatalogCtrl extends baseCtrl{
     // // 数据分页
     // $page = new Page($cou,conf::get('LIMIT','admin'));
 
-    // status
-    $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
+      $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
+      //获取数据条数
+      $search=isset($_GET['search'])?$_GET['search']:'';
+      if(trim($search)){
+          $num  = $this->db->cou($status,$_GET['search']);
+      }else{
+          $num = $this->db->cou($status);
+      }
+
+      // 数据分页
+      $page = isset($_GET['page']) ? $_GET['page'] : 1;
+      $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
+
     // 获取新房主键id
     $hcid = $this->hcdb->getId('新房');
     // 结果集
-    $data = $this->db->sel($hcid,$this->userinfo['id'],$status);
+    //$data = $this->db->sel($hcid,$this->userinfo['id'],$status);
+      $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,$search,bcsub($p->page,1,0),$p->pagesize);
     // assign
     $this->assign('data',$data);
     $this->assign('status',$status);
-    //$this->assign('page',$page->showpage());
+    $this->assign('page',$p->showpage());
     // display
     $this->display('newHouseCatalog','index.html');
     die;
@@ -206,4 +222,15 @@ class newHouseCatalogCtrl extends baseCtrl{
     }
   }
 
+  //提交审核
+    public function commit_status()
+    {
+        $status = isset($_GET['status']) ? $_GET['status'] : 0;
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        if ($this->db->up_status($status, $id)) {
+            echo json_encode(true);
+        } else {
+            echo json_encode(false);
+        }
+    }
 }
