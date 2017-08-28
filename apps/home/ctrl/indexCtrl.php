@@ -137,30 +137,8 @@ class indexCtrl extends baseCtrl{
           'trait' => '特点',
           'title' => '标题15'
       );
-      $data['15'] = array(
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => '特点',
-          'title' => '标题16'
-      );
-      $data['16'] = array(
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => '特点',
-          'title' => '标题17'
-      );
-      $data['17'] = array(
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => '特点',
-          'title' => '标题18'
-      );
+  
+    
 
     // 数据赋值给返回结果
     $res['data'] = $data;

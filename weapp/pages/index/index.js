@@ -57,15 +57,16 @@ Page({
     })
   },
   openToast: function () {
-    wx.showToast({
-      title: '此地暂未开启,敬请期待！',
-      icon: 'loading',
-      duration: 2000
+    $.alert("自定义的消息内容");
+    $.alert("自定义的消息内容", "自定义的标题");
+    $.alert("自定义的消息内容", function (e) {
+      //点击确认后的回调函数
+      this.setData({
+        firstPerson: e.target.dataset.me,
+        selectPerson: true,
+        selectArea: false,
+      })
     });
-    this.setData({
-      selectArea: false,
-      selectPerson: true,
-    })
   },
   onLoad: function (options) {
     var that = this;
