@@ -89,11 +89,115 @@ function upFiles($file){
     return $res;
 }
 
-
 //删除文件
 function unlink_file($file_path){
     unlink(ICUNJI.$file_path);
 }
 
+/**
+ * 输出json
+ */
+function J($data){
+  header('Content-type:text/json');
+  return json_encode($data);
+}
 
+/**
+ * 返回结果
+ */
+function R($code,$msg = '',$data = ''){
+  if (!intval($code)) {
+    return false;
+  }
+  $result = array();
+  $result['code'] = $code; //反码状态，200正常，400往上都属错误
+  $result['msg'] = $msg;
+  $result['data'] = $data;
+  return $result;
+}
+
+/**
+* 图片地址替换成压缩URL
+* @param string $content 内容
+* @param string $suffix 后缀
+*/
+function getImgReplaceUrl($content="",$suffix=""){
+  $pregRule = "/<[img|IMG].*?src=[\'|\"](.*?(?:[\.jpg|\.jpeg|\.png|\.gif|\.bmp]))[\'|\"].*?[\/]?>/";
+  $content = preg_replace($pregRule, '<img src="'.$suffix.'${1}" style="max-width:100%">', $content);
+  return $content;
+}
+
+/**
+ * curl，POST请求
+ */
+function CP($url,$data = null){
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+    if (!empty($data)){
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    }
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $output = curl_exec($curl);
+    curl_close($curl);
+    return $output;
+}
+
+/**
+ * curl，GET请求
+ */
+function CG($url){
+    //初始化
+    $ch = curl_init();
+    //设置选项，包括URL
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    //执行并获取HTML文档内容
+    $output = curl_exec($ch);
+    //释放curl句柄
+    curl_close($ch);
+    return $output;
+}
+
+/**
+ * 数组 转 对象
+ *
+ * @param array $arr 数组
+ * @return object
+ */
+function TB($arr) {
+    if (gettype($arr) != 'array') {
+        return;
+    }
+    foreach ($arr as $k => $v) {
+        if (gettype($v) == 'array' || getType($v) == 'object') {
+            $arr[$k] = (object)array_to_object($v);
+        }
+    }
+
+    return (object)$arr;
+}
+
+/**
+ * 对象 转 数组
+ *
+ * @param object $obj 对象
+ * @return array
+ */
+function TA($obj) {
+    $obj = (array)$obj;
+    foreach ($obj as $k => $v) {
+        if (gettype($v) == 'resource') {
+            return;
+        }
+        if (gettype($v) == 'object' || gettype($v) == 'array') {
+            $obj[$k] = (array)object_to_array($v);
+        }
+    }
+
+    return $obj;
+}
 
