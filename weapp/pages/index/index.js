@@ -57,16 +57,19 @@ Page({
     })
   },
   openToast: function () {
-    $.alert("自定义的消息内容");
-    $.alert("自定义的消息内容", "自定义的标题");
-    $.alert("自定义的消息内容", function (e) {
-      //点击确认后的回调函数
-      this.setData({
-        firstPerson: e.target.dataset.me,
-        selectPerson: true,
-        selectArea: false,
-      })
+    wx.showModal({
+      title: '提示',
+      content: '此地尚未开发，敬请期待',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        }
+      }
     });
+    this.setData({
+      selectArea: false,
+      selectPerson: true,
+    })
   },
   onLoad: function (options) {
     var that = this;
@@ -154,6 +157,8 @@ Page({
       });
     }
   },
+
+  //房源跳转详细信息
   eachHouse: function (e) {
     var id = e.currentTarget.dataset.id;
     var link = "../housedetails/housedetails?eachId=" + id

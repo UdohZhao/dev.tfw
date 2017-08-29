@@ -16,7 +16,7 @@ class newHouseCatalogCtrl extends baseCtrl{
   public $id;
   // 构造方法
   public function _auto(){
-      if($_SESSION['userinfo']['type'] !=2 && $_SESSION['userinfo']['type'] !=0 ){
+      if($_SESSION['userinfo']['type'] ==1 && $_SESSION['userinfo']['type'] ==3 ){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
           die;
       }
@@ -227,6 +227,28 @@ class newHouseCatalogCtrl extends baseCtrl{
     {
         $status = isset($_GET['status']) ? $_GET['status'] : 0;
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        if ($this->db->up_status($status, $id)) {
+            echo json_encode(true);
+        } else {
+            echo json_encode(false);
+        }
+    }
+    //可通过
+    public function commit_adopt()
+    {
+        $status = isset($_GET['status']) ? $_GET['status'] : 1;
+        $id = isset($_GET['id']) ? $_GET['id'] : 1;
+        if ($this->db->up_status($status, $id)) {
+            echo json_encode(true);
+        } else {
+            echo json_encode(false);
+        }
+    }
+       //可通过
+    public function commit_pass()
+    {
+        $status = isset($_GET['status']) ? $_GET['status'] : 1;
+        $id = isset($_GET['id']) ? $_GET['id'] : 1;
         if ($this->db->up_status($status, $id)) {
             echo json_encode(true);
         } else {
