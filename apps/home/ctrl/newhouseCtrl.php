@@ -1,10 +1,12 @@
 <?php
 namespace apps\home\ctrl;
+use apps\home\model\newhouseCatalog;
 use apps\home\model\demoModel;
 class newhouseCtrl extends baseCtrl{
   // 构造方法
+  public $db;
   public function _auto(){
-
+  $this->db = new newhouseCatalog();
   }
   public function demo(){
     $res=array();
@@ -59,8 +61,12 @@ class newhouseCtrl extends baseCtrl{
     $arr5['5']=array('id'=>'6','name'=>'150-200');
     $arr5['6']=array('id'=>'7','name'=>'200以上');
     $data=array($arr1,$arr2,$arr3,$arr4,$arr5);
+  
+   
+  
       // 数据赋值给返回结果
       $res['data'] = $data;
+      
       echo json_encode($res,true);
       die;
   }
@@ -75,169 +81,10 @@ class newhouseCtrl extends baseCtrl{
       $res['data'] = array(); // 数据
       // data
       $data = array();
-      $data['0'] = array(
-          'id' => '1',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点35','特点36'),
-          'title' => '标题1'
-      );
-      $data['1'] = array(
-          'id' => '2',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点33','特点34'),
-          'title' => '标题2'
-      );
-      $data['2'] = array(
-          'id' => '3',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点31','特点32'),
-          'title' => '标题3'
-      );
-      $data['3'] = array(
-          'id' => '4',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点29','特点30'),
-          'title' => '标题4'
-      );
-      $data['4'] = array(
-          'id' => '5',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点27','特点28'),
-          'title' => '标题5'
-      );
-      $data['5'] = array(
-          'id' => '6',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点25','特点26'),
-          'title' => '标题6'
-      );
-      $data['6'] = array(
-          'id' => '7',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点23','特点24'),
-          'title' => '标题7'
-      );
-      $data['7'] = array(
-          'id' => '8',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点21','特点22'),
-          'title' => '标题8'
-      );
-      $data['8'] = array(
-          'id' => '9',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点19','特点20'),
-          'title' => '标题9'
-      );
-      $data['9'] = array(
-          'id' => '10',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点17','特点18'),
-          'title' => '标题10'
-      );
-      $data['10'] = array(
-          'id' => '11',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点15','特点16'),
-          'title' => '标题11'
-      );
-      $data['11'] = array(
-          'id' => '12',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点13','特点14'),
-          'title' => '标题12'
-      );
-      $data['12'] = array(
-          'id' => '13',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点11','特点12'),
-          'title' => '标题13'
-      );
-      $data['13'] = array(
-          'id' => '14',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点9','特点10'),
-          'title' => '标题14'
-      );
-      $data['14'] = array(
-          'id' => '15',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点7','特点8'),
-          'title' => '标题15'
-      );
-      $data['15'] = array(
-          'id' => '16',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点5','特点6'),
-          'title' => '标题16'
-      );
-      $data['16'] = array(
-          'id' => '17',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点3','特点4'),
-          'title' => '标题17'
-      );
-      $data['17'] = array(
-          'id' => '18',
-          'slideshow' => '../../images/房子.png',
-          'community' => '小区名称',
-          'address' => '地址',
-          'show_price' => '价格',
-          'trait' => array('特点1','特点2'),
-          'title' => '标题18'
-      );
-
+    
+   $data = $this->db->sel1();
+var_dump($data);
+die;
       // 数据赋值给返回结果
       $res['data'] = $data;
       

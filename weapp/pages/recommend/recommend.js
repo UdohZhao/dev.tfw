@@ -10,9 +10,9 @@ Page({
         {
           "image": "../../images/房子.png",
           "status": "期房",
-          "title": "象屿两江御府",
-          "address": "北碚-照母山",
-          "introduce": [
+          "title": "象屿两江御府",//标题
+          "address": "北碚-照母山",//地址
+          "introduce": [//特点
             {
               "name": "人工湖"
             },
@@ -26,7 +26,7 @@ Page({
               "name": "人车分流"
             }
           ],
-          "money": "310",
+          "money": "310",//展示价格
           "money_unit": "万元/套起"
         },
         {
