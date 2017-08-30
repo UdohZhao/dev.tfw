@@ -6,7 +6,7 @@ class about extends model{
 
 
 	public function sel(){
-		$sql = "SELECT content  FROM $this->table  ";
+		$sql = "SELECT content  FROM $this->table ";
 		
 		return $this->query($sql)->fetchAll(2);
 	}

@@ -13,18 +13,20 @@ class aboutCtrl extends baseCtrl{
   
   public function index(){
     // Get
-      $res = array();
-      $res['code'] = 200;  // 200属于正常，400往上都属于异常
-      $res['msg'] = ''; // 提示信息
-      $res['data'] = array(); // 数据
-      // data
-      $data = $this->db->sel();
-      
-
+    $res = array();
+    $res['code'] = 200;  // 200属于正常，400往上都属于异常
+    $res['msg'] = ''; // 提示信息
+    $res['data'] = array(); // 数据
+  
+    // 模拟数据
+   $data = $this->db->sel();
+  
+ 
     // 数据赋值给返回结果
     $res['data'] = $data;
-      echo json_encode($res,true);
-      die;
+  
+    echo json_encode($res,true);
+    die;
   }
 
   

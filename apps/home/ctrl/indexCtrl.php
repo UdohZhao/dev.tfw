@@ -22,10 +22,6 @@ class indexCtrl extends baseCtrl{
     // 模拟数据
    $data = $this->db->sel();
   
-
-
-    
-
   
     // 数据赋值给返回结果
     $res['data'] = $data;
