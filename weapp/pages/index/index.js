@@ -27,12 +27,7 @@ Page({
     search_list:[]
   },
   //获取房屋type
-  gettype:function(e){
-    var aa = e.currentTarget.dataset.linktype
-    this.setData({
-      linktype: aa
-    })
-  },
+ 
   //点击选择类型
   clickPerson: function () {
     var selectPerson = this.data.selectPerson;

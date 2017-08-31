@@ -59,6 +59,7 @@ Page({
       method: 'POST',
       url: app.data.domain + '/newhouse/demo',
       data: {},
+      
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
@@ -73,7 +74,21 @@ Page({
         console.log('error!!!!!!!!!!!!!!')
       }
     })
+    var qwer = data;
+      console.log(qwer);
+    
   },
+ /* //向控制器传参
+  filter(e){
+    //获取当前item的下标name
+    var name=e.currentTarget.name;
+    var app=getApp();
+    app.requestDetailname=name;
+    console.log(name);
+    wx.navigateTo({
+      url: app.data.domain + '/newhouse/newhouse',
+    })
+  },*/
   //筛选项点击操作
   filter: function (e) {
     var self = this, id = e.currentTarget.dataset.id, txt = e.currentTarget.dataset.txt, tabTxt = this.data.tabTxt;
@@ -152,6 +167,15 @@ Page({
       console.log('接口异常！')
     }
     wx.hideToast();
+  },
+  gettype: function (e) {
+    var aa = e.currentTarget.dataset.linktype
+     console.log('form发生了submit事件，携带数据为：', aa)
+
+    url: app.data.domain + '/newhouse/newhouse',
+      this.setData({
+        linktype: aa
+      })
   },
   // //加载数据
   getData: function (callback) {

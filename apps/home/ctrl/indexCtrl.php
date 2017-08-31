@@ -1,12 +1,12 @@
 <?php
 namespace apps\home\ctrl;
-use apps\home\model\newHouseCatalog;
+use apps\home\model\newHouse;
 use apps\home\model\demoModel;
 class indexCtrl extends baseCtrl{
   public $db;
   // 构造方法
   public function _auto(){
- $this->db = new newHouseCatalog();
+ $this->db = new newHouse();
   }
 
   // demo 
@@ -22,7 +22,7 @@ class indexCtrl extends baseCtrl{
     // 模拟数据
    $data = $this->db->sel();
   
-  
+ 
     // 数据赋值给返回结果
     $res['data'] = $data;
     

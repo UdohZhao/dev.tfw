@@ -11,7 +11,6 @@
       <view class="select_one" type="default" bindtap="openToast" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="上海">上海</view>
       <view class="select_one" type="default" bindtap="openToast" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="深圳">深圳</view>
     </view>
-    
   </view>
   <view class="tefangwang">
     <image src="../../images/特房网.png"></image>
@@ -46,19 +45,19 @@
           <view class="weui-grid__label">{{item.cname}}</view>
       </view>
     </block> -->
-      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype={{linktype}}" data-linktype="0" class="weui-grid" hover-class="weui-grid_active">
+      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype=1" data-linktype="1" class="weui-grid" hover-class="weui-grid_active">
           <image class="weui-grid__icon" src="../../images/九宫格1.png" />
           <view class="weui-grid__label">新房</view>
       </navigator>
-      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype={{linktype}}" data-linktype="1"class="weui-grid" hover-class="weui-grid_active">
+      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype=2" data-linktype="2"class="weui-grid" hover-class="weui-grid_active">
           <image class="weui-grid__icon" src="../../images/九宫格2.png" />
           <view class="weui-grid__label">二手房</view>
       </navigator>
-      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype={{linktype}}"  data-linktype="2" class="weui-grid" hover-class="weui-grid_active">
+      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype=3"  data-linktype="3" class="weui-grid" hover-class="weui-grid_active">
           <image class="weui-grid__icon" src="../../images/九宫格3.png" />
           <view class="weui-grid__label">租房</view>
       </navigator>
-      <navigator bindtap="gettype" url="../salehouse/salehouse?linktype={{linktype}}" data-linktype="3" class="weui-grid" hover-class="weui-grid_active">
+      <navigator bindtap="gettype" url="../salehouse/salehouse?linktype=4" data-linktype="4" class="weui-grid" hover-class="weui-grid_active">
           <image class="weui-grid__icon" src="../../images/九宫格4.png" />
           <view class="weui-grid__label">卖房</view>
       </navigator>
