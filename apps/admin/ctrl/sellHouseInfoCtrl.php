@@ -31,41 +31,6 @@ public function update(){
 die;
 
 }
-
-public function updata(){
-
-        // result
-          $result = array();
-          $result['error'] = 0;
-          $result['msg'] = '';
-
-        $data = array();
-        $data['cover_path']['filepath'] = $_POST['cover_path'];
-        $data['house_type_name'] = $_POST['house_type_name'];
-        $data['cname'] = $_POST['cname'];
-        $data['trait'] = $_POST['trait'];
-        $data['price'] = $_POST['price'];
-        $data['sell_type'] = $_POST['sell_type'];
-        $data['covered_area'] = $_POST['covered_area'];
-        $data['orientation'] = $_POST['orientation'];
-        $data['down_payment'] = $_POST['down_payment'];
-        $data['mip'] = $_POST['mip'];
-         
-    
-
-        $res = $this->cdb->save($this->id,$data);
-       if ($res) {
-      echo "<script>alert('保存成功');
-         window.location.href='http://'+window.location.host+'/admin/sellHouseInfo/update/';</script>";
-      } else {
-        echo "<script>alert('保存失败，尝试刷新后再试');
-         window.location.href='http://'+window.location.host+'/admin/sellHouseInfo/update/';</script>";
-      }
-     
-      die;
-  
-
-}
   
      public function index(){
    

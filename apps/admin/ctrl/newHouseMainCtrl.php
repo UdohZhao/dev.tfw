@@ -16,9 +16,11 @@ class newHouseMainCtrl extends baseCtrl{
       }
   
     $this->nhcid = isset($_GET['nhcid']) ? intval($_GET['nhcid']) : 0;
+    $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $this->assign('nhcid',$this->nhcid);
     $this->nhcdb = new newHouseCatalog();
     $this->db = new newHouseMain();
+
   }
   
 
@@ -44,6 +46,14 @@ class newHouseMainCtrl extends baseCtrl{
       }
       // data
       $data = $this->getData($res['filepath']);
+      $cres = $this->db->save($this->id,$data);
+      if ($cres) {
+        $result['msg'] = '恭喜你修改成功 :)';
+      } else {
+        $result['error'] = false;
+        $result['msg'] = '请尝试刷新页面后重试 :(';
+      }
+      
       // 写入数据表
       $res = $this->db->add($data);
       if ($res) {
@@ -55,6 +65,51 @@ class newHouseMainCtrl extends baseCtrl{
       echo json_encode($result);
       die;
     }
+  }
+    public function updata(){
+// Ajax
+    if (IS_AJAX === true) {
+      // result
+      $result = array();
+      $result['error'] = 0;
+      $result['msg'] = '';
+      // 封面图片上传
+      $res = upFiles('cover_path');
+      if ($res['error'] == 1) {
+        echo json_encode($res);
+        die;
+      }
+      // data
+      $data = $this->getDat($res['filepath']);
+      $cres = $this->db->save($this->id,$data);
+      if ($cres) {
+        $result['msg'] = '恭喜你修改成功 :)';
+      } else {
+        $result['error'] = false;
+        $result['msg'] = '请尝试刷新页面后重试 :(';
+      }
+      
+      echo json_encode($result);
+      die;
+    }
+  }
+  // 初始化数据
+  private function getDat($coverPath){
+    // data
+    $data = array();
+    $data['cover_path'] = $coverPath;
+    $data['house_type_name'] = htmlspecialchars($_POST['house_type_name']);
+    $data['cname'] = htmlspecialchars($_POST['cname']);
+    $data['trait'] = htmlspecialchars($_POST['trait']);
+    $data['price'] = htmlspecialchars($_POST['price']);
+    $data['sell_type'] = $_POST['sell_type'];
+    $data['covered_area'] = htmlspecialchars($_POST['covered_area']);
+    $data['orientation'] = htmlspecialchars($_POST['orientation']);
+    $data['down_payment'] = htmlspecialchars($_POST['down_payment']);
+    $data['mip'] = htmlspecialchars($_POST['mip']);
+    $data['analysis'] = $_POST['analysis'];
+    $data['ctime'] = time();
+    return $data;
   }
 
   // 初始化数据
