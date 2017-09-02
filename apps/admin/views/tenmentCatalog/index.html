@@ -23,9 +23,10 @@
                 </div>
             </form>
             <ul class="nav nav-pills" style="margin-left: 25px;">
-                <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/0">待审核</a></li>
-                <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/1">未通过</a></li>
-                <li role="presentation" {% if status == 2 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/2">已通过</a></li>
+                <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/0">默认</a></li>
+                <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/1">待审核</a></li>
+                <li role="presentation" {% if status == 2 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/2">未通过</a></li>
+                <li role="presentation" {% if status == 3 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/3">已通过</a></li>
             </ul>
             <div class="panel-body">
                 <table class="table table-hover">
@@ -75,9 +76,26 @@
                         </td>
                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="uhInfo({{ v.id }});">详细信息</button>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="update_info({{ v.id }});">修改</button>
-                            <button type="button" class="btn btn-default btn-xs" onclick="del_info({{ v.id }});">删除</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="nhInfo({{ v.id }});">详细信息</button>
+                <!-- <button type="button" class="btn btn-primary btn-xs" onclick="nhmInfo({{ v.id }});">主力户型</button> -->
+                {% if v.status == 0 %}
+                <button type="button" class="btn btn-default btn-xs" onclick="commit_status({{ v.id }});">提交审核</button>
+                {% elseif v.status == 1 %}
+               <!--  <button type="button" class="btn btn-default btn-xs" onclick="commit_adopt({{ v.id }});">可通过</button>
+                 <button type="button" class="btn btn-default btn-xs" onclick="commit_pass({{ v.id }});">未通过</button> -->
+                {% elseif v.status == 2 %}
+                <button type="button" class="btn btn-default btn-xs" >未通过</button>
+                {% elseif v.status == 3 %}
+                <button type="button" class="btn btn-default btn-xs" >已通过</button>
+                {% endif %}
+                {% if v.status == 0 %}
+                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del_info({{ v.id }});">删除</button>
+                {% endif %}
+                {% if v.status == 2 %}
+                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del_info({{ v.id }});">删除</button>
+                {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

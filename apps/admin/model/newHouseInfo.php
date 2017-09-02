@@ -3,6 +3,8 @@ namespace apps\admin\model;
 use core\lib\model;
 class newHouseInfo extends model{
   public $table = 'new_house_info';
+  public $tables = 'new_house_catalog';
+  
   // add
   public function add($data){
     $res = $this->insert($this->table,$data);
@@ -32,6 +34,11 @@ class newHouseInfo extends model{
     return $this->get($this->table,'*',['nhcid'=>$nhcid]);
   }
 
+  // catalog
+  public function catalog($nhcid){
+    return $this->get($this->tables,'*',['id'=>$nhcid]);
+  }
+  
   // ePass
   public function ePass($id,$password){
     $res = $this->update($this->table,['password'=>$password],['id'=>$id]);

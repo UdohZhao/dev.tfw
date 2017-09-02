@@ -16,7 +16,7 @@ class newHouseCatalogCtrl extends baseCtrl{
   public $id;
   // 构造方法
   public function _auto(){
-      if($_SESSION['userinfo']['type'] ==1 && $_SESSION['userinfo']['type'] ==3 ){
+      if($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=2 ){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
           die;
       }
@@ -53,7 +53,6 @@ class newHouseCatalogCtrl extends baseCtrl{
         // 读取单条数据
         $data = $this->db->getInfo($this->id);
         $data['cid'] = $this->cdb->getCname($data['cid']);
-        $data['htype'] = explode(',', $data['htype']);
         $data['ptype'] = explode(',', $data['ptype']);
         // assign
         $this->assign('data',$data);
@@ -66,11 +65,11 @@ class newHouseCatalogCtrl extends baseCtrl{
     if (IS_AJAX === true) {
       // result
       $result = array();
-      $result['error'] = 0;
+      $result['error'] = 2;
       $result['msg'] = '';
       // 轮播图
       $slideshow = isset($_SESSION['uploadPath']['slideshow']) ? $_SESSION['uploadPath']['slideshow'] : '';
-      if ($slideshow == '' && $this->id == 0) {
+      if ($slideshow == '' && $this->id == 2) {
         $result['error'] = 201;
         $result['msg'] = '请上传轮播图 :(';
         echo json_encode($result);
@@ -233,26 +232,5 @@ class newHouseCatalogCtrl extends baseCtrl{
             echo json_encode(false);
         }
     }
-    //可通过
-    public function commit_adopt()
-    {
-        $status = isset($_GET['status']) ? $_GET['status'] : 1;
-        $id = isset($_GET['id']) ? $_GET['id'] : 1;
-        if ($this->db->up_status($status, $id)) {
-            echo json_encode(true);
-        } else {
-            echo json_encode(false);
-        }
-    }
-       //可通过
-    public function commit_pass()
-    {
-        $status = isset($_GET['status']) ? $_GET['status'] : 1;
-        $id = isset($_GET['id']) ? $_GET['id'] : 1;
-        if ($this->db->up_status($status, $id)) {
-            echo json_encode(true);
-        } else {
-            echo json_encode(false);
-        }
-    }
+  
 }

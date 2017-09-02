@@ -39,7 +39,12 @@
             <td>{{ v.trait }}</td>
             <td>{{ v.price }}</td>
             <td>{{ v.covered_area }}</td>
-            <td>111</td>
+            <td>
+            {% if v.status == 0 %}
+              <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
+              <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
+           {% endif %}
+            </td>
           </tr>
         {% endfor %}
         </tbody>
@@ -51,5 +56,5 @@
 <!-- End Page -->
 {% endblock %}
 {% block js %}
-
+<script src="/apps/admin/views/newHouseMain/js/index.js"></script>
 {% endblock %}

@@ -14,7 +14,7 @@ class tenmentInfo extends model{
     }
 
     public function sel_info($tcid){
-        return $this->get($this->table,'*',['tcid'=>$tcid]);
+        return $res = $this->get($this->table,'*',['tcid'=>$tcid]);
     }
 
     //修改详细信息

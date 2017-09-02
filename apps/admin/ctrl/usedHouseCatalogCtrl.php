@@ -40,11 +40,11 @@ class usedHouseCatalogCtrl extends baseCtrl{
             $this->assign('hcid',$hcid);
             $this->assign('htype',$htype);
             $this->assign('prtype',$prtype);
-
+            
             // display
             if ($this->id) {
                 // 读取单条数据
-                $data = $this->db->getInfo($this->id);
+                $data = $this->cdb->getInfo($this->id);
                 $data['cid'] = $this->cdb->getCname($data['cid']);
                 $data['htype'] = explode(',', $data['htype']);
                 // assign
@@ -145,7 +145,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
         $data['type'] = 0;
         return $data;
     }
-
+        // 二手房条目列表
     public function index(){
         $status=isset($_GET['status'])?$_GET['status']:0;
 
@@ -193,4 +193,38 @@ class usedHouseCatalogCtrl extends baseCtrl{
             }
         }
     }
-}
+        //提交审核
+        public function commit_status()
+        {
+            $status = isset($_GET['status']) ? $_GET['status'] : 0;
+           
+            $id = isset($_GET['id']) ? $_GET['id'] : 0;
+            if ($this->db->up_status($status,$id)) {
+                echo json_encode(true);
+            } else {
+                echo json_encode(false);
+            }
+        }
+    //      //可通过
+    // public function commit_adopt()
+    // {
+    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;
+    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;
+    //     if ($this->db->up_status($status, $id)) {
+    //         echo json_encode(true);
+    //     } else {
+    //         echo json_encode(false);
+    //     }
+    // }
+    //    //未通过
+    // public function commit_pass()
+    // {
+    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;
+    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;
+    //     if ($this->db->up_status($status, $id)) {
+    //         echo json_encode(true);
+    //     } else {
+    //         echo json_encode(false);
+    //     }
+    // }
+  }

@@ -25,6 +25,7 @@ class tenmentCatalogCtrl extends baseCtrl{
         $this->thidb = new tenmentInfo();
 
         $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        
     }
     public function add(){
         if (IS_GET === true) {
@@ -35,10 +36,11 @@ class tenmentCatalogCtrl extends baseCtrl{
             // assign
             $this->assign('pid',$pid);
             $this->assign('hcid',$hcid);
-
+            
 
             // display
             if ($this->id) {
+
                 // 读取单条数据
                 $data = $this->db->getInfo($this->id);
                 $data['cid'] = $this->cdb->getCname($data['cid']);
@@ -188,4 +190,38 @@ class tenmentCatalogCtrl extends baseCtrl{
             }
         }
     }
+      //提交审核
+    public function commit_status()
+        {
+            $status = isset($_GET['status']) ? $_GET['status'] : 0;
+           
+            $id = isset($_GET['id']) ? $_GET['id'] : 0;
+            if ($this->db->up_status($status,$id)) {
+                echo json_encode(true);
+            } else {
+                echo json_encode(false);
+            }
+        }
+    //      //可通过
+    // public function commit_adopt()
+    // {
+    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;
+    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;
+    //     if ($this->db->up_status($status, $id)) {
+    //         echo json_encode(true);
+    //     } else {
+    //         echo json_encode(false);
+    //     }
+    // }
+    //    //未通过
+    // public function commit_pass()
+    // {
+    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;
+    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;
+    //     if ($this->db->up_status($status, $id)) {
+    //         echo json_encode(true);
+    //     } else {
+    //         echo json_encode(false);
+    //     }
+    // }
 }

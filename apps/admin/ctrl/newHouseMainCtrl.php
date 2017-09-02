@@ -7,17 +7,20 @@ class newHouseMainCtrl extends baseCtrl{
   public $nhcid;
   public $nhcdb;
   public $db;
+  public $id;
   // 构造方法
   public function _auto(){
       if($_SESSION['userinfo']['type'] !=2 && $_SESSION['userinfo']['type'] !=0){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
           die;
       }
+  
     $this->nhcid = isset($_GET['nhcid']) ? intval($_GET['nhcid']) : 0;
     $this->assign('nhcid',$this->nhcid);
     $this->nhcdb = new newHouseCatalog();
     $this->db = new newHouseMain();
   }
+  
 
   // 新房添加主力户型页面
   public function add(){

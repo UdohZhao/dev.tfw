@@ -1,106 +1,56 @@
 {% extends "layouts.html" %}
 {% block css %}
-
 {% endblock %}
 {% block content %}
 <!-- Page -->
 <div class="page animsition">
-    <div class="page-header">
-        <h1 class="page-title"># 房屋管理</h1>
+  <div class="page-header">
+    <h1 class="page-title"># 房屋管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ （{{ data.title }}）二手房详细信息</h3>
+      </div>
+      <div class="panel-body">
+        {% if data == '' %}
+        没有添加数据
+        {% else %}
+        <ul class="list-group list-group-bordered">
+        <li class="list-group-item"><h4>详细信息</h4></li>
+        <li class="list-group-item">=
+        <table style="font-size: 20px;">
+          <br><tr>小　　区------:</tr><tr>{{ data.community }}</tr></br>
+          <br><tr>单　　价------:</tr><tr>{{ data.unit_price }}</tr></br>
+          <br><tr>楼　　层------:</tr><tr>{{ data.tage }}</tr></br>
+          <br><tr>朝　　向------:</tr><tr>{{ data.orientation }}</tr></br>
+          <br><tr>类　　型------:</tr><tr>{{ data.type }}</tr></br>
+          <br><tr>装　　修------:</tr><tr>{{ data.upfitter }}</tr></br>
+          <br><tr>年　　代------:</tr><tr>{{ data.era }}</tr></br>
+          <br><tr>发布时间------:</tr><tr>{{ data.ctime }}</tr></br>
+          <br><tr>轨　　交------:</tr><tr>{{ data.rail_transit }}</tr></br>
+          <br><tr>核心卖点------:</tr><tr>{{ data.selling_points }}</tr></br>
+        </table>
+        </li>
+        {% for k,v in data.k %}
+          <li class="list-group-item">{{ data.k[k] }} : {{ data.v[k] }}</li>
+        {% endfor %}
+        <li class="list-group-item"><h4>置业顾问</h4></li>
+        <li class="list-group-item">
+          <img src="{{ pcInfo.head_portrait }}" class="img-responsive" style="width: 90px; height: 90px;">
+          <div style="font-size: 20px;">{{ pcInfo.cname }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.phone }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.ctime}}</div>
+        </li>
+        </ul>
+        {% endif %}
+      </div>
     </div>
-    <div class="page-content">
-        <div class="panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">@ 二手房详细</h3>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" id="usedHouseInfoForm" action="/admin/usedHouseInfo/index/id/{{ uhcid }}" method="post">
-                    <input type="hidden" name="uhcid" value="{{ uhcid }}">
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">选择职业顾问</label>
-                        <div class="col-sm-10">
-                            <select multiple class="form-control" name="pcid">
-                                {% for k,v in pcData %}
-                                {% if v.id == data.pcid %}
-                                <option value="{{ v.id }}" selected="selected">{{ v.cname }} # {{ v.phone }} # {{ v.belong_company }}</option>
-                                {% else %}
-                                <option value="{{ v.id }}">{{ v.cname }} # {{ v.phone }} # {{ v.belong_company }}</option>
-                                {% endif %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">楼层</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="tage" value="{{ data.tage }}" placeholder="请输入楼层">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">单价</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="unit_price" value="{{ data.unit_price }}" placeholder="请输入单价">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">朝向</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="orientation" value="{{ data.orientation }}" placeholder="请输入朝向">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">类型</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="type" value="{{ data.type }}" placeholder="请输入类型">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">装修</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="upfitter" value="{{ data.upfitter }}" placeholder="装修">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">年代</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="era" value="{{ data.era }}" placeholder="输入年代">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">小区</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="community" value="{{ data.community }}" placeholder="输入小区">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">轨交</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="rail_transit" value="{{ data.rail_transit }}" placeholder="输入轨交,以英文逗号隔开">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">核心卖点</label>
-                        <div class="col-sm-10">
-                            <script id="container" name="selling_points" type="text/plain" style="height: 300px;">{% autoescape false %}{{ data.selling_points }}{% endautoescape %}</script>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-success">提交信息</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 <!-- End Page -->
 {% endblock %}
 {% block js %}
-<script src="/apps/admin/views/usedHouseInfo/js/index.js"></script>
-<script src="/public/ueditor/ueditor.config.js"></script>
-<script src="/public/ueditor/ueditor.all.js"></script>
-<script>
-    var ue = UE.getEditor('container');
-</script>
 {% endblock %}
+

@@ -1,13 +1,12 @@
-function uhInfo(id){
-    window.location.href='http://'+window.location.host+'/admin/usedHouseInfo/index?id='+id;
+
+// 二手房详细信息
+function nhInfo(id){
+  window.location.href = "/admin/usedHouseInfo/index/uhcid/"+id;
 }
-
-
-function update_info(id){
-    window.location.href='http://'+window.location.host+'/admin/usedHouseCatalog/add?id='+id;
+// 修改
+function edit(id){
+  window.location.href = "/admin/usedHouseCatalog/add/id/"+id;
 }
-
-
 // 删除
 function del_info(id){
     swal({
@@ -21,29 +20,111 @@ function del_info(id){
             closeOnConfirm: false,
             closeOnCancel: false
         },
-        function(isConfirm){
-            if (isConfirm) {
-                // Ajax
-                $.ajax({
-                    type: "GET",
-                    url: "/admin/usedHouseCatalog/del/id/"+id,
-                    dataType: "JSON",
-                    success: function(res){
-                        // res
-                        if (res === true) {
-                            swal("提交成功", "当前操作已发生改变 :)", "success");
-                            setTimeout("window.location.reload();",2000);
-                        } else {
-                            swal("提交失败", "请刷新页面后重试 :(", "error");
-                        }
-                    },
-                    error: function(e){
-                        console.log(e);
-                        swal("未知错误", "请刷新页面后重试 :(", "error");
+    function(isConfirm){
+        if (isConfirm) {
+            // Ajax
+            $.ajax({
+                type: "GET",
+                url: "/admin/usedHouseCatalog/del/id/"+id,
+                dataType: "JSON",
+                success: function(res){
+                    // res
+                    if (res === true) {
+                        swal("提交成功", "当前操作已发生改变 :)", "success");
+                        setTimeout("window.location.reload();",2000);
+                    } else {
+                        swal("提交失败", "请刷新页面后重试 :(", "error");
                     }
-                });
-            } else {
-                swal("取消了", "当前操作未发生改变 :)", "error");
-            }
-        });
+                },
+                error: function(e){
+                    console.log(e);
+                    swal("未知错误", "请刷新页面后重试 :(", "error");
+                }
+            });
+        } else {
+            swal("取消了", "当前操作未发生改变 :)", "error");
+        }
+    });
 }
+
+//提交审核
+function commit_status(id){
+          // Ajax
+          $.ajax({
+            type: "GET",
+            url: "/admin/usedHouseCatalog/commit_status/id/"+id+'/status/1',
+            dataType: "JSON",
+            success: function(res){
+              // res
+              if (res === true) {
+                swal("提交成功", "当前操作已发生改变 :)", "success");
+                setTimeout("window.location.reload();",2000);
+              }else if(res.error == 400){
+                swal("您没有该板块的权限", "即将返回页面 :(", "error");
+                setTimeout("window.location.reload();",2000);
+              }
+              else {
+                swal("提交失败", "请刷新页面后重试 :(", "error");
+              }
+            },
+            error: function(e){
+              console.log(e);
+              swal("未知错误", "请刷新页面后重试 :(", "error");
+            }
+          });
+}
+
+// //未通过
+// function commit_pass(id){
+//           // Ajax
+//           $.ajax({
+//             type: "GET",
+//             url: "/admin/usedHouseCatalog/commit_pass/id/"+id+'/status/2',
+//             dataType: "JSON",
+//             success: function(res){
+//               // res
+//               if (res === true) {
+//                 swal("提交成功", "当前操作已发生改变 :)", "success");
+//                 setTimeout("window.location.reload();",2000);
+//               }else if(res.error == 400){
+//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");
+//                 setTimeout("window.location.reload();",2000);
+//               }
+//               else {
+//                 swal("提交失败", "请刷新页面后重试 :(", "error");
+//               }
+//             },
+//             error: function(e){
+//               console.log(e);
+//               swal("未知错误", "请刷新页面后重试 :(", "error");
+//             }
+//           });
+// }
+
+// //可通过
+// function commit_adopt(id){
+//           // Ajax
+//           $.ajax({
+//             type: "GET",
+//             url: "/admin/usedHouseCatalog/commit_adopt/id/"+id+'/status/3',
+
+//             dataType: "JSON",
+//             success: function(res){
+//               // res
+//               if (res === true) {
+//                 swal("提交成功", "当前操作已发生改变 :)", "success");
+//                 setTimeout("window.location.reload();",2000);
+//               }else if(res.error == 400){
+//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");
+//                 setTimeout("window.location.reload();",2000);
+//               }
+//               else {
+//                 swal("提交失败", "请刷新页面后重试 :(", "error");
+//               }
+//             },
+//             error: function(e){
+//               console.log(e);
+//               swal("未知错误", "请刷新页面后重试 :(", "error");
+//             }
+//           });
+// }

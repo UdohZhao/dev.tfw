@@ -3,7 +3,8 @@ namespace apps\admin\model;
 use core\lib\model;
 class viewTenment extends model{
     public $table='tenement_catalog';
-
+    
+    //查询记录
     public function sel($search='',$currPage,$subPages){
         $sql = "
         SELECT
@@ -18,7 +19,7 @@ class viewTenment extends model{
                 1 = 1
         AND
                 uh.title like '%$search%'
-        AND     uh.status = 0       
+        AND     uh.status = 1       
         ORDER BY
                 uh.ctime DESC
         LIMIT

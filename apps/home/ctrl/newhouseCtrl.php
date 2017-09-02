@@ -50,7 +50,7 @@ class newhouseCtrl extends baseCtrl{
    
      $data = $this->db->sel1('$name','$cname');
 
-     
+   
       // 数据赋值给返回结果
       $res['data'] = $data;
       

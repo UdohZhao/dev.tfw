@@ -1,56 +1,115 @@
 // recommend.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      //最新房源
-      my_availability: [
-        {
-          "image": "../../images/房子.png",
-          "status": "期房",
-          "title": "象屿两江御府",//标题
-          "address": "北碚-照母山",//地址
-          "introduce": [//特点
-            {
-              "name": "人工湖"
-            },
-            {
-              "name": "湖景"
-            },
-            {
-              "name": "高端会所"
-            },
-            {
-              "name": "人车分流"
-            }
-          ],
-          "money": "310",//展示价格
-          "money_unit": "万元/套起"
-        },
-        {
-          "image": "../../images/房子.png",
-          "status": "期房",
-          "title": "约克郡",
-          "address": "北碚-照母山",
-          "introduce": [
-            {
-              "name": "低总价"
-            },
-            {
-              "name": "湖景"
-            },
-            {
-              "name": "大型社区"
-            },
-            {
-              "name": "带幼儿园"
-            }
-          ],
-          "money": "489",
-          "money_unit": "万元/套起"
-        }
-      ]
-    },
+    //最新房源
+    my_availability: [],
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this
+    wx.request({
+      method: "POST",
+      url: app.data.domain + '/index/recommend', //仅为示例，并非真实的接口地址
+      data: {
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          my_availability: res.data.data,
+        })
+      }
+    });
+    var that = this
+    wx.request({
+      method: "POST",
+      url: app.data.domain + '/index/recommend1', //仅为示例，并非真实的接口地址
+      data: {
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          my_availability: res.data.data,
+        })
+      }
+    });
+    var that = this
+    wx.request({
+      method: "POST",
+      url: app.data.domain + '/index/recommend2', //仅为示例，并非真实的接口地址
+      data: {
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        my_availability: res.data
+      }
+    })
+    
+  },
+  
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    
+  }
 })

@@ -2,7 +2,7 @@
 var app = getApp(); // 实例化APP
 Page({
   data: {
-    linktype : '',//房屋链接类型0,1,2,3
+    id : '',//房屋链接类型0,1,2,3
     totalpage:'',
     status:true,
     page:1,
@@ -15,6 +15,8 @@ Page({
     //搜索
     inputShowed: false,
     inputVal: "",
+    //导航
+  
     //九宫格
     grids: [],
     //购房百科
@@ -67,6 +69,41 @@ Page({
     })
   },
   onLoad: function (options) {
+    var that = this
+    wx.request({
+      method: "POST",
+      url: app.data.domain + '/houseCategory/category',//仅为示例，并非真实的接口地址
+      data: {
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          zhihu: res.data.data,
+        })
+        
+      },
+    }); 
+    var that = this
+    wx.request({
+      method: "POST",
+      url: app.data.domain + '/houseCategory/category3',//仅为示例，并非真实的接口地址
+      data: {
+      },
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          zhihu3: res.data.data,
+        })
+
+      },
+    });
+
     var that = this;
     const requestTask=wx.request({
       method: "POST",
@@ -84,6 +121,7 @@ Page({
     })
     that.fetchImgListDate();
   },
+  
   fetchImgListDate: function (data) {
     var self = this;
     self.setData({
@@ -161,6 +199,7 @@ Page({
       url: link
     })
   },
+  
   onReady: function () {
     // 页面渲染完成
   },

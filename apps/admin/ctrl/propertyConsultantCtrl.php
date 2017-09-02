@@ -132,5 +132,20 @@ class propertyConsultantCtrl extends baseCtrl{
       }
     }
   }
+   // del
+  public function dle(){
+    // Ajax
+    if (IS_AJAX === true) {
+      // delete
+      $res = $this->db->dle($this->id);
+      if ($res) {
+        echo json_encode(true);
+        die;
+      } else {
+        echo json_encode(false);
+        die;
+      }
+    }
+  }
 
 }

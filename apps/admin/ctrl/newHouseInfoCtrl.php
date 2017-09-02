@@ -28,6 +28,7 @@ class newHouseInfoCtrl extends baseCtrl{
     if (IS_GET === true) {
       // 读取置业顾问
       $pcData = $this->pcdb->selpc();
+      
       // assign
       $this->assign('pcData',$pcData);
       // display
@@ -81,18 +82,32 @@ class newHouseInfoCtrl extends baseCtrl{
     if (IS_GET === true) {
       // 读取详细信息
       $data = $this->db->getInfo($this->nhcid);
+      $rem = $this->db->catalog($this->nhcid);
         if(!$data){
             $this->assign('data','');
             $this->display('newHouseInfo','index.html');
             die;
-        }
+        }else{
       $data['k'] = unserialize($data['k']);
       $data['v'] = unserialize($data['v']);
       // 读取新房条目名称
       $title = $this->nhcdb->getTitle($data['nhcid']);
       // 读取相关置业顾问信息
       $pcInfo = $this->pcdb->getInfo($data['pcid']);
+      
+}
+      if(!$rem){
+          $this->assign('rem','');
+          $this->display('newHouseInfo','index.html');
+            die;
+        }
+      //反序列化
+      $rem['slideshow'] = unserialize($rem['slideshow']);
+      //读取新房条目表信息
+      $caInfo = $this->pcdb->catalog($rem['cid']);
       // assign
+      $this->assign('rem',$rem);
+      $this->assign('caInfo',$caInfo);
       $this->assign('data',$data);
       $this->assign('title',$title);
       $this->assign('pcInfo',$pcInfo);

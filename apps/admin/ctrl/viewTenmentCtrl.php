@@ -25,6 +25,7 @@ class viewTenmentCtrl extends baseCtrl{
 
         //获取数据条数
         $search=isset($_GET['search'])?$_GET['search']:'';
+
         if(trim($search)){
             $num  = $this->db->sel_num($_GET['search']);
         }else{
@@ -37,6 +38,7 @@ class viewTenmentCtrl extends baseCtrl{
 
         //结果集
         $res = $this->db->sel($search,bcsub($p->page,1,0),$p->pagesize);
+        
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);
         $this->display('viewTenment','index.html');
@@ -74,9 +76,9 @@ class viewTenmentCtrl extends baseCtrl{
     //审核房子
     public function check_info(){
         $status = isset($_POST['status'])?$_POST['status']:0;
-        if($status == 1){
+        if($status == 2){
             $msg='审核未通过';
-        }elseif($status == 2){
+        }elseif($status == 3){
             $msg='审核通过';
         }
         $id = isset($_POST['id'])?$_POST['id']:0;

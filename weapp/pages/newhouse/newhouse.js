@@ -3,7 +3,7 @@ var app=getApp();
 Page({
   data: {
     //首页九宫格type
-    linktype:'',
+    id:'',
     //搜索
     inputShowed: false,
     inputVal: "",
@@ -43,15 +43,6 @@ Page({
     //     }
     // })
   },
-  // 选项卡
-  filterTab: function (e) {
-    var data = [true, true, true, true, true], index = e.currentTarget.dataset.index;
-    console.log(index)
-    data[index] = !this.data.tab[index];
-    this.setData({
-      tab: data
-    })
-  },
   // 获取筛选项
   getFilter: function () {
     var self = this;
@@ -74,79 +65,9 @@ Page({
         console.log('error!!!!!!!!!!!!!!')
       }
     })
-    var qwer = data;
-      console.log(qwer);
-    
+   
   },
- /* //向控制器传参
-  filter(e){
-    //获取当前item的下标name
-    var name=e.currentTarget.name;
-    var app=getApp();
-    app.requestDetailname=name;
-    console.log(name);
-    wx.navigateTo({
-      url: app.data.domain + '/newhouse/newhouse',
-    })
-  },*/
-  //筛选项点击操作
-  filter: function (e) {
-    var self = this, id = e.currentTarget.dataset.id, txt = e.currentTarget.dataset.txt, tabTxt = this.data.tabTxt;
-    switch (e.currentTarget.dataset.index) {
-      case '0':
-        tabTxt[0] = txt;
-        self.setData({
-          page: 1,
-          data: [],
-          tab: [true, true, true, true, true],
-          tabTxt: tabTxt,
-          house_type: id
-        });
-        break;
-      case '1':
-        tabTxt[1] = txt;
-        self.setData({
-          page: 1,
-          data: [],
-          tab: [true, true, true, true, true],
-          tabTxt: tabTxt,
-          house_style: id
-        });
-        break;
-      case '2':
-        tabTxt[2] = txt;
-        self.setData({
-          page: 1,
-          data: [],
-          tab: [true, true, true, true, true],
-          tabTxt: tabTxt,
-          house_area: id
-        });
-        break;
-      case '3':
-        tabTxt[3] = txt;
-        self.setData({
-          page: 1,
-          data: [],
-          tab: [true, true, true, true, true],
-          tabTxt: tabTxt,
-          house_style: id
-        });
-        break;
-      case '4':
-        tabTxt[4] = txt;
-        self.setData({
-          page: 1,
-          data: [],
-          tab: [true, true, true, true, true],
-          tabTxt: tabTxt,
-          house_area: id
-        });
-        break;
-    }
-    //数据筛选
-    self.getData();
-  },
+
   //数据处理
   dataFormat: function (d) {
     console.log(d.data.data.length)
@@ -169,12 +90,12 @@ Page({
     wx.hideToast();
   },
   gettype: function (e) {
-    var aa = e.currentTarget.dataset.linktype
+    var aa = e.currentTarget.dataset.id
      console.log('form发生了submit事件，携带数据为：', aa)
 
     url: app.data.domain + '/newhouse/newhouse',
       this.setData({
-        linktype: aa
+        id: aa
       })
   },
   // //加载数据
@@ -187,7 +108,7 @@ Page({
     });
     wx.request({
       method : 'POST',
-      url: app.data.domain + '/newhouse/newhouse',
+      url: app.data.domain + '/newhouse/newhouse?id=2' ,
       data: {
         page: self.data.page,
         condition: self.data.tabTxt,
@@ -254,7 +175,60 @@ Page({
   //navbar
   onLoad: function (options) {
     this.setData({
-      linktype: options.linktype
+      id: options.id
     })
   },
+
+  // 选项卡
+  filterTab: function (e) {
+    var data = [true, true, true, true, true], index = e.currentTarget.dataset.index;
+    console.log(index)
+    data[index] = !this.data.tab[index];
+    this.setData({
+      tab: data
+    })
+
+    console.log(this.data.tab);
+
+  },
+
+
+  //筛选项点击操作
+  filter: function (e) {
+
+    console.log(e);
+
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    wx.request({
+      url: 'test.php', //仅为示例，并非真实的接口地址
+      data: {
+        x: '',
+        y: ''
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
+
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
+
+
+
+    //var self = this, id = e.currentTarget.dataset.id, txt = e.currentTarget.dataset.txt, tabTxt = this.data.tabTxt;
+
+    //数据筛选
+    self.getData();
+  }
+
+
 });

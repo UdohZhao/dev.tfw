@@ -1,42 +1,57 @@
 {% extends "layouts.html" %}
 {% block css %}
-
 {% endblock %}
 {% block content %}
 <!-- Page -->
 <div class="page animsition">
-    <div class="page-header">
-        <h1 class="page-title"># 房屋管理</h1>
+  <div class="page-header">
+    <h1 class="page-title"># 房屋管理</h1>
+  </div>
+  <div class="page-content">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">@ （{{ title }}）新房详细信息</h3>
+      </div>
+      <div class="panel-body">
+        {% if data == '' %}
+        没有添加数据
+        {% else %}
+        <ul class="list-group list-group-bordered">
+        <li class="list-group-item"><h4>详细信息</h4></li>
+        <li class="list-group-item">=
+        <table style="font-size: 20px;">
+          <br><tr>小　　区------:</tr><tr>{{ caInfo.community}}</tr></br>
+          <br><tr>价　　格------:</tr><tr>{{ caInfo.price }}</tr></br>
+          <br><tr>展示价格------:</tr><tr>{{ caInfo.show_price }}</tr></br>
+          <br><tr>特　　点------:</tr><tr>{{ caInfo.trait }}</tr></br>
+          <br><tr>户　　型------:</tr><tr>{{ caInfo.htype }}</tr></br>
+          <br><tr>产权类型------:</tr><tr>{{ caInfo.prypet }}</tr></br>
+          <br><tr>面　　积------:</tr><tr>{{ caInfo.area }}</tr></br>
+          <br><tr>房屋类型------:</tr><tr>{{ caInfo.house_type }}</tr></br>
+          <br><tr>物业类型------:</tr><tr>{{ caInfo.ptype }}</tr></br>
+          <br><tr>地　　址------:</tr><tr>{{ caInfo.address }}</tr></br>
+          <br><tr>时　　间------:</tr><tr>{{ caInfo.ctime }}</tr></br>
+          <br><tr>备　　注------:</tr><tr>{{ caInfo.remark }}</tr></br>
+        </table>
+        </li>
+        {% for k,v in data.k %}
+          <li class="list-group-item">{{ data.k[k] }} : {{ data.v[k] }}</li>
+        {% endfor %}
+        <li class="list-group-item"><h4>置业顾问</h4></li>
+        <li class="list-group-item">
+          <img src="{{ pcInfo.head_portrait }}" class="img-responsive" style="width: 90px; height: 90px;">
+          <div style="font-size: 20px;">{{ pcInfo.cname }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.phone }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.ctime}}</div>
+        </li>
+        </ul>
+        {% endif %}
+      </div>
     </div>
-    <div class="page-content">
-        <div class="panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">@ （{{ title }}）新房详细信息</h3>
-            </div>
-            <div class="panel-body">
-                {% if data == '' %}
-                没有添加数据
-                {% else %}
-                <ul class="list-group list-group-bordered">
-                    <li class="list-group-item"><h4>详细信息</h4></li>
-                    {% for k,v in data.k %}
-                    <li class="list-group-item">{{ data.k[k] }} : {{ data.v[k] }}</li>
-                    {% endfor %}
-                    <li class="list-group-item"><h4>置业顾问</h4></li>
-                    <li class="list-group-item">
-                        <img src="{{ pcInfo.head_portrait }}" class="img-responsive" style="width: 90px; height: 90px;">
-                        <div style="font-size: 20px;">{{ pcInfo.cname }}</div>
-                        <div style="font-size: 20px;">{{ pcInfo.phone }}</div>
-                        <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>
-                    </li>
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 <!-- End Page -->
 {% endblock %}
 {% block js %}
-
 {% endblock %}
