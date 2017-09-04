@@ -27,8 +27,10 @@ Page({
     selectPerson:true,
     firstPerson: '抵押贷款',
     selectArea: false,
-
+   
+      
   },
+ 
   application_loan : function(){
     this.setData({
       hidden: false,
@@ -61,6 +63,39 @@ Page({
       selectPerson: true,
       selectArea: false,
     })
+  },
+  bindconfirm:function (e){
+    var that = this;
+    var tokend = wx.getStorageSync('tokend')
+    var name2 = e.detail.value.name2;         //获取input初始值
+    var ID_num2 = e.detail.value.ID_num2;    //获取input初始值
+    var ID_num = that.data.ID_num ? that.data.ID_num : ID_num2
+    wx.request({
+      method: 'POST',
+      url: app.data.domain + '/loan/add' + tokend, //接口地址
+      data: {
+        'name': name,
+        'ID_num': ID_num
+      },
+      header: { 'content-type': 'application/json' },
+      success: function (res) {
+        wx.showToast({
+          title: '资料修改成功',
+          image: '../Image/suess.png',
+          duration: 2000
+        })
+        setTimeout(function () {
+          wx.switchTab({
+            url: app.data.domain + '/loan/add',
+          })
+        }, 2000)
+
+      },
+      fail: function (res) {
+        console.log('cuowu' + ':' + res)
+      }
+    })
+  
   },
   /**
    * 生命周期函数--监听页面加载

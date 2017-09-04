@@ -18,6 +18,7 @@ class adminUserCtrl extends baseCtrl{
 
   // 添加用户页面
   public function add(){
+    
     // Get
     if (IS_GET === true) {
       // display

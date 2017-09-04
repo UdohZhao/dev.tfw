@@ -1,10 +1,11 @@
-function uhInfo(id){
-    window.location.href='http://'+window.location.host+'/admin/tenmentInfo/index?id='+id;
+
+// 租房详细信息
+function nhInfo(id){
+  window.location.href = "/admin/tenmentInfo/index/tcid/"+id;
 }
-
-
-function update_info(id){
-    window.location.href='http://'+window.location.host+'/admin/tenmentCatalog/add?id='+id;
+//修改
+function edit(id){
+  window.location.href = "/admin/tenmentCatalog/add/id/"+id;
 }
 
 
@@ -47,4 +48,83 @@ function del_info(id){
             }
         });
 }
+//提交审核
+function commit_status(id){
+          // Ajax
+          $.ajax({
+            type: "GET",
+            url: "/admin/tenmentCatalog/commit_status/id/"+id+'/status/1',
+            dataType: "JSON",
+            success: function(res){
+              // res
+              if (res === true) {
+                swal("提交成功", "当前操作已发生改变 :)", "success");
+                setTimeout("window.location.reload();",2000);
+              }else if(res.error == 400){
+                swal("您没有该板块的权限", "即将返回页面 :(", "error");
+                setTimeout("window.location.reload();",2000);
+              }
+              else {
+                swal("提交失败", "请刷新页面后重试 :(", "error");
+              }
+            },
+            error: function(e){
+              console.log(e);
+              swal("未知错误", "请刷新页面后重试 :(", "error");
+            }
+          });
+}
+// //未通过
+// function commit_pass(id){
+//           // Ajax
+//           $.ajax({
+//             type: "GET",
+//             url: "/admin/tenmentCatalog/commit_pass/id/"+id+'/status/2',
+//             dataType: "JSON",
+//             success: function(res){
+//               // res
+//               if (res === true) {
+//                 swal("提交成功", "当前操作已发生改变 :)", "success");
+//                 setTimeout("window.location.reload();",2000);
+//               }else if(res.error == 400){
+//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");
+//                 setTimeout("window.location.reload();",2000);
+//               }
+//               else {
+//                 swal("提交失败", "请刷新页面后重试 :(", "error");
+//               }
+//             },
+//             error: function(e){
+//               console.log(e);
+//               swal("未知错误", "请刷新页面后重试 :(", "error");
+//             }
+//           });
+// }
 
+// //可通过
+// function commit_adopt(id){
+//           // Ajax
+//           $.ajax({
+//             type: "GET",
+//             url: "/admin/tenmentCatalog/commit_adopt/id/"+id+'/status/3',
+
+//             dataType: "JSON",
+//             success: function(res){
+//               // res
+//               if (res === true) {
+//                 swal("提交成功", "当前操作已发生改变 :)", "success");
+//                 setTimeout("window.location.reload();",2000);
+//               }else if(res.error == 400){
+//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");
+//                 setTimeout("window.location.reload();",2000);
+//               }
+//               else {
+//                 swal("提交失败", "请刷新页面后重试 :(", "error");
+//               }
+//             },
+//             error: function(e){
+//               console.log(e);
+//               swal("未知错误", "请刷新页面后重试 :(", "error");
+//             }
+//           });
+// }

@@ -17,7 +17,7 @@ class viewUsedHouse extends model{
         WHERE
                 1 = 1
         AND 
-                uh.status = $status
+                uh.status = 1
         AND
                 uh.title like '%$search%'
         ORDER BY

@@ -145,7 +145,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
         $data['type'] = 0;
         return $data;
     }
-
+        // 二手房条目列表
     public function index(){
         $status=isset($_GET['status'])?$_GET['status']:0;
 
@@ -193,4 +193,17 @@ class usedHouseCatalogCtrl extends baseCtrl{
             }
         }
     }
-}
+        //提交审核
+        public function commit_status()
+        {
+            $status = isset($_GET['status']) ? $_GET['status'] : 0;
+           
+            $id = isset($_GET['id']) ? $_GET['id'] : 0;
+            if ($this->db->up_status($status,$id)) {
+                echo json_encode(true);
+            } else {
+                echo json_encode(false);
+            }
+        }
+   
+  }

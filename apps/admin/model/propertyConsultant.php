@@ -3,6 +3,8 @@ namespace apps\admin\model;
 use core\lib\model;
 class propertyConsultant extends model{
   public $table = 'property_consultant';
+  public $tabl = 'new_house_main';
+  public $tables = 'new_house_catalog';
   // checkUser
   public function checkUser($data){
     return $this->get($this->table,'*',['username'=>$data['username'],'password'=>$data['password']]);
@@ -43,7 +45,10 @@ class propertyConsultant extends model{
   public function getInfo($id){
     return $this->get($this->table,'*',['id'=>$id]);
   }
-
+  // catalog
+  public function catalog($id){
+    return $this->get($this->tables,'*',['cid'=>$id]);
+  }
   // upStatus
   public function upStatus($id,$status){
     $res = $this->update($this->table,['status'=>$status],['id'=>$id]);
@@ -55,7 +60,11 @@ class propertyConsultant extends model{
     $res = $this->delete($this->table,['id'=>$id]);
     return $res->rowCount();
   }
-
+  //dle
+  public function dle($id){
+    $res = $this->delete($this->tabl,['id'=>$id]);
+    return $res->rowCount();
+  }
   // cou
   public function cou(){
     return $this->count($this->table);
