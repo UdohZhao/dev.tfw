@@ -1,30 +1,44 @@
 // index.js
-
-
 var app = getApp(); // 实例化APP
 Page({
   data: {
+   
     //内容
     abort_content: []
+
   },
 
-  onLoad: function (options) { 
+  onLoad: function (options) {
     var that = this;
+    
+    that.fetchImgListDate();
+  },
+  fetchImgListDate: function (data) {
+    var self = this;
     wx.request({
-      method: "POST",
-      url: app.data.domain + '/about/index',//仅为示例，并非真实的接口地址
+     
+      url: app.data.domain + '/about/index',
       data: {
       },
       header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       },
       success: function (res) {
-        console.log(res.data)
-        that.setData({
-          abort_content: res.data.data
-      })
-      },
-    });
+        // var contentObj = [];
+        
+        var aa = res.data.data
+        console.log(aa)
+        for (var i in aa) {
+          self.data.abort_content.push({
+            content: aa[i].content
+          });
+        }
+        self.setData({
+          abort_content: self.data.abort_content
+        })
+      }
+    })
+
   },
 
   onReady: function () {

@@ -21,11 +21,15 @@ class sellHouseInfoCtrl extends baseCtrl{
 
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 23dfe2aef2b63e257cd516b9c6c2c4faaf1541a8
 
   
      
          
+<<<<<<< HEAD
 
 public function update(){
      if(IS_GET === true){
@@ -46,6 +50,8 @@ die;
         $res = $this->db->sel($status);
           
 
+=======
+>>>>>>> 23dfe2aef2b63e257cd516b9c6c2c4faaf1541a8
              $this->assign('data',$res);
             $this->assign('status',$status);
             $this->display('sellHouseInfo','index.html');

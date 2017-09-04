@@ -69,10 +69,14 @@ class houseCategory extends model{
 
   // getId
   public function getId($cname){
+<<<<<<< HEAD
 
      return $this->get($this->table,'id',['cname'=>$cname]);
 
 
+=======
+     return $this->get($this->table,'id',['cname'=>$cname]);
+>>>>>>> 23dfe2aef2b63e257cd516b9c6c2c4faaf1541a8
   }
 
 }

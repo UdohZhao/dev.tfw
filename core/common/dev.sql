@@ -3,7 +3,7 @@ CREATE TABLE `admin_user`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `username` varchar(25) NOT NULL COMMENT '用户名',
   `password` char(32) NOT NULL COMMENT '密码',
-  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>超级管理员，1>资料审核员，2>新房发布员，3>二手房发布员',
+  `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>超级管理员，1>资料审核员，2>新房发布员，3>二手房发布员，4>租房发布员',
   `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>正常，1>冻结',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -110,7 +110,7 @@ CREATE TABLE `used_house_catalog`(
   `prtype` tinyint(1) UNSIGNED NOT NULL COMMENT '产权类型',
   `ctime` int(10) UNSIGNED NOT NULL COMMENT '时间',
   `remark` varchar(255) NOT NULL COMMENT '备注',
-  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>待审核，1>未通过，2>已通过',
+  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>默认，1>待审核，2=>未通过，3=>已通过',
   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>展示，1>隐藏',
   PRIMARY KEY (`id`),
   KEY (`hcid`),
@@ -152,7 +152,7 @@ CREATE TABLE `tenement_catalog`(
   `dtype` tinyint(1) UNSIGNED NOT NULL COMMENT '装修类型',
   `ctime` int(10) UNSIGNED NOT NULL COMMENT '时间',
   `remark` varchar(255) NOT NULL COMMENT '备注',
-  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>待审核，1>未通过，2>已通过',
+  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>默认，1>待审核，2=>未通过，3=>已通过',
   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>展示，1>隐藏',
   PRIMARY KEY (`id`),
   KEY (`hcid`),

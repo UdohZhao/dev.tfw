@@ -5,8 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: ["学区房", "特价房", "住宅", "商品房"],
-    objectArray:[
+    index:[0,0,0],
+    arraytype: ["学区房", "特价房", "住宅", "商品房"],
+    objectArraytype:[
       {
         id: 0,
         name: "学区房"
@@ -24,8 +25,6 @@ Page({
         name: "商品房"
       },
     ],
-    index: 0,
-
     housetype: 0,
     arrayorientation: ["东", "南", "西", "北","西南","西北"],
     objectArrayorientation: [

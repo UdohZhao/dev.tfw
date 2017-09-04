@@ -1,10 +1,6 @@
 // 修改
 function edit(id){
-<<<<<<< HEAD
   window.location.href = "/admin/newHouseCatalog/update/id/"+id;
-=======
-  window.location.href = "/admin/sellHouseInfo/update/id/"+id;
->>>>>>> 84bf92032d87fd50541386dbc613e33ab458b4ba
 }
 // 删除
 function del(id){

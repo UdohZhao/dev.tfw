@@ -38,7 +38,7 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" id="newHouseCatalogForm" action="/admin/tenmentCatalog/add/id/{{ data.id }}" method="post">
-                    <input type="hidden" name="pid" value="3">
+                    <input type="hidden" name="pid" value="{{ pid }}">
                     <input type="hidden" name="hcid" value="{{ hcid }}">
                     <input type="hidden" name="slideshow" value="{{ data.slideshow }}">
                     <div class="form-group">
