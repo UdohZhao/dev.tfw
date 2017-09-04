@@ -31,8 +31,8 @@ $(function(){
                 digits: true
             },
             show_rent: {
-                required: true,
-                digits: true
+                required: true
+              
             },
             house_type: {
                 required: true
@@ -57,8 +57,8 @@ $(function(){
                 digits: "<span style='color:red;'>必须为整数 :(</span>"
             },
             show_rent: {
-                required: "<span style='color:red;'>展示价格不能为空 :(</span>",
-                digits: "<span style='color:red;'>必须为整数 :(</span>"
+                required: "<span style='color:red;'>展示价格不能为空 :(</span>"
+                
             },
             dtype: {
                 required: "<span style='color:red;'>装修类型不能为空 :(</span>"

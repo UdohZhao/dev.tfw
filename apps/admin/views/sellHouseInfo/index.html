@@ -30,16 +30,21 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th>房屋图片</th>
                         <th>小区</th>
                         <th>面积</th>
                         <th>房型</th>
                         <th>售价</th>
                         <th>房屋类型</th>
+                        <th>朝向</th>
+                        <th>学区房</th>
+                        <th>特价房</th>
                         <th>姓名</th>
                         <th>联系电话</th>
                         <th>时间</th>
+                         {% if status ==0  %}
                         <th>操作</th>
+                        {% endif %}
                     </tr>
                     </thead>
                     <tbody>
@@ -47,25 +52,25 @@
                     {% for k,v in data %}
                     <tr>
                         <td>
-                            {% if status == 4 %}
-                            {% if v.type == 1 %}
-                            <span class="text-danger">{隐藏}</span>
-                            {% else %}
-                            <span class="text-success">{展示}</span>
-                            {% endif %}
-                            {% endif %}
+                           <img src="{{ v.house_img }}" class="img-responsive" style="width: 90px; height: 90px;">
                         </td>
                         <td>{{ v.community }}</td>
                         <td>{{ v.area }}</td>
                         <td>{{ v.house_type }}</td>
                         <td>{{ v.selling_price }}</td>
                         <td>{{ v.htype }}</td>
+                        <td>{{ v.orientation }}</td>
+                        <td>{{ v.sdh }}</td>
+                        <td>{{ v.spr }}</td>
+                        
                         <td>{{ v.cname }}</td>
                         <td>{{ v.phone }}</td>
                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
+                        {% if status ==0  %}
                         <td>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="shInfo({{ v.id }});">详细信息</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="shInfo({{ v.id }});">已读</button>
                         </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                     {% else %}
@@ -93,5 +98,5 @@
 {% endblock %}
 
 {% block js %}
-
+<script src="/apps/admin/views/sellHouseInfo/js/index.js"></script>
 {% endblock %}

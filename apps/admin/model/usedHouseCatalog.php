@@ -3,7 +3,6 @@ namespace apps\admin\model;
 use core\lib\model;
 class usedHouseCatalog extends model{
     public $table='used_house_catalog';
-
     // getInfo
     public function getInfo($id){
         return $this->get($this->table,'*',['id'=>$id]);
@@ -73,5 +72,9 @@ class usedHouseCatalog extends model{
         }
         return $this->count($this->table,$where);
     }
-
+ //修改审核状态
+    public function up_status($status,$id){
+        $res = $this->update($this->table,['status'=>$status],['id'=>$id]);
+        return $res->rowCount();
+    }
 }

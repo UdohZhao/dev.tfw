@@ -18,16 +18,16 @@ function edit(id){
 }
 
 // flag
-function flag(id,status){
+function flag(id,type){
   var title;
   var text;
   // status
-  if (status == 1) {
-    title = "确认冻结该用户吗？";
-    text = "冻结后该用户将不可登录 :(";
+  if (type == 1) {
+    title = "确认隐藏该内容吗？";
+    text = "隐藏后该用户将不在前台显示 :(";
   } else {
-    title = "确认解冻该用户吗？";
-    text = "解冻后该用户将可正常登录 :)";
+    title = "确认展示该内容吗？";
+    text = "展示后该用户将可正常显示 :)";
   }
   swal({
     title: title,
@@ -46,7 +46,7 @@ function flag(id,status){
       $.ajax({
         type: "POST",
         url: "/admin/adminUser/flag/id/"+id,
-        data: {status:status},
+        data: {type:type},
         dataType: "JSON",
         success: function(res){
           // res

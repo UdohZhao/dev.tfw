@@ -1,25 +1,25 @@
 $(function(){
 
-    // 验证登录表单
-    $("#newHouseCatalogForm").validate({
-        focusInvalid: true,
-        rules: {
-            cid: {
-                required: true,
-                remote: {
-                    url: "/admin/city/getCity/pid/"+$("input[name='pid']").val(),
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        cid: function() {
-                            return $("input[name='cid']").val();
-                        }
-                    },
-                    error: function(e){
-                        console.log(e);
-                    }
-                }
-            },
+// 验证登录表单
+$("#newHouseCatalogForm").validate({
+    focusInvalid: true,
+      rules: {
+        cid: {
+          required: true,
+          remote: {
+              url: "/admin/city/getCity/pid/"+$("input[name='pid']").val(),
+              type: "post",
+              dataType: "json",
+              data: {
+                  cid: function() {
+                      return $("input[name='cid']").val();
+                  }
+              },
+              error: function(e){
+                console.log(e);
+              }
+          }
+        },
             title: {
                 required: true
             },
@@ -32,7 +32,7 @@ $(function(){
             },
             show_price: {
                 required: true,
-                digits: true
+               
             },
             trait: {
                 required: true
@@ -58,8 +58,8 @@ $(function(){
                 required: "<span style='color:red;'>小区不能为空 :(</span>"
             },
             selling_price: {
-                required: "<span style='color:red;'>售价不能为空 :(</span>",
-                digits: "<span style='color:red;'>必须为整数 :(</span>"
+                required: "<span style='color:red;'>售价不能为空 :(</span>"
+              
             },
             show_price: {
                 required: "<span style='color:red;'>展示价格不能为空 :(</span>",

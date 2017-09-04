@@ -2,12 +2,14 @@
 namespace apps\admin\ctrl;
 use core\lib\conf;
 use apps\admin\model\propertyConsultant;
+use apps\admin\model\usedHouseCatalog;
 use apps\admin\model\usedHouseInfo;
 class usedHouseInfoCtrl extends baseCtrl{
 
     public $uhcid;
     public $pcdb;
     public $uhdb;
+    public $nhcid;
     public $id;
 
     // 构造方法
@@ -20,6 +22,7 @@ class usedHouseInfoCtrl extends baseCtrl{
         $this->assign('uhcid',$this->uhcid);
         $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
         $this->pcdb = new propertyConsultant();
+        $this->nhcid = new usedHouseCatalog();
         $this->uhdb = new usedHouseInfo();
     }
     public function add(){
@@ -27,6 +30,7 @@ class usedHouseInfoCtrl extends baseCtrl{
         if (IS_GET === true) {
             // 读取置业顾问
             $pcData = $this->pcdb->selpc();
+        
             // assign
             $this->assign('pcData',$pcData);
             // display
@@ -66,29 +70,17 @@ class usedHouseInfoCtrl extends baseCtrl{
 
     public function index(){
         if(IS_GET === true){
-            $pcData = $this->pcdb->selpc();
-            // assign
-            $this->assign('pcData',$pcData);
-            if($this->id){
-                //获取该条房的详细信息
-                $this->assign('uhcid',$this->id);
-                $data = $this->uhdb->sel_info($this->id);
-                $this->assign('data',$data);
-            }
+            
+            $data = $this->uhdb->sel_info($this->uhcid);
+            // 读取相关置业顾问信息
+            $pcInfo = $this->pcdb->getInfo($data['pcid']);
+            
+            //assign
+            $this->assign('data',$data);
+            $this->assign('pcInfo',$pcInfo);
+           // display
             $this->display('usedHouseInfo','index.html');
-            die;
-        }
-
-        if(IS_AJAX === true){
-            $update_data=$this->getData();
-            $re = $this->uhdb->update_info($this->id,$update_data);
-            $result=array();
-            if($re){
-                $result['error'] = 401;
-            }else{
-                $result['error'] = false;
-            }
-            echo json_encode($result);
+            
         }
     }
 }

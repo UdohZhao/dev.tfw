@@ -12,7 +12,11 @@ class newHouseMain extends model{
   public function getUsername($username){
     return $this->count($this->table,['username'=>$username]);
   }
-
+  //修改主力户型
+    public function save($id,$data){
+        $res = $this->update($this->table,$data,['id'=>$id]);
+        return $res->rowCount();
+    }
   // add
   public function add($data){
     $res = $this->insert($this->table,$data);

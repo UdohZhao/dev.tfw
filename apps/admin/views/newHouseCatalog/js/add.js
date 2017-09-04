@@ -103,7 +103,7 @@ $(function(){
               dataType:"json",
               success:function(res){
                 // res
-                if (res.error == 0) {
+                if (res.error == 0 || res.error == 2) {
                   window.location.href = "/admin/newHouseInfo/add/nhcid/"+res.msg;
                 } else if (res.error == 201) {
                   swal("提交失败", res.msg, "error");

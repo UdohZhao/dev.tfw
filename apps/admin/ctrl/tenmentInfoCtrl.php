@@ -35,6 +35,7 @@ class tenmentInfoCtrl extends baseCtrl{
         }
 
         if(IS_AJAX === true){
+
             $data=$this->getData();
             $result=array();
             if($this->thdb->add($data))  {
@@ -62,35 +63,17 @@ class tenmentInfoCtrl extends baseCtrl{
 
 
     public function index(){
+       
         if(IS_GET === true){
-            $pcData = $this->pcdb->selpc();
+            $pcInfo = $this->pcdb->selpc();
+         $data = $this->thdb->sel_info($this->tcid);
             // assign
-            $this->assign('pcData',$pcData);
-            if($this->id){
-                //获取该条房的详细信息
-                $this->assign('tcid',$this->id);
-                $data = $this->thdb->sel_info($this->id);
-                $this->assign('data',$data);
-            }
+            $this->assign('data',$data);
+            $this->assign('pcInfo',$pcInfo);
+           //display
             $this->display('tenmentInfo','index.html');
             die;
         }
-
-        if(IS_AJAX === true){
-            $update_data=$this->getData();
-            if($this->thdb->sel_info($this->id)){
-                $re = $this->thdb->update_info($this->id,$update_data);
-            }else{
-                $re = $this->thdb->add($update_data);
-            }
-
-            $result=array();
-            if($re){
-                $result['error'] = 401;
-            }else{
-                $result['error'] = false;
-            }
-            echo json_encode($result);
-        }
+        
     }
 }

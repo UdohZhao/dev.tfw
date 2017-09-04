@@ -3,12 +3,10 @@ namespace apps\admin\model;
 use core\lib\model;
 class viewNewHouse extends model{
     public $table='new_house_catalog';
-
     //查询满足条件的记录数
     public function sel_num($search=''){
         return $this->count($this->table,['AND'=>['status'=>1,'title[~]'=>$search]]);
     }
-
     //查询记录
     public function sel($search='',$currPage,$subPages){
         $sql = "
@@ -24,7 +22,8 @@ class viewNewHouse extends model{
                 1 = 1
         AND
                 uh.title like '%$search%'
-        AND     uh.status = 1       
+        AND     
+                uh.status = 1       
         ORDER BY
                 uh.ctime DESC
         LIMIT
@@ -35,8 +34,8 @@ class viewNewHouse extends model{
 
 
     // getInfo
-    public function getInfo($id){
-        return $this->get($this->table,'*',['id'=>$id]);
+    public function getInfo($nhcid){
+        return $this->get($this->table,'*',['id'=>$nhcid]);
     }
 
     //获取新房信息

@@ -3,6 +3,7 @@ $(function(){
   // 实例化编辑器
   var ue = UE.getEditor('container');
 
+
   // 验证登录表单
   $("#newHouseMainForm").validate({
       focusInvalid: true,
@@ -90,6 +91,8 @@ $(function(){
   });
 
 })
+
+
 
   // 前往新房列表
   function gotoNhc(){

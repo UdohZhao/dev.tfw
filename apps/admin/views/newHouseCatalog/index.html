@@ -47,7 +47,7 @@
           {% for k,v in data %}
             <tr>
               <td>
-                {% if status == 4 %}
+                {% if status == 3 %}
                   {% if v.type == 1 %}
                     <span class="text-danger">{隐藏}</span>
                   {% else %}
@@ -68,15 +68,25 @@
                 {% if v.status == 0 %}
                 <button type="button" class="btn btn-default btn-xs" onclick="commit_status({{ v.id }});">提交审核</button>
                 {% elseif v.status == 1 %}
-                <button type="button" class="btn btn-default btn-xs" >待审核</button>
+               <!--  <button type="button" class="btn btn-default btn-xs" onclick="commit_adopt({{ v.id }});">可通过</button>
+                 <button type="button" class="btn btn-default btn-xs" onclick="commit_pass({{ v.id }});">未通过</button> -->
                 {% elseif v.status == 2 %}
                 <button type="button" class="btn btn-default btn-xs" >未通过</button>
                 {% elseif v.status == 3 %}
                 <button type="button" class="btn btn-default btn-xs" >已通过</button>
+                {% if v.type == 0 %}
+                  <button type="button" class="btn btn-success btn-xs" onclick="flag({{ v.id }},1);">展示</button>
+                {% else %}
+                  <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},0);">隐藏</button>
                 {% endif %}
-
+                {% if v.status == 0 %}
                 <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
                 <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
+                {% endif %}
+                {% elseif v.status == 2 %}
+                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
+                {% endif %}
               </td>
             </tr>
           {% endfor %}

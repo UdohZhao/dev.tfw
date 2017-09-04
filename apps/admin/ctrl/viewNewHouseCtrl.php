@@ -68,7 +68,7 @@ class viewNewHouseCtrl extends baseCtrl{
                 $data['htype'] = explode(',', $data['htype']);
                 $data['ptype'] = explode(',', $data['ptype']);
                 $data['slideshow'] = unserialize($data['slideshow']);
-                // assign
+                // assign...
                 $this->assign('data',$data);
             }
             // display

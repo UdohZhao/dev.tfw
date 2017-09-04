@@ -13,7 +13,6 @@
             <div class="panel-heading">
                 <h3 class="panel-title">@ 二手房条目列表</h3>
             </div>
-
             <form action="/admin/viewUsedHouse/index" method="get">
                 <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
                     <input type="text" class="form-control" name="search" placeholder="请输入关键字">
@@ -59,8 +58,10 @@
                         <td>{{ v.area }}</td>
                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="uhInfo({{ v.id }});">详细信息</button>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="check_house({{ v.id }});">进入审核</button>
+                            <button type="button" class="btn btn-default btn-xs" onclick="uhInfo({{ v.id }});" >详细信息</button>
+                          <!--   <button type="button" class="btn btn-default btn-xs" onclick="nhmInfo({{ v.id }});">主力户型</button> -->
+                            <button type="button" class="btn btn-primary btn-xs" onclick="detail_info({{ v.id }});" >进入审核</button>
+
                         </td>
                     </tr>
                     {% endfor %}

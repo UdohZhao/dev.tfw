@@ -16,7 +16,7 @@ class newHouseCatalogCtrl extends baseCtrl{
   public $id;
   // 构造方法
   public function _auto(){
-      if($_SESSION['userinfo']['type'] !=2 && $_SESSION['userinfo']['type'] !=0 ){
+      if($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=2 ){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
           die;
       }
@@ -34,8 +34,10 @@ class newHouseCatalogCtrl extends baseCtrl{
     if (IS_GET === true) {
       // 获取北京主键id
       $pid = $this->cdb->getId('北京');
+
       // 获取新房主键id
       $hcid = $this->hcdb->getId('新房');
+   
       // 获取配置信息（户型，产权类型，房屋类型，物业类型）
       $htype = conf::get('HTYPE','admin');
       $prtype = conf::get('PRTYPE','admin');
@@ -53,7 +55,6 @@ class newHouseCatalogCtrl extends baseCtrl{
         // 读取单条数据
         $data = $this->db->getInfo($this->id);
         $data['cid'] = $this->cdb->getCname($data['cid']);
-        $data['htype'] = explode(',', $data['htype']);
         $data['ptype'] = explode(',', $data['ptype']);
         // assign
         $this->assign('data',$data);
@@ -66,11 +67,11 @@ class newHouseCatalogCtrl extends baseCtrl{
     if (IS_AJAX === true) {
       // result
       $result = array();
-      $result['error'] = 0;
+      $result['error'] = 2;
       $result['msg'] = '';
       // 轮播图
       $slideshow = isset($_SESSION['uploadPath']['slideshow']) ? $_SESSION['uploadPath']['slideshow'] : '';
-      if ($slideshow == '' && $this->id == 0) {
+      if ($slideshow == '' && $this->id == 2) {
         $result['error'] = 201;
         $result['msg'] = '请上传轮播图 :(';
         echo json_encode($result);
@@ -124,6 +125,17 @@ class newHouseCatalogCtrl extends baseCtrl{
     }
   }
 
+public function update(){
+     if(IS_GET === true){
+      $qwe = $this->nhmdb->getInfo($this->id);
+      
+      $this->assign('date',$qwe);
+     }
+     
+     $this->display('newHouseCatalog','and.html');  
+die;
+
+}
   // 初始化数据
   private function getData($slideshow){
     // data
@@ -233,4 +245,5 @@ class newHouseCatalogCtrl extends baseCtrl{
             echo json_encode(false);
         }
     }
+  
 }
