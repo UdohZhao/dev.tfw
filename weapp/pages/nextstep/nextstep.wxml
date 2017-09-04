@@ -1,13 +1,15 @@
 <!--nextstep.wxml-->
+<form bindsubmit="formSubmit">
 <view class="features">
   <view class="weui-cells__title">请填写您的房屋信息</view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd">房屋类型</view>
       <view class="weui-cell__ft">
-        <picker mode="selector" bindchange="bindPickerChangetype" value="{{objectArraytype.id}}" range="{{arraytype}}" range-key="{{objectArraytype.id}}">
-          <button wx:if="{{housetype==0}}" class="chioce_huxing" type="default">请选择类型</button>
-          <button wx:if="{{housetype==1}}" class="chioce_huxing" type="default">{{arraytype[id]}}</button>
+       <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker">
+      当前选择：{{array[index]}}
+          </view>
         </picker>
       </view>
     </view>
@@ -106,5 +108,6 @@
   </view>
 </view>
 <view class="commissioned">
-  <button>立即委托</button>
+  <button formType="submit">立即委托</button>
 </view>
+</form>

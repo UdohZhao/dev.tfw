@@ -5,26 +5,27 @@
     已有<text>1234</text>位房东委托卖房
   </view>
 </view>
+<form bindsubmit="formSubmit">
 <view class="add_information">
   <view class="weui-cells__title">请填写您的房屋信息</view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd">您的小区</view>
       <view class="weui-cell__ft">
-        <input value="" placeholder="输入您的小区" />
+        <input type="text" name="community" placeholder="输入您的小区" />
       </view>
     </view>
     <view class="weui-cell">
       <view class="weui-cell__bd">面积</view>
       <view class="weui-cell__ft">
-        <input type="number" value="" placeholder="输入您的房屋面积" />
+        <input type="number" value="" name="area" placeholder="输入您的房屋面积" />
         <text>平米</text>
       </view>
     </view>
     <view class="weui-cell">
       <view class="weui-cell__bd">户型</view>
       <view class="weui-cell__ft">
-        <picker mode="multiSelector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <picker mode="multiSelector" bindchange="bindPickerChange" name="house_type" value="{{index}}" range="{{array}}">
           <button wx:if="{{datastatus==0}}" class="chioce_huxing" type="default">请选择户型</button>
           <button wx:if="{{datastatus==1}}" class="chioce_huxing" type="default">{{array[0][index[0]]}}{{array[1][index[1]]}}{{array[2][index[2]]}}</button>
         </picker>
@@ -33,20 +34,21 @@
     <view class="weui-cell">
       <view class="weui-cell__bd">售价</view>
       <view class="weui-cell__ft">
-        <input type="number" value="" placeholder="输入您的房价" />
+        <input type="number" name="selling_price" value="" placeholder="输入您的房价" />
         <text>万</text>
       </view>
     </view>
     <view class="weui-cell">
       <view class="weui-cell__bd">联系电话</view>
       <view class="weui-cell__ft">
-        <input type="number" value="" placeholder="输入您的电话" />
+        <input type="number" value="" name="phone" placeholder="输入您的电话" />
       </view>
     </view>
   </view>
 </view>
 <view class="next_step">
   <navigator url="../nextstep/nextstep">
-    <button>下一步</button>
+    <button formType="submit">下一步</button>
   </navigator>
 </view>
+</form>

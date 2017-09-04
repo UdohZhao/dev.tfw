@@ -40,11 +40,11 @@ class usedHouseCatalogCtrl extends baseCtrl{
             $this->assign('hcid',$hcid);
             $this->assign('htype',$htype);
             $this->assign('prtype',$prtype);
-            
+
             // display
             if ($this->id) {
                 // 读取单条数据
-                $data = $this->cdb->getInfo($this->id);
+                $data = $this->db->getInfo($this->id);
                 $data['cid'] = $this->cdb->getCname($data['cid']);
                 $data['htype'] = explode(',', $data['htype']);
                 // assign
@@ -205,26 +205,5 @@ class usedHouseCatalogCtrl extends baseCtrl{
                 echo json_encode(false);
             }
         }
-    //      //可通过
-    // public function commit_adopt()
-    // {
-    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;
-    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;
-    //     if ($this->db->up_status($status, $id)) {
-    //         echo json_encode(true);
-    //     } else {
-    //         echo json_encode(false);
-    //     }
-    // }
-    //    //未通过
-    // public function commit_pass()
-    // {
-    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;
-    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;
-    //     if ($this->db->up_status($status, $id)) {
-    //         echo json_encode(true);
-    //     } else {
-    //         echo json_encode(false);
-    //     }
-    // }
+   
   }

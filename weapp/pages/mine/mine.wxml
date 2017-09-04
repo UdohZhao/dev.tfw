@@ -1,5 +1,5 @@
 <!--mine.wxml-->
-
+<import src="../wxParse/wxParse.wxml"/>
 <view class="top_bcg">
   <image class="bcg_img" src="../../images/房子.png"></image>
   <view class="tefangwang">

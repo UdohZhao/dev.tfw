@@ -91,7 +91,7 @@ Page({
   },
   gettype: function (e) {
     var aa = e.currentTarget.dataset.id
-     console.log('form发生了submit事件，携带数据为：', aa)
+     console.log( aa)
 
     url: app.data.domain + '/newhouse/newhouse',
       this.setData({

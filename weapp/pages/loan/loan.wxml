@@ -18,6 +18,7 @@
 <view class="application_loan">
   <button bindtap="application_loan">申请贷款</button>
 </view>
+
 <modal class="loan_modal" hidden="{{hidden}}" title="金融贷款" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
@@ -25,7 +26,7 @@
               <view class="weui-label">名字</view>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入名字"/>
+              <input class="weui-input" placeholder="请输入名字"  maxlength="10" value="{{cname}}" bindchange="name" name="name2"/>
           </view>
       </view>
       <view class="weui-cell weui-cell_input">
@@ -33,7 +34,7 @@
               <view class="weui-label">电话</view>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入电话" />
+              <input class="weui-input" type="number" placeholder="请输入电话" value="{{phone}}" bindchange="ID_num" maxlength="11" name="ID_num2"/>
           </view>
       </view>
       <view class="phone_one" bindtap="clickPerson">

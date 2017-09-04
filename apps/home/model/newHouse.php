@@ -18,6 +18,10 @@ class newHouse extends model{
 		$sql = " SELECT id,cname FROM $this->table1 where pid=1";
 		return $this->query($sql)->fetchAll(2);
 	}
+	public function qwe($name,$cname){
+		$sql = "SELECT a.id,a.slideshow,a.title,a.community,a.show_price,a.trait,a.address FROM $this->table as a left join $this->table1 as b on a.cid = b.id where a.status=3 or b.cname like '%$cname%' or a.show_price like '%$name%' or a.htype like '%$name%' or a.prtype like '%$name%' or a.area like '%$name%'  order by id desc";
+		return $this->query($sql)->fetchAll(2);
+	}
 	public function sel1($name,$cname){
 		$sql = "SELECT a.id,a.slideshow,a.title,a.community,a.show_price,a.trait,a.address FROM $this->table as a left join $this->table1 as b on a.cid = b.id where a.status=3 or b.cname like '%$cname%' or a.show_price like '%$name%' or a.htype like '%$name%' or a.prtype like '%$name%' or a.area like '%$name%'  order by id desc";
 		return $this->query($sql)->fetchAll(2);

@@ -9,6 +9,7 @@ class loginCtrl extends \core\icunji{
   public function _initialize(){
     $this->db = new adminUser();
     $this->assign('username',isset($_COOKIE['username']) ? $_COOKIE['username'] : '');
+    $this->assign('type',isset($_COOKIE['type']) ? $_COOKIE['type'] : '');
     // session
     if (isset($_SESSION['userinfo'])) {
       header('Location:/admin/index/index');

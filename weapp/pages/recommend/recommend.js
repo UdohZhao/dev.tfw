@@ -14,50 +14,73 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    wx.request({
+    var that = this;
+    const requestTask = wx.request({
       method: "POST",
-      url: app.data.domain + '/index/recommend', //仅为示例，并非真实的接口地址
-      data: {
-      },
+      url: app.data.domain + '/index/index',
+      data: {},
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res.data)
-        that.setData({
-          my_availability: res.data.data,
-        })
+        if (res.data.code == 200) {
+        } else {
+          console.log("错误！！")
+        }
       }
+    })
+    that.fetchImgListDate();
+  },
+
+  fetchImgListDate: function (data) {
+    var self = this;
+    self.setData({
+      hidden: false
     });
-    var that = this
+    if (!data) data = {};
+    if (!data.page) data.page = 1;
+    if (data.page === 1) {
+      self.setData({
+        my_availability: []
+      });
+    }
     wx.request({
       method: "POST",
-      url: app.data.domain + '/index/demo', //仅为示例，并非真实的接口地址
+      url: app.data.domain + '/index/demo',
       data: {
+        "fromPageId": 0,
+        "pageSize": 5,
+        "viewUserId": '',
+        "page": self.data.page
       },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        // var contentObj = [];
         console.log(res.data)
-        that.setData({
-          my_availability: res.data.data,
+        var aa = res.data.data
+        console.log(aa)
+        for (var i in aa) {
+          self.data.my_availability.push({
+            slideshow: aa[i].slideshow,
+            community: aa[i].community,
+            address: aa[i].address,
+            show_price: aa[i].show_price,
+            trait: aa[i].trait,
+            title: aa[i].title
+          });
+        }
+        self.setData({
+          totalpage: res.data.total_page,
+          my_availability: self.data.my_availability
         })
-      }
-    });
-    var that = this
-    wx.request({
-      method: "POST",
-      url: app.data.domain + '/index/recommend2', //仅为示例，并非真实的接口地址
-      data: {
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        console.log(res.data)
-        my_availability: res.data
+        //   self.data.postsList = contentObj
+        setTimeout(function () {
+          self.setData({
+            hidden: true
+          });
+        }, 500);
       }
     })
     

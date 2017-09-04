@@ -4,7 +4,7 @@
       <block wx:for="{{encycle_content}}" wx:key="*this">
         <view id="{{item.id}}" url="" bindtap="link_address" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                <image class="weui-media-box__thumb" src="{{item.icon_path}}" />
+                <image class="weui-media-box__thumb" src="../..{{item.icon_path}}" />
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                 <view class="weui-media-box__desc">{{item.cname}}</view>
