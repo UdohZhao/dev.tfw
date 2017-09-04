@@ -49,7 +49,15 @@ class newhouseCtrl extends baseCtrl{
 
      $data = $this->db->sel1('$name','$cname');
 
-   
+     // foreach 
+     foreach ($data AS $k => $v) {
+       
+        $data[$k]['slideshow'] =  unserialize($v['slideshow']);
+
+        $data[$k]['slideshow'] = $data[$k]['slideshow'][0];
+
+     }
+     
       // 数据赋值给返回结果
       $res['data'] = $data;
       

@@ -151,5 +151,14 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  demo: function (e) {
+
+  console.log(1)
+
+
   }
+
+
 })
