@@ -4,7 +4,7 @@ function detail_info(id){
 
 // 新房详细信息
 function nhInfo(id){
-    window.location.href='http://'+window.location.host+'/admin/viewNewHouse/houseInfo?nhcid='+id;
+    window.location.href='http://'+window.location.host+'/admin/viewNewHouse/houseInfo/nhcid/'+id;
 }
 
 // 新房主力户型

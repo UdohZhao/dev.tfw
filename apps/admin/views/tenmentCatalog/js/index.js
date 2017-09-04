@@ -6,6 +6,7 @@ function nhInfo(id){
 //修改
 function edit(id){
   window.location.href = "/admin/tenmentCatalog/add/id/"+id;
+<<<<<<< HEAD
 }
 // flag
 function flag(id,type){
@@ -56,6 +57,8 @@ function flag(id,type){
       swal("取消了", "当前操作未发生改变 :)", "error");
     }
   });
+=======
+>>>>>>> 84bf92032d87fd50541386dbc613e33ab458b4ba
 }
 
 // 删除

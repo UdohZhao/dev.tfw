@@ -73,11 +73,14 @@
                 <button type="button" class="btn btn-default btn-xs" >未通过</button>
                 {% elseif v.status == 3 %}
                 <button type="button" class="btn btn-default btn-xs" >已通过</button>
+<<<<<<< HEAD
                 {% if v.type == 0 %}
                   <button type="button" class="btn btn-success btn-xs" onclick="flag({{ v.id }},1);">展示</button>
                 {% else %}
                   <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},0);">隐藏</button>
                 {% endif %}
+=======
+>>>>>>> 84bf92032d87fd50541386dbc613e33ab458b4ba
                 {% endif %}
                 {% if v.status == 0 %}
                 <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>

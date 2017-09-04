@@ -35,6 +35,11 @@ class tenmentCatalogCtrl extends baseCtrl{
             // assign
             $this->assign('pid',$pid);
             $this->assign('hcid',$hcid);
+<<<<<<< HEAD
+=======
+            
+
+>>>>>>> 84bf92032d87fd50541386dbc613e33ab458b4ba
             // display
             if ($this->id) {
 

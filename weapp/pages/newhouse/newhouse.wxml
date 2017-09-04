@@ -1,11 +1,15 @@
 <!--newhouse.wxml-->
-<view class="page" id="{{linktype}}">
+<view class="page" id="{{id}}">
   <view class="page__bd newhouse_search">
     <view class="weui-search-bar">
         <view class="weui-search-bar__form">
             <view class="weui-search-bar__box">
+                <form bindsubmit="formSubmit">
                 <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                <input type="text" class="weui-search-bar__input" placeholder="挑好房，上特房网" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                <input type="text" class="weui-search-bar__input" placeholder="挑好房，上特房网"  bindinput="inputTyping" />
+                <!--value="{{inputVal}}" focus="{{inputShowed}}"  -->
+                <icon class="weui-icon-search_in-box" type="search" size="14" formType="submit"></icon>
+              </form>  
                 <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                     <icon type="clear" size="14"></icon>
                 </view>
@@ -27,7 +31,7 @@
 <!--筛选项-->
 <scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[0]}}">
     <view class="{{house_type==0?'active':''}} tabLayer_list" data-id="0" data-index="0" data-txt="区域" bindtap="filter">不限</view>
-    <view class="{{house_type==item.id?'active':''}} tabLayer_list" wx:for="{{filterList[0]}}" wx:key="" data-id="{{item.id}}" data-index="0" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
+    <view class="{{house_type==item.id?'active':''}} tabLayer_list" wx:for="{{filterList[0]}}" wx:key="" data-id="{{item.id}}" data-index="0" data-txt="{{item.cname}}"name="{{item.cname}}" bindtap="filter">{{item.cname}}</view>
 </scroll-view>
 <scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[1]}}">
     <view class="{{house_style==0?'active':''}} tabLayer_list" data-id="0" data-index="1" data-txt="价格" bindtap="filter">不限</view>
