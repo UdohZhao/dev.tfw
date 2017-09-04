@@ -1,5 +1,4 @@
 /* mine.wxss */
-
 page{
   background-color: #fff;
 }

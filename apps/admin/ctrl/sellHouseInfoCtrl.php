@@ -21,7 +21,6 @@ class sellHouseInfoCtrl extends baseCtrl{
 
     }
 
-<<<<<<< HEAD
 
   
      public function index(){
@@ -31,41 +30,6 @@ class sellHouseInfoCtrl extends baseCtrl{
         $status=isset($_GET['status'])?$_GET['status']:0;
         $res = $this->db->sel($status);
          
-=======
-public function update(){
-     if(IS_GET === true){
-      $qwe = $this->cdb->getInfo($this->id);
-      $this->assign('date',$qwe);
-     }
-     
-     $this->display('sellHouseInfo','add.html');  
-die;
-
-}
-  
-     public function index(){
-   
-       
-         if(IS_GET === true){
-        $status=isset($_GET['status'])?$_GET['status']:0;
-        $res = $this->db->sel($status);
-           // //获取数据条数
-           //   $search=isset($_GET['search'])?$_GET['search']:'';
-
-           //   if(trim($search)){
-           //       $num  = $this->db->sel_num($status,$_GET['search']);
-           //  }else{
-           //      $num = $this->db->sel_num($status);             }
-           //   // 数据分页
-           //   $page = isset($_GET['page']) ? $_GET['page'] : 1;
-           //   $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
-            
-            //结果集
-            // $res = $this->db->sel($status,$search,bcsub($p->page,1,0),$p->pagesize);
-            // var_dump($res);
-            // die;
-             // $this->assign('page',$p->showpage());
->>>>>>> 84bf92032d87fd50541386dbc613e33ab458b4ba
              $this->assign('data',$res);
             $this->assign('status',$status);
             $this->display('sellHouseInfo','index.html');

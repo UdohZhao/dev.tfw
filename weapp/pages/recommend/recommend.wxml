@@ -5,15 +5,18 @@
       <block wx:for="{{my_availability}}" wx:key="*this">
         <navigator url="../housedetails/housedetails" class="weui-media-box weui-media-box_appmsg">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="{{item.slideshow}}" />
+            <image class="weui-media-box__thumb" src="{{item.image}}" />
+            <view class="house_status">{{item.status}}</view>
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <view class="weui-media-box__title">{{item.title}}</view>
-            <view class="weui-media-box__desc">{{item.address}}{{item.community}}
-            <text class="money">{{item.show_price}}{{item.show_rent}}元/平方</text></view>
+            <view class="weui-media-box__desc">{{item.address}}<text class="money_unit">{{item.money_unit}}</text><text class="money">{{item.money}}</text></view>
             <view class="weui-media-box__desc">
-                {{item.trait}}{{item.remark}}     
+              <view class="introduction" wx:for="{{item.introduce}}" wx:for-item="introduce" wx:key="introduce">
+                {{introduce.name}}
+              </view>
             </view>
+            <view class="weui-media-box__desc">{{item.status}}</view>
           </view>
         </navigator>
       </block>

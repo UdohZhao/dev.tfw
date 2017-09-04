@@ -46,7 +46,6 @@ function del_info(id){
         }
     });
 }
-<<<<<<< HEAD
 // flag
 function flag(id,type){
   var title;
@@ -97,9 +96,6 @@ function flag(id,type){
     }
   });
 }
-=======
-
->>>>>>> 84bf92032d87fd50541386dbc613e33ab458b4ba
 //提交审核
 function commit_status(id){
           // Ajax

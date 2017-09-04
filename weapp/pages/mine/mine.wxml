@@ -1,5 +1,4 @@
 <!--mine.wxml-->
-<import src="../wxParse/wxParse.wxml"/>
 <view class="top_bcg">
   <image class="bcg_img" src="../../images/房子.png"></image>
   <view class="tefangwang">
@@ -8,11 +7,7 @@
 </view>
  <view class="abort_content">
     <block wx:for="{{abort_content}}" wx:key="*this">
-      <view class="each_class">
-      
-      {{item.content}}
-     
-      </view>
+      <view class="each_class">{{item.content}}</view>
     </block>
   </view>
 

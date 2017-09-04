@@ -1,5 +1,4 @@
 // encyclopedia.js
-var app = getApp(); // 实例化APP
 Page({
 
   /**
@@ -47,8 +46,8 @@ Page({
       });
     }
     wx.request({
-      method: "GET", 
-      url: app.data.domain + '/index/category',
+      method: "GET",
+      url: "https://api.jiajuol.com/partner/weixin/subject/subject_list.php",
       data: {
         "fromPageId": 0,
         "pageSize": 5,
@@ -65,8 +64,13 @@ Page({
         for (var i in aa) {
           self.data.encycle_content.push({
             id: aa[i].id,
-            icon_path: aa[i].icon_path,
-            cname: aa[i].cname,
+            subject: aa[i].subject,
+            cover_img: aa[i].cover_img,
+            house_price: aa[i].house_price,
+            type_name: aa[i].type_name,
+            style_name: aa[i].style_name,
+            area_name: aa[i].area_name,
+            description: aa[i].description
           });
         }
         self.setData({

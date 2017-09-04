@@ -26,7 +26,6 @@ class viewNewHouseCtrl extends baseCtrl{
 
         //获取数据条数
         $search=isset($_GET['search'])?$_GET['search']:'';
-
         if(trim($search)){
             $num  = $this->db->sel_num($_GET['search']);
         }else{
@@ -39,13 +38,14 @@ class viewNewHouseCtrl extends baseCtrl{
 
         //结果集
         $res = $this->db->sel($search,bcsub($p->page,1,0),$p->pagesize);
-        
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);
         $this->display('viewNewHouse','index.html');
     }
-//审核
+
     public function view_house(){
+
+
         if (IS_GET === true) {
             $id=isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -82,7 +82,6 @@ class viewNewHouseCtrl extends baseCtrl{
         if (IS_GET === true) {
             // 读取详细信息
             $nhcid=isset($_GET['nhcid']) ? intval($_GET['nhcid']) : 0;
-            
             $data = $this->db->getHouseInfo($nhcid);
             if(!$data){
                 $this->assign('data','');
@@ -95,11 +94,7 @@ class viewNewHouseCtrl extends baseCtrl{
             $title = $this->nhcdb->getTitle($data['nhcid']);
             // 读取相关置业顾问信息
             $pcInfo = $this->pcdb->getInfo($data['pcid']);
-
-            $caInfo = $this->db->getInfo($nhcid);
-            
             // assign
-            $this->assign('caInfo',$caInfo);
             $this->assign('data',$data);
             $this->assign('title',$title);
             $this->assign('pcInfo',$pcInfo);

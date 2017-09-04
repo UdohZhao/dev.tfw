@@ -1,0 +1,889 @@
+[1mdiff --git a/apps/admin/ctrl/newHouseCatalogCtrl.php b/apps/admin/ctrl/newHouseCatalogCtrl.php[m
+[1mindex 939a9d4..f98854a 100644[m
+[1m--- a/apps/admin/ctrl/newHouseCatalogCtrl.php[m
+[1m+++ b/apps/admin/ctrl/newHouseCatalogCtrl.php[m
+[36m@@ -233,26 +233,26 @@[m [mclass newHouseCatalogCtrl extends baseCtrl{[m
+             echo json_encode(false);[m
+         }[m
+     }[m
+[31m-    //可通过[m
+[31m-    public function commit_adopt()[m
+[31m-    {[m
+[31m-        $status = isset($_GET['status']) ? $_GET['status'] : 1;[m
+[31m-        $id = isset($_GET['id']) ? $_GET['id'] : 1;[m
+[31m-        if ($this->db->up_status($status, $id)) {[m
+[31m-            echo json_encode(true);[m
+[31m-        } else {[m
+[31m-            echo json_encode(false);[m
+[31m-        }[m
+[31m-    }[m
+[31m-       //可通过[m
+[31m-    public function commit_pass()[m
+[31m-    {[m
+[31m-        $status = isset($_GET['status']) ? $_GET['status'] : 1;[m
+[31m-        $id = isset($_GET['id']) ? $_GET['id'] : 1;[m
+[31m-        if ($this->db->up_status($status, $id)) {[m
+[31m-            echo json_encode(true);[m
+[31m-        } else {[m
+[31m-            echo json_encode(false);[m
+[31m-        }[m
+[31m-    }[m
+[32m+[m[32m    // //可通过[m
+[32m+[m[32m    // public function commit_adopt()[m
+[32m+[m[32m    // {[m
+[32m+[m[32m    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;[m
+[32m+[m[32m    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;[m
+[32m+[m[32m    //     if ($this->db->up_status($status, $id)) {[m
+[32m+[m[32m    //         echo json_encode(true);[m
+[32m+[m[32m    //     } else {[m
+[32m+[m[32m    //         echo json_encode(false);[m
+[32m+[m[32m    //     }[m
+[32m+[m[32m    // }[m
+[32m+[m[32m    //    //可通过[m
+[32m+[m[32m    // public function commit_pass()[m
+[32m+[m[32m    // {[m
+[32m+[m[32m    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;[m
+[32m+[m[32m    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;[m
+[32m+[m[32m    //     if ($this->db->up_status($status, $id)) {[m
+[32m+[m[32m    //         echo json_encode(true);[m
+[32m+[m[32m    //     } else {[m
+[32m+[m[32m    //         echo json_encode(false);[m
+[32m+[m[32m    //     }[m
+[32m+[m[32m    // }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/apps/admin/ctrl/tenmentCatalogCtrl.php b/apps/admin/ctrl/tenmentCatalogCtrl.php[m
+[1mindex 896113d..fbe295a 100644[m
+[1m--- a/apps/admin/ctrl/tenmentCatalogCtrl.php[m
+[1m+++ b/apps/admin/ctrl/tenmentCatalogCtrl.php[m
+[36m@@ -188,4 +188,38 @@[m [mclass tenmentCatalogCtrl extends baseCtrl{[m
+             }[m
+         }[m
+     }[m
+[32m+[m[32m      //提交审核[m
+[32m+[m[32m    public function commit_status()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            $status = isset($_GET['status']) ? $_GET['status'] : 0;[m
+[32m+[m[41m           [m
+[32m+[m[32m            $id = isset($_GET['id']) ? $_GET['id'] : 0;[m
+[32m+[m[32m            if ($this->db->up_status($status,$id)) {[m
+[32m+[m[32m                echo json_encode(true);[m
+[32m+[m[32m            } else {[m
+[32m+[m[32m                echo json_encode(false);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    //      //可通过[m
+[32m+[m[32m    // public function commit_adopt()[m
+[32m+[m[32m    // {[m
+[32m+[m[32m    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;[m
+[32m+[m[32m    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;[m
+[32m+[m[32m    //     if ($this->db->up_status($status, $id)) {[m
+[32m+[m[32m    //         echo json_encode(true);[m
+[32m+[m[32m    //     } else {[m
+[32m+[m[32m    //         echo json_encode(false);[m
+[32m+[m[32m    //     }[m
+[32m+[m[32m    // }[m
+[32m+[m[32m    //    //未通过[m
+[32m+[m[32m    // public function commit_pass()[m
+[32m+[m[32m    // {[m
+[32m+[m[32m    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;[m
+[32m+[m[32m    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;[m
+[32m+[m[32m    //     if ($this->db->up_status($status, $id)) {[m
+[32m+[m[32m    //         echo json_encode(true);[m
+[32m+[m[32m    //     } else {[m
+[32m+[m[32m    //         echo json_encode(false);[m
+[32m+[m[32m    //     }[m
+[32m+[m[32m    // }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/apps/admin/ctrl/usedHouseCatalogCtrl.php b/apps/admin/ctrl/usedHouseCatalogCtrl.php[m
+[1mindex 2b71a45..304d1f6 100644[m
+[1m--- a/apps/admin/ctrl/usedHouseCatalogCtrl.php[m
+[1m+++ b/apps/admin/ctrl/usedHouseCatalogCtrl.php[m
+[36m@@ -145,7 +145,7 @@[m [mclass usedHouseCatalogCtrl extends baseCtrl{[m
+         $data['type'] = 0;[m
+         return $data;[m
+     }[m
+[31m-[m
+[32m+[m[32m        // 二手房条目列表[m
+     public function index(){[m
+         $status=isset($_GET['status'])?$_GET['status']:0;[m
+ [m
+[36m@@ -193,4 +193,38 @@[m [mclass usedHouseCatalogCtrl extends baseCtrl{[m
+             }[m
+         }[m
+     }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m        //提交审核[m
+[32m+[m[32m        public function commit_status()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            $status = isset($_GET['status']) ? $_GET['status'] : 0;[m
+[32m+[m[41m           [m
+[32m+[m[32m            $id = isset($_GET['id']) ? $_GET['id'] : 0;[m
+[32m+[m[32m            if ($this->db->up_status($status,$id)) {[m
+[32m+[m[32m                echo json_encode(true);[m
+[32m+[m[32m            } else {[m
+[32m+[m[32m                echo json_encode(false);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    //      //可通过[m
+[32m+[m[32m    // public function commit_adopt()[m
+[32m+[m[32m    // {[m
+[32m+[m[32m    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;[m
+[32m+[m[32m    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;[m
+[32m+[m[32m    //     if ($this->db->up_status($status, $id)) {[m
+[32m+[m[32m    //         echo json_encode(true);[m
+[32m+[m[32m    //     } else {[m
+[32m+[m[32m    //         echo json_encode(false);[m
+[32m+[m[32m    //     }[m
+[32m+[m[32m    // }[m
+[32m+[m[32m    //    //未通过[m
+[32m+[m[32m    // public function commit_pass()[m
+[32m+[m[32m    // {[m
+[32m+[m[32m    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;[m
+[32m+[m[32m    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;[m
+[32m+[m[32m    //     if ($this->db->up_status($status, $id)) {[m
+[32m+[m[32m    //         echo json_encode(true);[m
+[32m+[m[32m    //     } else {[m
+[32m+[m[32m    //         echo json_encode(false);[m
+[32m+[m[32m    //     }[m
+[32m+[m[32m    // }[m
+[32m+[m[32m  }[m
+\ No newline at end of file[m
+[1mdiff --git a/apps/admin/ctrl/viewUsedHouseCtrl.php b/apps/admin/ctrl/viewUsedHouseCtrl.php[m
+[1mindex c947265..0c2640b 100644[m
+[1m--- a/apps/admin/ctrl/viewUsedHouseCtrl.php[m
+[1m+++ b/apps/admin/ctrl/viewUsedHouseCtrl.php[m
+[36m@@ -18,10 +18,9 @@[m [mclass viewUsedHouseCtrl extends baseCtrl{[m
+         $this->pcdb = new propertyConsultant();[m
+         $this->cdb = new city();[m
+     }[m
+[31m-[m
+[32m+[m[32m    //查询表[m
+     public function index(){[m
+ [m
+[31m-[m
+         //获取数据条数[m
+         $search=isset($_GET['search'])?$_GET['search']:'';[m
+         if(trim($search)){[m
+[36m@@ -40,8 +39,42 @@[m [mclass viewUsedHouseCtrl extends baseCtrl{[m
+         $this->assign('data',$res);[m
+         $this->display('viewUsedHouse','index.html');[m
+     }[m
+[32m+[m[32m// 审核[m
+[32m+[m[32m    public function view_house(){[m
+[32m+[m
+[32m+[m
+[32m+[m[32m        if (IS_GET === true) {[m
+[32m+[m[32m            $id=isset($_GET['id']) ? intval($_GET['id']) : 0;[m
+[32m+[m
+[32m+[m
+[32m+[m[32m            // 获取配置信息（户型，产权类型，房屋类型，物业类型）[m
+[32m+[m[32m            $htype = conf::get('HTYPE','admin');[m
+[32m+[m[32m            $prtype = conf::get('PRTYPE','admin');[m
+[32m+[m[32m            $house_type = conf::get('HOUSE_TYPE','admin');[m
+[32m+[m[32m            $ptype = conf::get('PTYPE','admin');[m
+[32m+[m
+[32m+[m[32m            $this->assign('htype',$htype);[m
+[32m+[m[32m            $this->assign('prtype',$prtype);[m
+[32m+[m[32m            $this->assign('house_type',$house_type);[m
+[32m+[m[32m            $this->assign('ptype',$ptype);[m
+[32m+[m[32m            // id[m
+[32m+[m[32m            if ($id) {[m
+[32m+[m[32m                // 读取单条数据[m
+[32m+[m[32m                $data = $this->db->getInfo($id);[m
+[32m+[m[32m                $data['cid'] = $this->cdb->getCname($data['cid']);[m
+[32m+[m[32m                $data['htype'] = explode(',', $data['htype']);[m
+[32m+[m[41m               [m
+[32m+[m[32m                $data['slideshow'] = unserialize($data['slideshow']);[m
+[32m+[m[32m                // assign[m
+[32m+[m[32m                $this->assign('data',$data);[m
+[32m+[m[32m            }[m
+[32m+[m[32m            // display[m
+[32m+[m[32m            $this->display('viewUsedHouse','houseDetail.html');[m
+[32m+[m[32m            die;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+ [m
+[31m-[m
+[32m+[m[32m    //新房详细信息[m
+     public function houseDetail(){[m
+         $pcData = $this->pcdb->selpc();[m
+         $this->assign('pcData',$pcData);[m
+[36m@@ -52,7 +85,7 @@[m [mclass viewUsedHouseCtrl extends baseCtrl{[m
+     }[m
+ [m
+ [m
+[31m-    //审核页面[m
+[32m+[m[32m    //新房主力户型[m
+     public function checkHouse(){[m
+ [m
+         // 获取配置信息（户型，产权类型，房屋类型，物业类型）[m
+[1mdiff --git a/apps/admin/model/newHouseInfo.php b/apps/admin/model/newHouseInfo.php[m
+[1mindex 4c55698..818c589 100644[m
+[1m--- a/apps/admin/model/newHouseInfo.php[m
+[1m+++ b/apps/admin/model/newHouseInfo.php[m
+[36m@@ -3,6 +3,7 @@[m [mnamespace apps\admin\model;[m
+ use core\lib\model;[m
+ class newHouseInfo extends model{[m
+   public $table = 'new_house_info';[m
+[32m+[m[41m  [m
+   // add[m
+   public function add($data){[m
+     $res = $this->insert($this->table,$data);[m
+[1mdiff --git a/apps/admin/model/tenmentCatalog.php b/apps/admin/model/tenmentCatalog.php[m
+[1mindex f6cb671..584690f 100644[m
+[1m--- a/apps/admin/model/tenmentCatalog.php[m
+[1m+++ b/apps/admin/model/tenmentCatalog.php[m
+[36m@@ -73,5 +73,9 @@[m [mclass tenmentCatalog extends model{[m
+         }[m
+         return $this->count($this->table,$where);[m
+     }[m
+[31m-[m
+[32m+[m[32m//修改审核状态[m
+[32m+[m[32m    public function up_status($status,$id){[m
+[32m+[m[32m        $res = $this->update($this->table,['status'=>$status],['id'=>$id]);[m
+[32m+[m[32m        return $res->rowCount();[m
+[32m+[m[32m    }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/apps/admin/model/usedHouseCatalog.php b/apps/admin/model/usedHouseCatalog.php[m
+[1mindex 80e007a..00cf547 100644[m
+[1m--- a/apps/admin/model/usedHouseCatalog.php[m
+[1m+++ b/apps/admin/model/usedHouseCatalog.php[m
+[36m@@ -3,7 +3,6 @@[m [mnamespace apps\admin\model;[m
+ use core\lib\model;[m
+ class usedHouseCatalog extends model{[m
+     public $table='used_house_catalog';[m
+[31m-[m
+     // getInfo[m
+     public function getInfo($id){[m
+         return $this->get($this->table,'*',['id'=>$id]);[m
+[36m@@ -73,5 +72,9 @@[m [mclass usedHouseCatalog extends model{[m
+         }[m
+         return $this->count($this->table,$where);[m
+     }[m
+[31m-[m
+[32m+[m[32m //修改审核状态[m
+[32m+[m[32m    public function up_status($status,$id){[m
+[32m+[m[32m        $res = $this->update($this->table,['status'=>$status],['id'=>$id]);[m
+[32m+[m[32m        return $res->rowCount();[m
+[32m+[m[32m    }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/apps/admin/model/viewNewHouse.php b/apps/admin/model/viewNewHouse.php[m
+[1mindex 4c93d4e..783e1fd 100644[m
+[1m--- a/apps/admin/model/viewNewHouse.php[m
+[1m+++ b/apps/admin/model/viewNewHouse.php[m
+[36m@@ -3,12 +3,10 @@[m [mnamespace apps\admin\model;[m
+ use core\lib\model;[m
+ class viewNewHouse extends model{[m
+     public $table='new_house_catalog';[m
+[31m-[m
+     //查询满足条件的记录数[m
+     public function sel_num($search=''){[m
+         return $this->count($this->table,['AND'=>['status'=>1,'title[~]'=>$search]]);[m
+     }[m
+[31m-[m
+     //查询记录[m
+     public function sel($search='',$currPage,$subPages){[m
+         $sql = "[m
+[36m@@ -24,7 +22,8 @@[m [mclass viewNewHouse extends model{[m
+                 1 = 1[m
+         AND[m
+                 uh.title like '%$search%'[m
+[31m-        AND     uh.status = 1       [m
+[32m+[m[32m        AND[m[41m     [m
+[32m+[m[32m                uh.status = 1[m[41m       [m
+         ORDER BY[m
+                 uh.ctime DESC[m
+         LIMIT[m
+[1mdiff --git a/apps/admin/model/viewUsedHouse.php b/apps/admin/model/viewUsedHouse.php[m
+[1mindex dd65723..9c2d6fa 100644[m
+[1m--- a/apps/admin/model/viewUsedHouse.php[m
+[1m+++ b/apps/admin/model/viewUsedHouse.php[m
+[36m@@ -17,7 +17,7 @@[m [mclass viewUsedHouse extends model{[m
+         WHERE[m
+                 1 = 1[m
+         AND [m
+[31m-                uh.status = $status[m
+[32m+[m[32m                uh.status = 1[m
+         AND[m
+                 uh.title like '%$search%'[m
+         ORDER BY[m
+[1mdiff --git a/apps/admin/views/index/index.html b/apps/admin/views/index/index.html[m
+[1mindex f881ad6..86253fb 100755[m
+[1m--- a/apps/admin/views/index/index.html[m
+[1m+++ b/apps/admin/views/index/index.html[m
+[36m@@ -15,7 +15,7 @@[m
+       </div>[m
+       <div class="panel-body">[m
+         <blockquote>[m
+[31m-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.1211111</p>[m
+[32m+[m[32m          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>[m
+         </blockquote>[m
+       </div>[m
+     </div>[m
+[1mdiff --git a/apps/admin/views/newHouseCatalog/index.html b/apps/admin/views/newHouseCatalog/index.html[m
+[1mindex 9e77433..2a4dd12 100644[m
+[1m--- a/apps/admin/views/newHouseCatalog/index.html[m
+[1m+++ b/apps/admin/views/newHouseCatalog/index.html[m
+[36m@@ -68,8 +68,8 @@[m
+                 {% if v.status == 0 %}[m
+                 <button type="button" class="btn btn-default btn-xs" onclick="commit_status({{ v.id }});">提交审核</button>[m
+                 {% elseif v.status == 1 %}[m
+[31m-                <button type="button" class="btn btn-default btn-xs" onclick="commit_adopt({{ v.id }});">可通过</button>[m
+[31m-                 <button type="button" class="btn btn-default btn-xs" onclick="commit_pass({{ v.id }});">未通过</button>[m
+[32m+[m[32m               <!--  <button type="button" class="btn btn-default btn-xs" onclick="commit_adopt({{ v.id }});">可通过</button>[m
+[32m+[m[32m                 <button type="button" class="btn btn-default btn-xs" onclick="commit_pass({{ v.id }});">未通过</button> -->[m
+                 {% elseif v.status == 2 %}[m
+                 <button type="button" class="btn btn-default btn-xs" >未通过</button>[m
+                 {% elseif v.status == 3 %}[m
+[1mdiff --git a/apps/admin/views/newHouseCatalog/js/index.js b/apps/admin/views/newHouseCatalog/js/index.js[m
+[1mindex c6fcb3d..5ed934e 100644[m
+[1m--- a/apps/admin/views/newHouseCatalog/js/index.js[m
+[1m+++ b/apps/admin/views/newHouseCatalog/js/index.js[m
+[36m@@ -134,57 +134,57 @@[m [mfunction commit_status(id){[m
+             }[m
+           });[m
+ }[m
+[31m-//可通过[m
+[31m-function commit_adopt(id){[m
+[31m-          // Ajax[m
+[31m-          $.ajax({[m
+[31m-            type: "GET",[m
+[31m-            url: "/admin/newHouseCatalog/commit_adopt/id/"+id+'/status/3',[m
+[32m+[m[32m// //可通过[m
+[32m+[m[32m// function commit_adopt(id){[m
+[32m+[m[32m//           // Ajax[m
+[32m+[m[32m//           $.ajax({[m
+[32m+[m[32m//             type: "GET",[m
+[32m+[m[32m//             url: "/admin/newHouseCatalog/commit_adopt/id/"+id+'/status/3',[m
+ [m
+[31m-            dataType: "JSON",[m
+[31m-            success: function(res){[m
+[31m-              // res[m
+[31m-              if (res === true) {[m
+[31m-                swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[31m-                setTimeout("window.location.reload();",2000);[m
+[31m-              }else if(res.error == 400){[m
+[31m-                swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[31m-                setTimeout("window.location.reload();",2000);[m
+[31m-              }[m
+[31m-              else {[m
+[31m-                swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[31m-              }[m
+[31m-            },[m
+[31m-            error: function(e){[m
+[31m-              console.log(e);[m
+[31m-              swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[31m-            }[m
+[31m-          });[m
+[31m-}[m
+[31m-//未通过[m
+[31m-function commit_pass(id){[m
+[31m-          // Ajax[m
+[31m-          $.ajax({[m
+[31m-            type: "GET",[m
+[31m-            url: "/admin/newHouseCatalog/commit_pass/id/"+id+'/status/2',[m
+[32m+[m[32m//             dataType: "JSON",[m
+[32m+[m[32m//             success: function(res){[m
+[32m+[m[32m//               // res[m
+[32m+[m[32m//               if (res === true) {[m
+[32m+[m[32m//                 swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }else if(res.error == 400){[m
+[32m+[m[32m//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//               else {[m
+[32m+[m[32m//                 swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//             },[m
+[32m+[m[32m//             error: function(e){[m
+[32m+[m[32m//               console.log(e);[m
+[32m+[m[32m//               swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//             }[m
+[32m+[m[32m//           });[m
+[32m+[m[32m// }[m
+[32m+[m[32m// //未通过[m
+[32m+[m[32m// function commit_pass(id){[m
+[32m+[m[32m//           // Ajax[m
+[32m+[m[32m//           $.ajax({[m
+[32m+[m[32m//             type: "GET",[m
+[32m+[m[32m//             url: "/admin/newHouseCatalog/commit_pass/id/"+id+'/status/2',[m
+ [m
+[31m-            dataType: "JSON",[m
+[31m-            success: function(res){[m
+[31m-              // res[m
+[31m-              if (res === true) {[m
+[31m-                swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[31m-                setTimeout("window.location.reload();",2000);[m
+[31m-              }else if(res.error == 400){[m
+[31m-                swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[31m-                setTimeout("window.location.reload();",2000);[m
+[31m-              }[m
+[31m-              else {[m
+[31m-                swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[31m-              }[m
+[31m-            },[m
+[31m-            error: function(e){[m
+[31m-              console.log(e);[m
+[31m-              swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[31m-            }[m
+[31m-          });[m
+[31m-}[m
+[32m+[m[32m//             dataType: "JSON",[m
+[32m+[m[32m//             success: function(res){[m
+[32m+[m[32m//               // res[m
+[32m+[m[32m//               if (res === true) {[m
+[32m+[m[32m//                 swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }else if(res.error == 400){[m
+[32m+[m[32m//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//               else {[m
+[32m+[m[32m//                 swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//             },[m
+[32m+[m[32m//             error: function(e){[m
+[32m+[m[32m//               console.log(e);[m
+[32m+[m[32m//               swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//             }[m
+[32m+[m[32m//           });[m
+[32m+[m[32m// }[m
+[1mdiff --git a/apps/admin/views/newHouseInfo/index.html b/apps/admin/views/newHouseInfo/index.html[m
+[1mindex 1fd9a21..3a872e6 100644[m
+[1m--- a/apps/admin/views/newHouseInfo/index.html[m
+[1m+++ b/apps/admin/views/newHouseInfo/index.html[m
+[36m@@ -13,6 +13,8 @@[m
+       <div class="panel-heading">[m
+         <h3 class="panel-title">@ （{{ title }}）新房详细信息</h3>[m
+       </div>[m
+[32m+[m
+[32m+[m
+       <div class="panel-body">[m
+         {% if data == '' %}[m
+         没有添加数据[m
+[36m@@ -21,6 +23,8 @@[m
+         <li class="list-group-item"><h4>详细信息</h4></li>[m
+         {% for k,v in data.k %}[m
+           <li class="list-group-item">{{ data.k[k] }} : {{ data.v[k] }}</li>[m
+[32m+[m[41m        [m
+[32m+[m
+         {% endfor %}[m
+         <li class="list-group-item"><h4>置业顾问</h4></li>[m
+         <li class="list-group-item">[m
+[36m@@ -30,7 +34,11 @@[m
+           <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>[m
+         </li>[m
+         </ul>[m
+[32m+[m
+[32m+[m[41m     [m
+         {% endif %}[m
+[32m+[m
+[32m+[m
+       </div>[m
+     </div>[m
+   </div>[m
+[1mdiff --git a/apps/admin/views/tenmentCatalog/index.html b/apps/admin/views/tenmentCatalog/index.html[m
+[1mindex bb9b322..9705283 100644[m
+[1m--- a/apps/admin/views/tenmentCatalog/index.html[m
+[1m+++ b/apps/admin/views/tenmentCatalog/index.html[m
+[36m@@ -23,9 +23,10 @@[m
+                 </div>[m
+             </form>[m
+             <ul class="nav nav-pills" style="margin-left: 25px;">[m
+[31m-                <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/0">待审核</a></li>[m
+[31m-                <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/1">未通过</a></li>[m
+[31m-                <li role="presentation" {% if status == 2 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/2">已通过</a></li>[m
+[32m+[m[32m                <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/0">默认</a></li>[m
+[32m+[m[32m                <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/1">待审核</a></li>[m
+[32m+[m[32m                <li role="presentation" {% if status == 2 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/2">未通过</a></li>[m
+[32m+[m[32m                <li role="presentation" {% if status == 3 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/3">已通过</a></li>[m
+             </ul>[m
+             <div class="panel-body">[m
+                 <table class="table table-hover">[m
+[36m@@ -75,9 +76,26 @@[m
+                         </td>[m
+                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>[m
+                         <td>[m
+[31m-                            <button type="button" class="btn btn-primary btn-xs" onclick="uhInfo({{ v.id }});">详细信息</button>[m
+[31m-                            <button type="button" class="btn btn-primary btn-xs" onclick="update_info({{ v.id }});">修改</button>[m
+[31m-                            <button type="button" class="btn btn-default btn-xs" onclick="del_info({{ v.id }});">删除</button>[m
+[32m+[m[32m                            <button type="button" class="btn btn-primary btn-xs" onclick="nhInfo({{ v.id }});">详细信息</button>[m
+[32m+[m[32m                <button type="button" class="btn btn-primary btn-xs" onclick="nhmInfo({{ v.id }});">主力户型</button>[m
+[32m+[m[32m                {% if v.status == 0 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" onclick="commit_status({{ v.id }});">提交审核</button>[m
+[32m+[m[32m                {% elseif v.status == 1 %}[m
+[32m+[m[32m               <!--  <button type="button" class="btn btn-default btn-xs" onclick="commit_adopt({{ v.id }});">可通过</button>[m
+[32m+[m[32m                 <button type="button" class="btn btn-default btn-xs" onclick="commit_pass({{ v.id }});">未通过</button> -->[m
+[32m+[m[32m                {% elseif v.status == 2 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" >未通过</button>[m
+[32m+[m[32m                {% elseif v.status == 3 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" >已通过</button>[m
+[32m+[m[32m                {% endif %}[m
+[32m+[m[32m                {% if v.status == 0 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>[m
+[32m+[m[32m                {% endif %}[m
+[32m+[m[32m                {% if v.status == 2 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>[m
+[32m+[m[32m                {% endif %}[m
+                         </td>[m
+                     </tr>[m
+                     {% endfor %}[m
+[1mdiff --git a/apps/admin/views/tenmentCatalog/js/index.js b/apps/admin/views/tenmentCatalog/js/index.js[m
+[1mindex 33602da..829c74a 100644[m
+[1m--- a/apps/admin/views/tenmentCatalog/js/index.js[m
+[1m+++ b/apps/admin/views/tenmentCatalog/js/index.js[m
+[36m@@ -47,4 +47,83 @@[m [mfunction del_info(id){[m
+             }[m
+         });[m
+ }[m
+[32m+[m[32m//提交审核[m
+[32m+[m[32mfunction commit_status(id){[m
+[32m+[m[32m          // Ajax[m
+[32m+[m[32m          $.ajax({[m
+[32m+[m[32m            type: "GET",[m
+[32m+[m[32m            url: "/admin/tenmentCatalog/commit_status/id/"+id+'/status/1',[m
+[32m+[m[32m            dataType: "JSON",[m
+[32m+[m[32m            success: function(res){[m
+[32m+[m[32m              // res[m
+[32m+[m[32m              if (res === true) {[m
+[32m+[m[32m                swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m                setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m              }else if(res.error == 400){[m
+[32m+[m[32m                swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[32m+[m[32m                setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m              }[m
+[32m+[m[32m              else {[m
+[32m+[m[32m                swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            error: function(e){[m
+[32m+[m[32m              console.log(e);[m
+[32m+[m[32m              swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m            }[m
+[32m+[m[32m          });[m
+[32m+[m[32m}[m
+[32m+[m[32m// //未通过[m
+[32m+[m[32m// function commit_pass(id){[m
+[32m+[m[32m//           // Ajax[m
+[32m+[m[32m//           $.ajax({[m
+[32m+[m[32m//             type: "GET",[m
+[32m+[m[32m//             url: "/admin/tenmentCatalog/commit_pass/id/"+id+'/status/2',[m
+[32m+[m[32m//             dataType: "JSON",[m
+[32m+[m[32m//             success: function(res){[m
+[32m+[m[32m//               // res[m
+[32m+[m[32m//               if (res === true) {[m
+[32m+[m[32m//                 swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }else if(res.error == 400){[m
+[32m+[m[32m//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//               else {[m
+[32m+[m[32m//                 swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//             },[m
+[32m+[m[32m//             error: function(e){[m
+[32m+[m[32m//               console.log(e);[m
+[32m+[m[32m//               swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//             }[m
+[32m+[m[32m//           });[m
+[32m+[m[32m// }[m
+[32m+[m
+[32m+[m[32m// //可通过[m
+[32m+[m[32m// function commit_adopt(id){[m
+[32m+[m[32m//           // Ajax[m
+[32m+[m[32m//           $.ajax({[m
+[32m+[m[32m//             type: "GET",[m
+[32m+[m[32m//             url: "/admin/tenmentCatalog/commit_adopt/id/"+id+'/status/3',[m
+ [m
+[32m+[m[32m//             dataType: "JSON",[m
+[32m+[m[32m//             success: function(res){[m
+[32m+[m[32m//               // res[m
+[32m+[m[32m//               if (res === true) {[m
+[32m+[m[32m//                 swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }else if(res.error == 400){[m
+[32m+[m[32m//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//               else {[m
+[32m+[m[32m//                 swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//             },[m
+[32m+[m[32m//             error: function(e){[m
+[32m+[m[32m//               console.log(e);[m
+[32m+[m[32m//               swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//             }[m
+[32m+[m[32m//           });[m
+[32m+[m[32m// }[m
+[1mdiff --git a/apps/admin/views/usedHouseCatalog/index.html b/apps/admin/views/usedHouseCatalog/index.html[m
+[1mindex 68fb1ac..b81143b 100644[m
+[1m--- a/apps/admin/views/usedHouseCatalog/index.html[m
+[1m+++ b/apps/admin/views/usedHouseCatalog/index.html[m
+[36m@@ -23,9 +23,10 @@[m
+                 </div>[m
+             </form>[m
+             <ul class="nav nav-pills" style="margin-left: 25px;">[m
+[31m-                <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/0">待审核</a></li>[m
+[31m-                <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/1">未通过</a></li>[m
+[31m-                <li role="presentation" {% if status == 2 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/2">已通过</a></li>[m
+[32m+[m[32m                <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/0">默认</a></li>[m
+[32m+[m[32m                <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/1">待审核</a></li>[m
+[32m+[m[32m                <li role="presentation" {% if status == 2%}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/2">未通过</a></li>[m
+[32m+[m[32m                <li role="presentation" {% if status == 3 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/3">已通过</a></li>[m
+             </ul>[m
+             <div class="panel-body">[m
+                 <table class="table table-hover">[m
+[36m@@ -61,9 +62,26 @@[m
+                         <td>{{ v.area }}</td>[m
+                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>[m
+                         <td>[m
+[31m-                            <button type="button" class="btn btn-primary btn-xs" onclick="uhInfo({{ v.id }});">详细信息</button>[m
+[31m-                            <button type="button" class="btn btn-primary btn-xs" onclick="update_info({{ v.id }});">修改</button>[m
+[31m-                            <button type="button" class="btn btn-default btn-xs" onclick="del_info({{ v.id }});">删除</button>[m
+[32m+[m[32m            <button type="button" class="btn btn-primary btn-xs" onclick="nhInfo({{ v.id }});">详细信息</button>[m
+[32m+[m[32m                <button type="button" class="btn btn-primary btn-xs" onclick="nhmInfo({{ v.id }});">主力户型</button>[m
+[32m+[m[32m                {% if v.status == 0 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" onclick="commit_status({{ v.id }});">提交审核</button>[m
+[32m+[m[32m                {% elseif v.status == 1 %}[m
+[32m+[m[32m               <!--  <button type="button" class="btn btn-default btn-xs" onclick="commit_adopt({{ v.id }});">可通过</button>[m
+[32m+[m[32m                 <button type="button" class="btn btn-default btn-xs" onclick="commit_pass({{ v.id }});">未通过</button> -->[m
+[32m+[m[32m                {% elseif v.status == 2 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" >未通过</button>[m
+[32m+[m[32m                {% elseif v.status == 3 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" >已通过</button>[m
+[32m+[m[32m                {% endif %}[m
+[32m+[m[32m                {% if v.status == 0 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>[m
+[32m+[m[32m                {% endif %}[m
+[32m+[m[32m                {% if v.status == 2 %}[m
+[32m+[m[32m                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>[m
+[32m+[m[32m                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>[m
+[32m+[m[32m                {% endif %}[m
+                         </td>[m
+                     </tr>[m
+                     {% endfor %}[m
+[1mdiff --git a/apps/admin/views/usedHouseCatalog/js/index.js b/apps/admin/views/usedHouseCatalog/js/index.js[m
+[1mindex 7539a4a..94edd16 100644[m
+[1m--- a/apps/admin/views/usedHouseCatalog/js/index.js[m
+[1m+++ b/apps/admin/views/usedHouseCatalog/js/index.js[m
+[36m@@ -7,7 +7,6 @@[m [mfunction update_info(id){[m
+     window.location.href='http://'+window.location.host+'/admin/usedHouseCatalog/add?id='+id;[m
+ }[m
+ [m
+[31m-[m
+ // 删除[m
+ function del_info(id){[m
+     swal({[m
+[36m@@ -21,29 +20,111 @@[m [mfunction del_info(id){[m
+             closeOnConfirm: false,[m
+             closeOnCancel: false[m
+         },[m
+[31m-        function(isConfirm){[m
+[31m-            if (isConfirm) {[m
+[31m-                // Ajax[m
+[31m-                $.ajax({[m
+[31m-                    type: "GET",[m
+[31m-                    url: "/admin/usedHouseCatalog/del/id/"+id,[m
+[31m-                    dataType: "JSON",[m
+[31m-                    success: function(res){[m
+[31m-                        // res[m
+[31m-                        if (res === true) {[m
+[31m-                            swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[31m-                            setTimeout("window.location.reload();",2000);[m
+[31m-                        } else {[m
+[31m-                            swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[31m-                        }[m
+[31m-                    },[m
+[31m-                    error: function(e){[m
+[31m-                        console.log(e);[m
+[31m-                        swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m    function(isConfirm){[m
+[32m+[m[32m        if (isConfirm) {[m
+[32m+[m[32m            // Ajax[m
+[32m+[m[32m            $.ajax({[m
+[32m+[m[32m                type: "GET",[m
+[32m+[m[32m                url: "/admin/usedHouseCatalog/del/id/"+id,[m
+[32m+[m[32m                dataType: "JSON",[m
+[32m+[m[32m                success: function(res){[m
+[32m+[m[32m                    // res[m
+[32m+[m[32m                    if (res === true) {[m
+[32m+[m[32m                        swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m                        setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m                    } else {[m
+[32m+[m[32m                        swal("提交失败", "请刷新页面后重试 :(", "error");[m
+                     }[m
+[31m-                });[m
+[31m-            } else {[m
+[31m-                swal("取消了", "当前操作未发生改变 :)", "error");[m
+[32m+[m[32m                },[m
+[32m+[m[32m                error: function(e){[m
+[32m+[m[32m                    console.log(e);[m
+[32m+[m[32m                    swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m                }[m
+[32m+[m[32m            });[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            swal("取消了", "当前操作未发生改变 :)", "error");[m
+[32m+[m[32m        }[m
+[32m+[m[32m    });[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m//提交审核[m
+[32m+[m[32mfunction commit_status(id){[m
+[32m+[m[32m          // Ajax[m
+[32m+[m[32m          $.ajax({[m
+[32m+[m[32m            type: "GET",[m
+[32m+[m[32m            url: "/admin/usedHouseCatalog/commit_status/id/"+id+'/status/1',[m
+[32m+[m[32m            dataType: "JSON",[m
+[32m+[m[32m            success: function(res){[m
+[32m+[m[32m              // res[m
+[32m+[m[32m              if (res === true) {[m
+[32m+[m[32m                swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m                setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m              }else if(res.error == 400){[m
+[32m+[m[32m                swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[32m+[m[32m                setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m              }[m
+[32m+[m[32m              else {[m
+[32m+[m[32m                swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m              }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            error: function(e){[m
+[32m+[m[32m              console.log(e);[m
+[32m+[m[32m              swal("未知错误", "请刷新页面后重试 :(", "error");[m
+             }[m
+[31m-        });[m
+[32m+[m[32m          });[m
+ }[m
+[32m+[m
+[32m+[m[32m// //未通过[m
+[32m+[m[32m// function commit_pass(id){[m
+[32m+[m[32m//           // Ajax[m
+[32m+[m[32m//           $.ajax({[m
+[32m+[m[32m//             type: "GET",[m
+[32m+[m[32m//             url: "/admin/usedHouseCatalog/commit_pass/id/"+id+'/status/2',[m
+[32m+[m[32m//             dataType: "JSON",[m
+[32m+[m[32m//             success: function(res){[m
+[32m+[m[32m//               // res[m
+[32m+[m[32m//               if (res === true) {[m
+[32m+[m[32m//                 swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }else if(res.error == 400){[m
+[32m+[m[32m//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//               else {[m
+[32m+[m[32m//                 swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//             },[m
+[32m+[m[32m//             error: function(e){[m
+[32m+[m[32m//               console.log(e);[m
+[32m+[m[32m//               swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//             }[m
+[32m+[m[32m//           });[m
+[32m+[m[32m// }[m
+[32m+[m
+[32m+[m[32m// //可通过[m
+[32m+[m[32m// function commit_adopt(id){[m
+[32m+[m[32m//           // Ajax[m
+[32m+[m[32m//           $.ajax({[m
+[32m+[m[32m//             type: "GET",[m
+[32m+[m[32m//             url: "/admin/usedHouseCatalog/commit_adopt/id/"+id+'/status/3',[m
+[32m+[m
+[32m+[m[32m//             dataType: "JSON",[m
+[32m+[m[32m//             success: function(res){[m
+[32m+[m[32m//               // res[m
+[32m+[m[32m//               if (res === true) {[m
+[32m+[m[32m//                 swal("提交成功", "当前操作已发生改变 :)", "success");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }else if(res.error == 400){[m
+[32m+[m[32m//                 swal("您没有该板块的权限", "即将返回页面 :(", "error");[m
+[32m+[m[32m//                 setTimeout("window.location.reload();",2000);[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//               else {[m
+[32m+[m[32m//                 swal("提交失败", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//               }[m
+[32m+[m[32m//             },[m
+[32m+[m[32m//             error: function(e){[m
+[32m+[m[32m//               console.log(e);[m
+[32m+[m[32m//               swal("未知错误", "请刷新页面后重试 :(", "error");[m
+[32m+[m[32m//             }[m
+[32m+[m[32m//           });[m
+[32m+[m[32m// }[m
+\ No newline at end of file[m
+[1mdiff --git a/apps/admin/views/viewUsedHouse/index.html b/apps/admin/views/viewUsedHouse/index.html[m
+[1mindex 4173cc4..0cd8f26 100644[m
+[1m--- a/apps/admin/views/viewUsedHouse/index.html[m
+[1m+++ b/apps/admin/views/viewUsedHouse/index.html[m
+[36m@@ -13,7 +13,6 @@[m
+             <div class="panel-heading">[m
+                 <h3 class="panel-title">@ 二手房条目列表</h3>[m
+             </div>[m
+[31m-[m
+             <form action="/admin/viewUsedHouse/index" method="get">[m
+                 <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">[m
+                     <input type="text" class="form-control" name="search" placeholder="请输入关键字">[m
+[36m@@ -59,8 +58,10 @@[m
+                         <td>{{ v.area }}</td>[m
+                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>[m
+                         <td>[m
+[31m-                            <button type="button" class="btn btn-primary btn-xs" onclick="uhInfo({{ v.id }});">详细信息</button>[m
+[31m-                            <button type="button" class="btn btn-primary btn-xs" onclick="check_house({{ v.id }});">进入审核</button>[m
+[32m+[m[32m                            <button type="button" class="btn btn-default btn-xs" onclick="nhInfo({{ v.id }});" >详细信息</button>[m
+[32m+[m[32m                            <button type="button" class="btn btn-default btn-xs" onclick="nhmInfo({{ v.id }});">主力户型</button>[m
+[32m+[m[32m                            <button type="button" class="btn btn-primary btn-xs" onclick="detail_info({{ v.id }});" >进入审核</button>[m
+[32m+[m
+                         </td>[m
+                     </tr>[m
+                     {% endfor %}[m
+[1mdiff --git a/apps/admin/views/viewUsedHouse/js/index.js b/apps/admin/views/viewUsedHouse/js/index.js[m
+[1mindex 0c5ca80..e3baaf3 100644[m
+[1m--- a/apps/admin/views/viewUsedHouse/js/index.js[m
+[1m+++ b/apps/admin/views/viewUsedHouse/js/index.js[m
+[36m@@ -1,8 +1,12 @@[m
+[32m+[m[32mfunction detail_info(id){[m
+[32m+[m[32m    window.location.href='http://'+window.location.host+'/admin/viewUsedHouse/view_house?id='+id;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m// 新房详细信息[m
+ function uhInfo(id){[m
+     window.location.href='/admin/viewUsedHouse/houseDetail/uhcid/'+id;[m
+ }[m
+[31m-[m
+[31m-[m
+[32m+[m[32m// 新房主力户型[m
+ function check_house(id){[m
+     window.location.href='/admin/viewUsedHouse/checkHouse/uhcid/'+id;[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/core/common/dev.sql b/core/common/dev.sql[m
+[1mindex 7812e02..cd2bb31 100644[m
+[1m--- a/core/common/dev.sql[m
+[1m+++ b/core/common/dev.sql[m
+[36m@@ -110,7 +110,7 @@[m [mCREATE TABLE `used_house_catalog`([m
+   `prtype` tinyint(1) UNSIGNED NOT NULL COMMENT '产权类型',[m
+   `ctime` int(10) UNSIGNED NOT NULL COMMENT '时间',[m
+   `remark` varchar(255) NOT NULL COMMENT '备注',[m
+[31m-  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>待审核，1>未通过，2>已通过',[m
+[32m+[m[32m  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>默认，1>待审核，2=>未通过，3=>已通过',[m
+   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>展示，1>隐藏',[m
+   PRIMARY KEY (`id`),[m
+   KEY (`hcid`),[m
+[36m@@ -152,7 +152,7 @@[m [mCREATE TABLE `tenement_catalog`([m
+   `dtype` tinyint(1) UNSIGNED NOT NULL COMMENT '装修类型',[m
+   `ctime` int(10) UNSIGNED NOT NULL COMMENT '时间',[m
+   `remark` varchar(255) NOT NULL COMMENT '备注',[m
+[31m-  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>待审核，1>未通过，2>已通过',[m
+[32m+[m[32m  `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>默认，1>待审核，2=>未通过，3=>已通过',[m
+   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>展示，1>隐藏',[m
+   PRIMARY KEY (`id`),[m
+   KEY (`hcid`),[m

@@ -80,7 +80,6 @@
                   <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},0);">隐藏</button>
                 {% endif %}
                 {% if v.status == 0 %}
-<<<<<<< HEAD
                 <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
                 <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
                 {% endif %}
@@ -88,15 +87,6 @@
                 <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
                 <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
                 {% endif %}
-=======
-                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
-                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
-                {% endif %}
-                {% if v.status == 2 %}
-                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
-                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
-                {% endif %}
->>>>>>> 84bf92032d87fd50541386dbc613e33ab458b4ba
               </td>
             </tr>
           {% endfor %}
