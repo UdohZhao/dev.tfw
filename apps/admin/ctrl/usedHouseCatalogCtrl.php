@@ -204,10 +204,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
             } else {
                 echo json_encode(false);
             }
-<<<<<<< HEAD
-            }
-        }
-=======
+
         }
   }
->>>>>>> 23dfe2aef2b63e257cd516b9c6c2c4faaf1541a8
+

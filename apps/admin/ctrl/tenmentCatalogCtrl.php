@@ -35,11 +35,6 @@ class tenmentCatalogCtrl extends baseCtrl{
             // assign
             $this->assign('pid',$pid);
             $this->assign('hcid',$hcid);
-<<<<<<< HEAD
-
-            
-=======
->>>>>>> 23dfe2aef2b63e257cd516b9c6c2c4faaf1541a8
             // display
             if ($this->id) {
 
@@ -204,26 +199,5 @@ class tenmentCatalogCtrl extends baseCtrl{
                 echo json_encode(false);
             }
         }
-    //      //可通过
-    // public function commit_adopt()
-    // {
-    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;
-    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;
-    //     if ($this->db->up_status($status, $id)) {
-    //         echo json_encode(true);
-    //     } else {
-    //         echo json_encode(false);
-    //     }
-    // }
-    //    //未通过
-    // public function commit_pass()
-    // {
-    //     $status = isset($_GET['status']) ? $_GET['status'] : 1;
-    //     $id = isset($_GET['id']) ? $_GET['id'] : 1;
-    //     if ($this->db->up_status($status, $id)) {
-    //         echo json_encode(true);
-    //     } else {
-    //         echo json_encode(false);
-    //     }
-    // }
+
 }
