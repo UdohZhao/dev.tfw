@@ -33,7 +33,23 @@ Page({
     index: 0  
   },
   confirm: function (e) {
-    console.log(e);
+
+    var that = this;
+
+    // 获取用户输入的姓名和电话和类型
+    console.log(that.data.cname);
+
+    if (that.data.cname == false || that.data.cname == undefined) {
+      wx.showModal({
+        title: '提示',
+        content: '不能为空',
+        showCancel: false
+      })
+    }
+
+    return false;
+
+
     this.setData({
       modalHidden: true,
       toast1Hidden: false,
@@ -154,6 +170,24 @@ Page({
   formReset: function () {
     console.log('form发生了reset事件');
     this.modalTap2();
+  },
+
+  /**
+   * 获取金融贷款姓名
+   */
+  getCname: function (e) {
+
+    var that = this;
+
+    // 获取姓名
+    console.log(e);
+
+    that.setData({
+      cname: e.detail.value
+    });
+
+    console.log(that.data.cname);
+
   }
 
 })
