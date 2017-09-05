@@ -3,7 +3,6 @@ namespace apps\admin\model;
 use core\lib\model;
 class tenmentCatalog extends model{
     public $table='tenement_catalog';
-
     // getInfo
     public function getInfo($id){
         return $this->get($this->table,'*',['id'=>$id]);
@@ -33,11 +32,29 @@ class tenmentCatalog extends model{
     }
     //查询租房列表
 
-    public function sel($type,$auid,$status,$search='',$currPage,$subPages){
+    public function sel($type,$auid,$status,$currPage,$subPages,$show_rent,$area,$htype,$cid){
         if($type==0){
-            $where=' ';
+            $where='';
         }else{
             $where=" AND uh.auid = '$auid'";
+        }
+        if($show_rent){
+        $title = " uh.show_rent like '%$show_rent%' ";
+        }elseif($area){
+        $title = " uh.area = $area ";
+        }elseif($cid){
+        $title = " C.cname = '$cid' ";
+        }elseif($htype){
+           if($htype == '整租'){
+            $qwe = 0;
+            }elseif($htype == '合租'){
+            $qwe = 1;
+            }else{
+            $qwe = '';
+            }
+        $title = " uh.htype = $qwe ";
+        }else{
+        $title = " uh.status = $status";
         }
         $sql = "
         SELECT
@@ -55,7 +72,7 @@ class tenmentCatalog extends model{
                 
                 $where
         AND
-                uh.title like '%$search%'
+                $title
         ORDER BY
                 uh.ctime DESC
         LIMIT

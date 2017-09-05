@@ -32,12 +32,24 @@ class usedHouseCatalog extends model{
     }
     //查询二手房列表
 
-    public function sel($type,$auid,$status,$search='',$currPage,$subPages){
+    public function sel($type,$auid,$status,$currPage,$subPages,$show_price,$area,$htype,$cid){
         if($type==0){
             $where=' ';
         }else{
             $where=" AND uh.auid = '$auid'";
         }
+
+      if($show_price){
+        $title = " uh.show_price like '%$show_price%' ";
+      }elseif($area){
+        $title = " uh.area = $area ";
+      }elseif($cid){
+        $title = "  C.cname = '$cid' ";
+      }elseif($htype){
+        $title = " uh.htype like '%$htype%'";
+      }else{
+        $title = "uh.status = $status";
+      }
         $sql = "
         SELECT
                 uh.*,C.cname AS cityname
@@ -51,10 +63,9 @@ class usedHouseCatalog extends model{
                 1 = 1
         AND 
                 uh.status = $status
-                
                 $where       
         AND
-                uh.title like '%$search%'
+                $title
         ORDER BY
                 uh.ctime DESC
         LIMIT
@@ -62,7 +73,10 @@ class usedHouseCatalog extends model{
     ";
         return $this->query($sql)->fetchAll();
     }
-
+  // public function selling($search){
+  //       $sql = "SELECT community,cid,area,show_price FROM $this->table WHERE community like '%$search%'  or cid like '%$search%' or area like '%$search%' or show_price like '%$search%' " ;  
+  //       return $this->query($sql)->fetchAll();
+  //           }
     //获取满足条件的记录数
     public function sel_num($status,$search=''){
         if($search){
