@@ -16,11 +16,18 @@ class indexCtrl extends baseCtrl{
     $res['code'] = 200;  // 200属于正常，400往上都属于异常
     $res['msg'] = ''; // 提示信息
     $res['data'] = array(); // 数据
-    
-   
+       $data = $this->db->sel();
+     // foreach 
+     foreach ($data AS $k => $v) {
+       
+        $data[$k]['slideshow'] =  unserialize($v['slideshow']);
+
+        $data[$k]['slideshow'] = $data[$k]['slideshow'][0];
+
+     }
     
     // 模拟数据
-   $data = $this->db->sel();
+
   
   
     // 数据赋值给返回结果
