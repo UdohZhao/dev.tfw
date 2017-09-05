@@ -37,7 +37,7 @@ class newHouseCatalogCtrl extends baseCtrl{
 
       // 获取新房主键id
       $hcid = $this->hcdb->getId('新房');
-   
+
       // 获取配置信息（户型，产权类型，房屋类型，物业类型）
       $htype = conf::get('HTYPE','admin');
       $prtype = conf::get('PRTYPE','admin');
@@ -128,11 +128,11 @@ class newHouseCatalogCtrl extends baseCtrl{
 public function update(){
      if(IS_GET === true){
       $qwe = $this->nhmdb->getInfo($this->id);
-      
+
       $this->assign('date',$qwe);
      }
-     
-     $this->display('newHouseCatalog','and.html');  
+
+     $this->display('newHouseCatalog','and.html');
 die;
 
 }
@@ -245,5 +245,5 @@ die;
             echo json_encode(false);
         }
     }
-  
+
 }
