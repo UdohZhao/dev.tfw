@@ -1,41 +1,45 @@
 // encyclopediadetails.js
+var app = getApp(); // 实例化APP
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    encyclopediadetails : [
-      {
-        "title": "购房百科",
-        "content" : [
-          {
-            "titleList": "1.购房的资金准备－－准备用多少钱买房？",
-            "contentList": "购楼者(潜在业主)在购楼前需要无数遍地问自己两个问题：为什么要买房？到底需要什么样的房子？思考清这两个方面的内容，对多数购楼者都有所帮助，大家知道买房前准备的资金数额，决定了买房中的一切重要行为。 "
-          },
-          {
-            "titleList": "2.购房的心理准备－－你想把家安在什么地方？",
-            "contentList": "购房者一般都有地域的偏好，东西南北中， 汉口、武昌、 汉阳等地购房者需要反复思考的第二个问题是：到底想把家安在什么地方？多数人在购房时会考虑 房产与本人及配偶工作单位之间的交通状况，包括公共交通体系、路况和路程长短。但值得提醒的是，购房是长期行为，购楼前对交通状况的考虑要预留工作变动的充分余地。在郊区购房时还要注意 楼盘与 城市之间的交通情况，想必经过长时间堵车的人都有体会。"
-          },
-          {
-            "titleList": "3.买房的知识准备———先让自己成为半个房产专业人士。",
-            "contentList": "孙子说过“多算胜少算”，对于房地产这个对售购双方来说信息不对称的市场，消费者主动缩小信息差距，总会减少盲目购买或者上当购买的机会。因为房地产市场是一个正在发展和逐步成熟的新兴产业，老百姓自己购买住房也是近几年才开始的新鲜事，所以购房者在准备购房之前更需要对楼市有所了解。 "
-          },
-          {
-            "titleList": "",
-            "contentList": "这是一道比较复杂而且非常重要的“工序”，因为购房者要学的东西比较多，而且，购房者在此期间所得知的信息，对是否买到满意的房产至关重要。查询和打听情报不是漫无目的的大海捞针，要想看出门道还要靠朋友的介绍，房展的 楼书、报纸上的广告，当然不要忘了上网查查看。"
-          },
-        ]
-      }
-    ]
+    encyclopediadetails : []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      detailId: options.detailId,
+    console.log(options.id)
+    var id = options.id
+    var self = this;
+    var that = this;
+    wx.request({
+      method: "POST",
+      url: app.data.domain + '/houseEncyclopediaCategory/sel1?id=' +id, //仅为示例，并非真实的接口地址
+      data: {
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"  
+      },
+      success: function (res) {
+        
+        var aa = res.data.data
+        for (var i in aa) {
+          self.data.encyclopediadetails.push({
+            cname: aa[i].cname,
+            title: aa[i].title,
+            content: aa[i].content,
+          });
+        }
+        self.setData({
+          encyclopediadetails: self.data.encyclopediadetails
+        })
+        
+      }
     })
   },
 

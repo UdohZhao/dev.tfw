@@ -1,10 +1,12 @@
 // hxdetails.js
+var App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    domain: App.data.domain,
     //轮播
     imgUrls: [
     ],
@@ -68,34 +70,70 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
+  onLoad: function (options) {
+
     var that = this;
-    //ajax请求数据
-    const requestTask = wx.request({
-      method: "GET",
-      url: "http://dev.tfw.local/index/index",
+
+    // 获取主力户型id
+    console.log(options.id);
+
+    that.setData({
+      id: options.id
+    });
+
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    // 请求首页数据
+    wx.request({
+      url: App.data.domain + '/hxdetails/index',
       data: {
-        imgUrls:[
-          'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-          'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-          'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-        ]
+        id: that.data.id
       },
       header: {
-        'Content-Type': 'application/json'
+        'content-type': 'application/json'
       },
       success: function (res) {
-        console.log(JSON.parse(res.data.imgUrls));
-        // var arr = [];
-        // console.log(typeof (arr))
-        // for (var i in res.data.imgUrls){
-        //   arr.push(res.data.imgUrls[i])
-        // }
-        that.setData({
-          imgUrls: JSON.parse(res.data.imgUrls)
-        })
+        console.log(res.data);
+
+        // if 
+        if (res.data.code == 200) {
+
+          that.setData({
+            data: res.data.data
+          });
+
+          console.log(that.data.data);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
       }
     })
+
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
+
   },
 
   /**

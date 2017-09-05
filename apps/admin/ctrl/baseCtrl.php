@@ -75,7 +75,7 @@ class baseCtrl extends \core\icunji{
     // Settings
     // $targetDir = ini_get("upload_tmp_dir") . DIRECTORY_SEPARATOR . "plupload";
     $targetDir = 'uploads';
-    $uploadDir = 'uploads/'.date('Y-m-d');
+    $uploadDir = 'uploads' . DIRECTORY_SEPARATOR . date('Y-m-d');
 
     $cleanupTargetDir = true; // Remove old files
     $maxFileAge = 5 * 3600; // Temp file age in seconds
@@ -99,9 +99,10 @@ class baseCtrl extends \core\icunji{
     } else {
         $fileName = uniqid("file_");
     }
-    $ex_name=substr($fileName,strripos($fileName,'.'));//后缀名
+    $ex_name = substr($fileName,strripos($fileName,'.'));//后缀名
     $filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName;
-    $uploadPath = $uploadDir . DIRECTORY_SEPARATOR .date('Ymd'). time().$ex_name;
+    $fileName = time() . rand() .$ex_name;
+    $uploadPath = $uploadDir . DIRECTORY_SEPARATOR . $fileName;
 
     // Chunking might be enabled
     $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
