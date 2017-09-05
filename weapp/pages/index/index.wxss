@@ -247,3 +247,8 @@
   line-height: 40px;
   font-size: 14px;
 }
+.trait-item{
+  display: inline-block;
+  background: greenyellow;
+  margin-right: 10rpx;
+}
