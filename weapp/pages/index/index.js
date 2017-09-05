@@ -69,21 +69,9 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    const requestTask=wx.request({
-      method: "POST",
-      url: app.data.domain + '/index/index',
-      data: {},
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        if(res.data.code==200){
-        }else{
-          console.log("错误！！")
-        }
-      }
-    })
-    that.fetchImgListDate();
+   
+    console.log(111);
+
   },
   fetchImgListDate: function (data) {
     var self = this;
