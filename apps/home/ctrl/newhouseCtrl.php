@@ -77,7 +77,7 @@ class newhouseCtrl extends baseCtrl{
       $res['data'] = array(); // 数据
       // data
 
-     $data = $this->db->qwe('$name','$cname');
+     $data = $this->db->qwe('$id');
      var_dump($data);
      die;
 
