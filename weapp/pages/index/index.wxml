@@ -11,7 +11,6 @@
       <view class="select_one" type="default" bindtap="openToast" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="上海">上海</view>
       <view class="select_one" type="default" bindtap="openToast" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="深圳">深圳</view>
     </view>
-    
   </view>
   <view class="tefangwang">
     <image src="../../images/特房网.png"></image>

@@ -57,14 +57,10 @@ Page({
     })
   },
   openToast: function () {
-    wx.showModal({
-      title: '提示',
-      content: '此地尚未开发，敬请期待',
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        }
-      }
+    wx.showToast({
+      title: '此地暂未开启,敬请期待！',
+      icon: 'loading',
+      duration: 2000
     });
     this.setData({
       selectArea: false,
@@ -157,8 +153,6 @@ Page({
       });
     }
   },
-
-  //房源跳转详细信息
   eachHouse: function (e) {
     var id = e.currentTarget.dataset.id;
     var link = "../housedetails/housedetails?eachId=" + id

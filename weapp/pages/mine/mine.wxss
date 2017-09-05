@@ -48,9 +48,3 @@ page{
 .dropout{
   background-color: #00ce3c;
 }
-.each_class{
-  text-indent: 2em;
-  text-align: justify;
-  margin-bottom: 5px;
-  font-size: 12px;
-}

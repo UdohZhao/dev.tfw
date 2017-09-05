@@ -4,12 +4,8 @@
     <view class="weui-search-bar">
         <view class="weui-search-bar__form">
             <view class="weui-search-bar__box">
-                <form bindsubmit="formSubmit">
                 <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                <input type="text" class="weui-search-bar__input" placeholder="挑好房，上特房网"  bindinput="inputTyping" />
-                <!--value="{{inputVal}}" focus="{{inputShowed}}"  -->
-                <icon class="weui-icon-search_in-box" type="search" size="14" formType="submit"></icon>
-              </form>  
+                <input type="text" class="weui-search-bar__input" placeholder="挑好房，上特房网" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
                 <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                     <icon type="clear" size="14"></icon>
                 </view>

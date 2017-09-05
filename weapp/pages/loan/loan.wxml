@@ -18,9 +18,7 @@
 <view class="application_loan">
   <button bindtap="application_loan">申请贷款</button>
 </view>
-
-<modal class="loan_modal" hidden="{{hidden}}" title="金融贷款" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindtap="demo" no-cancel="{{nocancel}}">
-
+<modal class="loan_modal" hidden="{{hidden}}" title="金融贷款" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">

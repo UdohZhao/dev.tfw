@@ -1,68 +1,66 @@
-// index.js
-var app = getApp(); // 实例化APP
+// mine.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-   
-    //内容
-    abort_content: []
-
+  
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
-    var that = this;
-    
-    that.fetchImgListDate();
-  },
-  fetchImgListDate: function (data) {
-    var self = this;
-    wx.request({
-     
-      url: app.data.domain + '/about/index',
-      data: {
-      },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        // var contentObj = [];
-        
-        var aa = res.data.data
-        console.log(aa)
-        for (var i in aa) {
-          self.data.abort_content.push({
-            content: aa[i].content
-          });
-        }
-        self.setData({
-          abort_content: self.data.abort_content
-        })
-      }
-    })
-
+  
   },
 
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
   onReady: function () {
-    // 页面渲染完成
+  
   },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
   onShow: function () {
+  
   },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
   onHide: function () {
-    // 页面隐藏
+  
   },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
   onUnload: function () {
-    // 页面关闭
-  },
-  //搜索
-  showInput: function () {
   
   },
-  hideInput: function () {
-    
-  },
-  clearInput: function () {
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
   
   },
-  inputTyping: function (e) {
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
   
   }
 })
