@@ -1,12 +1,15 @@
 // encyclopediadetails.js
 var app = getApp(); // 实例化APP
+//在使用的View中引入WxParse模块
+var WxParse = require('../../dist/wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    encyclopediadetails : []
+    title:'',
+    content:''
   },
 
   /**
@@ -15,34 +18,26 @@ Page({
   onLoad: function (options) {
     console.log(options.id)
     var id = options.id
-    var self = this;
     var that = this;
     // 友好的用户体验开始
     wx.showLoading({
       title: '加载中',
     })
     wx.request({
-      method: "POST",
       url: app.data.domain + '/houseEncyclopediaCategory/sel1?id=' +id, //仅为示例，并非真实的接口地址
       data: {
       },
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"  
+        'content-type': 'application/json'
       },
       success: function (res) {
         console.log(res.data)
-        var aa = res.data.data
-        for (var i in aa) {
-          self.data.encyclopediadetails.push({
-            cname: aa[i].cname,
-            title: aa[i].title,
-            content: aa[i].content,
-          });
-        }
-        self.setData({
-          encyclopediadetails: self.data.encyclopediadetails
+        that.setData({
+          data: res.data.data
         })
-        
+        var analysis = that.data.data;
+        console.log(analysis);
+        WxParse.wxParse('analysis', 'html', that.data.data.analysis, that, 0);
       }
     })
     // 友好的用户体验结束

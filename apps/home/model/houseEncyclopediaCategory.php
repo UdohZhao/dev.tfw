@@ -16,7 +16,7 @@ class houseEncyclopediaCategory extends model{
 	}
 	
 	public function sel1($id){
-		$sql = " SELECT a.cname,b.title,b.content,b.hecid FROM $this->table as a left join $this->table1 as b on a.id= b.hecid where  b.id=$id";
+		$sql = " SELECT title,content FROM  $this->table1  where id=$id";
 		return $this->query($sql)->fetchAll(2);
 	}
 	
