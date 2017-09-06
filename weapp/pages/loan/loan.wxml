@@ -25,7 +25,7 @@
               <view class="weui-label">名字</view>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入名字" value="" name="cname" bindinput="getCname" />
+              <input class="weui-input" placeholder="请输入名字"  maxlength="10" value="" name="cname" bindinput="getCname" />
           </view>
       </view>
       <view class="weui-cell weui-cell_input">
@@ -33,7 +33,7 @@
               <view class="weui-label">电话</view>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入电话" value="" name="phone"/>
+              <input class="weui-input" placeholder="请输入电话" maxlength="11" value="" name="phone"  bindinput="getPhone"/>
           </view>
       </view>
       <view class="phone_one" bindtap="clickPerson" >
@@ -42,9 +42,9 @@
   </view>
   <view class="person_box">
     <view class="phone_select" hidden="{{selectPerson}}">
-    <view class="select_one" bindtap="mySelect" data-me="0" value="0">抵押贷款</view>
-    <view class="select_one" bindtap="mySelect" data-me="1" value="1">信用贷款</view>
-    <view class="select_one" bindtap="mySelect" data-me="2" value="2">组合贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="抵押贷款" value="" name="types">抵押贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="信用贷款" value="" name="types">信用贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="组合贷款" value="" name="types">组合贷款</view>
   </view>
   </view>
       <view>

@@ -1,4 +1,6 @@
 /* loan.wxss */
+/* 在使用的Wxss中引入WxParse.css,可以在app.wxss */
+@import "../../dist/wxParse/wxParse.wxss";
 page{
   background-color: #fff;
 }

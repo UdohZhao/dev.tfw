@@ -1,5 +1,6 @@
 <!--encyclopediadetails.wxml-->
-
+<!-- 这里data中article为bindName -->
+<import src="../../dist/wxParse/wxParse.wxml"/>
 <view class="top_bcg">
   <image class="bcg_img" src="../../images/房子.png"></image>
   <view class="tefangwang">
@@ -10,15 +11,18 @@
   <view class="abort_content">
       <view class="each_class">
       
-      <block wx:for="{{encyclopediadetails}}" wx:key="*this">
-  <view class="title" id="{{detailId}}">
-    {{item.cname}}
-  </view>
+   
+ 
     <view class="list">
-      <view class="title_list">{{item.title}}</view>
-      <view class="content_list">{{item.content}}</view>
+      <view class="title_list">{{data.title}}</view>
+      <view class="content_list">
+      <view class="analysis-box">
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
     </view>
-</block>
+
+      </view>
+    </view>
+
       
       
       </view>

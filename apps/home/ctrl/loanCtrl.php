@@ -8,8 +8,7 @@ class loanCtrl extends baseCtrl{
 	public $id;
   public $status;
 	public function _auto(){
-        
-        
+    
 	  $this->db = new loan();
 	  $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
       $this->status = isset($_GET['status']) ? intval($_GET['status']) : 0;
