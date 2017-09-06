@@ -26,18 +26,18 @@ class viewNewHouseCtrl extends baseCtrl{
 
         //获取数据条数
         $search=isset($_GET['search'])?$_GET['search']:'';
-        if(trim($search)){
-            $num  = $this->db->sel_num($_GET['search']);
-        }else{
-            $num = $this->db->sel_num();
-        }
+      $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
+      $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
+      $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
 
+
+        $num = $this->db->sel_num();
         // 数据分页
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
 
         //结果集
-        $res = $this->db->sel($search,bcsub($p->page,1,0),$p->pagesize);
+        $res = $this->db->sel($search,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);
         $this->display('viewNewHouse','index.html');
@@ -92,10 +92,42 @@ class viewNewHouseCtrl extends baseCtrl{
             $data['v'] = unserialize($data['v']);
             // 读取新房条目名称
             $title = $this->nhcdb->getTitle($data['nhcid']);
+            $t =  date("Y-m-d H:i",$title['ctime']);
+                $and = $title['prtype'];
+               
+                  if($and == 0){
+                    $prtype = "回迁房";
+                  }elseif($and == 1){
+                    $prtype = "军产房";
+                  }elseif($and == 2){
+                    $prtype = "法拍房";
+                  }elseif($and == 3){
+                    $prtype = "福利房";
+                  }elseif($and == 4){
+                    $prtype = "小产权房";
+                  }else{
+                    $prtype = "其他";
+                  }
+                  //读取新房条目表信息
+                  $qwe = $title['house_type'];
+                  if($qwe == 0){
+                    $house_type = "期房";
+                  }elseif($qwe == 1){
+                    $house_type = "代售";
+                  }elseif($qwe == 2){
+                    $house_type = "现房";
+                  }elseif($qwe == 3){
+                    $house_type = "尾盘";
+                  }else{
+                    $house_type = "其他";
+                  }
             // 读取相关置业顾问信息
             $pcInfo = $this->pcdb->getInfo($data['pcid']);
             // assign
             $this->assign('data',$data);
+            $this->assign('ctime',$t);
+            $this->assign('prtype',$prtype);
+            $this->assign('house_type',$house_type);
             $this->assign('title',$title);
             $this->assign('pcInfo',$pcInfo);
             // display

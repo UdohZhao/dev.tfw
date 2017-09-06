@@ -65,10 +65,15 @@ class tenmentInfoCtrl extends baseCtrl{
     public function index(){
        
         if(IS_GET === true){
-            $pcInfo = $this->pcdb->selpc();
-         $data = $this->thdb->sel_info($this->tcid);
+            
+
+             $data = $this->thdb->sel_info($this->tcid);
+            $t = date("Y-m-d H:i",$data['ctime']);
+            // date ("Y-m-d H:i:s")
             // assign
+            $pcInfo = $this->pcdb->getInfo($data['pcid']);
             $this->assign('data',$data);
+            $this->assign('ctime',$t);
             $this->assign('pcInfo',$pcInfo);
            //display
             $this->display('tenmentInfo','index.html');

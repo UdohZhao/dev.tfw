@@ -22,22 +22,18 @@ class viewTenmentCtrl extends baseCtrl{
         $this->nhcdb = new newHouseCatalog();
     }
     public function index(){
-
         //获取数据条数
-        $search=isset($_GET['search'])?$_GET['search']:'';
-
-        if(trim($search)){
-            $num  = $this->db->sel_num($_GET['search']);
-        }else{
+        $search=isset($_GET['search'])?$_GET['search']:'';       
+        $show_rent = isset($_POST['show_rent']) ? htmlspecialchars($_POST['show_rent']) : '';
+        $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
+        $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';       
             $num = $this->db->sel_num();
-        }
-
         // 数据分页
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
 
         //结果集
-        $res = $this->db->sel($search,bcsub($p->page,1,0),$p->pagesize);
+        $res = $this->db->sel($search,bcsub($p->page,1,0),$p->pagesize,$show_rent,$area,$cid);
         
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);

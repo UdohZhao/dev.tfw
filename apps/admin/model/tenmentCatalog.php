@@ -2,7 +2,8 @@
 namespace apps\admin\model;
 use core\lib\model;
 class tenmentCatalog extends model{
-    public $table='tenement_catalog';
+    public $table='tenement_catalog';# 租房条目表
+    public $tables = 'tenement_info';# 租房详细信息表
     // getInfo
     public function getInfo($id){
         return $this->get($this->table,'*',['id'=>$id]);
@@ -24,7 +25,11 @@ class tenmentCatalog extends model{
         $res = $this->insert($this->table,$data);
         return $this->id();
     }
-
+    //qwe
+    public function qwe($area){
+        $sql = " SELECT tcid FROM $this->tables WHERE area=$area ";
+        return $this->query($sql)->fetchAll(2);
+    }
     // del
     public function del($id){
         $res = $this->delete($this->table,['id'=>$id]);
@@ -32,7 +37,7 @@ class tenmentCatalog extends model{
     }
     //查询租房列表
 
-    public function sel($type,$auid,$status,$currPage,$subPages,$show_rent,$area,$htype,$cid){
+    public function sel($type,$auid,$status,$currPage,$subPages,$show_rent,$area,$cid){
         if($type==0){
             $where='';
         }else{
@@ -41,18 +46,9 @@ class tenmentCatalog extends model{
         if($show_rent){
         $title = " uh.show_rent like '%$show_rent%' ";
         }elseif($area){
-        $title = " uh.area = $area ";
+        $title = " q.area=$area";
         }elseif($cid){
         $title = " C.cname = '$cid' ";
-        }elseif($htype){
-           if($htype == '整租'){
-            $qwe = 0;
-            }elseif($htype == '合租'){
-            $qwe = 1;
-            }else{
-            $qwe = '';
-            }
-        $title = " uh.htype = $qwe ";
         }else{
         $title = " uh.status = $status";
         }
@@ -64,15 +60,20 @@ class tenmentCatalog extends model{
         LEFT JOIN
                 `city` AS C
         ON
-                uh.cid = C.id               
+                uh.cid = C.id         
+        LEFT JOIN        
+                `tenement_info` AS q
+        ON           
+                 uh.id=q.tcid      
+       
         WHERE
                 1 = 1
         AND 
                 uh.status = $status
                 
                 $where
-        AND
-                $title
+       and   $title
+               
         ORDER BY
                 uh.ctime DESC
         LIMIT

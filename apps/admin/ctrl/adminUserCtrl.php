@@ -111,9 +111,9 @@ class adminUserCtrl extends baseCtrl{
     // Ajax
     if (IS_AJAX === true) {
       // status
-      $type = intval($_POST['type']);
+      $status = intval($_POST['status']);
       // update
-      $res = $this->db->upStatus($this->id,$type);
+      $res = $this->db->Status($this->id,$status);
       if ($res) {
         echo json_encode(true);
         die;

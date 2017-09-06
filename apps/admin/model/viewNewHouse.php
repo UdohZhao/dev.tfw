@@ -8,7 +8,17 @@ class viewNewHouse extends model{
         return $this->count($this->table,['AND'=>['status'=>1,'title[~]'=>$search]]);
     }
     //查询记录
-    public function sel($search='',$currPage,$subPages){
+    public function sel($search='',$currPage,$subPages,$show_price,$area,$cid){
+          if($show_price){
+          $title =  " uh.show_price like '%$show_price%' ";
+          }elseif($area){
+            $title = " uh.area = $area ";
+          }elseif($cid){
+
+            $title = "C.cname = '$cid' ";
+          }else{
+            $title = " uh.status = 1 ";
+          }
         $sql = "
         SELECT
                 uh.*,C.cname AS cityname
@@ -20,10 +30,11 @@ class viewNewHouse extends model{
                 uh.cid = C.id               
         WHERE
                 1 = 1
-        AND
-                uh.title like '%$search%'
+       
         AND     
-                uh.status = 1       
+                uh.status = 1   
+         AND
+               $title    
         ORDER BY
                 uh.ctime DESC
         LIMIT

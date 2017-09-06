@@ -60,8 +60,12 @@
                         </td>
                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
                         <td>
+                        {% if v.status == 0 %}
                              <button type="button" class="btn btn-primary btn-xs" onclick="update_info({{ v.id }});">修改</button>
-                            <button type="button" class="btn btn-default btn-xs" onclick="del_info({{ v.id }});">删除</button>
+                            <!-- <button type="button" class="btn btn-default btn-xs" onclick="del_info({{ v.id }});">删除</button> -->
+                            <button type="button" class="btn btn-primary btn-xs" onclick="status({{ v.id }});">已读</button>
+                            {% endif %}
+
                         </td>
                     </tr>
                     {% endfor %}

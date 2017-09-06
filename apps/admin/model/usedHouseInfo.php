@@ -14,7 +14,7 @@ class usedHouseInfo extends model{
     }
 
     public function sel_info($uhcid){
-        return $res = $this->get($this->table,'*',['uhcid'=>$uhcid]);
+        return  $this->get($this->table,'*',['uhcid'=>$uhcid]);
     }
 
     //修改详细信息

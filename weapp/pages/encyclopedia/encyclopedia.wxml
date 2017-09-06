@@ -8,9 +8,13 @@
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                 <view class="weui-media-box__desc">{{item.cname}}</view>
+                
+                     <view class="weui-media-box__desc">{{item.title}}</view>
+                
             </view>
         </view>
       </block>
+       
       <loading hidden="{{hidden}}">
           加载中...
       </loading>

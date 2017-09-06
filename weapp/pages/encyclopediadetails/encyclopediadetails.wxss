@@ -1,20 +1,42 @@
-/* encyclopediadetails.wxss */
+/* loan.wxss */
 page{
   background-color: #fff;
+}
+.top_bcg{
+  position: relative;
+  height: 260rpx;
+}
+.top_bcg .bcg_img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tefangwang{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+}
+.tefangwang image{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300rpx;
+  height: 80rpx;
+  margin-top: -40rpx;
+  margin-left: -150rpx;
+}
+.abortus{
   padding: 10px 15px;
-  box-sizing: border-box;
 }
-.title{
-  line-height: 40px;
-}
-.title_list{
+.abortus .title{
+  text-align: center;
+  line-height: 30px;
   font-size: 14px;
-  font-weight: bold;
-  line-height: 24px;
 }
-.content_list{
-  font-size: 12px;
-  margin-bottom: 5px;
-  text-indent: 2em;
-  text-align: justify;
-}
+
+

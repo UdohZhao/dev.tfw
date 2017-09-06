@@ -17,6 +17,10 @@ Page({
     var id = options.id
     var self = this;
     var that = this;
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       method: "POST",
       url: app.data.domain + '/houseEncyclopediaCategory/sel1?id=' +id, //仅为示例，并非真实的接口地址
@@ -26,7 +30,7 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"  
       },
       success: function (res) {
-        
+        console.log(res.data)
         var aa = res.data.data
         for (var i in aa) {
           self.data.encyclopediadetails.push({
@@ -41,6 +45,10 @@ Page({
         
       }
     })
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
   },
 
   /**

@@ -20,16 +20,16 @@
         <li class="list-group-item"><h4>详细信息</h4></li>
         <li class="list-group-item">=
         <table style="font-size: 20px;">
-          <br><tr>小　　区------:</tr><tr>{{ data.community }}</tr></br>
-          <br><tr>单　　价------:</tr><tr>{{ data.unit_price }}</tr></br>
-          <br><tr>楼　　层------:</tr><tr>{{ data.tage }}</tr></br>
-          <br><tr>朝　　向------:</tr><tr>{{ data.orientation }}</tr></br>
-          <br><tr>类　　型------:</tr><tr>{{ data.type }}</tr></br>
-          <br><tr>装　　修------:</tr><tr>{{ data.upfitter }}</tr></br>
-          <br><tr>年　　代------:</tr><tr>{{ data.era }}</tr></br>
-          <br><tr>发布时间------:</tr><tr>{{ data.ctime }}</tr></br>
-          <br><tr>轨　　交------:</tr><tr>{{ data.rail_transit }}</tr></br>
-          <br><tr>核心卖点------:</tr><tr>{{ data.selling_points }}</tr></br>
+          <br><tr>小　　区:：</tr><tr>{{ data.community }}</tr></br>
+          <br><tr>单　　价:：</tr><tr>{{ data.unit_price }}</tr></br>
+          <br><tr>楼　　层:：</tr><tr>{{ data.tage }}</tr></br>
+          <br><tr>朝　　向:：</tr><tr>{{ data.orientation }}</tr></br>
+          <br><tr>类　　型:：</tr><tr>{{ data.type }}</tr></br>
+          <br><tr>装　　修:：</tr><tr>{{ data.upfitter }}</tr></br>
+          <br><tr>年　　代:：</tr><tr>{{ data.era }}</tr></br>
+          <br><tr>发布时间:：</tr><tr>{{ ctime }}</tr></br>
+          <br><tr>轨　　交:：</tr><tr>{{ data.rail_transit }}</tr></br>
+          <br><tr>核心卖点:：</tr><tr>{{ data.selling_points }}</tr></br>
         </table>
         </li>
         {% for k,v in data.k %}
@@ -41,7 +41,6 @@
           <div style="font-size: 20px;">{{ pcInfo.cname }}</div>
           <div style="font-size: 20px;">{{ pcInfo.phone }}</div>
           <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>
-          <div style="font-size: 20px;">{{ pcInfo.ctime}}</div>
         </li>
         </ul>
         {% endif %}

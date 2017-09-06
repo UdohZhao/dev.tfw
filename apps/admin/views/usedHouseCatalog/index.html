@@ -27,12 +27,6 @@
             <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
           </span>
         </div>
-        <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
-          <input type="text" class="form-control" name="htype" placeholder="请输入房屋类型">
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
-          </span>
-        </div>
          <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
           <input type="text" class="form-control" name="cid" placeholder="请输入城市">
           <span class="input-group-btn">
@@ -43,7 +37,7 @@
             <ul class="nav nav-pills" style="margin-left: 25px;">
                 <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/0">默认</a></li>
                 <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/1">待审核</a></li>
-                <li role="presentation" {% if status == 2%}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/2">未通过</a></li>
+                <li role="presentation" {% if status == 2 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/2">未通过</a></li>
                 <li role="presentation" {% if status == 3 %}class="active"{% endif %}><a href="/admin/usedHouseCatalog/index/status/3">已通过</a></li>
             </ul>
             <div class="panel-body">
@@ -87,14 +81,14 @@
                 {% elseif v.status == 1 %}
                
                 {% elseif v.status == 2 %}
-                <button type="button" class="btn btn-default btn-xs" >未通过</button>
+             
                 {% elseif v.status == 3 %}
-                <button type="button" class="btn btn-default btn-xs" >已通过</button>
+               
 
                 {% if v.type == 0 %}
-                  <button type="button" class="btn btn-success btn-xs" onclick="flag({{ v.id }},1);">展示</button>
+                  <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},1);">隐藏</button>
                 {% else %}
-                  <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},0);">隐藏</button>
+                  <button type="button" class="btn btn-success btn-xs" onclick="flag({{ v.id }},0);">展示</button>
                 {% endif %}
 
                 {% endif %}
@@ -121,7 +115,7 @@
                     </tbody>
                 </table>
                 <div style="float: right;">
-                    {% autoescape false %}
+                    {% autoescape true %}
                     {{ page }}
                     {% endautoescape %}
                 </div>

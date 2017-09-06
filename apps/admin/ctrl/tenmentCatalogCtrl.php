@@ -144,20 +144,18 @@ class tenmentCatalogCtrl extends baseCtrl{
         $status=isset($_GET['status'])?$_GET['status']:0;
 
       $show_rent = isset($_POST['show_rent']) ? htmlspecialchars($_POST['show_rent']) : '';
-
-      $htype = isset($_POST['htype']) ? htmlspecialchars($_POST['htype']) : '';
       $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
       $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
        
             $num = $this->db->sel_num($status);
-        
 
         // 数据分页
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
 
         //结果集
-        $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_rent,$area,$htype,$cid);
+        $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_rent,$area,$cid);
+
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);
         $this->assign('status',$status);

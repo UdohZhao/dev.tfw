@@ -90,6 +90,12 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">备注</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="remark" value="{{ data.remark }}" placeholder="请输入需要备注的信息">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">户型</label>
             <div class="col-sm-10">
             {% for k,v in htype %}

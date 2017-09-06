@@ -3,6 +3,7 @@ namespace apps\admin\model;
 use core\lib\model;
 class newHouseMain extends model{
   public $table = 'new_house_main';
+  public $tables = 'new_house_catalog';
   // checkUser
   public function checkUser($data){
     return $this->get($this->table,'*',['username'=>$data['username'],'password'=>$data['password']]);
@@ -22,7 +23,12 @@ class newHouseMain extends model{
     $res = $this->insert($this->table,$data);
     return $this->id();
   }
-
+  //获取status
+    public function status($nhcid){
+      $sql = " SELECT status FROM $this->tables where id = $nhcid ";
+       
+    return $this->query($sql)->fetchAll();     
+  }
   // sel
   public function sel($nhcid){
     // sql

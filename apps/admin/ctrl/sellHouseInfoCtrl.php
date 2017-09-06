@@ -34,18 +34,27 @@ die;
 }
   
      public function index(){
-   
-       
-         if(IS_GET === true){
+      //小区
+      $community = isset($_POST['community']) ? htmlspecialchars($_POST['community']) : '';
+      //售价
+      $selling_price = isset($_POST['selling_price']) ? htmlspecialchars($_POST['selling_price']) : '';
+      //面积
+      $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
         $status=isset($_GET['status'])?$_GET['status']:0;
-        $res = $this->db->sel($status);
+        $res = $this->db->sel($status,$community,$selling_price,$area);
+        foreach ($res as $k=>$v){
+            $res[$k]['house_img'] = unserialize($v['house_img']);
+
+            $res[$k]['house_img'] = $res[$k]['house_img'][0];
+        }
+        // var_dump($res[0]['house_img']);
+        // die;
              $this->assign('data',$res);
             $this->assign('status',$status);
             $this->display('sellHouseInfo','index.html');
              die;
          }
-     }
-     //已读
+          //已读
      public function statu(){
 
 

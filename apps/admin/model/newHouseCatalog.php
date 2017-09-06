@@ -21,7 +21,7 @@ class newHouseCatalog extends model{
   }
 
   // sel
-  public function sel($hcid,$type,$auid,$status,$currPage,$subPages,$show_price,$area,$htype,$cid){
+  public function sel($hcid,$type,$auid,$status,$currPage,$subPages,$show_price,$area,$cid){
     // sql
       if($type==0){
           $where=' ';
@@ -36,8 +36,6 @@ class newHouseCatalog extends model{
       }elseif($cid){
 
         $title = "C.cname = '$cid' ";
-      }elseif($htype){
-        $title = " NHC.htype like '%$htype%'";
       }else{
         $title = " NHC.status = '$status'";
       }
@@ -103,7 +101,7 @@ class newHouseCatalog extends model{
 
   // getTitle
   public function getTitle($id){
-    return $this->get($this->table,'title',['id'=>$id]);
+    return $this->get($this->table,'*',['id'=>$id]);
   }
 
   // save

@@ -32,7 +32,7 @@ class usedHouseCatalog extends model{
     }
     //查询二手房列表
 
-    public function sel($type,$auid,$status,$currPage,$subPages,$show_price,$area,$htype,$cid){
+    public function sel($type,$auid,$status,$currPage,$subPages,$show_price,$area,$cid){
         if($type==0){
             $where=' ';
         }else{
@@ -45,8 +45,7 @@ class usedHouseCatalog extends model{
         $title = " uh.area = $area ";
       }elseif($cid){
         $title = "  C.cname = '$cid' ";
-      }elseif($htype){
-        $title = " uh.htype like '%$htype%'";
+      
       }else{
         $title = "uh.status = $status";
       }
