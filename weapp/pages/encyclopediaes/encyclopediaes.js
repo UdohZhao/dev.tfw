@@ -1,4 +1,4 @@
-// encyclopediadetails.js
+// encyclopedia.js
 var app = getApp(); // 实例化APP
 Page({
 
@@ -6,49 +6,63 @@ Page({
    * 页面的初始数据
    */
   data: {
-    encyclopediadetails : []
+    domain: app.data.domain,
+    id:"",
+    hidden: true,
+    encycle_content : []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  link_address:function(e){  //点击跳转下一级目录
+    console.log(e)
+    var id = e.currentTarget.id;  
+    console.log(id)
+    var link = '../encyclopediadetails/encyclopediadetails?id=' + id;
+    wx.navigateTo({
+      url: link
+    })
+  },
   onLoad: function (options) {
-    console.log(options.id)
     var id = options.id
-    var self = this;
     var that = this;
+    var self = this;
     // 友好的用户体验开始
     wx.showLoading({
       title: '加载中',
     })
     wx.request({
-      method: "POST",
-      url: app.data.domain + '/houseEncyclopediaCategory/sel1?id=' +id, //仅为示例，并非真实的接口地址
-      data: {
-      },
+      method: "GET",
+      url: app.data.domain + '/houseEncyclopediaCategory/seles?id=' + id  ,
+      data: {},
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"  
+        'Content-Type': 'application/json'
       },
       success: function (res) {
+        // var contentObj = [];
         console.log(res.data)
         var aa = res.data.data
         for (var i in aa) {
-          self.data.encyclopediadetails.push({
-            cname: aa[i].cname,
+          self.data.encycle_content.push({
+            id:aa[i].id,
             title: aa[i].title,
-            content: aa[i].content,
+            ctime: aa[i].ctime,
           });
         }
         self.setData({
-          encyclopediadetails: self.data.encyclopediadetails
+          encycle_content: self.data.encycle_content
         })
-        
-      }
+        //   self.data.postsList = contentObj
+      
+      },
     })
+
+   
     // 友好的用户体验结束
     setTimeout(function () {
       wx.hideLoading()
     }, 2000)
+
+
+
   },
 
   /**
