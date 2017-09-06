@@ -1,15 +1,21 @@
 <!--index.wxml-->
 <view class="top_search">
-  <image class="top_bcg" src="../../images/顶部背景图.png"></image>
+  <image class="top_bcg" src="../../images/topBackground.png"></image>
   <view class="phone_one" bindtap="clickPerson">
-    <view class="phone_personal">{{firstPerson}}</view>
-      <image src="../../images/三角形下拉.png" class="personal_image {{selectArea ? 'rotateRight' :''}}"></image>
+    <view class="phone_personal">{{cityData[0].cname}}</view>
+      <image src="../../images/tcPulldown.png" class="personal_image {{selectArea ? 'rotateRight' :''}}"></image>
     </view>
     <view class="person_box">
     <view class="phone_select" hidden="{{selectPerson}}">
-      <view class="select_one" bindtap="mySelect" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="北京">北京</view>
-      <view class="select_one" type="default" bindtap="openToast" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="上海">上海</view>
-      <view class="select_one" type="default" bindtap="openToast" data-pid="{{item.pid}}" data-id="{{item.id}}" data-me="深圳">深圳</view>
+
+    <!-- 顶级城市遍历体 start  -->
+    <block wx:for="{{cityData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+      <view wx:if="{{k != 0}}">
+        <view class="select_one" type="default" bindtap="openToast" data-pid="{{v.pid}}" data-id="{{v.id}}" data-cname="{{v.cname}}">{{v.cname}}</view>
+      </view>
+    </block>
+    <!-- 顶级城市遍历体 end -->
+
     </view>
   </view>
   <view class="tefangwang">
@@ -39,28 +45,16 @@
 </view>
 <view class="page__bd my_grids">
   <view class="weui-grids">
-    <!-- <block wx:for="{{grids}}" wx:key="*this">
-      <view catchtap="redictDetail" data-id="{{item.id}}" class="weui-grid" hover-class="weui-grid_active">
-          <image class="weui-grid__icon" src="{{item.icon_path}}" />
-          <view class="weui-grid__label">{{item.cname}}</view>
-      </view>
-    </block> -->
-      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype={{linktype}}" data-linktype="0" class="weui-grid" hover-class="weui-grid_active">
-          <image class="weui-grid__icon" src="../../images/九宫格1.png" />
-          <view class="weui-grid__label">新房</view>
+    
+    <!-- 房屋类别遍历体 start -->
+    <block wx:for="{{hcData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+      <navigator url="/pages/newhouse/newhouse?id={{v.id}}" class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon" src="{{domain}}{{v.icon_path}}" />
+          <view class="weui-grid__label">{{v.cname}}</view>
       </navigator>
-      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype={{linktype}}" data-linktype="1"class="weui-grid" hover-class="weui-grid_active">
-          <image class="weui-grid__icon" src="../../images/九宫格2.png" />
-          <view class="weui-grid__label">二手房</view>
-      </navigator>
-      <navigator bindtap="gettype" url="../newhouse/newhouse?linktype={{linktype}}"  data-linktype="2" class="weui-grid" hover-class="weui-grid_active">
-          <image class="weui-grid__icon" src="../../images/九宫格3.png" />
-          <view class="weui-grid__label">租房</view>
-      </navigator>
-      <navigator bindtap="gettype" url="../salehouse/salehouse?linktype={{linktype}}" data-linktype="3" class="weui-grid" hover-class="weui-grid_active">
-          <image class="weui-grid__icon" src="../../images/九宫格4.png" />
-          <view class="weui-grid__label">卖房</view>
-      </navigator>
+    </block>
+    <!-- 房屋类别遍历体 end -->
+      
   </view>
 </view>
 <view class="page__bd my_encyclopedia">
@@ -100,27 +94,29 @@
       <view class="hd_title">最新房源</view>
     </view>
     <scroll-view class="list" style="height: 366px; width: 100%;" lower-threshold="5px" scroll-y="true" bindscrolltolower="lower">
-      <block wx:for="{{my_availability}}" wx:key="*this">
-        <view id="{{eachId}}" catchtap="eachHouse" data-id="{{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+       <block wx:for="{{nhcData}}" wx:key="i" wx:for-index="k" wx:for-item="v"> 
+        <view data-id="{{v.id}}" data-type="1" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="{{item.slideshow}}" />
+            <image class="weui-media-box__thumb" src="{{domain}}{{v.slideshow}}" style="width:100%;height:100%;" />
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">{{item.title}}</view>
+            <view class="weui-media-box__title">{{v.title}}</view>
             <view class="weui-media-box__desc">
-              {{item.community}}
-                <text class="money">{{item.show_price}}</text>
+              {{v.cid}} - {{v.community}}
+                <text class="money">{{v.show_price}}</text>
             </view>
             <view class="weui-media-box__desc">
-                {{item.address}}
+              建面：{{v.area}}㎡
             </view>
             <view class="weui-media-box__desc">
-                {{item.trait}}
+              <block wx:for="{{v.trait}}" wx:key="ii" wx:for-index="ii" wx:for-item="vv">
+              <view class="trait-item">{{vv}}</view>
+              </block>
             </view>
-            <view class="weui-media-box__desc">{{item.status}}</view>
+            <!-- <view class="weui-media-box__desc">666</view> -->
           </view>
         </view>
-      </block>
+       </block> 
     <view hidden="{{completedata}}" class="complete_data">
       到底啦！
     </view>

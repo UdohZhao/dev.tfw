@@ -10,7 +10,7 @@
     特房网
   </view>
   <view class="abort_content">
-    <block wx:for="{{abort_content}}" wx:key="*this">
+    <block wx:for="{{abort_content}}" wx:key="i">
       <view class="each_class">{{item.content}}</view>
     </block>
   </view>
@@ -19,13 +19,13 @@
   <button bindtap="application_loan">申请贷款</button>
 </view>
 <modal class="loan_modal" hidden="{{hidden}}" title="金融贷款" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
-    <view class="weui-cells weui-cells_after-title">
+     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">
               <view class="weui-label">名字</view>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入名字"/>
+              <input class="weui-input" placeholder="请输入名字" value="" name="cname" bindinput="getCname" />
           </view>
       </view>
       <view class="weui-cell weui-cell_input">
@@ -33,20 +33,22 @@
               <view class="weui-label">电话</view>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入电话" />
+              <input class="weui-input" placeholder="请输入电话" value="" name="phone"/>
           </view>
       </view>
-      <view class="phone_one" bindtap="clickPerson">
+      <view class="phone_one" bindtap="clickPerson" >
   <view class="phone_personal">{{firstPerson}}</view>
   <image src="../../images/下拉三角形(1).png" class="personal_image {{selectArea ? 'rotateRight' :''}}"></image>
   </view>
   <view class="person_box">
     <view class="phone_select" hidden="{{selectPerson}}">
-    <view class="select_one" bindtap="mySelect" data-me="抵押贷款">抵押贷款</view>
-    <view class="select_one" bindtap="mySelect" data-me="信用贷款">信用贷款</view>
-    <view class="select_one" bindtap="mySelect" data-me="组合贷款">组合贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="0" value="0">抵押贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="1" value="1">信用贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="2" value="2">组合贷款</view>
   </view>
+  </view>
+      <view>
+      </view>
   </view>
 
-  </view>
 </modal>

@@ -371,14 +371,14 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                 <span class=\"site-menu-title\">关于我们</span>
                 <span class=\"site-menu-arrow\"></span>
               </a>
-              <ul class=\"site-menu-sub\">
+           <!--    <ul class=\"site-menu-sub\">
                 <li class=\"site-menu-item\">
                   <a class=\"animsition-link\" href=\"/admin/about/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">关于我们列表</span>
                   </a>
                 </li>
-              </ul>
+              </ul>-->
               <ul class=\"site-menu-sub\">
                 <li class=\"site-menu-item\">
                   <a class=\"animsition-link\" href=\"/admin/about/add\" data-slug=\"layout-menu-collapsed\">
@@ -1005,14 +1005,14 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                 <span class=\"site-menu-title\">关于我们</span>
                 <span class=\"site-menu-arrow\"></span>
               </a>
-              <ul class=\"site-menu-sub\">
+           <!--    <ul class=\"site-menu-sub\">
                 <li class=\"site-menu-item\">
                   <a class=\"animsition-link\" href=\"/admin/about/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">关于我们列表</span>
                   </a>
                 </li>
-              </ul>
+              </ul>-->
               <ul class=\"site-menu-sub\">
                 <li class=\"site-menu-item\">
                   <a class=\"animsition-link\" href=\"/admin/about/add\" data-slug=\"layout-menu-collapsed\">

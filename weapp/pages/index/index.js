@@ -1,7 +1,8 @@
 // index.js
-var app = getApp(); // 实例化APP
+var App = getApp(); // 实例化APP
 Page({
   data: {
+    domain: App.data.domain,
     linktype : '',//房屋链接类型0,1,2,3
     totalpage:'',
     status:true,
@@ -48,29 +49,88 @@ Page({
       })
     }
   },
-  //点击切换
+  // 城市切换
   mySelect: function (e) {
-    this.setData({
+    var that = this;
+    that.setData({
       firstPerson: e.target.dataset.me,
       selectPerson: true,
       selectArea: false,
     })
   },
+  // 点击城市事件
   openToast: function () {
-    wx.showToast({
-      title: '此地暂未开启,敬请期待！',
-      icon: 'loading',
-      duration: 2000
-    });
-    this.setData({
+
+    var that = this;
+
+    wx.showModal({
+      title: '提示',
+      content: '该地区暂未开放 :(',
+      showCancel: false
+    })
+
+    that.setData({
       selectArea: false,
       selectPerson: true,
     })
+
   },
   onLoad: function (options) {
     var that = this;
-   
-    console.log(111);
+
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    // 请求首页数据
+    wx.request({
+      url: App.data.domain + '/index/index',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+
+        // if 
+        if (res.data.code == 200) {
+        
+          that.setData({
+            cityData: res.data.data.cityData,
+            hcData: res.data.data.hcData,
+            nhcData: res.data.data.nhcData
+          });
+
+          console.log(that.data.cityData);
+          console.log(that.data.hcData);
+          console.log(that.data.nhcData);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
 
   },
   fetchImgListDate: function (data) {
@@ -87,7 +147,7 @@ Page({
     }
     wx.request({
       method: "POST",
-      url: app.data.domain + '/index/demo',
+      url: App.data.domain + '/index/demo',
       data: {
         "fromPageId": 0,
         "pageSize": 5,
@@ -210,5 +270,22 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
+  },
+  /**
+   * 去往房屋详细
+   */
+  gotoHd: function (e) {
+
+    var that = this;
+
+    // 获取房屋id，类型
+    console.log(e.currentTarget.dataset.id);
+    console.log(e.currentTarget.dataset.type);
+
+    wx.navigateTo({
+      url: '/pages/housedetails/housedetails?id=' + e.currentTarget.dataset.id + '&type=' + e.currentTarget.dataset.type
+    })
+
   }
+
 })

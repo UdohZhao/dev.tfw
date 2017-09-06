@@ -201,3 +201,10 @@ function TA($obj) {
     return $obj;
 }
 
+/**
+ * 中文逗号（，）转英文逗号（,）;
+ */
+function commaEn($data){
+   return preg_replace("/(\n)|(\s)|(\t)|(\')|(')|(，)/" ,',' ,$data);
+}
+

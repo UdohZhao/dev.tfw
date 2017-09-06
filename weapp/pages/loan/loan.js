@@ -1,4 +1,5 @@
 // loan.js
+var app = getApp(); // 实例化APP
 Page({
 
   /**
@@ -20,6 +21,7 @@ Page({
         "content": "特房网将努力开拓，逐步打造成为浙江省乃至全国有影响力的房产信息专业服务品牌。"
       }
     ],
+
     //弹出框
     hidden: true,
     nocancel: false,
@@ -27,11 +29,37 @@ Page({
     selectPerson:true,
     firstPerson: '抵押贷款',
     selectArea: false,
+    notice_str: '',
+    index: 0  
+  },
+  confirm: function (e) {
 
+    var that = this;
+
+    // 获取用户输入的姓名和电话和类型
+    console.log(that.data.cname);
+
+    if (that.data.cname == false || that.data.cname == undefined) {
+      wx.showModal({
+        title: '提示',
+        content: '不能为空',
+        showCancel: false
+      })
+    }
+
+    return false;
+
+
+    this.setData({
+      modalHidden: true,
+      toast1Hidden: false,
+      notice_str: '提交成功'
+    });
   },
   application_loan : function(){
     this.setData({
       hidden: false,
+ 
     })
   },
   cancel :function (){
@@ -39,6 +67,7 @@ Page({
       hidden: true,
     })
   },
+ 
   //点击选择类型
   clickPerson: function () {
     var selectPerson = this.data.selectPerson;
@@ -62,6 +91,12 @@ Page({
       selectArea: false,
     })
   },
+  formReset: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -116,5 +151,43 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  formReset: function (e) {
+    var that = this;
+    var formData = e.detail.value;
+    wx.request({
+      url: app.data.domain + '/loan/add?msg=' + 2, //仅为示例，并非真实的接口地址
+      data: formData,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.modalTap();
+      }
+    })
+  },
+  formReset: function () {
+    console.log('form发生了reset事件');
+    this.modalTap2();
+  },
+
+  /**
+   * 获取金融贷款姓名
+   */
+  getCname: function (e) {
+
+    var that = this;
+
+    // 获取姓名
+    console.log(e);
+
+    that.setData({
+      cname: e.detail.value
+    });
+
+    console.log(that.data.cname);
+
   }
+
 })

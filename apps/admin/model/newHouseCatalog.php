@@ -3,6 +3,7 @@ namespace apps\admin\model;
 use core\lib\model;
 class newHouseCatalog extends model{
   public $table = 'new_house_catalog';
+  public $table1 = 'city';# 城市表
   // checkUser
   public function checkUser($data){
     return $this->get($this->table,'*',['username'=>$data['username'],'password'=>$data['password']]);
@@ -20,14 +21,28 @@ class newHouseCatalog extends model{
   }
 
   // sel
-  public function sel($hcid,$type,$auid,$status,$search='',$currPage,$subPages){
+  public function sel($hcid,$type,$auid,$status,$currPage,$subPages,$show_price,$area,$htype,$cid){
     // sql
       if($type==0){
           $where=' ';
       }else{
           $where=" AND NHC.auid = '$auid'";
       }
-    $sql = "
+
+      if($show_price){
+        $title =  " NHC.show_price like '%$show_price%' ";
+      }elseif($area){
+        $title = " NHC.area = $area ";
+      }elseif($cid){
+
+        $title = "C.cname = '$cid' ";
+      }elseif($htype){
+        $title = " NHC.htype like '%$htype%'";
+      }else{
+        $title = " NHC.status = '$status'";
+      }
+      
+      $sql = "
         SELECT
                 NHC.* , C.cname AS cityname
         FROM
@@ -40,12 +55,11 @@ class newHouseCatalog extends model{
                 1 = 1
         AND
                 NHC.hcid = '$hcid'
-        
-                $where
+                '$where'
         AND
                 NHC.status = '$status'
-        AND     NHC.title like '%$search%'  
-          
+        AND    
+               $title       
         ORDER BY
                 NHC.ctime DESC
         LIMIT
@@ -53,8 +67,13 @@ class newHouseCatalog extends model{
     ";
     return $this->query($sql)->fetchAll();
   }
-
-  // getInfo
+ // public function selling($search,$status){
+ //   // $sql = "SELECT a.community,a.cid,a.area,a.show_price FROM $this->table as a left join $this->table1 as b on a.cid = b.id WHERE a.status = '$status' or community like '%$search%'  or cid like '%$search%' or area like '%$search%' or show_price like '%$search%' " ;  
+       
+ //       $sql = "SELECT community,cid,area,show_price,status FROM $this->table WHERE status = $status and community like '%$search%'  or cid like '%$search%' or area like '%$search%' or show_price like '%$search%' " ;  
+ //        return $this->query($status)->fetchAll();
+ //            }
+  //getInfo
   public function getInfo($id){
     return $this->get($this->table,'*',['id'=>$id]);
   }

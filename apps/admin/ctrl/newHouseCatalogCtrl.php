@@ -37,7 +37,7 @@ class newHouseCatalogCtrl extends baseCtrl{
 
       // 获取新房主键id
       $hcid = $this->hcdb->getId('新房');
-   
+
       // 获取配置信息（户型，产权类型，房屋类型，物业类型）
       $htype = conf::get('HTYPE','admin');
       $prtype = conf::get('PRTYPE','admin');
@@ -128,11 +128,11 @@ class newHouseCatalogCtrl extends baseCtrl{
 public function update(){
      if(IS_GET === true){
       $qwe = $this->nhmdb->getInfo($this->id);
-      
+
       $this->assign('date',$qwe);
      }
-     
-     $this->display('newHouseCatalog','and.html');  
+
+     $this->display('newHouseCatalog','and.html');
 die;
 
 }
@@ -164,22 +164,18 @@ die;
 
   // 新房条目列表
   public function index(){
-    // search
-    // $search = isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '';
-    // // 总记录数
-    // $cou = $this->db->cou();
-    // // 数据分页
-    // $page = new Page($cou,conf::get('LIMIT','admin'));
 
+      // 获取状态
       $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
-      //获取数据条数
-      $search=isset($_GET['search'])?$_GET['search']:'';
-      if(trim($search)){
-          $num  = $this->db->cou($status,$_GET['search']);
-      }else{
-          $num = $this->db->cou($status);
-      }
+      // search 搜索条件
+      $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
+      $htype = isset($_POST['htype']) ? htmlspecialchars($_POST['htype']) : '';
+      $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
 
+      $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
+
+      //获取数据条数
+      $num = $this->db->cou($status);
       // 数据分页
       $page = isset($_GET['page']) ? $_GET['page'] : 1;
       $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
@@ -188,7 +184,8 @@ die;
     $hcid = $this->hcdb->getId('新房');
     // 结果集
     //$data = $this->db->sel($hcid,$this->userinfo['id'],$status);
-      $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,$search,bcsub($p->page,1,0),$p->pagesize);
+      $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$htype,$cid);
+      
     // assign
     $this->assign('data',$data);
     $this->assign('status',$status);
@@ -197,6 +194,23 @@ die;
     $this->display('newHouseCatalog','index.html');
     die;
   }
+
+  public function select(){
+
+      $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
+      //获取数据条数
+   
+      $search=isset($_POST['search'])?$_POST['search']:'';
+      if(trim($search)){
+          $num  = $this->db->cou($status,$_POST['search']);
+      }else{
+          $num = $this->db->cou($status);
+      }
+   
+    $data = $this->db->selling($search,$status);
+   var_dump($data);
+   die;
+    }
 
   // flag
   public function flag(){
@@ -245,5 +259,5 @@ die;
             echo json_encode(false);
         }
     }
-  
+
 }

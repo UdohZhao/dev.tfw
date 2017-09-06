@@ -1,16 +1,12 @@
 // housedetails.js
+var App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    //轮播
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
+    domain: App.data.domain,
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
@@ -128,24 +124,101 @@ Page({
     ]
   },
   //电话信息弹出
-  callPhone: function () {
-    wx.showModal({
-      content: '13111111111',
-      showCancel: false,
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        }
-      }
-    });
+  callPhone: function (e) {
+
+    // 获取电话
+    console.log(e.currentTarget.dataset.phone);
+
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.phone
+    })
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      eachId: options.eachId,
+
+    var that = this;
+
+    // 获取房屋id，类型
+    console.log(options);
+
+    that.setData({
+      hid: options.id,
+      htype: options.type
+    });
+
+    console.log(that.data.hid);
+    console.log(that.data.htype);
+
+    // htype 1>新房详细 ，2>二手房详细，3>住房详细
+    var url;
+    if (that.data.htype == 1) {
+      url = App.data.domain + "/housedetails/getNhdetail";
+    }
+    if (that.data.htype == 2) {
+      url = App.data.domain + "/housedetails/getUhdetail";
+    }
+    if (that.data.htype == 3) {
+      url = App.data.domain + "/housedetails/getThdetail";
+    }
+
+    console.log(url);
+
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '加载中',
     })
+
+    // 请求首页数据
+    wx.request({
+      url: url,
+      data: {
+        id: that.data.hid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+
+        // if 
+        if (res.data.code == 200) {
+
+          that.setData({
+            data: res.data.data
+          });
+
+          console.log(that.data.data);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
+
   },
 
   /**

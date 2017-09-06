@@ -1,59 +1,42 @@
 // encyclopedia.js
+var app = getApp(); // 实例化APP
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    detailId:"",
-    page: 1,
+    domain: app.data.domain,
+    id:"",
     hidden: true,
     encycle_content : []
   },
-  link_address:function(e){
+
+  link_address:function(e){  //点击跳转下一级目录
     console.log(e)
     var id = e.currentTarget.id;
     console.log(id)
-    var link = '../encyclopediadetails/encyclopediadetails?detailId=' + id;
+    if(id ==1 || id ==2 ){
+    var link = '../encyclopedia/encyclopedia?id=' + id;
     wx.navigateTo({
       url: link
     })
+    }
+    if(id !=1 && id !=2 ){
+      var link = '../encyclopediadetails/encyclopediadetails?id=' + id;
+      wx.navigateTo({
+        url: link
+      })
+    }
   },
   onLoad: function (options) {
+    var id = options.id
     var that = this;
-    that.setData({
-      detailId: options.detailId
-    })
-    that.fetchImgListDate();
-  },
-  lower: function (e) {
     var self = this;
-    self.setData({
-      page: self.data.page + 1
-    });
-    self.fetchImgListDate({ page: self.data.page });
-  },
-  fetchImgListDate: function (data) {
-    var self = this;
-    self.setData({
-      hidden: false
-    });
-    if (!data) data = {};
-    if (!data.page) data.page = 1;
-    if (data.page === 1) {
-      self.setData({
-        encycle_content: []
-      });
-    }
     wx.request({
       method: "GET",
-      url: "https://api.jiajuol.com/partner/weixin/subject/subject_list.php",
-      data: {
-        "fromPageId": 0,
-        "pageSize": 5,
-        "viewUserId": '',
-        "page": self.data.page
-      },
+      url: app.data.domain + '/houseEncyclopediaCategory/sel?id=' + id  ,
+      data: {},
       header: {
         'Content-Type': 'application/json'
       },
@@ -64,24 +47,16 @@ Page({
         for (var i in aa) {
           self.data.encycle_content.push({
             id: aa[i].id,
-            subject: aa[i].subject,
-            cover_img: aa[i].cover_img,
-            house_price: aa[i].house_price,
-            type_name: aa[i].type_name,
-            style_name: aa[i].style_name,
-            area_name: aa[i].area_name,
-            description: aa[i].description
+            pid: aa[i].pid,
+            icon_path: aa[i].icon_path,
+            cname: aa[i].cname,
           });
         }
         self.setData({
           encycle_content: self.data.encycle_content
         })
         //   self.data.postsList = contentObj
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          });
-        }, 300);
+      
       },
     })
 

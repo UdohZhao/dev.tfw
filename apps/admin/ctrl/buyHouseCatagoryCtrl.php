@@ -37,7 +37,7 @@ class buyHouseCatagoryCtrl extends baseCtrl{
                 $data['pcname']=$this->db->getInfo($this->pid)['cname'];
                 $data['pid']=$this->pid;
                 $this->assign('data',$data);
-                  var_dump($data);
+                  
             }
             // display
             $this->display('buyHouseCatagory','add.html');

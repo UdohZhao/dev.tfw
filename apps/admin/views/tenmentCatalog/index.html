@@ -14,13 +14,31 @@
                 <h3 class="panel-title">@ 租房条目列表</h3>
             </div>
 
-            <form action="/admin/tenmentCatalog/index" method="get">
-                <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
-                    <input type="text" class="form-control" name="search" placeholder="请输入关键字">
-                    <span class="input-group-btn">
+            <form action="/admin/tenmentCatalog/index/status/{{ status }}" method="POST">
+                   <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
+          <input type="text" class="form-control" name="area" placeholder="请输入面积">
+          <span class="input-group-btn">
             <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
           </span>
-                </div>
+        </div>
+        <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
+          <input type="text" class="form-control" name="show_rent" placeholder="请输入价格">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+        <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
+          <input type="text" class="form-control" name="htype" placeholder="请输入房屋类型(整租，合租)">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+         <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
+          <input type="text" class="form-control" name="cid" placeholder="请输入城市">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
             </form>
             <ul class="nav nav-pills" style="margin-left: 25px;">
                 <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/tenmentCatalog/index/status/0">默认</a></li>

@@ -30,7 +30,7 @@ Page({
   onReady: function () {
     //初始化数据
     var self = this;
-    self.getFilter();
+    // self.getFilter();
     // wx.getNetworkType({
     //     success: function(res) {
     //         var networkType = res.networkType // 返回网络类型2g，3g，4g，wifi
@@ -224,8 +224,16 @@ Page({
   },
   //navbar
   onLoad: function (options) {
-    this.setData({
-      linktype: options.linktype
-    })
+
+    var that = this;
+
+    // 获取房屋类别主键id
+    console.log(options);
+
+
+    // this.setData({
+    //   linktype: options.linktype
+    // })
+
   },
 });

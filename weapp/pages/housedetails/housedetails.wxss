@@ -21,7 +21,7 @@ page{
   display: inline-block;
   margin-right: 5px;
   padding: 3px 5px;
-  border: 1px solid #aaa;
+  border: 1px solid #B5495B;
   border-radius: 4px;
   margin-bottom: 3px;
 }
