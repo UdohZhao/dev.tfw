@@ -48,7 +48,7 @@
     
     <!-- 房屋类别遍历体 start -->
     <block wx:for="{{hcData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
-      <navigator url="/pages/newhouse/newhouse?id={{v.id}}" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/newhouse/newhouse?hcid={{v.id}}&hctype=1" class="weui-grid" hover-class="weui-grid_active">
           <image class="weui-grid__icon" src="{{domain}}{{v.icon_path}}" />
           <view class="weui-grid__label">{{v.cname}}</view>
       </navigator>
@@ -109,7 +109,7 @@
               建面：{{v.area}}㎡
             </view>
             <view class="weui-media-box__desc">
-              <block wx:for="{{v.trait}}" wx:key="ii" wx:for-index="ii" wx:for-item="vv">
+              <block wx:for="{{v.trait}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv">
               <view class="trait-item">{{vv}}</view>
               </block>
             </view>

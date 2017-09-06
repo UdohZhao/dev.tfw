@@ -51,23 +51,30 @@
     <view class="page__bd my_availability" id="{{viewId}}">
       <view class="weui-panel weui-panel_access">
         <view class="weui-panel__bd">
-          <block wx:for="{{data}}" wx:key="" wx:key="id">
-            <navigator url="../housedetails/housedetails?viewId={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+
+        <!-- 房数据遍历体 start -->
+          <block wx:for="{{hdata}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+            <view data-id="{{v.id}}" data-type="1" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
               <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                <image class="weui-media-box__thumb" src="{{item.slideshow}}" />
+                <image class="weui-media-box__thumb" src="{{domain}}{{v.slideshow}}" />
               </view>
               <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                <view class="weui-media-box__title">{{item.title}}</view>
-                <view class="weui-media-box__desc">{{item.community}}<text class="money">{{item.show_price}}</text></view>
+                <view class="weui-media-box__title">{{v.title}}</view>
+                <view class="weui-media-box__desc">{{v.cid}} - {{v.community}}<text class="money">{{v.show_price}}</text></view>
                 <view class="weui-media-box__desc">
-                    {{item.address}}
+                  建面：{{v.area}}㎡
                 </view>
-                <view wx:for="{{item.trait}}" class="weui-media-box__desc introduction">
-                    {{item}}
+                <view class="weui-media-box__desc">
+              <block wx:for="{{v.trait}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv">
+              <view class="trait-item">{{vv}}</view>
+              </block>
                 </view>
               </view>
-            </navigator>
+            </view>
           </block>
+        <!-- 房数据遍历体 end -->
+
+
         </view>
       </view>
     </view>
