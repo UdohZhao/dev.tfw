@@ -1,4 +1,6 @@
 <!--hxdetails.wxml-->
+<!-- 引入模板 -->
+<import src="../../dist/wxParse/wxParse.wxml"/>
 <swiper class="house_swiper" circular="true" indicator-active-color="#00ce3c" indicator-color="" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <!-- <block wx:for-items="{{imgUrls}}" wx:key="*this"> -->
     <swiper-item>
@@ -8,29 +10,39 @@
 </swiper>
 <view class="house_name">
   <view class="house_content">
-    <!-- <block wx:for="{{my_availability}}" wx:key="*this"> -->
-      <view class="">{{item.style}}</view>
+      <view>{{data.cname}}<text class="sell_type">{{data.sell_type}}</text></view>
       <view class="weui-media-box__desc">
-        <view class="introduction" wx:for="{{item.introduce}}" wx:for-item="introduce" wx:key="introduce">
-          {{introduce.name}}
+        <view class="introduction" wx:for="{{data.trait}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+          {{v}}
         </view>
       </view>
-    <!-- </block> -->
-    <block wx:for="{{house_content}}" wx:key="*this">
+      <view class="mu-price">{{data.house_type_name}} - {{data.price}}</view>
+    <!-- <block wx:for="{{house_content}}" wx:key="*this"> -->
       <view class="weui-media-box__desc content_details">
-        {{item.name}}：
-        <text class="right_content">{{item.content}}</text>
+        建筑面积：<text class="right_content">{{data.covered_area}}</text>
+        <text style="margin-left:30rpx;"></text>
+        朝向：<text class="right_content">{{data.orientation}}</text>
       </view>
-    </block>
+      <view class="weui-media-box__desc content_details">
+        首付占比：<text class="right_content">{{data.down_payment}}</text>
+        <text style="margin-left:30rpx;"></text>
+        月供：<text class="right_content">{{data.mip}}</text>
+      </view>
+    <!-- </block> -->
   </view>
 </view>
 <view class="weui-cells weui-cells_after-title">
-  <block wx:for="{{belong_huse}}" wx:key="*this">
-    <navigator url="../housedetails/housedetails" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__bd belong">所属楼盘：
-          <text>{{item.address}}    {{item.name}}</text>
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd belong">户型解析
+          <!-- <text>{{item.address}}    {{item.name}}</text> -->
         </view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-  </block>
+         <view class="weui-cell__ft weui-cell__ft_in-access"></view> 
+    </view>
+
+    <view class="analysis-box">
+      <!-- 这里data中article为bindName -->
+      <template is="wxParse" data="{{wxParseData:analysis.nodes}}"/>
+    </view>
+
+
 </view>
