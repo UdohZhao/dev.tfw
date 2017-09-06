@@ -13,9 +13,16 @@ use apps\home\model\houseEncyclopediaCategory;
  
 
   	$data = $this->db->sel($this->id);
-  	
+
+
   	echo J(R(200,'成功',$data));
   }
+public function seles(){
+  $data = $this->db->seles($this->id);
+
+  echo J(R(200,'成功',$data));
+}
+ 
  public function sel1(){
  	$data = $this->db->sel1($this->id);
  	echo J(R(200,'成功',$data));

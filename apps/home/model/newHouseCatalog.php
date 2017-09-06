@@ -19,6 +19,8 @@ class newHouseCatalog extends model{
                 status = '3'
         AND
                 type = '0'
+        AND
+                hcid = '1'
         ORDER BY
                 ctime DESC
         LIMIT
@@ -32,6 +34,32 @@ class newHouseCatalog extends model{
    */
   public function getInfo($id){
     return $this->get($this->table,'*',['id'=>$id]);
+  }
+
+  /**
+   * 读取相关数据
+   */
+  public function getCorrelation($hcid){
+    // sql
+    $sql = "
+        SELECT
+                id, cid, slideshow, title, community, show_price, trait, area
+        FROM
+                `$this->table`
+        WHERE
+                1 = 1
+        AND
+                status = '3'
+        AND
+                type = '0'
+        AND
+                hcid = '$hcid'
+        ORDER BY
+                ctime DESC
+        LIMIT
+                0 , 15
+    ";
+    return $this->query($sql)->fetchAll();
   }
 
 }

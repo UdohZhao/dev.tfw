@@ -20,6 +20,17 @@ class hxdetailsCtrl extends baseCtrl{
       // 读取主力户型详细信息
       $data = $this->nhmdb->getInfo($this->id);
       if ($data) {
+        $data['trait'] = explode(',', commaEn($data['trait']));
+        // 销售类型？0>主推，1>在售，2>售完
+        if ($data['sell_type'] == 0) {
+          $data['sell_type'] = '主推';
+        }
+        if ($data['sell_type'] == 1) {
+          $data['sell_type'] = '在售';
+        }
+        if ($data['sell_type'] == 2) {
+          $data['sell_type'] = '售完';
+        }
         echo J(R(200,'受影响的操作 :)',$data));
         die;
       } else {

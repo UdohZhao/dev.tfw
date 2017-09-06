@@ -1,4 +1,9 @@
 /* hxdetails.wxss */
+/* 在使用的Wxss中引入WxParse.css,可以在app.wxss */
+@import "../../dist/wxParse/wxParse.wxss";
+page{
+  background: #fff;
+}
 .house_swiper image{
   width: 100%;
   height: 100%;
@@ -12,7 +17,7 @@
   display: inline-block;
   margin-right: 5px;
   padding: 3px 5px;
-  border: 1px solid #aaa;
+  border: 1px solid #B5495B;
   border-radius: 4px;
   margin-bottom: 3px;
 }
@@ -20,7 +25,6 @@
   line-height: 22px;
 }
 .belong{
-  color: #8a8a8a;
   font-size: 16px;
 }
 .belong text{
@@ -28,4 +32,15 @@
 }
 .weui-cells::after{
   border-bottom: none;
+}
+.analysis-box{
+  margin: 0 30rpx;
+}
+.mu-price{
+  font-size: 32rpx;  
+  color: #B5495B;
+}
+.sell_type{
+  float: right;
+  color: #B5495B;
 }

@@ -43,7 +43,7 @@
   display: inline-block;
   margin-right: 5px;
   padding: 3px 5px;
-  border: 1px solid #aaa;
+  border: 1px solid #B5495B;
   border-radius: 4px;
   font-size: 11px;
   margin-bottom: 3px;
@@ -155,4 +155,9 @@
   text-align: center;
   line-height: 30px;
   font-size: 14px;
+}
+.trait-item{
+  display: inline-block;
+  background: greenyellow;
+  margin-right: 10rpx;
 }

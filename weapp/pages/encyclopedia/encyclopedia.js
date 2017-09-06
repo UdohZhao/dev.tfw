@@ -14,16 +14,16 @@ Page({
 
   link_address:function(e){  //点击跳转下一级目录
     console.log(e)
-    var id = e.currentTarget.id;
+    var id = e.currentTarget.id;  
     console.log(id)
-    if(id ==1 || id ==2 ){
+    if (id == 1 || id == 5 ){
     var link = '../encyclopedia/encyclopedia?id=' + id;
     wx.navigateTo({
       url: link
     })
     }
-    if(id !=1 && id !=2 ){
-      var link = '../encyclopediadetails/encyclopediadetails?id=' + id;
+    if (id != 1 && id != 5  ){
+      var link = '../encyclopediaes/encyclopediaes?id=' + id;
       wx.navigateTo({
         url: link
       })
@@ -33,6 +33,10 @@ Page({
     var id = options.id
     var that = this;
     var self = this;
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       method: "GET",
       url: app.data.domain + '/houseEncyclopediaCategory/sel?id=' + id  ,
@@ -59,6 +63,14 @@ Page({
       
       },
     })
+
+   
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
+
+
 
   },
 

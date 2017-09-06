@@ -1,5 +1,16 @@
 <!--encyclopediadetails.wxml-->
-<block wx:for="{{encyclopediadetails}}" wx:key="*this">
+
+<view class="top_bcg">
+  <image class="bcg_img" src="../../images/房子.png"></image>
+  <view class="tefangwang">
+    <image src="../../images/特房网.png"></image>
+  </view>
+</view>
+<view class="abortus">
+  <view class="abort_content">
+      <view class="each_class">
+      
+      <block wx:for="{{encyclopediadetails}}" wx:key="*this">
   <view class="title" id="{{detailId}}">
     {{item.cname}}
   </view>
@@ -8,3 +19,9 @@
       <view class="content_list">{{item.content}}</view>
     </view>
 </block>
+      
+      
+      </view>
+  </view>
+</view>
+

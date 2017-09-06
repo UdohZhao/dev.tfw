@@ -1,7 +1,8 @@
 // newhouse.js
-var app=getApp();
+var App=getApp();
 Page({
   data: {
+    domain: App.data.domain,
     //首页九宫格type
     linktype:'',
     //搜索
@@ -52,7 +53,7 @@ Page({
     var self = this;
     wx.request({
       method: 'POST',
-      url: app.data.domain + '/newhouse/demo',
+      url: App.data.domain + '/newhouse/demo',
       data: {},
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -158,7 +159,7 @@ Page({
     });
     wx.request({
       method : 'POST',
-      url: app.data.domain + '/newhouse/newhouse',
+      url: App.data.domain + '/newhouse/newhouse',
       data: {
         page: self.data.page,
         condition: self.data.tabTxt,
@@ -225,15 +226,88 @@ Page({
   //navbar
   onLoad: function (options) {
 
-    var that = this;
-
-    // 获取房屋类别主键id
     console.log(options);
 
+    var that = this;
 
-    // this.setData({
-    //   linktype: options.linktype
-    // })
+    // 获取房屋类别主键id，房屋类别
+    console.log(options.hcid);
+    console.log(options.hctype);
 
+    that.setData({
+      hcid: options.hcid,
+      hctype: options.hctype
+    });
+
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    // 请求房屋类别数据
+    wx.request({
+      url: App.data.domain + '/newhouse/index',
+      data: {
+        hcid: that.data.hcid,
+        hctype: that.data.hctype
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+        // if 
+        if (res.data.code == 200) {
+
+          that.setData({
+            hdata: res.data.data
+          });
+
+          console.log(that.data.hdata);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
   },
+
+  /**
+   * 去往房屋详细
+   */
+  gotoHd: function (e) {
+
+    var that = this;
+
+    // 获取房屋id，类型
+    console.log(e.currentTarget.dataset.id);
+    console.log(e.currentTarget.dataset.type);
+
+    wx.navigateTo({
+      url: '/pages/housedetails/housedetails?id=' + e.currentTarget.dataset.id + '&type=' + e.currentTarget.dataset.type
+    })
+
+  }
+  
 });

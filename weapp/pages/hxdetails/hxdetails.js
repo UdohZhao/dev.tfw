@@ -1,5 +1,7 @@
 // hxdetails.js
 var App = getApp();
+//在使用的View中引入WxParse模块
+var WxParse = require('../../dist/wxParse/wxParse.js');
 Page({
 
   /**
@@ -106,6 +108,9 @@ Page({
           });
 
           console.log(that.data.data);
+
+          // html转wxml
+          WxParse.wxParse('analysis', 'html', that.data.data.analysis, that, 0);
 
         } else {
           // 提示
