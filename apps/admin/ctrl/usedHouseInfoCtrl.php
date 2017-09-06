@@ -72,6 +72,8 @@ class usedHouseInfoCtrl extends baseCtrl{
         if(IS_GET === true){
             
             $data = $this->uhdb->sel_info($this->uhcid);
+             $tab = $data['selling_points'];
+             $str = preg_replace("/<([a-z]+)[^>]*>/i","",$tab);
             $t = date( "Y-m-d H:i",$data['ctime']);
              // date("Y-m-d H:i:s",$caInfo['ctime']);
             // 读取相关置业顾问信息
@@ -80,6 +82,7 @@ class usedHouseInfoCtrl extends baseCtrl{
             //assign
             $this->assign('data',$data);
             $this->assign('ctime',$t);
+            $this->assign('selling_points',$str);
             $this->assign('pcInfo',$pcInfo);
            // display
             $this->display('usedHouseInfo','index.html');

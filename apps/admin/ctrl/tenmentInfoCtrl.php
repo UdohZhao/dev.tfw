@@ -68,12 +68,17 @@ class tenmentInfoCtrl extends baseCtrl{
             
 
              $data = $this->thdb->sel_info($this->tcid);
+             
+             $tab = $data['general_situation'];
+             $str = preg_replace("/<([a-z]+)[^>]*>/i","",$tab);
+           
             $t = date("Y-m-d H:i",$data['ctime']);
             // date ("Y-m-d H:i:s")
             // assign
             $pcInfo = $this->pcdb->getInfo($data['pcid']);
             $this->assign('data',$data);
             $this->assign('ctime',$t);
+            $this->assign('general_situation',$str);
             $this->assign('pcInfo',$pcInfo);
            //display
             $this->display('tenmentInfo','index.html');
@@ -81,4 +86,24 @@ class tenmentInfoCtrl extends baseCtrl{
         }
         
     }
+    // public function index(){
+    //     // 总记录数
+    //     $cou = $this->db->cou();
+    //     // 数据分页
+    //     $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    //     $p = new Page($cou,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
+    //     // 结果集
+    //     $data = $this->db->sel(bcsub($p->page,1,0),$p->pagesize);
+    //   foreach($data as $k=>$v){
+    //       //$str=preg_replace("/<(\html.*?)>/si","",$v['content']);
+    //     $data[$k]['content']=mb_substr(trim(preg_replace("/<(\p.*?)>/si","",$v['content'])), 0,20).'...';
+    //   }
+
+    // $this->assign('data',$data);
+    //     $this->assign('page',$p->showpage());
+    //     $this->display('about','index.html');
+
+        
+    // }
+
 }
