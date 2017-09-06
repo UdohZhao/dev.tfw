@@ -23,18 +23,19 @@ class viewUsedHouseCtrl extends baseCtrl{
 
         //获取数据条数
         $search=isset($_GET['search'])?$_GET['search']:'';
-        if(trim($search)){
-            $num  = $this->db->sel_num($_GET['search']);
-        }else{
+    
+           //获取数据条数
+        $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
+      $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
+      $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
             $num = $this->db->sel_num();
-        }
 
         // 数据分页
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
 
         //结果集
-        $res = $this->db->sel(0,$search,bcsub($p->page,1,0),$p->pagesize);
+        $res = $this->db->sel(0,$search,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);
         $this->display('viewUsedHouse','index.html');
@@ -76,10 +77,12 @@ class viewUsedHouseCtrl extends baseCtrl{
 
     //新房详细信息
     public function houseDetail(){
-        $pcData = $this->pcdb->selpc();
-        $this->assign('pcData',$pcData);
+
         $id= isset($_GET['uhcid']) ? $_GET['uhcid'] : 0;
         $data = $this->db->sel_info($id);
+        $pcInfo = $this->pcdb->getInfo($data['pcid']);
+        
+        $this->assign('pcInfo',$pcInfo);
         $this->assign('data',$data);
         $this->display('viewUsedHouse','houseDetail.html');
     }

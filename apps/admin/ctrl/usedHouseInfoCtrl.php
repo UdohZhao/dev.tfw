@@ -72,11 +72,14 @@ class usedHouseInfoCtrl extends baseCtrl{
         if(IS_GET === true){
             
             $data = $this->uhdb->sel_info($this->uhcid);
+            $t = date( "Y-m-d H:i",$data['ctime']);
+             // date("Y-m-d H:i:s",$caInfo['ctime']);
             // 读取相关置业顾问信息
             $pcInfo = $this->pcdb->getInfo($data['pcid']);
             
             //assign
             $this->assign('data',$data);
+            $this->assign('ctime',$t);
             $this->assign('pcInfo',$pcInfo);
            // display
             $this->display('usedHouseInfo','index.html');

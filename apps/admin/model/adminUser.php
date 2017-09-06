@@ -50,6 +50,11 @@ class adminUser extends model{
     $res = $this->update($this->table,['password'=>$password],['id'=>$id]);
     return $res->rowCount();
   }
+  // upStatus
+  public function Status($id,$status){
+    $res = $this->update($this->table,['status'=>$status],['id'=>$id]);
+    return $res->rowCount();
+  }
 
   // upStatus 新房
   public function upStatus($id,$type){

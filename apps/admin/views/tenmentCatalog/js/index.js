@@ -99,12 +99,26 @@ function del_info(id){
 }
 //提交审核
 function commit_status(id){
-          // Ajax
-          $.ajax({
-            type: "GET",
-            url: "/admin/tenmentCatalog/commit_status/id/"+id+'/status/1',
-            dataType: "JSON",
-            success: function(res){
+  swal({
+    title: '确定要提交吗？',
+    text: '提交后将不可更改 :(',
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  },
+     
+  function(isConfirm){
+        if (isConfirm) {
+            // Ajax
+            $.ajax({
+                type: "GET",
+                url: "/admin/tenmentCatalog/commit_status/id/"+id+'/status/1',
+                dataType: "JSON",
+                success: function(res){
               // res
               if (res === true) {
                 swal("提交成功", "当前操作已发生改变 :)", "success");
@@ -121,7 +135,12 @@ function commit_status(id){
               console.log(e);
               swal("未知错误", "请刷新页面后重试 :(", "error");
             }
-          });
+            });
+        } else {
+            swal("取消了", "当前操作未发生改变 :)", "error");
+        }
+    });
+            
 }
 // //未通过
 // function commit_pass(id){

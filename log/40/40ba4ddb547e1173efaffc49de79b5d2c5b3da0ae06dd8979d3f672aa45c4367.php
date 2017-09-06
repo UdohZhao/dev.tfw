@@ -333,14 +333,6 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                   </a>
                 </li>
               </ul>
-              <ul class=\"site-menu-sub\">
-                <li class=\"site-menu-item\">
-                  <a class=\"animsition-link\" href=\"/admin/loan/add\" data-slug=\"layout-menu-collapsed\">
-                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
-                    <span class=\"site-menu-title\">添加金融贷款</span>
-                  </a>
-                </li>
-              </ul>
             </li>
 
             <li class=\"site-menu-item has-sub active open\">
@@ -391,10 +383,10 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
           </ul>
         ";
         }
-        // line 359
+        // line 351
         echo "        ";
         if ((twig_get_attribute($this->env, $this->getSourceContext(), ($context["userinfo"] ?? null), "type", array()) == 1)) {
-            // line 360
+            // line 352
             echo "        <ul class=\"site-menu\">
             <li class=\"site-menu-category\">导航栏目</li>
             <li class=\"site-menu-item has-sub\">
@@ -433,10 +425,10 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
         </ul>
         ";
         }
-        // line 397
+        // line 389
         echo "        ";
         if ((twig_get_attribute($this->env, $this->getSourceContext(), ($context["userinfo"] ?? null), "type", array()) == 2)) {
-            // line 398
+            // line 390
             echo "        <ul class=\"site-menu\">
             <li class=\"site-menu-category\">导航栏目</li>
             <li class=\"site-menu-item has-sub\">
@@ -471,10 +463,10 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
         </ul>
         ";
         }
-        // line 431
+        // line 423
         echo "         ";
         if ((twig_get_attribute($this->env, $this->getSourceContext(), ($context["userinfo"] ?? null), "type", array()) == 3)) {
-            // line 432
+            // line 424
             echo "        <ul class=\"site-menu\">
             <li class=\"site-menu-category\">导航栏目</li>
             <li class=\"site-menu-item has-sub\">
@@ -508,10 +500,10 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
         </ul>
         ";
         }
-        // line 464
+        // line 456
         echo "         ";
         if ((twig_get_attribute($this->env, $this->getSourceContext(), ($context["userinfo"] ?? null), "type", array()) == 4)) {
-            // line 465
+            // line 457
             echo "        <ul class=\"site-menu\">
             <li class=\"site-menu-category\">导航栏目</li>
             <li class=\"site-menu-item has-sub\">
@@ -545,7 +537,7 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
         </ul>
         ";
         }
-        // line 497
+        // line 489
         echo "        </div>
       </div>
     </div>
@@ -553,9 +545,9 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
 
 
   ";
-        // line 503
+        // line 495
         $this->displayBlock('content', $context, $blocks);
-        // line 506
+        // line 498
         echo "
 
     <!-- Footer -->
@@ -604,9 +596,9 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
   <script src=\"/public/jquery-validation-1.16.0/lib/jquery.form.js\"></script>
 
   ";
-        // line 553
+        // line 545
         $this->displayBlock('js', $context, $blocks);
-        // line 556
+        // line 548
         echo "
   <script>
     (function(document, window, \$) {
@@ -633,18 +625,18 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
   ";
     }
 
-    // line 503
+    // line 495
     public function block_content($context, array $blocks = array())
     {
-        // line 504
+        // line 496
         echo "
   ";
     }
 
-    // line 553
+    // line 545
     public function block_js($context, array $blocks = array())
     {
-        // line 554
+        // line 546
         echo "
   ";
     }
@@ -661,7 +653,7 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
 
     public function getDebugInfo()
     {
-        return array (  648 => 554,  645 => 553,  640 => 504,  637 => 503,  632 => 37,  629 => 36,  610 => 556,  608 => 553,  559 => 506,  557 => 503,  549 => 497,  515 => 465,  512 => 464,  478 => 432,  475 => 431,  440 => 398,  437 => 397,  398 => 360,  395 => 359,  156 => 122,  154 => 121,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
+        return array (  640 => 546,  637 => 545,  632 => 496,  629 => 495,  624 => 37,  621 => 36,  602 => 548,  600 => 545,  551 => 498,  549 => 495,  541 => 489,  507 => 457,  504 => 456,  470 => 424,  467 => 423,  432 => 390,  429 => 389,  390 => 352,  387 => 351,  156 => 122,  154 => 121,  131 => 101,  93 => 66,  64 => 39,  62 => 36,  33 => 10,  22 => 1,);
     }
 
     public function getSourceContext()
@@ -964,14 +956,6 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
                   <a class=\"animsition-link\" href=\"/admin/loan/index\" data-slug=\"layout-menu-collapsed\">
                     <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
                     <span class=\"site-menu-title\">金融贷款列表</span>
-                  </a>
-                </li>
-              </ul>
-              <ul class=\"site-menu-sub\">
-                <li class=\"site-menu-item\">
-                  <a class=\"animsition-link\" href=\"/admin/loan/add\" data-slug=\"layout-menu-collapsed\">
-                    <i class=\"site-menu-icon \" aria-hidden=\"true\"></i>
-                    <span class=\"site-menu-title\">添加金融贷款</span>
                   </a>
                 </li>
               </ul>

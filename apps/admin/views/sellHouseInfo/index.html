@@ -11,15 +11,27 @@
     <div class="page-content">
         <div class="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">@ 租房条目列表</h3>
+                <h3 class="panel-title">@ 买房条目列表</h3>
             </div>
 
-            <form action="/admin/sellHouseInfo/index" method="get">
+            <form action="/admin/sellHouseInfo/index/status/{{ status }}" method="post">
                 <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
-                    <input type="text" class="form-control" name="search" placeholder="请输入小区名">
+                    <input type="text" class="form-control" name="community" placeholder="请输入小区名">
                     <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
-          </span>
+                    <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+                    </span>
+                </div>
+                <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
+                    <input type="text" class="form-control" name="area" placeholder="请输入面积">
+                    <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+                    </span>
+                </div>
+                <div class="input-group" style="width: 300px;float: right;margin-right: 30px;">
+                    <input type="text" class="form-control" name="selling_price" placeholder="请输入售价">
+                    <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+                    </span>
                 </div>
             </form>
             <ul class="nav nav-pills" style="margin-left: 25px;">
@@ -60,8 +72,20 @@
                         <td>{{ v.selling_price }}</td>
                         <td>{{ v.htype }}</td>
                         <td>{{ v.orientation }}</td>
-                        <td>{{ v.sdh }}</td>
-                        <td>{{ v.spr }}</td>
+                        <td>
+                        {% if v.sdh ==0 %}
+                            是
+                        {% else %}
+                            否
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if v.spr ==0 %}
+                            是
+                        {% else %}
+                            否
+                        {% endif %}
+                        </td>
                         
                         <td>{{ v.cname }}</td>
                         <td>{{ v.phone }}</td>

@@ -5,7 +5,16 @@ class viewTenment extends model{
     public $table='tenement_catalog';
     
     //查询记录
-    public function sel($search='',$currPage,$subPages){
+    public function sel($search='',$currPage,$subPages,$show_rent,$area,$cid){
+        if($show_rent){
+        $title = " uh.show_rent like '%$show_rent%' ";
+        }elseif($area){
+        $title = " q.area = $area";
+        }elseif($cid){
+        $title = " C.cname = '$cid' ";
+        }else{
+        $title = " uh.status = 1";
+        }
         $sql = "
         SELECT
                 uh.*,C.cname AS cityname
@@ -14,12 +23,17 @@ class viewTenment extends model{
         LEFT JOIN
                 `city` AS C
         ON
-                uh.cid = C.id               
+                uh.cid = C.id  
+        LEFT JOIN
+                `tenement_info` AS q
+        ON
+                uh.id=q.tcid                       
         WHERE
                 1 = 1
+        
+        AND     uh.status = 1      
         AND
-                uh.title like '%$search%'
-        AND     uh.status = 1       
+                $title
         ORDER BY
                 uh.ctime DESC
         LIMIT

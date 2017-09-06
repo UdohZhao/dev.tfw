@@ -138,10 +138,14 @@ class newHouseMainCtrl extends baseCtrl{
     if (IS_GET === true) {
       // 读取主力户型
       $data = $this->db->sel($this->nhcid);
+      
+      $status = $this->db->status($this->nhcid);
+        $qqq = $status[0][0];
       // 读取新房条目名称
       $title = $this->nhcdb->getTitle($this->nhcid);
       // assign
       $this->assign('data',$data);
+      $this->assign('status',$qqq);
       $this->assign('title',$title);
       // display
       $this->display('newHouseMain','index.html');

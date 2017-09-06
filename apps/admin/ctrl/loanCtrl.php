@@ -69,6 +69,16 @@ class loanCtrl extends baseCtrl{
 
     }
   }
+  public function statu(){
+      $id = isset($_GET['id']) ? $_GET['id'] : 0;
+      $res = $this->db->up_status($id);
+      
+            if ($res) {
+                echo json_encode(true);
+            } else {
+                echo json_encode(false);
+            }
+  }
   public function del_info(){
   	$id = $_GET['id'];
   	if (IS_AJAX === true){

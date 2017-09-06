@@ -4,7 +4,17 @@ use core\lib\model;
 class viewUsedHouse extends model{
     public $table='used_house_catalog';
 
-    public function sel($status=0,$search='',$currPage,$subPages){
+    public function sel($status=0,$search='',$currPage,$subPages,$show_price,$area,$cid){
+        if($show_price){
+        $title = " uh.show_price like '%$show_price%' ";
+      }elseif($area){
+        $title = " uh.area = $area ";
+      }elseif($cid){
+        $title = "  C.cname = '$cid' ";
+      
+      }else{
+        $title = "uh.status = 1";
+      }
         $sql = "
         SELECT
                 uh.*,C.cname AS cityname
@@ -19,7 +29,7 @@ class viewUsedHouse extends model{
         AND 
                 uh.status = 1
         AND
-                uh.title like '%$search%'
+                $title
         ORDER BY
                 uh.ctime DESC
         LIMIT

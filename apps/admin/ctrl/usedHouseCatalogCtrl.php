@@ -150,8 +150,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
         $status=isset($_GET['status'])?$_GET['status']:0;
 
         //获取数据条数
-       $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
-      $htype = isset($_POST['htype']) ? htmlspecialchars($_POST['htype']) : '';
+        $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
       $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
       $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
         
@@ -162,7 +161,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
 
         //结果集
-        $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$htype,$cid);
+        $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);
         $this->assign('status',$status);

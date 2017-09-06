@@ -4,6 +4,11 @@ use core\lib\model;
 class loan extends model{
 	public $table = 'loan';
 
+    //修改已读状态
+    public function up_status($id){
+        $res = $this->update($this->table,['status'=>1],['id'=>$id]);
+        return $res->rowCount();
+    }
    public function getInfo($id){
         return $this->get($this->table,'*',['id'=>$id]);
     }

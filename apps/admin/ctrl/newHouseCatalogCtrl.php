@@ -156,7 +156,7 @@ die;
     $data['ptype'] = implode(',', $_POST['ptype']);
     $data['address'] = htmlspecialchars($_POST['address']);
     $data['ctime'] = time();
-    $data['remark'] = '';
+    $data['remark'] = htmlspecialchars($_POST['remark']);
     $data['status'] = 0;
     $data['type'] = 0;
     return $data;
@@ -169,9 +169,7 @@ die;
       $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
       // search 搜索条件
       $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
-      $htype = isset($_POST['htype']) ? htmlspecialchars($_POST['htype']) : '';
       $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
-
       $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
 
       //获取数据条数
@@ -184,7 +182,7 @@ die;
     $hcid = $this->hcdb->getId('新房');
     // 结果集
     //$data = $this->db->sel($hcid,$this->userinfo['id'],$status);
-      $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$htype,$cid);
+      $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
       
     // assign
     $this->assign('data',$data);

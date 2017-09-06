@@ -5,8 +5,17 @@ class sellHouseInfo extends model{
     public $table='sell_house_info';
     //查询卖列表
 
-    public function sel($status){
-        $sql = "SELECT * FROM $this->table WHERE status=$status ";
+    public function sel($status,$community,$selling_price,$area){
+        if($community){
+        $title =  " community like '%$community%' ";
+      }elseif($area){
+        $title = " area = $area ";
+      }elseif($selling_price){
+        $title = " selling_price = '$selling_price' ";
+      }else{
+        $title = "status=$status";
+      }
+        $sql = "SELECT * FROM $this->table WHERE status=$status AND $title ";
         return $this->query($sql)->fetchAll(2);
 
     }
