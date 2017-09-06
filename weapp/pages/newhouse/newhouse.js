@@ -3,6 +3,11 @@ var App=getApp();
 Page({
   data: {
     domain: App.data.domain,
+    districtIndex: 0,
+    priceIndex: 0,
+    htypeIndex: 0,
+    prtypeIndex: 0,
+    areaIndex: 0,
     //首页九宫格type
     linktype:'',
     //搜索
@@ -15,8 +20,6 @@ Page({
     house_type: 0,//户型
     house_style: 0,//风格
     house_area: 0,//面积
-    tabTxt: ['区域', '价格','户型','产权类型', '面积'],//tab文案
-    tab: [true, true, true, true, true],
     page: 1,//当前页码
     dataNull: true,
     completeList:true,
@@ -40,7 +43,7 @@ Page({
     // })
   },
   // 选项卡
-  filterTab: function (e) {
+  filterTabs: function (e) {
     var data = [true, true, true, true, true], index = e.currentTarget.dataset.index;
     console.log(index)
     data[index] = !this.data.tab[index];
@@ -70,8 +73,8 @@ Page({
       }
     })
   },
-  //筛选项点击操作
-  filter: function (e) {
+  //筛选项点击操作 demo
+  filters: function (e) {
     var self = this, id = e.currentTarget.dataset.id, txt = e.currentTarget.dataset.txt, tabTxt = this.data.tabTxt;
     switch (e.currentTarget.dataset.index) {
       case '0':
@@ -255,15 +258,19 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
+
         console.log(res.data);
+
         // if 
         if (res.data.code == 200) {
 
           that.setData({
-            hdata: res.data.data
+            datas: res.data.data,
+            tabTxt: res.data.data.nhfiltrateData.filtrate,
+            tab: res.data.data.nhfiltrateData.active
           });
 
-          console.log(that.data.hdata);
+          console.log(that.data.datas);
 
         } else {
           // 提示
@@ -307,6 +314,113 @@ Page({
     wx.navigateTo({
       url: '/pages/housedetails/housedetails?id=' + e.currentTarget.dataset.id + '&type=' + e.currentTarget.dataset.type
     })
+
+  },
+
+  /** 
+   * 筛选选项卡
+   */
+  filterTab: function(e){
+
+    var that = this;
+
+    var data = [true, true, true, true, true], index = e.currentTarget.dataset.index;
+    console.log(index)
+    data[index] = !that.data.tab[index];
+    that.setData({
+      tab: data
+    })
+
+    // 获取下标，类型，active
+    // console.log(e.currentTarget.dataset.index, e.currentTarget.dataset.type, e.currentTarget.dataset.active);
+
+
+
+    
+
+
+  },
+
+  /**
+   * 筛选点击操作
+   */
+  filter: function(e){
+
+    var that = this;
+
+    // 获取筛选类型 0>区域，1>价格，2>户型，3>产权类型，4>面积
+    console.log(e.currentTarget.dataset.type);
+    console.log(e.currentTarget.dataset.index);
+    
+    //  0 区域
+    if (e.currentTarget.dataset.type == 0) {
+      that.setData({
+        districtIndex: e.currentTarget.dataset.index,
+        districtType: e.currentTarget.dataset.type,
+        cid: e.currentTarget.dataset.id
+      });
+      // 获取id
+      console.log(e.currentTarget.dataset.id);
+    }
+
+    // 1 价格
+    if (e.currentTarget.dataset.type == 1) {
+      that.setData({
+        priceIndex: e.currentTarget.dataset.index,
+        priceType: e.currentTarget.dataset.type,
+        startPrice: e.currentTarget.dataset.start,
+        endPrice: e.currentTarget.dataset.end
+      });
+      // 获取开始价格，结束价格
+      console.log('开始价格：' + e.currentTarget.dataset.start);
+      console.log('结束价格：' + e.currentTarget.dataset.end);
+    }
+
+    // 2 户型
+    if (e.currentTarget.dataset.type == 2) {
+      that.setData({
+        htypeIndex: e.currentTarget.dataset.index,
+        htypeType: e.currentTarget.dataset.type,
+        htypeVal: e.currentTarget.dataset.val
+      });
+      // 获取户型
+      console.log(e.currentTarget.dataset.val);
+    }
+
+    // 3 产权类型
+    if (e.currentTarget.dataset.type == 3) {
+      that.setData({
+        prtypeIndex: e.currentTarget.dataset.index,
+        prtypeType: e.currentTarget.dataset.type,
+        prtypeVal: e.currentTarget.dataset.val
+      });
+      // 获取产权类型
+      console.log(e.currentTarget.dataset.val);
+    }
+
+    // 4 面积
+    if (e.currentTarget.dataset.type == 4) {
+      that.setData({
+        areaIndex: e.currentTarget.dataset.index,
+        areaType: e.currentTarget.dataset.type,
+        startArea: e.currentTarget.dataset.start,
+        endArea: e.currentTarget.dataset.end
+      });
+      // 获取开始面积，结束面积
+      console.log('开始面积：' + e.currentTarget.dataset.start);
+      console.log('结束面积：' + e.currentTarget.dataset.end);
+    }
+
+    console.log('################');
+
+    // 区域（下标，城市id），价格（下标，开始价格，结束价格），户型（下标，值），产权类型（下标，值），面积（下标，开始面积，结束面积）
+
+    console.log(that.data.districtType,that.data.districtIndex, that.data.cid);
+    console.log(that.data.priceType,that.data.priceIndex, that.data.startPrice,that.data.endPrice);
+    console.log(that.data.htypeType,that.data.htypeIndex, that.data.htypeVal);
+    console.log(that.data.prtypeType,that.data.prtypeIndex, that.data.prtypeVal);
+    console.log(that.data.areaType,that.data.areaIndex, that.data.startArea, that.data.endArea);
+    
 
   }
   

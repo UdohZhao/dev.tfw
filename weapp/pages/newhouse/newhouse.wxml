@@ -20,31 +20,51 @@
   </view>
 
 
-  <!--选项卡-->
+<!--选项卡-->
 <view class="tabTit box tc bg_f">
-    <view class="flex1{{!tab[index]?' active':''}}" wx:for="{{tabTxt}}" wx:key="" data-index="{{index}}" bindtap="filterTab"><text>{{item}}</text><image src="../../images/下拉三角形.png"></image></view>
+    <view class="flex1{{!tab[k]?' active':''}}" wx:for="{{tabTxt}}" wx:key="i" wx:for-index="k" wx:for-item="v" data-index="{{k}}" bindtap="filterTab"><text>{{v}}</text><image src="../../images/pdt.png"></image></view>
 </view>
+
+
 <!--筛选项-->
-<scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[0]}}">
-    <view class="{{house_type==0?'active':''}} tabLayer_list" data-id="0" data-index="0" data-txt="区域" bindtap="filter">不限</view>
-    <view class="{{house_type==item.id?'active':''}} tabLayer_list" wx:for="{{filterList[0]}}" wx:key="" data-id="{{item.id}}" data-index="0" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
-</scroll-view>
-<scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[1]}}">
-    <view class="{{house_style==0?'active':''}} tabLayer_list" data-id="0" data-index="1" data-txt="价格" bindtap="filter">不限</view>
-    <view class="{{house_style==item.id?'active':''}} tabLayer_list" wx:for="{{filterList[1]}}" wx:key="" data-id="{{item.id}}" data-index="1" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
-</scroll-view>
-<scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[2]}}">
-    <view class="{{house_area==0?'active':''}} tabLayer_list" data-id="0" data-index="2" data-txt="户型" bindtap="filter">不限</view>
-    <view class="{{house_area==item.id?'active':''}} tabLayer_list" wx:for="{{filterList[2]}}" wx:key="" data-id="{{item.id}}" data-index="2" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
-</scroll-view>
-<scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[3]}}">
-    <view class="{{house_stye==0?'active':''}} tabLayer_list" data-id="0" data-index="3" data-txt="产权类型" bindtap="filter">不限</view>
-    <view class="{{house_stye==item.id?'active':''}} tabLayer_list" wx:for="{{filterList[3]}}" wx:key="" data-id="{{item.id}}" data-index="3" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
-</scroll-view>
-<scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[4]}}">
-    <view class="{{house_are==0?'active':''}} tabLayer_list" data-id="0" data-index="4" data-txt="面积" bindtap="filter">不限</view>
-    <view class="{{house_are==item.id?'active':''}} tabLayer_list" wx:for="{{filterList[4]}}" wx:key="" data-id="{{item.id}}" data-index="4" data-txt="{{item.name}}" bindtap="filter">{{item.name}}</view>
-</scroll-view>
+<block wx:for="{{tab}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+  <scroll-view scroll-y="true" class="tabLayer tc" hidden="{{tab[k]}}">
+
+      <!-- 区域 start -->
+      <view wx:if="{{k == 0}}">
+      <view class="{{districtIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.cityData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="0" data-id="{{vv.id}}" data-index="{{kk}}" bindtap="filter">{{vv.cname}}</view>
+      </view>
+      <!-- 区域 end -->
+
+      <!-- 价格 start -->
+      <view wx:if="{{k == 1}}">
+      <view class="{{priceIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.priceData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="1" data-start="{{vv.start}}" data-end="{{vv.end}}" data-index="{{kk}}" bindtap="filter">{{vv.show}}</view>
+      </view>
+      <!-- 价格 end -->
+
+      <!-- 户型 start -->
+      <view wx:if="{{k == 2}}">
+      <view class="{{htypeIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.htypeData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="2" data-val="{{vv}}" data-index="{{kk}}" bindtap="filter">{{vv}}</view>
+      </view>
+      <!-- 户型 end -->
+
+      <!-- 产权类型 start -->
+      <view wx:if="{{k == 3}}">
+      <view class="{{prtypeIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.prtypeData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="3" data-val="{{vv}}" data-index="{{kk}}" bindtap="filter">{{vv}}</view>
+      </view>
+      <!-- 产权类型 end -->
+
+      <!-- 面积 start -->
+      <view wx:if="{{k == 4}}">
+      <view class="{{areaIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.areaData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="4" data-start="{{vv.start}}" data-end="{{vv.end}}" data-index="{{kk}}" bindtap="filter">{{vv.show}}</view>
+      </view>
+      <!-- 面积 end -->
+
+      
+
+  </scroll-view>
+</block>
+
 
   <!-- 结果 -->
   <scroll-view scroll-y="true" class="w" bindscrolltolower="lower" lower-threshold="5px">
@@ -53,7 +73,7 @@
         <view class="weui-panel__bd">
 
         <!-- 房数据遍历体 start -->
-          <block wx:for="{{hdata}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+          <block wx:for="{{datas.hData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
             <view data-id="{{v.id}}" data-type="1" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
               <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                 <image class="weui-media-box__thumb" src="{{domain}}{{v.slideshow}}" />
