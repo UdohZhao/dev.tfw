@@ -67,14 +67,22 @@ Page({
         content: '电话不能为空',
         showCancel: false
       })
-    };
-    if (that.data.cname == false || that.data.cname == undefined) {
+    } else if (that.data.cname == false || that.data.cname == undefined) {
       wx.showModal({
         title: '提示',
         content: '姓名不能为空',
         showCancel: false
       })
-    };
+    } else {
+
+      // code ...
+
+    }
+    
+
+    return false;
+
+
     var that = this;
     var tokend = wx.getStorageSync('tokend');
     console.log(tokend);
@@ -82,6 +90,8 @@ Page({
       method: 'POST',
       url: app.data.domain + '/loan/add?tokend=' + tokend,
       data: {
+        AAA: 'xxx',
+        BBB: 'xxx'
       },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'

@@ -31,13 +31,16 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log(res.data)
+        console.log(res.data);
+
         that.setData({
           data: res.data.data
         })
-        var analysis = that.data.data;
-        console.log(analysis);
-        WxParse.wxParse('analysis', 'html', that.data.data.analysis, that, 0);
+
+        console.log(that.data.data);
+
+        WxParse.wxParse('content', 'html', that.data.data[0].content, that, 0);
+        
       }
     })
     // 友好的用户体验结束
