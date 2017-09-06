@@ -32,5 +32,34 @@ class city extends model{
     return $this->get($this->table,'cname',['id'=>$id]);
   }
 
+  /**
+   * 读取主键id
+   */
+  public function getId($cname){
+    return $this->get($this->table,'id',['cname'=>$cname]);
+  }
+
+  /**
+   * 读取相关区县
+   */
+  public function getCorrelation($pid){
+    // sql
+    $sql = "
+        SELECT
+                *
+        FROM
+                `$this->table`
+        WHERE
+                1 = 1
+        AND
+                pid = '$pid'
+        AND
+                status = '0'
+        ORDER BY
+                sort ASC
+    ";
+    return $this->query($sql)->fetchAll();
+  }
+
 }
 
