@@ -56,7 +56,7 @@ class adminUser extends model{
     return $res->rowCount();
   }
 
-  // upStatus 新房
+  //新房
   public function upStatus($id,$type){
     $res = $this->update($this->tables,['type'=>$type],['id'=>$id]);
     return $res->rowCount();

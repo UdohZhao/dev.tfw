@@ -12,7 +12,7 @@ class tenmentInfoCtrl extends baseCtrl{
 
     // 构造方法
     public function _auto(){
-        if($_SESSION['userinfo']['type'] !=2 && $_SESSION['userinfo']['type'] !=0 ){
+        if($_SESSION['userinfo']['type'] ==1){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
             die;
         }

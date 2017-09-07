@@ -45,7 +45,7 @@ function flag(id,type){
       // Ajax
       $.ajax({
         type: "POST",
-        url: "/admin/adminUser/flag/id/"+id,
+        url: "/admin/newHouseCatalog/flag/id/"+id,
         data: {type:type},
         dataType: "JSON",
         success: function(res){

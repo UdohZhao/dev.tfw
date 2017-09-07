@@ -37,7 +37,6 @@ class tenmentCatalogCtrl extends baseCtrl{
             $this->assign('hcid',$hcid);
             // display
             if ($this->id) {
-
                 // 读取单条数据
                 $data = $this->db->getInfo($this->id);
                 $data['cid'] = $this->cdb->getCname($data['cid']);

@@ -24,9 +24,9 @@ class newHouseCatalog extends model{
   public function sel($hcid,$type,$auid,$status,$currPage,$subPages,$show_price,$area,$cid){
     // sql
       if($type==0){
-          $where=' ';
+          $where=" NHC.hcid = '$hcid' ";
       }else{
-          $where=" AND NHC.auid = '$auid'";
+          $where=" NHC.auid =  $auid ";
       }
 
       if($show_price){
@@ -34,12 +34,10 @@ class newHouseCatalog extends model{
       }elseif($area){
         $title = " NHC.area = $area ";
       }elseif($cid){
-
         $title = "C.cname = '$cid' ";
       }else{
         $title = " NHC.status = '$status'";
       }
-      
       $sql = "
         SELECT
                 NHC.* , C.cname AS cityname
@@ -53,7 +51,8 @@ class newHouseCatalog extends model{
                 1 = 1
         AND
                 NHC.hcid = '$hcid'
-                '$where'
+        AND
+               $where
         AND
                 NHC.status = '$status'
         AND    
@@ -83,8 +82,8 @@ class newHouseCatalog extends model{
   }
 
   // upStatus
-  public function upStatus($id,$status){
-    $res = $this->update($this->table,['status'=>$status],['id'=>$id]);
+  public function upStatus($id,$type){
+    $res = $this->update($this->table,['type'=>$type],['id'=>$id]);
     return $res->rowCount();
   }
 

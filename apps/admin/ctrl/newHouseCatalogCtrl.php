@@ -181,7 +181,7 @@ die;
     // 获取新房主键id
     $hcid = $this->hcdb->getId('新房');
     // 结果集
-    //$data = $this->db->sel($hcid,$this->userinfo['id'],$status);
+  
       $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
       
     // assign
@@ -209,15 +209,14 @@ die;
    var_dump($data);
    die;
     }
-
-  // flag
-  public function flag(){
+//新房
+   public function flag(){
     // Ajax
     if (IS_AJAX === true) {
       // status
-      $status = intval($_POST['status']);
+      $type = intval($_POST['type']);
       // update
-      $res = $this->db->upStatus($this->id,$status);
+      $res = $this->db->upStatus($this->id,$type);
       if ($res) {
         echo json_encode(true);
         die;

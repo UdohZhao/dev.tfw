@@ -12,12 +12,27 @@ class loan extends model{
    public function getInfo($id){
         return $this->get($this->table,'*',['id'=>$id]);
     }
-  public function sel($status){
-  	$sql = " SELECT * FROM $this->table where status=$status ";
+  public function sel($status,$currPage,$subPages){
+  	$sql = " 
+    SELECT 
+    *
+    FROM 
+    $this->table 
+    where 
+    status=$status 
+    ";
   	$data = $this->query($sql)->fetchAll(2);
   	return $data; 
   }
-
+  //获取满足条件的记录数
+    public function sel_num($status,$search=''){
+        if($search){
+            $where=['AND'=>['title[~]'=>$search,'status'=>$status]];
+        }else{
+            $where=['status'=>$status];
+        }
+        return $this->count($this->table,$where);
+    }
   public function add($data){
     $res = $this->insert($this->table,$data);
     return $this->id();

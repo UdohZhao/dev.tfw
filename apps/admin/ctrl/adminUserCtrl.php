@@ -123,6 +123,8 @@ class adminUserCtrl extends baseCtrl{
       }
     }
   }
+
+
 //二手房
    public function flage(){
     // Ajax

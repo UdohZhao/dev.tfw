@@ -15,11 +15,15 @@ class sellHouseInfo extends model{
       }else{
         $title = "status=$status";
       }
-        $sql = "SELECT * FROM $this->table WHERE status=$status AND $title ";
+        $sql = "SELECT * FROM $this->table WHERE status=$status AND $title  ";
         return $this->query($sql)->fetchAll(2);
-
+// ORDER BY     ctime DESC   LIMIT      $currPage , $subPages
     }
-
+ // cou
+  public function cou($status,$search=''){
+        $where = ['status'=>$status];
+    return $this->count($this->table,$where); 
+  }
      //修改已读状态
     public function up_status($id){
         $res = $this->update($this->table,['status'=>1],['id'=>$id]);

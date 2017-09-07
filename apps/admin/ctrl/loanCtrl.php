@@ -18,8 +18,16 @@ class loanCtrl extends baseCtrl{
 	}
 
 	public function index(){
-		 $data = $this->db->sel($this->status);
+		 
+
+      $num = $this->db->sel_num($this->status);
+      
+  // 数据分页
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
+      $data = $this->db->sel($this->status,$this->userinfo['id'],bcsub($p->page,1,0),$p->pagesize);  
      $this->assign('status',$this->status);
+     $this->assign('page',$p->showpage());
 		$this->assign('data',$data);
 		$this->display('loan','index.html');
 	}

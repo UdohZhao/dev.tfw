@@ -80,11 +80,14 @@ class viewUsedHouseCtrl extends baseCtrl{
 
         $id= isset($_GET['uhcid']) ? $_GET['uhcid'] : 0;
         $data = $this->db->sel_info($id);
+        $t = date('Y-m-d H:i',$data['ctime']);
+        
         $tab = $data['selling_points'];
         $str = preg_replace("/<([a-z]+)[^>]*>/i","",$tab);
         $pcInfo = $this->pcdb->getInfo($data['pcid']);
         
         $this->assign('pcInfo',$pcInfo);
+        $this->assign('ctime',$t);
         $this->assign('data',$data);
         $this->assign('selling_points',$str);
         $this->display('viewUsedHouse','houseDetail.html');

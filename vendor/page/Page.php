@@ -12,7 +12,7 @@ class Page {
   //构造方法初始化
   public function __construct($_total, $_pagesize) {
      $this->total = $_total ? $_total : 1;
-     $this->pagesize = 5;
+     $this->pagesize = $_pagesize;
       $this->pagenum = ceil($this->total / $this->pagesize);
      $this->page = $this->setPage();
      $this->limit = "LIMIT ".($this->page-1)*$this->pagesize.",$this->pagesize";
