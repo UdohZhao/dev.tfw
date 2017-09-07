@@ -428,25 +428,43 @@ Page({
 
     // 请求首页数据
     wx.request({
-      url: App.data.domain + '/index/index',
+      url: App.data.domain + '/newhouse/index/hcid/' + that.data.hcid + '/hctype/' + that.data.hctype,
+      data: {
+        districtType: that.data.districtType,
+        districtIndex: that.data.districtIndex,
+        cid: that.data.cid,
+        priceType: that.data.priceType,
+        priceIndex: that.data.priceIndex,
+        startPrice: that.data.startPrice,
+        endPrice: that.data.endPrice,
+        htypeType: that.data.htypeType,
+        htypeIndex: that.data.htypeIndex,
+        htypeVal: that.data.htypeVal,
+        prtypeType: that.data.prtypeType,
+        prtypeIndex: that.data.prtypeIndex,
+        prtypeVal: that.data.prtypeVal,
+        areaType: that.data.areaType,
+        areaIndex: that.data.areaIndex,
+        startArea: that.data.startArea,
+        endArea: that.data.endArea,
+      },
+      method: 'POST',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
         console.log(res.data);
-
+        
         // if 
         if (res.data.code == 200) {
 
           that.setData({
-            cityData: res.data.data.cityData,
-            hcData: res.data.data.hcData,
-            nhcData: res.data.data.nhcData
+            datas: res.data.data,
+            tabTxt: res.data.data.nhfiltrateData.filtrate,
+            tab: res.data.data.nhfiltrateData.active
           });
 
-          console.log(that.data.cityData);
-          console.log(that.data.hcData);
-          console.log(that.data.nhcData);
+          console.log(that.data.datas);
 
         } else {
           // 提示
