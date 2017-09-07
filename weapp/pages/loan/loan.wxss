@@ -1,4 +1,5 @@
 /* loan.wxss */
+@import "../../dist/wxParse/wxParse.wxss";
 page{
   background-color: #fff;
 }

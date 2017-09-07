@@ -1,4 +1,6 @@
 // mine.js
+var app = getApp(); // 实例化APP
+var WxParse = require('../../dist/wxParse/wxParse.js');
 Page({
 
   /**
@@ -12,7 +14,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: app.data.domain + '/loan/sel', //仅为示例，并非真实的接口地址
+      data: {
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+
+        that.setData({
+          data: res.data.data
+        })
+
+        console.log(that.data.data);
+        WxParse.wxParse('content', 'html', that.data.data[0].content, that, 0);
+
+
+      }
+    })
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
   },
 
   /**

@@ -420,6 +420,78 @@ Page({
     console.log(that.data.htypeType,that.data.htypeIndex, that.data.htypeVal);
     console.log(that.data.prtypeType,that.data.prtypeIndex, that.data.prtypeVal);
     console.log(that.data.areaType,that.data.areaIndex, that.data.startArea, that.data.endArea);
+
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '筛选中',
+    })
+
+    // 请求首页数据
+    wx.request({
+      url: App.data.domain + '/newhouse/index/hcid/' + that.data.hcid + '/hctype/' + that.data.hctype,
+      data: {
+        districtType: that.data.districtType,
+        districtIndex: that.data.districtIndex,
+        cid: that.data.cid,
+        priceType: that.data.priceType,
+        priceIndex: that.data.priceIndex,
+        startPrice: that.data.startPrice,
+        endPrice: that.data.endPrice,
+        htypeType: that.data.htypeType,
+        htypeIndex: that.data.htypeIndex,
+        htypeVal: that.data.htypeVal,
+        prtypeType: that.data.prtypeType,
+        prtypeIndex: that.data.prtypeIndex,
+        prtypeVal: that.data.prtypeVal,
+        areaType: that.data.areaType,
+        areaIndex: that.data.areaIndex,
+        startArea: that.data.startArea,
+        endArea: that.data.endArea,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data);
+        
+        // if 
+        if (res.data.code == 200) {
+
+          that.setData({
+            datas: res.data.data,
+            tabTxt: res.data.data.nhfiltrateData.filtrate,
+            tab: res.data.data.nhfiltrateData.active
+          });
+
+          console.log(that.data.datas);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
     
 
   }

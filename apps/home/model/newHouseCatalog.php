@@ -39,7 +39,7 @@ class newHouseCatalog extends model{
   /**
    * 读取相关数据
    */
-  public function getCorrelation($hcid){
+  public function getCorrelation($hcid,$filtrate){
     // sql
     $sql = "
         SELECT
@@ -54,6 +54,9 @@ class newHouseCatalog extends model{
                 type = '0'
         AND
                 hcid = '$hcid'
+
+        {$filtrate}
+
         ORDER BY
                 ctime DESC
         LIMIT

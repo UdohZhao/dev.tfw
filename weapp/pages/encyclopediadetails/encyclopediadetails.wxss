@@ -40,5 +40,18 @@ page{
   line-height: 30px;
   font-size: 14px;
 }
-
+.title{
+  line-height: 40px;
+}
+.title_list{
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 24px;
+}
+.content_list{
+  font-size: 12px;
+  margin-bottom: 5px;
+  text-indent: 2em;
+  text-align: justify;
+}
 
