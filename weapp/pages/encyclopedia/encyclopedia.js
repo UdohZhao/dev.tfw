@@ -59,6 +59,7 @@ Page({
         self.setData({
           encycle_content: self.data.encycle_content
         })
+        console.log(self.data.encycle_content[0]['pid'])
         //   self.data.postsList = contentObj
       
       },

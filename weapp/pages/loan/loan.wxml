@@ -1,4 +1,5 @@
 <!--loan.wxml-->
+<import src="../../dist/wxParse/wxParse.wxml"/>
 <view class="top_bcg">
   <image class="bcg_img" src="../../images/房子.png"></image>
   <view class="tefangwang">
@@ -10,9 +11,9 @@
     特房网
   </view>
   <view class="abort_content">
-    <block wx:for="{{abort_content}}" wx:key="i">
-      <view class="each_class">{{item.content}}</view>
-    </block>
+   
+      <view class="each_class">    <template is="wxParse" data="{{wxParseData:content.nodes}}"/> </view>
+   
   </view>
 </view>
 <view class="application_loan">
@@ -42,9 +43,9 @@
   </view>
   <view class="person_box">
     <view class="phone_select" hidden="{{selectPerson}}">
-    <view class="select_one" bindtap="mySelect" data-me="抵押贷款" value="" name="types">抵押贷款</view>
-    <view class="select_one" bindtap="mySelect" data-me="信用贷款" value="" name="types">信用贷款</view>
-    <view class="select_one" bindtap="mySelect" data-me="组合贷款" value="" name="types">组合贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="0" value="0" name="types">抵押贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="1" value="1" name="types">信用贷款</view>
+    <view class="select_one" bindtap="mySelect" data-me="2" value="2" name="types">组合贷款</view>
   </view>
   </view>
       <view>

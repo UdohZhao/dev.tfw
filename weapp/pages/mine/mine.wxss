@@ -1,4 +1,5 @@
 /* mine.wxss */
+@import "../../dist/wxParse/wxParse.wxss";
 page{
   background-color: #fff;
 }
@@ -30,21 +31,17 @@ page{
   margin-top: -40rpx;
   margin-left: -150rpx;
 }
-.bottom_button{
-  padding: 0 15px;
-  position: absolute;
-  bottom: 40rpx;
-  width: 100%;
-  box-sizing: border-box;
+.abortus{
+  padding: 10px 15px;
 }
-.bottom_button button{
-  width: 100%;
-  margin-top: 10px;
-  color: #fff;
+.abortus .title{
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
 }
-.modify{
-  background-color: #fd811f;
-}
-.dropout{
-  background-color: #00ce3c;
+.each_class{
+  text-indent: 2em;
+  text-align: justify;
+  margin-bottom: 5px;
+  font-size: 12px;
 }
