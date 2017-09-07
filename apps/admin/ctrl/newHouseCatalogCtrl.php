@@ -16,6 +16,11 @@ class newHouseCatalogCtrl extends baseCtrl{
   public $id;
   // 构造方法
   public function _auto(){
+
+      // if (isset($_SESSION['userinfo'])) {
+
+      // }
+
       if($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=2 ){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
           die;
@@ -181,9 +186,9 @@ die;
     // 获取新房主键id
     $hcid = $this->hcdb->getId('新房');
     // 结果集
-  
+
       $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
-      
+
     // assign
     $this->assign('data',$data);
     $this->assign('status',$status);
@@ -197,14 +202,14 @@ die;
 
       $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
       //获取数据条数
-   
+
       $search=isset($_POST['search'])?$_POST['search']:'';
       if(trim($search)){
           $num  = $this->db->cou($status,$_POST['search']);
       }else{
           $num = $this->db->cou($status);
       }
-   
+
     $data = $this->db->selling($search,$status);
    var_dump($data);
    die;

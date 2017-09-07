@@ -43,9 +43,9 @@
   </view>
   <view class="person_box">
     <view class="phone_select" hidden="{{selectPerson}}">
-    <view class="select_one" bindtap="mySelect" data-me="0" value="0" name="types">抵押贷款</view>
-    <view class="select_one" bindtap="mySelect" data-me="1" value="1" name="types">信用贷款</view>
-    <view class="select_one" bindtap="mySelect" data-me="2" value="2" name="types">组合贷款</view>
+    <view class="select_one" bindtap="mySelect" data-type="0" value="0" name="types">抵押贷款</view>
+    <view class="select_one" bindtap="mySelect" data-type="1" value="1" name="types">信用贷款</view>
+    <view class="select_one" bindtap="mySelect" data-type="2" value="2" name="types">组合贷款</view>
   </view>
   </view>
       <view>

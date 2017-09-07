@@ -127,12 +127,23 @@ Page({
   },
   //点击切换
   mySelect: function (e) {
+
+    var that = this;
+
+    // 获取用户选中的贷款类型
+    console.log(e.currentTarget.dataset.type);
+
   
-    this.setData({
+    that.setData({
       firstPerson: e.target.dataset.me,
       selectPerson: true,
       selectArea: false,
+      loansType: e.currentTarget.dataset.type
     })
+
+    console.log(that.data.loansType);
+
+
   },
   formReset: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
