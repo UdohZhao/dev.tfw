@@ -420,6 +420,60 @@ Page({
     console.log(that.data.htypeType,that.data.htypeIndex, that.data.htypeVal);
     console.log(that.data.prtypeType,that.data.prtypeIndex, that.data.prtypeVal);
     console.log(that.data.areaType,that.data.areaIndex, that.data.startArea, that.data.endArea);
+
+    // 友好的用户体验开始
+    wx.showLoading({
+      title: '筛选中',
+    })
+
+    // 请求首页数据
+    wx.request({
+      url: App.data.domain + '/index/index',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+
+        // if 
+        if (res.data.code == 200) {
+
+          that.setData({
+            cityData: res.data.data.cityData,
+            hcData: res.data.data.hcData,
+            nhcData: res.data.data.nhcData
+          });
+
+          console.log(that.data.cityData);
+          console.log(that.data.hcData);
+          console.log(that.data.nhcData);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+
+    // 友好的用户体验结束
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
     
 
   }
