@@ -145,26 +145,12 @@ Page({
     console.log(options);
 
     that.setData({
-      hid: options.id,
-      htype: options.type
+      id: options.id,
+      hctype: options.hctype
     });
 
-    console.log(that.data.hid);
-    console.log(that.data.htype);
-
-    // htype 1>新房详细 ，2>二手房详细，3>住房详细
-    var url;
-    if (that.data.htype == 1) {
-      url = App.data.domain + "/housedetails/getNhdetail";
-    }
-    if (that.data.htype == 2) {
-      url = App.data.domain + "/housedetails/getUhdetail";
-    }
-    if (that.data.htype == 3) {
-      url = App.data.domain + "/housedetails/getThdetail";
-    }
-
-    console.log(url);
+    console.log(that.data.id);
+    console.log(that.data.hctype);
 
     // 友好的用户体验开始
     wx.showLoading({
@@ -173,9 +159,10 @@ Page({
 
     // 请求首页数据
     wx.request({
-      url: url,
+      url: App.data.domain + "/housedetails/getNhdetail",
       data: {
-        id: that.data.hid
+        id: that.data.id,
+        hctype: that.data.hctype
       },
       header: {
         'content-type': 'application/json'

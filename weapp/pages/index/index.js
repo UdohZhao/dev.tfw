@@ -286,6 +286,31 @@ Page({
       url: '/pages/housedetails/housedetails?id=' + e.currentTarget.dataset.id + '&type=' + e.currentTarget.dataset.type
     })
 
+  },
+
+  /**
+   * 去往房屋条目
+   */
+  gotoHouse: function(e){
+
+    //url = "/pages/newhouse/newhouse?hcid={{v.id}}&hctype=1"
+
+    // 获取房屋类别主键id，房屋类别
+    console.log(e.currentTarget.dataset.id);
+    console.log(e.currentTarget.dataset.type);
+
+    // 3 跳转到卖房页面
+    var url;
+    if (e.currentTarget.dataset.type == 3) {
+      url = "/pages/newhouse/newhouse?hcid=" + e.currentTarget.dataset.id + "&hctype=" + e.currentTarget.dataset.type;
+    } else {
+      url = "/pages/newhouse/newhouse?hcid=" + e.currentTarget.dataset.id + "&hctype=" + e.currentTarget.dataset.type;
+    }
+    
+    wx.navigateTo({
+      url: url
+    })
+
   }
 
 })
