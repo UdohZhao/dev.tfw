@@ -48,10 +48,10 @@
     
     <!-- 房屋类别遍历体 start -->
     <block wx:for="{{hcData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
-      <navigator url="/pages/newhouse/newhouse?hcid={{v.id}}&hctype=1" class="weui-grid" hover-class="weui-grid_active">
+      <view class="weui-grid" hover-class="weui-grid_active"  data-id="{{v.id}}" data-type="{{k}}" bindtap="gotoHouse">
           <image class="weui-grid__icon" src="{{domain}}{{v.icon_path}}" />
           <view class="weui-grid__label">{{v.cname}}</view>
-      </navigator>
+      </view>
     </block>
     <!-- 房屋类别遍历体 end -->
       

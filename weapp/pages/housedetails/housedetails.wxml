@@ -6,7 +6,7 @@
     </swiper-item>
   </block>
 </swiper>
-<view class="house_name" id="{{eachId}}">
+<!-- <view class="house_name" id="{{eachId}}">
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
           <view class="weui-cell__bd">{{data.title}}</view>
@@ -48,7 +48,7 @@
       </block>
     </view>
   </scroll-view>
-</view>
+</view> -->
 <view class="consultant">
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
@@ -63,7 +63,7 @@
                   <image class="weui-media-box__thumb" src="{{domain}}{{data.pcData.head_portrait}}"/>
               </view>
               <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                  <view class="weui-media-box__title">{{data.pcData.cname}}</view>
+                  <view class="weui-media-box__title">{{data.pcData.cname}}（{{data.pcData.belong_company}}）</view>
                   <view class="weui-media-box__desc">
                     联系电话：{{data.pcData.phone}}
                     <image type="default" data-phone="{{data.pcData.phone}}" bindtap="callPhone" class="phone_img" src="../../images/phone.png"></image>

@@ -5,7 +5,7 @@
         <view class="weui-search-bar__form">
             <view class="weui-search-bar__box">
                 <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                <input type="text" class="weui-search-bar__input" placeholder="挑好房，上特房网" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                <input type="text" class="weui-search-bar__input" placeholder="挑好房，上特房网" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="searching" />
                 <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                     <icon type="clear" size="14"></icon>
                 </view>
@@ -15,7 +15,7 @@
                 <view class="weui-search-bar__text">挑好房，上特房网</view>
             </label>
         </view>
-        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="cancelSearch">取消</view>
     </view>
   </view>
 
@@ -60,8 +60,6 @@
       </view>
       <!-- 面积 end -->
 
-      
-
   </scroll-view>
 </block>
 
@@ -74,7 +72,7 @@
 
         <!-- 房数据遍历体 start -->
           <block wx:for="{{datas.hData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
-            <view data-id="{{v.id}}" data-type="1" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+            <view data-id="{{v.id}}" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
               <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                 <image class="weui-media-box__thumb" src="{{domain}}{{v.slideshow}}" />
               </view>
@@ -106,10 +104,25 @@
         <button type="warn" plain="true" disabled="{{disabled}}" bindtap="getMore" class="mt20">{{moreTxt}}</button>
     </view> -->
     <!--无数据提示-->
-    <view class="null tc" hidden="{{dataNull}}">
-        <icon type="clear" size="100" color="#ccc"/>
-        <view class="txt1">当前筛选无结果</view>
-        <view class="txt2">您可以尝试筛选其他分类看看</view>
+    <view class="null tc" hidden="{{datas.hData}}">
+      <view class="page">
+        <view class="weui-msg">
+            <view class="weui-msg__icon-area">
+                <icon type="info" size="93"></icon>
+            </view>
+            <view class="weui-msg__text-area">
+                <view class="weui-msg__title">当前筛选无结果</view>
+                <view class="weui-msg__desc">"您可以尝试筛选其他选项"</view>
+            </view>
+            <view class="weui-msg__extra-area">
+                <view class="weui-footer">
+                    <view class="weui-footer__links">
+                        <view class="weui-footer__link">{{technicalSupport}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+      </view>
     </view>
   </scroll-view>
 </view>
