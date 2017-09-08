@@ -10,7 +10,10 @@ class sellHouseInfoCtrl extends baseCtrl{
     public $id;
     public function _auto(){
         //资料审核员可以查看
-        if($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=1){
+        if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=1){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
             die;
         }
@@ -40,16 +43,18 @@ die;
       $selling_price = isset($_POST['selling_price']) ? htmlspecialchars($_POST['selling_price']) : '';
       $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
       
-
-      // 数据分页
-      $num = $this->db->cou($status);
-      $page = isset($_GET['page']) ? $_GET['page'] : 1;
-      $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
-      //面积
+          //面积
         $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
         $status=isset($_GET['status'])?$_GET['status']:0;
-        $res = $this->db->sel($status,$community,$selling_price,$area);
-        // ,bcsub($p->page,1,0),$p->pagesize
+
+        // 数据分页
+        $num = $this->db->cou($status);
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
+       
+          $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$community,$selling_price,$area);
+          
+                // ,bcsub($p->page,1,0),$p->pagesize
         foreach ($res as $k=>$v){
             $res[$k]['house_img'] = unserialize($v['house_img']);
 

@@ -12,7 +12,10 @@ class tenmentInfoCtrl extends baseCtrl{
 
     // 构造方法
     public function _auto(){
-        if($_SESSION['userinfo']['type'] ==1){
+        if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] ==1){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
             die;
         }
@@ -68,17 +71,15 @@ class tenmentInfoCtrl extends baseCtrl{
             
 
              $data = $this->thdb->sel_info($this->tcid);
-             
-             $tab = $data['general_situation'];
-             $str = preg_replace("/<([a-z]+)[^>]*>/i","",$tab);
-           
+                   
             $t = date("Y-m-d H:i",$data['ctime']);
             // date ("Y-m-d H:i:s")
             // assign
             $pcInfo = $this->pcdb->getInfo($data['pcid']);
+            $title = $this->thdb->title($this->tcid);
+            $this->assign('title',$title);
             $this->assign('data',$data);
             $this->assign('ctime',$t);
-            $this->assign('general_situation',$str);
             $this->assign('pcInfo',$pcInfo);
            //display
             $this->display('tenmentInfo','index.html');

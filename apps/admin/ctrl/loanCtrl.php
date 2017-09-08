@@ -8,7 +8,10 @@ class loanCtrl extends baseCtrl{
 	public $id;
   public $status;
 	public function _auto(){
-        if($_SESSION['userinfo']['type'] !=0 ){
+        if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] !=0 ){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
             die;
         }
@@ -19,13 +22,16 @@ class loanCtrl extends baseCtrl{
 
 	public function index(){
 		 
-
       $num = $this->db->sel_num($this->status);
-      
+      //搜索条件
+      $types = isset($_POST['types']) ? htmlspecialchars($_POST['types']) : '';
+      $phone = isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : '';
   // 数据分页
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
-      $data = $this->db->sel($this->status,$this->userinfo['id'],bcsub($p->page,1,0),$p->pagesize);  
+        // 必传$this->userinfo['？'];
+      $data = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$this->status,bcsub($p->page,1,0),$p->pagesize,$types,$phone);
+      
      $this->assign('status',$this->status);
      $this->assign('page',$p->showpage());
 		$this->assign('data',$data);

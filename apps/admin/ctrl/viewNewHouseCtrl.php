@@ -12,7 +12,10 @@ class viewNewHouseCtrl extends baseCtrl{
     public $pcdb;
     public $nhcdb;
     public function _auto(){
-        if($_SESSION['userinfo']['type'] !=1 && $_SESSION['userinfo']['type'] !=0){
+        if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] !=1 && $_SESSION['userinfo']['type'] !=0){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
             die;
         }
@@ -55,7 +58,7 @@ class viewNewHouseCtrl extends baseCtrl{
             $prtype = conf::get('PRTYPE','admin');
             $house_type = conf::get('HOUSE_TYPE','admin');
             $ptype = conf::get('PTYPE','admin');
-
+            
             $this->assign('htype',$htype);
             $this->assign('prtype',$prtype);
             $this->assign('house_type',$house_type);

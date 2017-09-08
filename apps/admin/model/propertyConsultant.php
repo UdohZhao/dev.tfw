@@ -3,7 +3,6 @@ namespace apps\admin\model;
 use core\lib\model;
 class propertyConsultant extends model{
   public $table = 'property_consultant';
-  public $tabl = 'new_house_main';
   public $tables = 'new_house_catalog';
   // checkUser
   public function checkUser($data){
@@ -22,7 +21,14 @@ class propertyConsultant extends model{
   }
 
   // sel
-  public function sel($search,$limit){
+  public function sel($cname,$belong_company,$limit){
+    if($cname){
+      $search = " cname like '%$cname%' ";
+    }elseif($belong_company){
+      $search = " belong_company like '%$belong_company%' ";
+    }else{
+      $search = " 1 = 1 ";
+    }
     // sql
     $sql = "
         SELECT
@@ -32,7 +38,7 @@ class propertyConsultant extends model{
         WHERE
                 1 = 1
         AND
-                cname like '%$search%'
+              $search 
         ORDER BY
                 ctime DESC
         {$limit}
@@ -60,11 +66,7 @@ class propertyConsultant extends model{
     $res = $this->delete($this->table,['id'=>$id]);
     return $res->rowCount();
   }
-  //dle
-  public function dle($id){
-    $res = $this->delete($this->tabl,['id'=>$id]);
-    return $res->rowCount();
-  }
+ 
   // cou
   public function cou(){
     return $this->count($this->table);

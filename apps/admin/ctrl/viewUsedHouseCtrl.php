@@ -10,7 +10,10 @@ class viewUsedHouseCtrl extends baseCtrl{
     public $cdb;
     public $pcdb;
     public function _auto(){
-        if($_SESSION['userinfo']['type'] !=1 && $_SESSION['userinfo']['type'] !=0){
+        if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] !=1 && $_SESSION['userinfo']['type'] !=0){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
             die;
         }
@@ -82,14 +85,15 @@ class viewUsedHouseCtrl extends baseCtrl{
         $data = $this->db->sel_info($id);
         $t = date('Y-m-d H:i',$data['ctime']);
         
-        $tab = $data['selling_points'];
-        $str = preg_replace("/<([a-z]+)[^>]*>/i","",$tab);
         $pcInfo = $this->pcdb->getInfo($data['pcid']);
         
+        $title = $this->db->title($id);
+
         $this->assign('pcInfo',$pcInfo);
         $this->assign('ctime',$t);
+        $this->assign('title',$title);
         $this->assign('data',$data);
-        $this->assign('selling_points',$str);
+    
         $this->display('viewUsedHouse','houseDetail.html');
     }
 

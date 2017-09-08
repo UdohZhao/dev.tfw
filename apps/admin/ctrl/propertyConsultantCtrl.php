@@ -8,7 +8,10 @@ class propertyConsultantCtrl extends baseCtrl{
   public $id;
   // 构造方法
   public function _auto(){
-      if($_SESSION['userinfo']['type'] !=0 ){
+      if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] !=0 ){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
           die;
       }
@@ -84,13 +87,14 @@ class propertyConsultantCtrl extends baseCtrl{
   // 后台用户列表页面
   public function index(){
     // search
-    $search = isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '';
+    $cname = isset($_POST['cname']) ? htmlspecialchars($_POST['cname']) : '';
+    $belong_company = isset($_POST['belong_company']) ? htmlspecialchars($_POST['belong_company']) : '';
     // 总记录数
     $cou = $this->db->cou();
     // 数据分页
     $page = new Page($cou,conf::get('LIMIT','admin'));
     // 结果集
-    $data = $this->db->sel($search,$page->limit);
+    $data = $this->db->sel($cname,$belong_company,$page->limit);
     // assign
     $this->assign('data',$data);
     $this->assign('page',$page->showpage());
@@ -132,20 +136,6 @@ class propertyConsultantCtrl extends baseCtrl{
       }
     }
   }
-   // del
-  public function dle(){
-    // Ajax
-    if (IS_AJAX === true) {
-      // delete
-      $res = $this->db->dle($this->id);
-      if ($res) {
-        echo json_encode(true);
-        die;
-      } else {
-        echo json_encode(false);
-        die;
-      }
-    }
-  }
+
 
 }

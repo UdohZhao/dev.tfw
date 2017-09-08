@@ -15,7 +15,10 @@ class tenmentCatalogCtrl extends baseCtrl{
 
     // 构造方法
     public function _auto(){
-        if($_SESSION['userinfo']['type'] !=4 && $_SESSION['userinfo']['type'] !=0 ){
+        if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] !=4 && $_SESSION['userinfo']['type'] !=0 ){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
             die;
         }

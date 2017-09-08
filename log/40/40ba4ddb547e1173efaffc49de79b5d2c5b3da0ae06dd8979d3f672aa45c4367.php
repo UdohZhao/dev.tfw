@@ -154,7 +154,7 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
         if ((twig_get_attribute($this->env, $this->getSourceContext(), ($context["userinfo"] ?? null), "type", array()) == 0)) {
             // line 122
             echo "          <ul class=\"site-menu\">
-            <li class=\"site-menu-category\">导航栏目1</li>
+            <li class=\"site-menu-category\">导航栏目</li>
             <li class=\"site-menu-item has-sub\">
               <a class=\"animsition-link\" href=\"/admin/index/index\" data-slug=\"dashboard\" >
                 <i class=\"site-menu-icon wb-dashboard\" aria-hidden=\"true\"></i>
@@ -780,7 +780,7 @@ class __TwigTemplate_1287190271804d5025c4be302879936dfd6c73ccbb6998db6181d967d58
         <div>
         {% if userinfo.type == 0 %}
           <ul class=\"site-menu\">
-            <li class=\"site-menu-category\">导航栏目1</li>
+            <li class=\"site-menu-category\">导航栏目</li>
             <li class=\"site-menu-item has-sub\">
               <a class=\"animsition-link\" href=\"/admin/index/index\" data-slug=\"dashboard\" >
                 <i class=\"site-menu-icon wb-dashboard\" aria-hidden=\"true\"></i>

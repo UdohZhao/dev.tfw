@@ -14,7 +14,10 @@ class usedHouseInfoCtrl extends baseCtrl{
 
     // 构造方法
     public function _auto(){
-        if($_SESSION['userinfo']['type'] !=3 && $_SESSION['userinfo']['type'] !=0){
+        if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] !=3 && $_SESSION['userinfo']['type'] !=0){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
             die;
         }
@@ -72,17 +75,16 @@ class usedHouseInfoCtrl extends baseCtrl{
         if(IS_GET === true){
             
             $data = $this->uhdb->sel_info($this->uhcid);
-             $tab = $data['selling_points'];
-             $str = preg_replace("/<([a-z]+)[^>]*>/i","",$tab);
-            $t = date( "Y-m-d H:i",$data['ctime']);
+             $t = date( "Y-m-d H:i",$data['ctime']);
              // date("Y-m-d H:i:s",$caInfo['ctime']);
             // 读取相关置业顾问信息
             $pcInfo = $this->pcdb->getInfo($data['pcid']);
-            
+            $title = $this->uhdb->title($this->uhcid);
+
             //assign
             $this->assign('data',$data);
+            $this->assign('title',$title);
             $this->assign('ctime',$t);
-            $this->assign('selling_points',$str);
             $this->assign('pcInfo',$pcInfo);
            // display
             $this->display('usedHouseInfo','index.html');

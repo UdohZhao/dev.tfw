@@ -3,6 +3,7 @@ namespace apps\admin\model;
 use core\lib\model;
 class usedHouseInfo extends model{
     public $table='used_house_info';
+    public $tables = "used_house_catalog";
     public function add($data){
         $this->insert($this->table,$data);
         return $this->id();
@@ -16,7 +17,9 @@ class usedHouseInfo extends model{
     public function sel_info($uhcid){
         return  $this->get($this->table,'*',['uhcid'=>$uhcid]);
     }
-
+    public function title($uhcid){
+        return $this->get($this->tables,'title',['id'=>$uhcid]);
+    }
     //修改详细信息
     public function update_info($uhcid,$data){
         unset($data['uhcid']);
