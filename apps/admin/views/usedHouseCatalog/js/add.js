@@ -58,8 +58,8 @@ $("#newHouseCatalogForm").validate({
                 required: "<span style='color:red;'>小区不能为空 :(</span>"
             },
             selling_price: {
-                required: "<span style='color:red;'>售价不能为空 :(</span>"
-              
+                required: "<span style='color:red;'>售价不能为空 :(</span>",
+               digits: "<span style='color:red;'>必须为整数 :(</span>"
             },
             show_price: {
                 required: "<span style='color:red;'>展示价格不能为空 :(</span>",

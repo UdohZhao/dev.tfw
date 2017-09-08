@@ -18,6 +18,11 @@ class newHouseMain extends model{
         $res = $this->update($this->table,$data,['id'=>$id]);
         return $res->rowCount();
     }
+     //dle
+  public function dle($id){
+    $res = $this->delete($this->table,['id'=>$id]);
+    return $res->rowCount();
+  }
   // add
   public function add($data){
     $res = $this->insert($this->table,$data);

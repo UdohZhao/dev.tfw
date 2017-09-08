@@ -5,8 +5,12 @@ class sellHouseInfo extends model{
     public $table='sell_house_info';
     //查询卖列表
 
-    public function sel($status,$community,$selling_price,$area){
-        if($community){
+
+   
+     // sel
+  public function sel($type,$auid,$status,$currPage,$subPages,$community,$selling_price,$area){
+   
+       if($community){
         $title =  " community like '%$community%' ";
       }elseif($area){
         $title = " area = $area ";
@@ -14,11 +18,25 @@ class sellHouseInfo extends model{
         $title = " selling_price = '$selling_price' ";
       }else{
         $title = "status=$status";
-      }
-        $sql = "SELECT * FROM $this->table WHERE status=$status AND $title  ";
-        return $this->query($sql)->fetchAll(2);
-// ORDER BY     ctime DESC   LIMIT      $currPage , $subPages
-    }
+      }      
+      $sql = "
+        SELECT
+                *
+        FROM
+                `$this->table`
+        WHERE
+                1 = 1
+        AND
+                status=$status
+        AND    
+               $title       
+        ORDER BY
+                id DESC
+        LIMIT
+                $currPage , $subPages  
+    ";
+    return $this->query($sql)->fetchAll();
+  }
  // cou
   public function cou($status,$search=''){
         $where = ['status'=>$status];

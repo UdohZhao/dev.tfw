@@ -7,7 +7,7 @@
 <!-- Page -->
 <div class="page animsition">
     <div class="page-header">
-        <h1 class="page-title"># 房屋管理</h1>
+        <h1 class="page-title"># 房屋审核</h1>
     </div>
     <div class="page-content">
         <div class="panel">
@@ -21,7 +21,7 @@
                         <div class="queueList">
 
                              {% for k,v in data.slideshow %}
-                                <img src="{{ v.slideshow }}" width="200" height="200"/>
+                                <img src="{{ v }}" width="200" height="200"/>
                              {% endfor %}
 
                         </div>
@@ -33,53 +33,53 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">关联城市</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="cid" value="{{ data.cid }}" placeholder="请输入城市名称">
+                            <input type="text" class="form-control" name="cid" value="{{ data.cid }}" readonly="readonly" placeholder="请输入城市名称">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">标题</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="title" value="{{ data.title }}" placeholder="请输入标题">
+                            <input type="text" class="form-control" name="title" value="{{ data.title }}"  readonly="readonly" placeholder="请输入标题">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">小区</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="community" value="{{ data.community }}" placeholder="请输入小区">
+                            <input type="text"  readonly="readonly" class="form-control" name="community" value="{{ data.community }}" placeholder="请输入小区">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">价格</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="price" value="{{ data.price }}" placeholder="请输入价格">
+                            <input type="text" readonly="readonly" class="form-control" name="price" value="{{ data.price }}" placeholder="请输入价格">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">展示价格</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="show_price" value="{{ data.show_price }}" placeholder="请输入展示价格">
+                            <input type="text" readonly="readonly" class="form-control" name="show_price" value="{{ data.show_price }}" placeholder="请输入展示价格">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">特点</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="trait" value="{{ data.trait }}" placeholder="请输入特点（以英文逗号分隔）例如：AAA,BBB,CCC">
+                            <input type="text" readonly="readonly" class="form-control" name="trait" value="{{ data.trait }}" placeholder="请输入特点（以英文逗号分隔）例如：AAA,BBB,CCC">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">面积</label>
                         <div class="col-sm-10">
-                            <input type="text" type="text" class="form-control" name="area" value="{{ data.area }}" placeholder="请输入面积">
+                            <input type="text" readonly="readonly" type="text" class="form-control" name="area" value="{{ data.area }}" placeholder="请输入面积">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="address" value="{{ data.address }}" placeholder="请输入地址">
+                            <input type="text" readonly="readonly" class="form-control" name="address" value="{{ data.address }}" placeholder="请输入地址">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">户型</label>
+                        <label for="inputPassword3"  class="col-sm-2 control-label">户型</label>
                         <div class="col-sm-10">
                             {% for k,v in htype %}
                             <label class="checkbox-inline">

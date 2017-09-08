@@ -14,7 +14,7 @@
       </div>
       <div class="panel-body">
         {% if caInfo == '' %}
-        没有添加数据
+        没有详细信息数据
         {% else %}
         <ul class="list-group list-group-bordered">
         <li class="list-group-item"><h4>详细信息</h4></li>
@@ -26,7 +26,7 @@
           <br><tr>特　　点:：</tr><tr>{{ caInfo.trait }}</tr></br>
           <br><tr>户　　型:：</tr><tr>{{ caInfo.htype }}</tr></br>
           <br><tr>产权类型:：</tr><tr>{{ prtype }}</tr></br>
-          <br><tr>面　　积:：</tr><tr>{{ caInfo.area }}</tr></br>
+          <br><tr>面　　积:：</tr><tr>{{ caInfo.area }}m²</tr></br>
           <br><tr>房屋类型:：</tr><tr>{{ house_type }}</tr></br>
           <br><tr>物业类型:：</tr><tr>{{ caInfo.ptype }}</tr></br>
           <br><tr>地　　址:：</tr><tr>{{ caInfo.address }}</tr></br>
@@ -40,9 +40,8 @@
         <li class="list-group-item"><h4>置业顾问</h4></li>
         <li class="list-group-item">
           <img src="{{ pcInfo.head_portrait }}" class="img-responsive" style="width: 90px; height: 90px;">
-          <div style="font-size: 20px;">{{ pcInfo.cname }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.cname }}:({{ pcInfo.belong_company }})</div>
           <div style="font-size: 20px;">{{ pcInfo.phone }}</div>
-          <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>
         </li>
         </ul>
         {% endif %}

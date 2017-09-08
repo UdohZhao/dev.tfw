@@ -17,11 +17,10 @@ class newHouseCatalogCtrl extends baseCtrl{
   // 构造方法
   public function _auto(){
 
-      // if (isset($_SESSION['userinfo'])) {
-
-      // }
-
-      if($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=2 ){
+      if (isset($_SESSION['userinfo']) == null) {
+          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          die;
+      }elseif($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=2 ){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
           die;
       }
@@ -134,9 +133,9 @@ public function update(){
      if(IS_GET === true){
       $qwe = $this->nhmdb->getInfo($this->id);
 
+      
       $this->assign('date',$qwe);
      }
-
      $this->display('newHouseCatalog','and.html');
 die;
 

@@ -3,6 +3,7 @@ var App=getApp();
 Page({
   data: {
     domain: App.data.domain,
+    technicalSupport: App.data.technicalSupport,
     districtIndex: 0,
     priceIndex: 0,
     htypeIndex: 0,
@@ -258,7 +259,6 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-
         console.log(res.data);
 
         // if 
@@ -307,12 +307,12 @@ Page({
 
     var that = this;
 
-    // 获取房屋id，类型
+    // 获取房屋id，房屋类型
     console.log(e.currentTarget.dataset.id);
-    console.log(e.currentTarget.dataset.type);
+    console.log(that.data.hctype);
 
     wx.navigateTo({
-      url: '/pages/housedetails/housedetails?id=' + e.currentTarget.dataset.id + '&type=' + e.currentTarget.dataset.type
+      url: '/pages/housedetails/housedetails?id=' + e.currentTarget.dataset.id + '&hctype=' + that.data.hctype
     })
 
   },
@@ -493,7 +493,134 @@ Page({
       wx.hideLoading()
     }, 2000)
     
+  },
 
+  /**
+   * 搜索
+   */
+  searching: function(e){
+
+    var that = this;
+
+    // 获取搜索的值
+    console.log(e.detail.value);
+
+    that.setData({
+      searchVal: e.detail.value
+    });
+
+    // 请求首页数据
+    wx.request({
+      url: App.data.domain + '/newhouse/index/hcid/' + that.data.hcid + '/hctype/' + that.data.hctype,
+      data: {
+        search: that.data.searchVal
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data);
+        
+        // if 
+        if (res.data.code == 200) {
+
+          that.setData({
+            datas: res.data.data,
+            tabTxt: res.data.data.nhfiltrateData.filtrate,
+            tab: res.data.data.nhfiltrateData.active
+          });
+
+          console.log(that.data.datas);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+
+  },
+
+  /**
+   * 取消搜索
+   */
+  cancelSearch: function(e){
+
+    var that = this;
+
+    that.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+
+    // 请求房屋类别数据
+    wx.request({
+      url: App.data.domain + '/newhouse/index',
+      data: {
+        hcid: that.data.hcid,
+        hctype: that.data.hctype
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+
+        console.log(res.data);
+
+        // if 
+        if (res.data.code == 200) {
+
+          that.setData({
+            datas: res.data.data,
+            tabTxt: res.data.data.nhfiltrateData.filtrate,
+            tab: res.data.data.nhfiltrateData.active,
+            districtIndex: 0,
+            priceIndex: 0,
+            htypeIndex: 0,
+            prtypeIndex: 0,
+            areaIndex: 0
+          });
+
+          console.log(that.data.datas);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+      
   }
   
 });

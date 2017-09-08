@@ -3,6 +3,7 @@ namespace apps\admin\model;
 use core\lib\model;
 class viewUsedHouse extends model{
     public $table='used_house_catalog';
+    
 
     public function sel($status=0,$search='',$currPage,$subPages,$show_price,$area,$cid){
         if($show_price){
@@ -47,7 +48,9 @@ class viewUsedHouse extends model{
         }
         return $this->count($this->table,$where);
     }
-
+  public function title($id){
+        return $this->get($this->table,'title',['id'=>$id]);
+    }
     //查询房屋详细信息
     public function sel_info($uhcid){
         return $this->get('used_house_info','*',['uhcid'=>$uhcid]);

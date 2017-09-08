@@ -20,10 +20,11 @@ function del(id){
       // Ajax
       $.ajax({
         type: "GET",
-        url: "/admin/propertyConsultant/dle/id/"+id,
+        url: "/admin/newHouseMain/dle/id/"+id,
         dataType: "JSON",
         success: function(res){
           // res
+         
           if (res === true) {
             swal("提交成功", "当前操作已发生改变 :)", "success");
             setTimeout("window.location.reload();",2000);

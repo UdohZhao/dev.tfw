@@ -10,7 +10,7 @@
   <div class="page-content">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">@ （{{ data.title }}）租房详细信息</h3>
+        <h3 class="panel-title">@ （{{ title }}）租房详细信息</h3>
       </div>
       <div class="panel-body">
         {% if data == '' %}
@@ -20,13 +20,13 @@
         <li class="list-group-item"><h4>详细信息</h4></li>
         <li class="list-group-item">=
         <table style="font-size: 20px;">
-          <br><tr>面　　积:：</tr><tr>{{ data.area}}</tr></br>
+          <br><tr>面　　积:：</tr><tr>{{ data.area}}m²</tr></br>
           <br><tr>朝　　向:：</tr><tr>{{ data.orientation }}</tr></br>
-          <br><tr>楼　　层:：</tr><tr>{{ data.tage }}</tr></br>
+          <br><tr>楼　　层:：</tr><tr>{{ data.tage }}楼</tr></br>
           <br><tr>房屋类型:：</tr><tr>{{ data.htype }}</tr></br>
           <br><tr>发布时间:：</tr><tr>{{ ctime }}</tr></br>
           <br><tr>房屋配置:：</tr><tr>{{ data.hconfig }}</tr></br>
-          <br><tr>房源概况:：</tr><tr>{{ general_situation }}</tr></br>
+          <br><tr>房源概况:：</tr><tr>{% autoescape false %}{{ data.general_situation }}{% endautoescape %}</tr></br>
         </table>
         </li>
         {% for k,v in data.k %}
@@ -35,10 +35,8 @@
         <li class="list-group-item"><h4>置业顾问</h4></li>
         <li class="list-group-item">
           <img src="{{ pcInfo.head_portrait }}" class="img-responsive" style="width: 90px; height: 90px;">
-          <div style="font-size: 20px;">{{ pcInfo.cname }}</div>
+          <div style="font-size: 20px;">{{ pcInfo.cname }}:({{ pcInfo.belong_company }})</div>
           <div style="font-size: 20px;">{{ pcInfo.phone }}</div>
-          <div style="font-size: 20px;">{{ pcInfo.belong_company }}</div>
-          
         </li>
         </ul>
         {% endif %}
