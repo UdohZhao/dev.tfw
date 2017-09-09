@@ -9,6 +9,8 @@ Page({
     domain: app.data.domain,
     id:"",
     hidden: true,
+    hasMore: true,
+    hasRefesh: false
   },
   onLoad: function (options) {
 
@@ -17,7 +19,7 @@ Page({
     // 获取pid,类型
     console.log(options.pid);
     console.log(options.type);
-
+    
     that.setData({
       pid: options.pid,
       hecType: options.type
@@ -29,7 +31,7 @@ Page({
     })
     wx.request({
       method: "GET",
-      url: app.data.domain + '/houseEncyclopediaCategory/sel?pid=' + that.data.pid  ,
+      url: app.data.domain + '/houseEncyclopediaCategory/sel?pid=' + that.data.pid   ,
       data: {},
       header: {
         'Content-Type': 'application/json'
@@ -163,7 +165,7 @@ Page({
       })
       wx.request({
         method: "GET",
-        url: app.data.domain + '/houseEncyclopediaCategory/sel?pid=' + e.currentTarget.dataset.id,
+        url: app.data.domain + '/houseEncyclopediaCategory/sel?pid=' + e.currentTarget.dataset.id ,
         data: {},
         header: {
           'Content-Type': 'application/json'
@@ -215,11 +217,65 @@ Page({
       }, 2000) 
     }
   },
-  //页面滑动到底部
-  loadingChange:function() {
-          loadMore(that);
-          console.log("lower");
+  // //页面滑动到底部
+  // loadMore:function() {
+  //   var that = this;
+  //   that.setData({
+  //     hasRefesh: true,
+  //   });
+  //   if (!this.data.hasMore) return
+  //   wx.request({
+  //     method: "GET",
+  //     url: app.data.domain + '/houseEncyclopediaCategory/sel?pid=' + that.data.pid + '&number=' + (++that.data.page)  ,
+  //     data: {},
+  //     header: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     success: function (res) {
+  //       console.log(res.data)
+  //       if (res.data.code == 200) {
+  //         that.setData({
+  //           hecData: res.data.data,
+  //           hidden: true,
+  //           hasRefesh: false,
+  //         })
+
+  //         console.log(that.data.hecData);
+
+  //       } else {
+  //         // 提示
+  //         wx.showModal({
+  //           title: '提示',
+  //           content: '数据显示异常 :(',
+  //           showCancel: false,
+  //           success: function (res) {
+  //             if (res.confirm) {
+  //               wx.reLaunch({
+  //                 url: '/pages/index/index'
+  //               })
+  //             }
+  //           }
+  //         })
+  //       }
+  //     },
+  //     fail: function (e) {
+  //       // 提示
+  //       wx.showModal({
+  //         title: '提示',
+  //         content: '数据显示异常 :(',
+  //         showCancel: false,
+  //         success: function (res) {
+  //           if (res.confirm) {
+  //             wx.reLaunch({
+  //               url: '/pages/index/index'
+  //             })
+  //           }
+  //         }
+  //       })
+  //     }
+
+  //   })
   
-  },
+  // },
     
 })
