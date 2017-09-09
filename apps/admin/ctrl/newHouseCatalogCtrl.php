@@ -94,13 +94,13 @@ class newHouseCatalogCtrl extends baseCtrl{
         if ($this->id) {
           if ($this->id != $id) {
             $result['error'] = 202;
-            $result['msg'] = '请勿重复添加 :(';
+            $result['msg'] = '请勿重复添加标题 :(';
             echo json_encode($result);
             die;
           }
         } else {
           $result['error'] = 202;
-          $result['msg'] = '请勿重复添加 :(';
+          $result['msg'] = '请勿重复添加标题 :(';
           echo json_encode($result);
           die;
         }
@@ -132,8 +132,7 @@ class newHouseCatalogCtrl extends baseCtrl{
 public function update(){
      if(IS_GET === true){
       $qwe = $this->nhmdb->getInfo($this->id);
-
-      
+      $this->assign('cover_path',$qwe['cover_path']);
       $this->assign('date',$qwe);
      }
      $this->display('newHouseCatalog','and.html');
