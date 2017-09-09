@@ -1,6 +1,6 @@
 <!--encyclopedia.wxml-->
 <view class="weui-panel weui-panel_access encycle_content">
-    <scroll-view scroll-y="true" lower-threshold="50px" bindscrolltolower="bindDownLoad"  bindscroll="scroll" class="weui-panel__bd">
+    <scroll-view scroll-y="true" lower-threshold="15px"  bindscrolltoupper="loadNew" bindscrolltolower="loadMore" class="weui-panel__bd">
       <block wx:for="{{hecData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
         <view data-id="{{v.id}}" bindtap="gotoLevel" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
@@ -14,9 +14,8 @@
             </view>
         </view>
       </block>
-       
-      <loading hidden="{{hidden}}" bindchange="loadingChange">
-          加载中...
-      </loading>
+       <view wx:if="{{hasMore}}" style="display: flex;flex-direction: row;align-items: center;align-self: center;justify-content: center;">
+      <icon type="waiting" size="45"/><text>玩命的加载中...</text></view>
+      <view wx:else><text>没有更多内容了</text></view>
     </scroll-view>
 </view>

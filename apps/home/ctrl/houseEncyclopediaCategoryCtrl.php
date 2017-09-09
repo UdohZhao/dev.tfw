@@ -5,12 +5,12 @@ use apps\home\model\houseEncyclopediaCategory;
   	 public $db;
   	 public $pid;
      public $id;
-
   // 构造方法
   public function _auto(){
     $this->db = new houseEncyclopediaCategory();
     $this->pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
     $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
   }
   public function sel(){
  
