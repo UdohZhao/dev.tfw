@@ -1,9 +1,9 @@
 <!--mine.wxml-->
 <import src="../../dist/wxParse/wxParse.wxml"/>
 <view class="top_bcg">
-  <image class="bcg_img" src="../../images/房子.png"></image>
+  <image class="bcg_img" src="../../images/house.png"></image>
   <view class="tefangwang">
-    <image src="../../images/特房网.png"></image>
+    <image src="../../images/tfw.png"></image>
   </view>
 </view>
 <view class="abortus">

@@ -5,6 +5,7 @@ use apps\home\model\houseEncyclopediaCategory;
   	 public $db;
   	 public $pid;
      public $id;
+
   // 构造方法
   public function _auto(){
     $this->db = new houseEncyclopediaCategory();
