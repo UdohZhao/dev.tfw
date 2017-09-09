@@ -40,6 +40,9 @@ $(function(){
             dtype: {
                 required: true
             },
+            htype: {
+                required: true
+            }
         },
         messages: {
             cid: {
@@ -66,24 +69,18 @@ $(function(){
             house_type: {
                 required: "<span style='color:red;'>房型不能为空 :(</span>"
             },
+            htype: {
+                required: "<span style='color:red;'>装修类型不能为空 :(</span>"
+            },
         },
         submitHandler: function(form){
-            // 获取htype，ptype选中的值
-            var htype = new Array();
-
-            $.each($(".htype:checked"),function(){
-                htype.push($(this).val());
-            });
-            // if
-            if (htype == '') {
-                swal("拒绝提交", "请勾选出租类型:(", "error");
-            } else {
+        
                 $(form).ajaxSubmit({
                     dataType:"json",
                     success:function(res){
                         // res
                         if (res.error == 0) {
-                            swal("提交成功", "受影响的操作 :)", "success");
+                          
                             window.location.href = "/admin/tenmentInfo/add/tcid/"+res.msg;
                         } else if (res.error == 201) {
                             swal("提交失败", res.msg, "error");
@@ -101,7 +98,7 @@ $(function(){
                         swal("未知错误", "请尝试刷新页面后重试 :(", "error");
                     }
                 });
-            }
+            
         }
     });
 

@@ -13,7 +13,11 @@ class tenmentCatalog extends model{
     public function getId($title){
         return $this->get($this->table,'id',['title'=>$title]);
     }
-
+    // 租房
+  public function upztype($id,$type){
+     $res = $this->update($this->table,['type'=>$type],['id'=>$id]);
+    return $res->rowCount();
+  }
     // save
     public function save($id,$data){
         $res = $this->update($this->table,$data,['id'=>$id]);

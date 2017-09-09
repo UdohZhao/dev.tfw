@@ -35,7 +35,13 @@ class tenmentCatalogCtrl extends baseCtrl{
             $pid = $this->cdb->getId('北京');
             // 获取二手房主键id
             $hcid = $this->hcdb->getId('租房');
+            // 获取配置信息（租房类型）
+             $rhtype = conf::get('RHTYPE','admin');
+             //装修类型
+            $rhfinishingtype= conf::get('RHFINISHINGTYPE','admin');
             // assign
+            $this->assign('rhtype',$rhtype);
+            $this->assign('rhfinishingtype',$rhfinishingtype);
             $this->assign('pid',$pid);
             $this->assign('hcid',$hcid);
             // display
@@ -86,7 +92,7 @@ class tenmentCatalogCtrl extends baseCtrl{
                     die;
                 }
             }
-            // id
+                        // id
             if ($this->id) {
                 // 更新数据表
                 if(isset($data['slideshow'])){
@@ -99,6 +105,7 @@ class tenmentCatalogCtrl extends baseCtrl{
                     }
                 }
                 $res = $this->db->save($this->id,$data);
+
             } else {
                 // 写入数据表
                 $res = $this->db->add($data);
@@ -188,6 +195,24 @@ class tenmentCatalogCtrl extends baseCtrl{
             }
         }
     }
+    
+  //租房flae
+  public function flae(){
+    // Ajax
+    if (IS_AJAX === true) {
+      // status
+      $type = intval($_POST['type']);
+      // update
+      $res = $this->db->upztype($this->id,$type);
+      if ($res) {
+        echo json_encode(true);
+        die;
+      } else {
+        echo json_encode(false);
+        die;
+      }
+    }
+  }
       //提交审核
     public function commit_status()
         {

@@ -18,7 +18,11 @@ class usedHouseCatalog extends model{
         $res = $this->update($this->table,$data,['id'=>$id]);
         return $res->rowCount();
     }
-
+// 二手房
+  public function upstype($id,$type){
+    $res = $this->update($this->table,['type'=>$type],['id'=>$id]);
+    return $res->rowCount();
+  }
     // add
     public function add($data){
         $res = $this->insert($this->table,$data);

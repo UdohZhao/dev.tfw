@@ -163,6 +163,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
 
+
         //结果集
         $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
         
@@ -196,6 +197,23 @@ class usedHouseCatalogCtrl extends baseCtrl{
             }
         }
     }
+    //二手房
+   public function flag(){
+    // Ajax
+    if (IS_AJAX === true) {
+      // status
+      $type = intval($_POST['type']);
+      // update
+      $res = $this->db->upstype($this->id,$type);
+      if ($res) {
+        echo json_encode(true);
+        die;
+      } else {
+        echo json_encode(false);
+        die;
+      }
+    }
+  }
         //提交审核
         public function commit_status()
         {

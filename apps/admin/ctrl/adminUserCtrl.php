@@ -108,7 +108,7 @@ class adminUserCtrl extends baseCtrl{
       }
     }
   }
-//新房
+
   // flag
   public function flag(){
     // Ajax
@@ -117,42 +117,6 @@ class adminUserCtrl extends baseCtrl{
       $status = intval($_POST['status']);
       // update
       $res = $this->db->Status($this->id,$status);
-      if ($res) {
-        echo json_encode(true);
-        die;
-      } else {
-        echo json_encode(false);
-        die;
-      }
-    }
-  }
-
-
-//二手房
-   public function flage(){
-    // Ajax
-    if (IS_AJAX === true) {
-      // status
-      $type = intval($_POST['type']);
-      // update
-      $res = $this->db->upstype($this->id,$type);
-      if ($res) {
-        echo json_encode(true);
-        die;
-      } else {
-        echo json_encode(false);
-        die;
-      }
-    }
-  }
-  //租房flae
-  public function flae(){
-    // Ajax
-    if (IS_AJAX === true) {
-      // status
-      $type = intval($_POST['type']);
-      // update
-      $res = $this->db->upztype($this->id,$type);
       if ($res) {
         echo json_encode(true);
         die;
