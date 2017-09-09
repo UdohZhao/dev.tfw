@@ -3,6 +3,7 @@ namespace apps\admin\model;
 use core\lib\model;
 class buyHouseCatagory extends model{
     public $table='house_encyclopedia_category';
+    public $tables="house_encyclopedia_article";
 
     public function checkUser($data){
         return $this->get($this->table,'*',['username'=>$data['username'],'password'=>$data['password']]);
@@ -18,7 +19,7 @@ class buyHouseCatagory extends model{
         $res = $this->insert($this->table,$data);
         return $this->id();
     }
-
+ 
     // sel
     public function sel($search,$limit,$pid){
         // sql
@@ -53,7 +54,9 @@ class buyHouseCatagory extends model{
         $res = $this->update($this->table,['status'=>$status],['id'=>$id]);
         return $res->rowCount();
     }
-
+    public function hecid($id){
+        return $this->get($this->tables,'hecid',['hecid'=>$id]);
+    }
     // del
     public function del($id){
         $res = $this->delete($this->table,['id'=>$id]);
