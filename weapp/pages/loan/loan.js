@@ -62,26 +62,18 @@ Page({
     console.log(that.data.loansType);
     if (that.data.phone == undefined) {
       wx.showModal({
-        title: '请输入手机号！',
-        icon: 'success',
-        duration: 1500
-      })
-      return false;
-    }
-    if (that.data.phone.length != 11) {
-      wx.showModal({
-        title: '手机号长度有误！',
-        icon: 'success',
-        duration: 1500
+        title: '提示',
+        content: '请输入正确的手机号码！',
+        showCancel: false
       })
       return false;
     }
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
     if (!myreg.test(that.data.phone)) {
       wx.showModal({
-        title: '手机号有误！',
-        icon: 'success',
-        duration: 1500
+        title: '提示',
+        content: '请输入正确的手机号码！',
+        showCancel: false
       })
       return false;
     }
@@ -105,9 +97,16 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
+
+          // if (res.data.data.code == 400) {
+
+          // }
+
+
           wx.showModal({
             title: '提示',
-            content: '提交成功',
+            content: '提交成功！',
+            showCancel: false,
             success: function (res) {
               if (res.confirm) {
                 console.log('用户点击确定')
