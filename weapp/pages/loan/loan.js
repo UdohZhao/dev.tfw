@@ -60,20 +60,30 @@ Page({
     console.log(that.data.cname);
     console.log(that.data.phone);
     console.log(that.data.loansType);
-    if (that.data.phone == false || that.data.phone == undefined ) {
+    if (that.data.phone == undefined) {
       wx.showModal({
         title: '提示',
-        content: '电话不能为空',
+        content: '请输入正确的手机号码！',
         showCancel: false
       })
-    } else if (that.data.cname == false || that.data.cname == undefined) {
+      return false;
+    }
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    if (!myreg.test(that.data.phone)) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入正确的手机号码！',
+        showCancel: false
+      })
+      return false;
+    }
+    if (that.data.cname == false || that.data.cname == undefined) {
       wx.showModal({
         title: '提示',
         content: '姓名不能为空',
         showCancel: false
       })
     } else {
-
       // code ...
       wx.request({
         method: 'POST',
@@ -87,18 +97,22 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
+
+          // if (res.data.data.code == 400) {
+
+          // }
+
+
           wx.showModal({
             title: '提示',
-            content: '是否提交申请',
+            content: '提交成功！',
+            showCancel: false,
             success: function (res) {
               if (res.confirm) {
                 console.log('用户点击确定')
-                
-                wx.showModal({
-                  title: '提示',
-                  content: '提交成功',
-                  showCancel: false
-                });
+                wx.reLaunch({
+                  url: '/pages/loan/loan'
+                })
               }
             }
           })
