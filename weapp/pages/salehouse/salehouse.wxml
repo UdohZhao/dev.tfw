@@ -1,12 +1,12 @@
 <!--salehouse.wxml-->
 <view class="top_img">
-  <image src="../../images/房子.png"></image>
+  <image src="../../images/house.png"></image>
   <view class="top_title">
-    已有<text>1234</text>位房东委托卖房
+    已有<text class="sellers-quantity">1234</text>位房东委托卖房
   </view>
 </view>
 <view class="add_information">
-  <view class="weui-cells__title">请填写您的房屋信息</view>
+  <view class="weui-cells__title sh-title">请填写您的房屋信息</view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd">您的小区</view>

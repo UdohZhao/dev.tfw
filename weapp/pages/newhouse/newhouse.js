@@ -348,7 +348,7 @@ Page({
 
     var that = this;
 
-    // 获取筛选类型 0>区域，1>价格，2>户型，3>产权类型，4>面积
+    // 获取筛选类型 0>区域，1>价格，2>户型，3>产权类型，4>面积 or 装修
     console.log(e.currentTarget.dataset.type);
     console.log(e.currentTarget.dataset.index);
     
@@ -381,7 +381,8 @@ Page({
       that.setData({
         htypeIndex: e.currentTarget.dataset.index,
         htypeType: e.currentTarget.dataset.type,
-        htypeVal: e.currentTarget.dataset.val
+        htypeVal: e.currentTarget.dataset.val,
+        htypeKval: e.currentTarget.dataset.kval
       });
       // 获取户型
       console.log(e.currentTarget.dataset.val);
@@ -399,7 +400,7 @@ Page({
     }
 
     // 4 面积
-    if (e.currentTarget.dataset.type == 4) {
+    if (e.currentTarget.dataset.type == 4 && that.data.hctype != 2) {
       that.setData({
         areaIndex: e.currentTarget.dataset.index,
         areaType: e.currentTarget.dataset.type,
@@ -411,15 +412,30 @@ Page({
       console.log('结束面积：' + e.currentTarget.dataset.end);
     }
 
+    // 4 装修
+    if (e.currentTarget.dataset.type == 4 && that.data.hctype == 2) {
+      that.setData({
+        areaIndex: e.currentTarget.dataset.index,
+        areaType: e.currentTarget.dataset.type,
+        areaVal: e.currentTarget.dataset.val
+      });
+      // 获取装修类型
+      console.log(e.currentTarget.dataset.val);
+    }
+
     console.log('################');
 
-    // 区域（下标，城市id），价格（下标，开始价格，结束价格），户型（下标，值），产权类型（下标，值），面积（下标，开始面积，结束面积）
+    // 区域（下标，城市id），价格（下标，开始价格，结束价格），户型（下标，文本值，数字值），产权类型（下标，值），面积（下标，开始面积，结束面积），装修类型（下标，值）
 
     console.log(that.data.districtType,that.data.districtIndex, that.data.cid);
     console.log(that.data.priceType,that.data.priceIndex, that.data.startPrice,that.data.endPrice);
-    console.log(that.data.htypeType,that.data.htypeIndex, that.data.htypeVal);
+    console.log(that.data.htypeType, that.data.htypeIndex, that.data.htypeVal, that.data.htypeKval);
     console.log(that.data.prtypeType,that.data.prtypeIndex, that.data.prtypeVal);
-    console.log(that.data.areaType,that.data.areaIndex, that.data.startArea, that.data.endArea);
+    if (that.data.hctype != 2) {
+      console.log(that.data.areaType, that.data.areaIndex, that.data.startArea, that.data.endArea);
+    } else {
+      console.log(that.data.areaType, that.data.areaIndex, that.data.areaVal);      
+    }
 
     // 友好的用户体验开始
     wx.showLoading({
@@ -440,6 +456,7 @@ Page({
         htypeType: that.data.htypeType,
         htypeIndex: that.data.htypeIndex,
         htypeVal: that.data.htypeVal,
+        htypeKval: that.data.htypeKval,
         prtypeType: that.data.prtypeType,
         prtypeIndex: that.data.prtypeIndex,
         prtypeVal: that.data.prtypeVal,
@@ -447,6 +464,7 @@ Page({
         areaIndex: that.data.areaIndex,
         startArea: that.data.startArea,
         endArea: that.data.endArea,
+        areaVal: that.data.areaVal
       },
       method: 'POST',
       header: {
