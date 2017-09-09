@@ -33,6 +33,12 @@ class loanCtrl extends baseCtrl{
        $data = $this->getData();  
       // insert
          $res = $this->db->add($data);
+        
+        if ($data) {
+      echo J(R(200,'成功',$data));
+    } else {
+      echo J(R(400,'数据加载异常 :(',false));
+    }
   }
 
   public function sel(){

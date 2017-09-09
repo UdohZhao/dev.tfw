@@ -74,13 +74,14 @@ function del(id){
         type: "GET",
         url: "/admin/buyHouseCatagory/del/id/"+id,
         dataType: "JSON",
+        
         success: function(res){
           // res
           if (res === true) {
             swal("提交成功", "当前操作已发生改变 :)", "success");
             setTimeout("window.location.reload();",2000);
           } else if (res === false) {
-            swal("提交失败", "请刷新页面后重试 :(", "error");
+            swal("提交失败", "请先删除其下级 :(", "error");
           } else {
             swal("提交失败", "请先删除其下级 :(", "error");
           }
