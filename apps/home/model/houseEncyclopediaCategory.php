@@ -6,7 +6,7 @@ class houseEncyclopediaCategory extends model{
 	public $table1 = 'house_encyclopedia_article';# 购房百科文章表 
 
 	public function sel($pid){
-		$sql = "SELECT * FROM $this->table where pid = '$pid' and status='0'";
+		$sql = "SELECT * FROM $this->table where pid = '$pid' and status='0'  ORDER BY id ";
 
 	    return $this->query($sql)->fetchAll(2);
 	}

@@ -123,3 +123,13 @@ page{
   font-size: 26rpx;
   color: #999;
 }
+.show-rent{
+  color: #D0104C;
+  font-size: 38rpx;
+}
+.flex-top{
+  padding-top: 10rpx;
+}
+.flex-bottom{
+  padding-bottom: 10rpx;
+}

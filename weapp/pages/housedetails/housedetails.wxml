@@ -161,8 +161,115 @@
                 </view>
             </view>
           </view>      
-
 </view>
+
+<!-- 租房 -->
+<view wx:if="{{hctype == 2}}">
+ 
+
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">{{data.title}}</view>
+        </view>
+    </view>
+
+      <view class="weui-flex flex-top">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            租金：<text class="placeholder-val show-rent">{{data.show_rent}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            房型：<text class="placeholder-val">{{data.house_type}}</text>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            装修：<text class="placeholder-val">{{data.dtype}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            面积：<text class="placeholder-val">{{data.nhiData.area}}㎡</text>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            朝向：<text class="placeholder-val">{{data.nhiData.orientation}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            楼层：<text class="placeholder-val">{{data.nhiData.tage}}</text>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            类型：<text class="placeholder-val">{{data.nhiData.htype}}</text>
+          </view>
+        </view>
+      </view>
+
+       <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            小区：<text class="placeholder-val">{{data.community}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-flex flex-bottom">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            发布：<text class="placeholder-val">{{data.nhiData.ctime}}</text>
+          </view>
+        </view>
+      </view>
+
+          <view class="consultant">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">房源概况</view>
+                </view>
+            </view>
+            <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__bd general-situation-val">
+                    <!-- 这里data中article为bindName -->
+      <template is="wxParse" data="{{wxParseData:general_situation.nodes}}"/>
+                </view>
+            </view>
+          </view>   
+
+          <view class="consultant">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">房间配置</view>
+                </view>
+            </view>
+            <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__bd general-situation-val">
+
+                <block wx:for="{{data.nhiData.hconfig}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+                  <view class="weui-grid" hover-class="weui-grid_active">
+                      <view class="weui-grid__label"><icon type="success" size="16"></icon><text> {{v}}</text></view>
+                  </view>
+                </block>
+
+                </view>
+            </view>
+          </view>   
+
+</view> 
 
 <view class="consultant">
   <view class="weui-cells weui-cells_after-title">

@@ -44,21 +44,27 @@
 
       <!-- 户型 start -->
       <view wx:if="{{k == 2}}">
-      <view class="{{htypeIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.htypeData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="2" data-val="{{vv}}" data-index="{{kk}}" bindtap="filter">{{vv}}</view>
+      <view class="{{htypeIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.htypeData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="2" data-val="{{vv}}" data-kval="{{kk}}室" data-index="{{kk}}" bindtap="filter">{{vv}}</view>
       </view>
       <!-- 户型 end -->
 
       <!-- 产权类型 start -->
       <view wx:if="{{k == 3}}">
-      <view class="{{prtypeIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.prtypeData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="3" data-val="{{vv}}" data-index="{{kk}}" bindtap="filter">{{vv}}</view>
+        <view class="{{prtypeIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.prtypeData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="3" data-val="{{vv}}" data-index="{{kk}}" bindtap="filter">{{vv}}</view>
       </view>
       <!-- 产权类型 end -->
-
+ 
       <!-- 面积 start -->
-      <view wx:if="{{k == 4}}">
-      <view class="{{areaIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.areaData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="4" data-start="{{vv.start}}" data-end="{{vv.end}}" data-index="{{kk}}" bindtap="filter">{{vv.show}}</view>
+      <view wx:if="{{k == 4 && hctype != 2}}">
+        <view class="{{areaIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.areaData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="4" data-start="{{vv.start}}" data-end="{{vv.end}}" data-index="{{kk}}" bindtap="filter">{{vv.show}}</view>
       </view>
       <!-- 面积 end -->
+      
+      <!-- 装修 start -->
+      <view wx:if="{{k == 4 && hctype == 2}}">
+        <view class="{{areaIndex==kk?'active':''}} tabLayer_list" wx:for="{{datas.areaData}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv" data-type="4" data-val="{{vv}}" data-index="{{kk}}" bindtap="filter">{{vv}}</view>
+      </view>
+      <!-- 装修 end -->
 
   </scroll-view>
 </block>
@@ -78,15 +84,21 @@
               </view>
               <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                 <view class="weui-media-box__title">{{v.title}}</view>
-                <view class="weui-media-box__desc">{{v.cid}} - {{v.community}}<text class="money">{{v.show_price}}</text></view>
                 <view class="weui-media-box__desc">
-                  建面：{{v.area}}㎡
+                {{v.cid}} - {{v.community}}
+                <text class="money" wx:if="{{hctype != 2}}">{{v.show_price}}</text><text class="money" wx:if="{{hctype == 2}}">{{v.show_rent}}</text>
                 </view>
                 <view class="weui-media-box__desc">
-              <block wx:for="{{v.trait}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv">
-              <view class="trait-item">{{vv}}</view>
-              </block>
+                  <view wx:if="{{hctype != 2}}">建面：{{v.area}}㎡</view>
+                  <view wx:if="{{hctype == 2}}">{{v.house_type}} - {{v.htype}}</view>
                 </view>
+              <view wx:if="{{hctype != 2}}">
+                <view class="weui-media-box__desc">
+                  <block wx:for="{{v.trait}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv">
+                  <view class="trait-item">{{vv}}</view>
+                  </block>
+                </view>
+              </view>
               </view>
             </view>
           </block>

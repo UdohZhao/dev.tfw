@@ -9,7 +9,7 @@ page{
 }
 scroll-view{
   width: 100%;
-  height: 100%;
+  height:100%;
 }
 .encycle_content .weui-media-box__desc{
   font-size: 14px;
