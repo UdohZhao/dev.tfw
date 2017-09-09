@@ -74,6 +74,7 @@ class housedetailsCtrl extends baseCtrl{
           $data['trait'] = explode(',', commaEn($data['trait']));
           // 读取二手房详细信息
           $data['nhiData'] = $this->uhidb->getInfo($this->id);
+          $data['nhiData']['ctime'] = date('Y-m-d',$data['nhiData']['ctime']);
           // 读取置业顾问信息
           $data['pcData'] = $this->pcdb->getInfo($data['nhiData']['pcid']);
           ###

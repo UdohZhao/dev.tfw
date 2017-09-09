@@ -380,6 +380,23 @@ class newhouseCtrl extends baseCtrl{
         }
       }
 
+      // 租房
+      if ($this->hctype == 2) {
+         // 读取租房房筛选条目
+        $data['nhfiltrateData']['filtrate'] = conf::get('RHFILTRATE','admin');
+        $data['nhfiltrateData']['active'] = conf::get('RHFILTRATEACTIVE','admin');
+        // 读取价格
+        $data['priceData'] = conf::get('RHPRICE','admin');
+        // 读取租房类型
+        $data['prtypeData'] = conf::get('RHTYPE','admin');
+        // 追加数组
+        array_unshift($data['prtypeData'], '不限');
+        // 读取租房装修类型
+        $data['areaData'] = conf::get('RHFINISHINGTYPE','admin');
+        // 追加数组
+        array_unshift($data['areaData'], '不限');
+      }
+
       echo J(R(200,'受影响的操作 :)',$data));
       die;
     } else {

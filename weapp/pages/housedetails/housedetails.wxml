@@ -1,3 +1,5 @@
+<!-- 引入模板 -->
+<import src="../../dist/wxParse/wxParse.wxml"/>
 <!--housedetails.wxml-->
 <swiper class="house_swiper" circular="true" indicator-active-color="#00ce3c" indicator-color="" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{data.slideshow}}" wx:key="i" wx:for-index="k" wx:for-item="v">
@@ -6,49 +8,162 @@
     </swiper-item>
   </block>
 </swiper>
-<!-- <view class="house_name" id="{{eachId}}">
+
+<!-- 新房 -->
+<view wx:if="{{hctype == 0}}">
+  <view class="house_name" id="{{eachId}}">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">{{data.title}}</view>
+            <view class="weui-cell__ft">{{data.house_type}}</view>
+        </view>
+    </view>
+    <view class="house_content">
+      <view class="weui-media-box__desc">{{data.ptype}}：<text class="money">{{data.show_price}}</text></view> 
+        <view class="weui-media-box__desc">
+          <view class="introduction" wx:for="{{data.trait}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+            {{v}}
+          </view>
+        </view>
+      <view class="weui-media-box__desc">地址：<text class="right_content">{{data.address}}</text></view>
+      <block wx:for="{{data.nhiData.k}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+        <view class="weui-media-box__desc">
+          {{data.nhiData.k[k]}}：<text class="right_content">{{data.nhiData.v[k]}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="huxing">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">主力户型</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+    </view>
+    <scroll-view scroll-x style="width:100%;" class="huxing_box">
+      <view class="huxing_all_box">
+        <block wx:for="{{data.nhmdb}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+          <navigator url="/pages/hxdetails/hxdetails?id={{v.id}}" class="huxing_list" hover-class="weui-cell_active">
+            <view class="list_img">
+              <image src="{{domain}}{{v.cover_path}}"></image>
+            </view>
+            <view class="list_title">{{v.cname}}</view>
+            <view class="list_style">{{v.house_type_name}}：{{v.covered_area}}</view>
+          </navigator>
+        </block>
+      </view>
+    </scroll-view>
+  </view> 
+</view>
+
+<!-- 二手房 -->
+<view wx:if="{{hctype == 1}}">
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
           <view class="weui-cell__bd">{{data.title}}</view>
-          <view class="weui-cell__ft">{{data.house_type}}</view>
       </view>
-  </view>
-  <view class="house_content">
-     <view class="weui-media-box__desc">{{data.ptype}}：<text class="money">{{data.show_price}}</text></view> 
-      <view class="weui-media-box__desc">
-        <view class="introduction" wx:for="{{data.trait}}" wx:key="i" wx:for-index="k" wx:for-item="v">
-          {{v}}
-        </view>
-      </view>
-    <view class="weui-media-box__desc">地址：<text class="right_content">{{data.address}}</text></view>
-    <block wx:for="{{data.nhiData.k}}" wx:key="i" wx:for-index="k" wx:for-item="v">
-      <view class="weui-media-box__desc">
-        {{data.nhiData.k[k]}}：<text class="right_content">{{data.nhiData.v[k]}}</text>
-      </view>
-    </block>
-  </view>
-</view>
-<view class="huxing">
-  <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-          <view class="weui-cell__bd">主力户型</view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-      </view>
-  </view>
-  <scroll-view scroll-x style="width:100%;" class="huxing_box">
-    <view class="huxing_all_box">
-      <block wx:for="{{data.nhmdb}}" wx:key="i" wx:for-index="k" wx:for-item="v">
-        <navigator url="/pages/hxdetails/hxdetails?id={{v.id}}" class="huxing_list" hover-class="weui-cell_active">
-          <view class="list_img">
-            <image src="{{domain}}{{v.cover_path}}"></image>
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-media-box__desc">
+              <view class="introduction" wx:for="{{data.trait}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+                {{v}}
+              </view>
+            </view>
           </view>
-          <view class="list_title">{{v.cname}}</view>
-          <view class="list_style">{{v.house_type_name}}：{{v.covered_area}}</view>
-        </navigator>
-      </block>
-    </view>
-  </scroll-view>
-</view> -->
+      </view>
+  </view>
+
+          <view class="weui-grids">
+            
+            <view class="weui-grid" hover-class="weui-grid_active">
+                <view class="weui-grid__label grid-item">{{data.show_price}}</view>
+                <view class="weui-grid__label grid-item-desc">售价</view>
+            </view>
+
+            <view class="weui-grid" hover-class="weui-grid_active">
+                <view class="weui-grid__label grid-item">{{data.htype}}</view>
+                <view class="weui-grid__label grid-item-desc">房型</view>
+            </view>
+
+            <view class="weui-grid" hover-class="weui-grid_active">
+                <view class="weui-grid__label grid-item">{{data.area}}㎡</view>
+                <view class="weui-grid__label grid-item-desc">面积</view>
+            </view>
+           
+          </view>
+
+          <view class="weui-flex flex-one">
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  单价：<text class="placeholder-val">{{data.nhiData.unit_price}}</text>
+                </view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  朝向：<text class="placeholder-val">{{data.nhiData.orientation}}</text>
+                </view>
+              </view>
+          </view>
+
+          <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  楼层：<text class="placeholder-val">{{data.nhiData.tage}}</text>
+                </view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  装修：<text class="placeholder-val">{{data.nhiData.upfitter}}</text>
+                </view>
+              </view>
+          </view>
+
+          <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  类型：<text class="placeholder-val">{{data.nhiData.type}}</text>
+                </view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  年代：<text class="placeholder-val">{{data.nhiData.era}}</text>
+                </view>
+              </view>
+          </view>
+
+          <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  小区：<text class="placeholder-val">{{data.nhiData.community}}</text>
+                </view>
+              </view>
+          </view>
+
+          <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  轨交：<text class="placeholder-val">{{data.nhiData.rail_transit}}</text>
+                </view>
+              </view>
+          </view>
+
+          <view class="consultant">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">房源概况</view>
+                    <text class="issue-time">{{data.nhiData.ctime}} 发布</text>
+                </view>
+            </view>
+            <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__bd general-situation-val">
+                    <!-- 这里data中article为bindName -->
+      <template is="wxParse" data="{{wxParseData:selling_points.nodes}}"/>
+                </view>
+            </view>
+          </view>      
+
+</view>
+
 <view class="consultant">
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
