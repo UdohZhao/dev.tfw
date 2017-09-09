@@ -170,16 +170,12 @@ Page({
         },
         success: function (res) {
           console.log(res.data)
-
           if (res.data.code == 200) {
-
             that.setData({
               hecData: res.data.data,
               hecType: 1
             })
-
             console.log(that.data.hecData);
-
           } else {
             // 提示
             wx.showModal({
@@ -221,7 +217,6 @@ Page({
   },
   //页面滑动到底部
   loadingChange:function() {
-          var that = this;
           loadMore(that);
           console.log("lower");
   
