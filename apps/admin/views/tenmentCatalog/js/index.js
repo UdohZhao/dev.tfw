@@ -35,7 +35,7 @@ function flag(id,type){
       // Ajax
       $.ajax({
         type: "POST",
-        url: "/admin/adminUser/flae/id/"+id,
+        url: "/admin/tenmentCatalog/flae/id/"+id,
         data: {type:type},
         dataType: "JSON",
         success: function(res){

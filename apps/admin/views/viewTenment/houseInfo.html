@@ -7,7 +7,7 @@
 <!-- Page -->
 <div class="page animsition">
     <div class="page-header">
-        <h1 class="page-title"># 房屋管理</h1>
+        <h1 class="page-title"># 房屋审核</h1>
     </div>
     <div class="page-content">
         <div class="panel">
@@ -30,9 +30,7 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" id="newHouseCatalogForm" action="/admin/tenmentCatalog/add/id/{{ data.id }}" method="post">
-                    <input type="hidden" name="pid" value="{{ pid }}">
-                    <input type="hidden" name="hcid" value="{{ hcid }}">
-                    <input type="hidden" name="slideshow" value="{{ data.slideshow }}">
+                  
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">关联城市</label>
                         <div class="col-sm-10">
@@ -76,33 +74,31 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">装修类型</label>
-                        <div class="col-sm-10">
-                        {% if data.dtype == 0 %}
-                            <input type="radio" class="dtype" name="dtype" checked value="0"> 精装
-                        {% elseif data.dtype == 1 %}
-                            <input type="radio" class="dtype" name="dtype" checked value="1"> 中装
-                        {% elseif data.dtype == 2 %}
-                            <input type="radio" class="dtype" name="dtype" checked value="2"> 简装
-                        {% else %}
-                            <input type="radio" class="dtype" name="dtype" value="0"> 精装
-                            <input type="radio" class="dtype" name="dtype" value="1"> 中装
-                            <input type="radio" class="dtype" name="dtype" value="2"> 简装
-                        {% endif %}
-                        </div>
+                          <label for="inputPassword3" class="col-sm-2 control-label">装修类型</label>
+                            <div class="col-sm-10">
+                            {% for k,v in rhtype %}
+                            <label class="radio-inline">
+                                {% if data.htype == k and  data.htype != '' %}
+                                <input type="radio" name="prtype" checked value="{{ k }}"> {{ v }}
+                                {% else %}
+                                <input type="radio" name="prtype" value="{{ k }}"> {{ v }}
+                                {% endif %}
+                            </label>
+                            {% endfor %}
+                       
                     </div>
 
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">租房类型</label>
                         <div class="col-sm-10">
-                        {% if data.htype == 0 %}
-                            <input type="radio" class="htype" name="htype" checked value="0"> 整租
-                        {% elseif data.htype == 1 %}
-                            <input type="radio" class="htype" name="htype" checked value="1"> 合租
-                        {% else %}
-                            <input type="radio" class="htype" name="htype" value="0"> 整租
-                            <input type="radio" class="htype" name="htype" value="1"> 合租
-                        {% endif %}
+                            {% for k,v in rhfinishingtype %}
+                                {% if data.dtype == k and  data.dtype != '' %}
+                                <input type="radio" name="htype" checked value="{{ k }}"> {{ v }}
+                                {% else %}
+                                <input type="radio" name="htype"  value="{{ k }}"> {{ v }}
+                                {% endif %}
+                      
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="form-group">

@@ -149,10 +149,11 @@ class viewNewHouseCtrl extends baseCtrl{
 
         // 读取新房条目名称
         $title = $this->nhcdb->getTitle($nhcid);
+       
         // assign
         $this->assign('data',$data);
 
-        $this->assign('title',$title);
+        $this->assign('title',$title['title']);
         // display
         $this->display('viewNewHouse','main_user.html');
         die;

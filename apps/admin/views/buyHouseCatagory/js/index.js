@@ -98,13 +98,14 @@ function del(id){
 //添加下一级
 //当前选择的id 即父级id
 function add(id){
-   window.location.href='http://'+window.location.host+'/admin/buyHouseCatagory/add?pid='+id;
+   window.location.href='http://'+window.location.host+'/admin/buyHouseCatagory/add/pid/'+id;
 }
 
 //查看下一级
 //当前选择的id 即父级id
 function view_next(id){
-    window.location.href='http://'+window.location.host+'/admin/buyHouseCatagory/index?pid='+id;
+    window.location.href='/admin/buyHouseCatagory/index/id/'+id;
+    
 }
 
 //添加文章
@@ -114,5 +115,5 @@ function add_article(id,cname){
 
 //查看文章
 function show_article_list(id){
-    window.location.href='http://'+window.location.host+'/admin/buyHouseCatagory/article_list?id='+id;
+    window.location.href='http://'+window.location.host+'/admin/buyHouseCatagory/article_list/id/'+id;
 }
