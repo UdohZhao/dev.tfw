@@ -3,6 +3,19 @@ function update_info(id){
 }
   //已读
 function status(id){
+           swal({
+            title: "确认改为已读吗？",
+            text: "已读后将不可返回 :(",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确定",
+            cancelButtonText: "取消",
+            closeOnConfirm: false,
+            closeOnCancel: false
+          },
+           function(isConfirm){
+    if (isConfirm) {
           // Ajax
           $.ajax({
             type: "GET",
@@ -26,6 +39,10 @@ function status(id){
               swal("未知错误", "请刷新页面后重试 :(", "error");
             }
           });
+          } else {
+      swal("取消了", "当前操作未发生改变 :)", "error");
+    }
+  });
 }
 // 删除
 function del_info(id){

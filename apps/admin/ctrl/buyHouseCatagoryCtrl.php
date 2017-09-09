@@ -166,9 +166,15 @@ class buyHouseCatagoryCtrl extends baseCtrl{
         echo json_encode(1);
         die;
       }
+      $res= $this->db->hecid($this->id);
+        if($res) {    
+        echo json_encode(false);
+        die;
+      }
       // 删除
       $res = $this->db->del($this->id);
-      if ($res) {
+
+     if($res) {    
         echo json_encode(true);
         die;
       } else {
