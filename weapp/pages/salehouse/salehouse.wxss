@@ -64,6 +64,7 @@ button::after{
 }
 .next_step{
   margin-top: 100rpx;
+  margin-bottom: 100rpx;
   padding: 0 15px;
   box-sizing: border-box;
 }
@@ -83,4 +84,7 @@ button::after{
 }
 .units{
   color: #000;
+}
+.page{
+
 }

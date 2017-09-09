@@ -96,29 +96,32 @@ Page({
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
+
         success: function (res) {
-
-          // if (res.data.data.code == 400) {
-
-          // }
-
-
-          wx.showModal({
-            title: '提示',
-            content: '提交成功！',
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-                wx.reLaunch({
-                  url: '/pages/loan/loan'
-                })
+              console.log(res)
+          if (res.data.code == 400) {
+            wx.showModal({
+              title: '提示',
+              content: '提交失败',
+              showCancel: false
+            })
+           }else{
+            wx.showModal({
+              title: '提示',
+              content: '提交成功！',
+              showCancel: false,
+              success: function (res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  wx.redirectTo({
+                    url: '/pages/loan/loan'
+                  })
+                }
               }
-            }
-          })
+            })
+           }
         }
       })
-
     }
     return false;
   },
@@ -163,7 +166,7 @@ Page({
       title: '加载中',
     })
     wx.request({
-      url: app.data.domain + '/loan/sel', //仅为示例，并非真实的接口地址
+      url: app.data.domain + '/loan/sel', 
       data: {
       },
       header: {

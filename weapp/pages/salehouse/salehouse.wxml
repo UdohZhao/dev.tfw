@@ -1,16 +1,11 @@
 <!--salehouse.wxml-->
+<view class="page">
 <view class="top_img">
   <image src="../../images/house.png"></image>
   <view class="top_title">
     已有<text class="sellers-quantity">1234</text>位房东委托卖房
   </view>
 </view>
-<!-- <view class="add_information">
-  <view class="weui-cells__title sh-title">请填写您的房屋信息</view>
-  
-
-  </view>
-</view> -->
 
 <view class="weui-cells__title sh-title"># 请填写您的房屋信息</view>
 
@@ -64,26 +59,173 @@
     </view>
 </view>
 
-<!-- <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-            <view class="weui-label">售价</view>
-        </view>
+<view class="weui-cells">
+    <view class="weui-cell">
         <view class="weui-cell__bd">
-            <input type="number" name="selling_price" class="weui-input" placeholder="请输入您的房价"/>
-        </view>
-        <view class="weui-cell__ft">
-            <text>万</text>
+            <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">房屋介绍</view>
+                </view>
+                <view class="weui-uploader__bd">
+                  <textarea class="weui-textarea" placeholder="请输入房屋介绍" style="height: 3.3em" />
+                  <view class="weui-textarea-counter">0/200</view> 
+                </view>
+            </view>
         </view>
     </view>
-</view> -->
+</view>
+
+<view class="weui-cells">
+
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">房屋特点</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker bindchange="bindCountryChange" value="{{countryIndex}}" range="{{countries}}">
+                <view class="weui-select weui-select_in-select-after">{{countries[countryIndex]}}</view>
+            </picker>
+        </view>
+    </view>
+</view>
+
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">房屋类型</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker bindchange="bindCountryChange" value="{{countryIndex}}" range="{{countries}}">
+                <view class="weui-select weui-select_in-select-after">{{countries[countryIndex]}}</view>
+            </picker>
+        </view>
+    </view>
+</view>
+
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">房屋朝向</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker bindchange="bindCountryChange" value="{{countryIndex}}" range="{{countries}}">
+                <view class="weui-select weui-select_in-select-after">{{countries[countryIndex]}}</view>
+            </picker>
+        </view>
+    </view>
+</view>
+
+</view>
+
+<view class="weui-cells">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">房源图（上传室内图，吸引更多买家）</view>
+                    <view class="weui-uploader__info">{{files.length}}/2</view>
+                </view>
+                <view class="weui-uploader__bd">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                        <block wx:for="{{files}}" wx:key="*this">
+                            <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                            </view>
+                        </block>
+                        <view class="weui-uploader__file">
+                            <image class="weui-uploader__img" src="../../dist/example/images/pic_160.png" mode="aspectFill" />
+                        </view>
+                        <view class="weui-uploader__file weui-uploader__file_status">
+                            <image class="weui-uploader__img" src="../../dist/example/images/pic_160.png" mode="aspectFill" />
+                            <view class="weui-uploader__file-content">
+                                <icon type="warn" size="23" color="#F43530"></icon>
+                            </view>
+                        </view>
+                        <view class="weui-uploader__file weui-uploader__file_status">
+                            <image class="weui-uploader__img" src="../../dist/example/images/pic_160.png" mode="aspectFill" />
+                            <view class="weui-uploader__file-content">50%</view>
+                        </view>
+                    </view>
+                    <view class="weui-uploader__input-box">
+                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="weui-cells">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+             <view class="weui-uploader">
+                <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">户型图</view>
+                    <view class="weui-uploader__info">{{files.length}}/2</view>
+                </view>
+                <view class="weui-uploader__bd">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                        <block wx:for="{{files}}" wx:key="*this">
+                            <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                            </view>
+                        </block>
+                        <view class="weui-uploader__file">
+                            <image class="weui-uploader__img" src="../../dist/example/images/pic_160.png" mode="aspectFill" />
+                        </view>
+                        <view class="weui-uploader__file weui-uploader__file_status">
+                            <image class="weui-uploader__img" src="../../dist/example/images/pic_160.png" mode="aspectFill" />
+                            <view class="weui-uploader__file-content">
+                                <icon type="warn" size="23" color="#F43530"></icon>
+                            </view>
+                        </view>
+                        <view class="weui-uploader__file weui-uploader__file_status">
+                            <image class="weui-uploader__img" src="../../dist/example/images/pic_160.png" mode="aspectFill" />
+                            <view class="weui-uploader__file-content">50%</view>
+                        </view>
+                    </view>
+                    <view class="weui-uploader__input-box">
+                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                    </view>
+                </view>
+            </view> 
+        </view>
+    </view>
+</view>
+
+<view class="weui-cells">
+ 
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label">姓名</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input type="text" name="cname" class="weui-input" placeholder="请输入您的姓名"/>
+          </view>
+      </view>
+  </view> 
+
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label">手机号码</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input type="number" name="phone" class="weui-input" placeholder="请输入手机号码"/>
+          </view>
+      </view>
+  </view>          
+
+</view>
 
 <view class="weui-cells__tips sh-tips">请如实填写，谢谢您的配合！</view>
-
-
 
 <view class="next_step">
   <navigator url="../nextstep/nextstep">
     <button>立即委托</button>
   </navigator>
+</view>
+
 </view>
