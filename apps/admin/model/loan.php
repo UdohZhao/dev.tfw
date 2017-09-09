@@ -25,7 +25,7 @@ class loan extends model{
       }
       $search = "type=$typ";
     }elseif($phone){
-      $search = "phone=$phone";
+      $search = "phone like '%$phone%'";
     }else{
       $search = "status=$status";
     }
