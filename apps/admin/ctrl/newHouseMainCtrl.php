@@ -143,10 +143,12 @@ class newHouseMainCtrl extends baseCtrl{
         $qqq = $status[0][0];
       // 读取新房条目名称
       $title = $this->nhcdb->getTitle($this->nhcid);
-      // assign
+       
+            // assign
       $this->assign('data',$data);
       $this->assign('status',$qqq);
       $this->assign('title',$title);
+      $this->assign('tit',$title['title']);
       // display
       $this->display('newHouseMain','index.html');
       die;
