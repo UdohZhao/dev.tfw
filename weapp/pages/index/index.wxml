@@ -95,7 +95,7 @@
     </view>
     <scroll-view class="list" style="height: 366px; width: 100%;" lower-threshold="5px" scroll-y="true" bindscrolltolower="lower">
        <block wx:for="{{nhcData}}" wx:key="i" wx:for-index="k" wx:for-item="v"> 
-        <view data-id="{{v.id}}" data-type="1" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <view data-id="{{v.id}}" data-type="0" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" src="{{domain}}{{v.slideshow}}" style="width:100%;height:100%;" />
           </view>

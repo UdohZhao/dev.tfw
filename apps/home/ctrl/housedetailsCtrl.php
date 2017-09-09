@@ -8,6 +8,8 @@ use apps\home\model\newHouseMain;
 use apps\home\model\propertyConsultant;
 use apps\home\model\usedHouseCatalog;
 use apps\home\model\usedHouseInfo;
+use apps\home\model\tenementCatalog;
+use apps\home\model\tenementInfo;
 class housedetailsCtrl extends baseCtrl{
   public $cdb;
   public $nhcdb;
@@ -16,6 +18,8 @@ class housedetailsCtrl extends baseCtrl{
   public $pcdb;
   public $uhcdb;
   public $uhidb;
+  public $tcdb;
+  public $tidb;
   public $id;
   public $hctype;
   // 构造方法
@@ -27,6 +31,8 @@ class housedetailsCtrl extends baseCtrl{
     $this->pcdb = new propertyConsultant();
     $this->uhcdb = new usedHouseCatalog();
     $this->uhidb = new usedHouseInfo();
+    $this->tcdb = new tenementCatalog();
+    $this->tidb = new tenementInfo();
     $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $this->hctype = isset($_GET['hctype']) ? intval($_GET['hctype']) : 0;
   }
@@ -75,6 +81,31 @@ class housedetailsCtrl extends baseCtrl{
           // 读取二手房详细信息
           $data['nhiData'] = $this->uhidb->getInfo($this->id);
           $data['nhiData']['ctime'] = date('Y-m-d',$data['nhiData']['ctime']);
+          // 读取置业顾问信息
+          $data['pcData'] = $this->pcdb->getInfo($data['nhiData']['pcid']);
+          ###
+          echo J(R(200,'受影响的操作 :)',$data));
+          die;
+        } else {
+          echo J(R(400,'加载数据异常 :(',false));
+          die;
+        }
+
+      }
+
+      // 租房
+      if ($this->hctype == 2) {
+        // 读取租房条目信息
+        $data = $this->tcdb->getInfo($this->id);
+        if ($data) {
+          $data['slideshow'] = unserialize($data['slideshow']);
+          // 租房装修类型
+          $rhfinishingtype = conf::get('RHFINISHINGTYPE','admin');
+          $data['dtype'] = $rhfinishingtype[$data['dtype']];
+          // 读取租房详细信息
+          $data['nhiData'] = $this->tidb->getInfo($this->id);
+          $data['nhiData']['ctime'] = date('Y-m-d',$data['nhiData']['ctime']);
+          $data['nhiData']['hconfig'] = explode(',', commaEn($data['nhiData']['hconfig']));
           // 读取置业顾问信息
           $data['pcData'] = $this->pcdb->getInfo($data['nhiData']['pcid']);
           ###

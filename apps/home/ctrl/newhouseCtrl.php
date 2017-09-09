@@ -4,10 +4,12 @@ use core\lib\conf;
 use apps\home\model\city;
 use apps\home\model\newHouseCatalog;
 use apps\home\model\usedHouseCatalog;
+use apps\home\model\tenementCatalog;
 class newhouseCtrl extends baseCtrl{
   public $cdb;
   public $nhcdb;
   public $uhcdb;
+  public $tcdb;
   public $hcid;
   public $hctype;
   // 构造方法
@@ -15,6 +17,7 @@ class newhouseCtrl extends baseCtrl{
     $this->cdb = new city();
     $this->nhcdb = new newHouseCatalog();
     $this->uhcdb = new usedHouseCatalog();
+    $this->tcdb = new tenementCatalog();
     $this->hcid = isset($_GET['hcid']) ? intval($_GET['hcid']) : 0;
     $this->hctype = isset($_GET['hctype']) ? intval($_GET['hctype']) : 0;
   }
@@ -66,34 +69,54 @@ class newhouseCtrl extends baseCtrl{
           $htypeType = isset($_POST['htypeType']) ? $_POST['htypeType'] : '';
           $htypeIndex = isset($_POST['htypeIndex']) ? $_POST['htypeIndex'] : '';
           $htypeVal = isset($_POST['htypeVal']) ? $_POST['htypeVal'] : '';
+          $htypeKval = isset($_POST['htypeKval']) ? $_POST['htypeKval'] : '';
           $prtypeType = isset($_POST['prtypeType']) ? $_POST['prtypeType'] : '';
           $prtypeIndex = isset($_POST['prtypeIndex']) ? bcsub($_POST['prtypeIndex'], 1, 0) : '';
           $prtypeVal = isset($_POST['prtypeVal']) ? $_POST['prtypeVal'] : '';
           $areaType = isset($_POST['areaType']) ? $_POST['areaType'] : '';
-          $areaIndex = isset($_POST['areaIndex']) ? $_POST['areaIndex'] : '';
+          $areaIndex = isset($_POST['areaIndex']) ? bcsub($_POST['areaIndex'], 1, 0) : '';
           $startArea = isset($_POST['startArea']) ? $_POST['startArea'] : '';
           $endArea = isset($_POST['endArea']) ? $_POST['endArea'] : '';
 
-          // 条件不同？
+          // 条件不同？ 0>新房，1>二手房，2>租房
           if ($this->hctype == 0) {
             $sPrice = 'price';
+            $sHtype = 'htype';
+            $sPrtype = 'prtype';
+            $sArea = "
+              AND
+                    (area BETWEEN '$startArea' AND '$endArea')
+            ";
           } else if ($this->hctype == 1) {
             $sPrice = 'selling_price';
+            $sHtype = 'htype';
+            $sPrtype = 'prtype';
+            $sArea = "
+              AND
+                    (area BETWEEN '$startArea' AND '$endArea')
+            ";
+          } else if ($this->hctype == 2) {
+            $sPrice = 'rent';
+            $sHtype = 'house_type';
+            $sPrtype = 'htype';
+            $sArea = "
+              AND
+                    dtype = '$areaIndex'
+            ";
           }
 
           // 0>区域，1>价格，2>户型，3>产权类型，4>面积
-          if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != 0) {
+          if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
                 AND
-                    prtype = '$prtypeIndex'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                     ".$sPrtype." = '$prtypeIndex'
+                {$sArea}
             ";
           } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1') {
             $filtrate = "
@@ -102,20 +125,19 @@ class newhouseCtrl extends baseCtrl{
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
                 AND
-                    prtype = '$prtypeIndex'
+                    ".$sPrtype." = '$prtypeIndex'
             ";
-          } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    htype LIKE '%$htypeVal%'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
+                {$sArea}
             ";
           } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0) {
             $filtrate = "
@@ -124,27 +146,25 @@ class newhouseCtrl extends baseCtrl{
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
             ";
-          } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    prtype = '$prtypeIndex'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    ".$sPrtype." = '$prtypeIndex'
+                {$sArea}
             ";
-          } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                {$sArea}
             ";
           } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1') {
             $filtrate = "
@@ -153,36 +173,34 @@ class newhouseCtrl extends baseCtrl{
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    prtype = '$prtypeIndex'
+                    ".$sPrtype." = '$prtypeIndex'
             ";
-          } else if ($districtType != 'undefined' && $districtIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($districtType != 'undefined' && $districtIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
                 AND
-                    prtype = '$prtypeIndex'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    ".$sPrtype." = '$prtypeIndex'
+                {$sArea}
             ";
           } else if ($districtType != 'undefined' && $districtIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
                 AND
-                    prtype = '$prtypeIndex'
+                    ".$sPrtype." = '$prtypeIndex'
             ";
-          } else if ($districtType != 'undefined' && $districtIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($districtType != 'undefined' && $districtIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
                 AND
-                    prtype = '$prtypeIndex'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    ".$sPrtype." = '$prtypeIndex'
+                {$sArea}
             ";
           } else if ($districtType != 'undefined' && $districtIndex != 0 && $priceType != 'undefined' && $priceIndex != 0) {
             $filtrate = "
@@ -196,135 +214,126 @@ class newhouseCtrl extends baseCtrl{
                 AND
                     cid = '$cid'
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
             ";
           } else if ($districtType != 'undefined' && $districtIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
                 AND
-                    prtype = '$prtypeIndex'
+                    ".$sPrtype." = '$prtypeIndex'
             ";
-          } else if ($districtType != 'undefined' && $districtIndex != 0 && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($districtType != 'undefined' && $districtIndex != 0 && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     cid = '$cid'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                {$sArea}
             ";
           } else if ($districtType != 'undefined' && $districtIndex != 0) {
             $filtrate = "
                 AND
                     cid = '$cid'
             ";
-          } else if ($priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
                 AND
-                    prtype = '$prtypeIndex'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    ".$sPrtype." = '$prtypeIndex'
+                {$sArea}
             ";
           } else if ($priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1') {
             $filtrate = "
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
                 AND
-                    prtype = '$prtypeIndex'
+                    ".$sPrtype." = '$prtypeIndex'
             ";
-          } else if ($priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0 && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    htype LIKE '%$htypeVal%'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
+                {$sArea}
             ";
-          } else if ($priceType != 'undefined' && $priceIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($priceType != 'undefined' && $priceIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    prtype = '$prtypeIndex'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    ".$sPrtype." = '$prtypeIndex'
+                {$sArea}
             ";
           } else if ($priceType != 'undefined' && $priceIndex != 0 && $htypeType != 'undefined' && $htypeIndex != 0) {
             $filtrate = "
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
             ";
-          } else if ($priceType != 'undefined' && $priceIndex != 0 && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($priceType != 'undefined' && $priceIndex != 0 && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                {$sArea}
             ";
           } else if ($priceType != 'undefined' && $priceIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1') {
             $filtrate = "
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
                 AND
-                    prtype = '$prtypeIndex'
+                    ".$sPrtype." = '$prtypeIndex'
             ";
           } else if ($priceType != 'undefined' && $priceIndex != 0) {
             $filtrate = "
                 AND
                     (".$sPrice." BETWEEN '$startPrice' AND '$endPrice')
             ";
-          } else if ($htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
                 AND
-                    prtype = '$prtypeIndex'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    ".$sPrtype." = '$prtypeIndex'
+                {$sArea}
             ";
-          } else if ($htypeType != 'undefined' && $htypeIndex != 0 && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($htypeType != 'undefined' && $htypeIndex != 0 && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
-                    htype LIKE '%$htypeVal%'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
+                {$sArea}
             ";
           } else if ($htypeType != 'undefined' && $htypeIndex != 0 && $prtypeType != 'undefined' && $prtypeIndex != '-1') {
             $filtrate = "
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
                 AND
-                    prtype = '$prtypeIndex'
+                    ".$sPrtype." = '$prtypeIndex'
             ";
           } else if ($htypeType != 'undefined' && $htypeIndex != 0) {
             $filtrate = "
                 AND
-                    htype LIKE '%$htypeVal%'
+                    (".$sHtype." LIKE '%$htypeVal%' OR ".$sHtype." LIKE '%$htypeKval%')
             ";
-          } else if ($prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($prtypeType != 'undefined' && $prtypeIndex != '-1' && $areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
                 AND
-                    prtype = '$prtypeIndex'
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                    ".$sPrtype." = '$prtypeIndex'
+                {$sArea}
             ";
           } else if ($prtypeType != 'undefined' && $prtypeIndex != '-1') {
             $filtrate = "
                 AND
-                    prtype = '$prtypeIndex'
+                    ".$sPrtype." = '$prtypeIndex'
             ";
-          } else if ($areaType != 'undefined' && $areaIndex != 0) {
+          } else if ($areaType != 'undefined' && $areaIndex != '-1') {
             $filtrate = "
-                AND
-                    (area BETWEEN '$startArea' AND '$endArea')
+                {$sArea}
             ";
           }
         }
@@ -395,8 +404,23 @@ class newhouseCtrl extends baseCtrl{
         $data['areaData'] = conf::get('RHFINISHINGTYPE','admin');
         // 追加数组
         array_unshift($data['areaData'], '不限');
-      }
+        // 读取租房数据
+        $data['hData'] = $this->tcdb->getCorrelation($this->hcid,$search,$filtrate);
+        if ($data['hData']) {
+          foreach ($data['hData'] AS $k => $v) {
+            $data['hData'][$k]['slideshow'] = unserialize($v['slideshow']);
+            $data['hData'][$k]['slideshow'] = $data['hData'][$k]['slideshow'][0];
+            // 租房类型
+            $data['hData'][$k]['htype'] = $data['prtypeData'][$data['hData'][$k]['htype'] + 1];
+            // 获取城市名称
+            $data['hData'][$k]['cid'] = $this->cdb->getCname($v['cid']);
+          }
+        } else {
+          $data['hData'] = false;
+        }
 
+      }
+      ###
       echo J(R(200,'受影响的操作 :)',$data));
       die;
     } else {

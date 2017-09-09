@@ -183,6 +183,7 @@ Page({
 
           // html转wxml
           WxParse.wxParse('selling_points', 'html', that.data.data.nhiData.selling_points, that, 0);
+          WxParse.wxParse('general_situation', 'html', that.data.data.nhiData.general_situation, that, 0);
 
         } else {
           // 提示

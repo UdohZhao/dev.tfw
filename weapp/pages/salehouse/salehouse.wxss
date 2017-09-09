@@ -71,3 +71,9 @@ button::after{
   background-color: #ccc;
   color: #fff;
 }
+.sellers-quantity{
+  font-size: 60rpx;
+}
+.sh-title{
+  font-size: 36rpx;
+}
