@@ -57,8 +57,8 @@ $(function(){
                     success:function(res){
                         // res
                         if (res.error == 0) {
-                            swal("提交成功", '', "success");
-                            window.location.href='http://'+window.location.host+'/admin/tenmentCatalog/index';
+                            swal("提交成功", "", "success");
+                setTimeout("window.location.href='http://'+window.location.host+'/admin/tenmentCatalog/index';",2000);
                         } else if (res.error == 201) {
                             swal("提交失败", res.msg, "error");
                         } else if (res.error == 202) {

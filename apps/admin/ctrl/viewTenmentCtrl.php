@@ -46,12 +46,19 @@ class viewTenmentCtrl extends baseCtrl{
     //查询单条房子记录
     public function houseInfo(){
         $id=isset($_GET['id']) ? intval($_GET['id']) : 0;
-
+         // 获取配置信息（租房类型）
+             $rhtype = conf::get('RHTYPE','admin');
+             //装修类型
+            $rhfinishingtype= conf::get('RHFINISHINGTYPE','admin');
+            $this->assign('rhtype',$rhtype);
+            $this->assign('rhfinishingtype',$rhfinishingtype);
         // id
         if ($id) {
             // 读取单条数据
             $data = $this->db->getInfo($id);
             $data['cid'] = $this->cdb->getCname($data['cid']);
+            $data['slideshow'] = unserialize($data['slideshow']);
+            
             // assign
             $this->assign('data',$data);
         }

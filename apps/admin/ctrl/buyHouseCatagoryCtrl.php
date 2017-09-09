@@ -102,12 +102,14 @@ class buyHouseCatagoryCtrl extends baseCtrl{
     public function index(){
         // search
         $search = isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '';
+        //获取购房百科主键ID
+        $cname = $this->db->sel_pid($this->id);
         // 总记录数
-        $cou = $this->db->cou($this->pid);
+        $cou = $this->db->cou($this->id);
         // 数据分页
         $page = new Page($cou,conf::get('LIMIT','admin'));
         // 结果集
-        $data = $this->db->sel($search,$page->limit,$this->pid);
+        $data = $this->db->sel($search,$page->limit,$this->id);
         // assign
         $this->assign('data',$data);
         $this->assign('page',$page->showpage());

@@ -46,6 +46,7 @@ function del_info(id){
         }
     });
 }
+
 // flag
 function flag(id,type){
   var title;
@@ -74,7 +75,7 @@ function flag(id,type){
       // Ajax
       $.ajax({
         type: "POST",
-        url: "/admin/adminUser/flage/id/"+id,
+        url: "/admin/usedHouseCatalog/flag/id/"+id,
         data: {type:type},
         dataType: "JSON",
         success: function(res){

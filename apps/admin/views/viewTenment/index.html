@@ -6,7 +6,7 @@
 <!-- Page -->
 <div class="page animsition">
     <div class="page-header">
-        <h1 class="page-title"># 房屋管理</h1>
+        <h1 class="page-title"># 房屋审核</h1>
     </div>
     <div class="page-content">
         <div class="panel">
@@ -80,7 +80,7 @@
                         </td>
                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="detail_info({{ v.id }});">详细信息</button>
+                            <button type="button" class="btn btn-default btn-xs" onclick="detail_info({{ v.id }});">详细信息</button>
                             <button type="button" class="btn btn-primary btn-xs" onclick="checkHouse({{ v.id }});">进入审核</button>
 
                         </td>
