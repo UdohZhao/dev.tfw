@@ -1,4 +1,6 @@
 /* housedetails.wxss */
+/* 在使用的Wxss中引入WxParse.css,可以在app.wxss */
+@import "../../dist/wxParse/wxParse.wxss";
 page{
   padding-bottom: 10px;
 }
@@ -84,4 +86,40 @@ page{
 .phone_img{
   width: 20px;
   height: 17px;
+}
+.grid-item{
+  color: #D0104C;
+  font-size: 34rpx;
+}
+.grid-item-desc{
+  color: #999;
+}
+.placeholder{
+    margin: 5px;
+    padding: 0 10px;
+    height: 1.2em;
+    line-height: 1.2em;
+    color: #999;
+    font-size: 28rpx;
+}
+.placeholder-val{
+  color: #000000;
+}
+.weui-grids{
+  background: #ffffff;
+}
+.weui-flex{
+  background: #ffffff;
+}
+.flex-one{
+  padding-top: 10rpx;
+}
+.general-situation-val{
+  padding: 20rpx 30rpx;
+  font-size: 28rpx;
+}
+.issue-time{
+  float: right;
+  font-size: 26rpx;
+  color: #999;
 }

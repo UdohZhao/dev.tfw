@@ -43,12 +43,23 @@ Page({
     });
     console.log(that.data.phone);
   } ,
+  mySelect: function (e) {
+    var that = this;
+    // 获取用户选中的贷款类型
+    that.setData({
+      firstPerson: e.target.dataset.me,
+      selectPerson: true,
+      selectArea: false,
+      loansType: e.currentTarget.dataset.type
+    })
+    console.log(that.data.loansType);
+  },
   confirm: function (e) {
     var that = this;
     // 获取用户输入的姓名和电话和类型
     console.log(that.data.cname);
     console.log(that.data.phone);
-    console.log(that.data.firstPerson);
+    console.log(that.data.loansType);
     if (that.data.phone == false || that.data.phone == undefined ) {
       wx.showModal({
         title: '提示',
@@ -70,7 +81,7 @@ Page({
         data: {
           cname: that.data.cname,
           phone: that.data.phone,
-          type:that.data.firstPerson
+          type: that.data.loansType
         },
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -125,32 +136,8 @@ Page({
       })
     }
   },
-  //点击切换
-  mySelect: function (e) {
-
-    var that = this;
-
-    // 获取用户选中的贷款类型
-    console.log(e.currentTarget.dataset.type);
 
   
-    that.setData({
-      firstPerson: e.target.dataset.me,
-      selectPerson: true,
-      selectArea: false,
-      loansType: e.currentTarget.dataset.type
-    })
-
-    console.log(that.data.loansType);
-
-
-  },
-  formReset: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
-    })
-  },  
   /**
    * 生命周期函数--监听页面加载
    */

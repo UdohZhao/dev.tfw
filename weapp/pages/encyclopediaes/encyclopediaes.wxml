@@ -1,13 +1,13 @@
 <!--encyclopedia.wxml-->
 <view class="weui-panel weui-panel_access encycle_content">
     <scroll-view scroll-y="true" lower-threshold="10px" bindscrolltolower="lower" class="weui-panel__bd">
-      <block wx:for="{{encycle_content}}" wx:key="*this">
-        <view id="{{item.id}}" url="" bindtap="link_address" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+      <block wx:for="{{encycle_content}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+        <view id="{{v.id}}" url="" bindtap="link_address" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
                 <image class="weui-media-box__thumb" src="../../images/房子.png" />
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                <view class="weui-media-box__desc">{{item.title}}</view>    
+                <view class="weui-media-box__desc">{{v.title}}</view>    
             </view>
         </view>
       </block>

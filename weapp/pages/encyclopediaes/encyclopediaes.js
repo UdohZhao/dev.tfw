@@ -9,7 +9,6 @@ Page({
     domain: app.data.domain,
     id:"",
     hidden: true,
-    encycle_content : []
   },
 
   link_address:function(e){  //点击跳转下一级目录
@@ -22,47 +21,68 @@ Page({
     })
   },
   onLoad: function (options) {
-    var id = options.id
     var that = this;
-    var self = this;
+    var id = options.id
     // 友好的用户体验开始
     wx.showLoading({
       title: '加载中',
     })
     wx.request({
       method: "GET",
-      url: app.data.domain + '/houseEncyclopediaCategory/seles?id=' + id  ,
+      url: app.data.domain + '/houseEncyclopediaCategory/seles?id=' + id,
       data: {},
       header: {
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        // var contentObj = [];
         console.log(res.data)
-        var aa = res.data.data
-        for (var i in aa) {
-          self.data.encycle_content.push({
-            id:aa[i].id,
-            title: aa[i].title,
-            ctime: aa[i].ctime,
-          });
+
+        if (res.data.code == 200) {
+
+          that.setData({
+            encycle_content: res.data.data
+          })
+
+          console.log(that.data.encycle_content);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
         }
-        self.setData({
-          encycle_content: self.data.encycle_content
-        })
-        //   self.data.postsList = contentObj
-      
       },
+      fail: function (e) {
+        // 提示
+        wx.showModal({
+          title: '提示',
+          content: '数据显示异常 :(',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.reLaunch({
+                url: '/pages/index/index'
+              })
+            }
+          }
+        })
+      }
+
     })
 
-   
     // 友好的用户体验结束
     setTimeout(function () {
       wx.hideLoading()
     }, 2000)
-
-
-
   },
 
   /**

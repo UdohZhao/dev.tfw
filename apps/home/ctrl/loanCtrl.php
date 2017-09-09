@@ -30,17 +30,19 @@ class loanCtrl extends baseCtrl{
 
 	public function add(){
       // data
-
-       $data = $this->getData();
-      
+       $data = $this->getData();  
       // insert
-
          $res = $this->db->add($data);
   }
 
   public function sel(){
       $data = $this->con->sel();
 
+          if ($data) {
       echo J(R(200,'成功',$data));
+    } else {
+      echo J(R(400,'数据加载异常 :(',false));
+    }
+
   }
 }

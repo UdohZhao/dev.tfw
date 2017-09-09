@@ -58,7 +58,7 @@
   </view>
 </view>
 <view class="page__bd my_encyclopedia">
-    <navigator url="../encyclopedia/encyclopedia" class="encyclopedia_list">
+    <navigator url="../encyclopedia/encyclopedia?pid=0&type=0" class="encyclopedia_list">
       <view class="list_box">
         <view class="list_box_left">
           <view class="title">购房百科</view>

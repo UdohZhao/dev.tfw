@@ -9,70 +9,80 @@ Page({
     domain: app.data.domain,
     id:"",
     hidden: true,
-    encycle_content : []
-  },
-
-  link_address:function(e){  //点击跳转下一级目录
-    console.log(e)
-    var id = e.currentTarget.id;  
-    console.log(id)
-    if (id == 1 || id == 5 ){
-    var link = '../encyclopedia/encyclopedia?id=' + id;
-    wx.navigateTo({
-      url: link
-    })
-    }
-    if (id != 1 && id != 5  ){
-      var link = '../encyclopediaes/encyclopediaes?id=' + id;
-      wx.navigateTo({
-        url: link
-      })
-    }
   },
   onLoad: function (options) {
-    var id = options.id
+
     var that = this;
-    var self = this;
+
+    // 获取pid,类型
+    console.log(options.pid);
+    console.log(options.type);
+
+    that.setData({
+      pid: options.pid,
+      hecType: options.type
+    })
+
     // 友好的用户体验开始
     wx.showLoading({
       title: '加载中',
     })
     wx.request({
       method: "GET",
-      url: app.data.domain + '/houseEncyclopediaCategory/sel?id=' + id  ,
+      url: app.data.domain + '/houseEncyclopediaCategory/sel?pid=' + that.data.pid  ,
       data: {},
       header: {
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        // var contentObj = [];
         console.log(res.data)
-        var aa = res.data.data
-        for (var i in aa) {
-          self.data.encycle_content.push({
-            id: aa[i].id,
-            pid: aa[i].pid,
-            icon_path: aa[i].icon_path,
-            cname: aa[i].cname,
-          });
+
+        if (res.data.code == 200) {
+
+          that.setData({
+            hecData: res.data.data
+          })
+
+          console.log(that.data.hecData);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
         }
-        self.setData({
-          encycle_content: self.data.encycle_content
-        })
-        console.log(self.data.encycle_content[0]['pid'])
-        //   self.data.postsList = contentObj
-      
       },
+      fail: function (e) {
+        // 提示
+        wx.showModal({
+          title: '提示',
+          content: '数据显示异常 :(',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.reLaunch({
+                url: '/pages/index/index'
+              })
+            }
+          }
+        })
+      }
       
     })
 
-   
     // 友好的用户体验结束
     setTimeout(function () {
       wx.hideLoading()
     }, 2000)
-
-
 
   },
 
@@ -115,7 +125,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    
   },
 
   /**
@@ -123,5 +133,98 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+
+  /**
+   * 去往下级
+   */
+  gotoLevel: function(e){
+
+    var that = this;
+
+    // 获取顶级主键id,类型
+    console.log(e.currentTarget.dataset.id);
+    console.log(that.data.hecType);
+    
+    // 如果hecType等于0的话请求下级，等于1的话跳转页面
+
+    if (that.data.hecType == 1) {
+       // codeing .. 
+      var link = '../encyclopediaes/encyclopediaes?id=' + e.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: link
+      })
+       console.log('跳转页面.');
+    } else {    
+      
+      // 友好的用户体验开始
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.request({
+        method: "GET",
+        url: app.data.domain + '/houseEncyclopediaCategory/sel?pid=' + e.currentTarget.dataset.id,
+        data: {},
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res.data)
+
+          if (res.data.code == 200) {
+
+            that.setData({
+              hecData: res.data.data,
+              hecType: 1
+            })
+
+            console.log(that.data.hecData);
+
+          } else {
+            // 提示
+            wx.showModal({
+              title: '提示',
+              content: '数据显示异常 :(',
+              showCancel: false,
+              success: function (res) {
+                if (res.confirm) {
+                  wx.reLaunch({
+                    url: '/pages/index/index'
+                  })
+                }
+              }
+            })
+          }
+        },
+        fail: function (e) {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '数据显示异常 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      })
+      // 友好的用户体验结束
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 2000) 
+    }
+  },
+  //页面滑动到底部
+  loadingChange:function() {
+          var that = this;
+          loadMore(that);
+          console.log("lower");
+  
+  },
+    
 })
