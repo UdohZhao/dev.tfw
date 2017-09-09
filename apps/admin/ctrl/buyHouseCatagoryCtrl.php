@@ -155,22 +155,28 @@ class buyHouseCatagoryCtrl extends baseCtrl{
         }
     }
 
+   
     // del
-    public function del(){
-        // Ajax
-        if (IS_AJAX === true) {
-            // delete
-            $res = $this->db->del($this->id);
-            if ($res) {
-                echo json_encode(true);
-                die;
-            } else {
-                echo json_encode(false);
-                die;
-            }
-        }
+  public function del(){
+    // Ajax
+    if (IS_AJAX === true) {
+      // 读取下级
+      $res = $this->db->cou($this->id);
+      if ($res) {
+        echo json_encode(1);
+        die;
+      }
+      // 删除
+      $res = $this->db->del($this->id);
+      if ($res) {
+        echo json_encode(true);
+        die;
+      } else {
+        echo json_encode(false);
+        die;
+      }
     }
-
+  }
     public function add_article(){
         $update_id=isset($_GET['update_id'])?intval($_GET['update_id']):0;
         if(IS_GET === true){

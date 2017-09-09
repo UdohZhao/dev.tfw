@@ -18,7 +18,7 @@ $(function(){
             },
             sort: {
                 required: "<span style='color:red;'>排序不能为空 :(</span>",
-                required: "<span style='color:red;'>必须输入整数 :(</span>"
+                digits: "<span style='color:red;'>必须输入整数 :(</span>"
             }
         },
         submitHandler: function(form){

@@ -76,4 +76,11 @@ button::after{
 }
 .sh-title{
   font-size: 36rpx;
+  color: #000;
+}
+.sh-tips{
+  color: #CB1B45;
+}
+.units{
+  color: #000;
 }
