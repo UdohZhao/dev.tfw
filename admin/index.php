@@ -7,7 +7,7 @@ define('ICUNJI', realpath('../'));
 define('CORE', ICUNJI.'/core');
 define('APP', ICUNJI.'/apps/admin');
 define('MODULE', 'apps\admin');
-define('DEBUG', true); # 开启DEBUG
+define('DEBUG', false); # 开启DEBUG
 include ICUNJI.'/vendor/autoload.php';
 if (DEBUG) {
   $whoops = new \Whoops\Run;

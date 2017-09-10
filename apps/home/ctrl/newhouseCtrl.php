@@ -47,8 +47,11 @@ class newhouseCtrl extends baseCtrl{
       $data['areaData'] = conf::get('AREA','admin');
       // 搜索条件
       $search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
-      if ($search == 'undefined') {
-        $search = '';
+      if ($search != 'undefined' && $search != '') {
+        $search = "
+            AND
+                  title like '%$search%'
+        ";
       }
       // 筛选条件
       $filtrate = '';
