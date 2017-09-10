@@ -8,4 +8,21 @@ class baseCtrl extends \core\icunji{
         $this->_auto();
   }
 
+  /**
+   * 图片上传
+   */
+  public function upload(){
+
+    // 执行上传
+    $res = upFiles('file');
+    if ($res['code'] == 200) {
+      echo J(R(200,'受影响的操作 :)',$res['data']));
+      die;
+    } else {
+      echo J(R(400,'图片上传失败 :(',false));
+      die;
+    }
+
+  }
+
 }

@@ -68,22 +68,29 @@ function enPassword($password){
 
 // 上传文件
 function upFiles($file){
+    // 返回结果
+    $res = array();
+    $res['code'] = 200;
+    $res['msg'] = '';
+    $res['data'] = array();
+    // 上传路径
+    $path = ICUNJI.'/admin/uploads/'.date('Y-m-d').'/';
+    if (!is_dir($path)) {
+      @mkdir($path,0777,true);
+    }
     // 文件上传
     $up = new FileUpload();
-    $res = array();
     if ($up->upload($file)) {
-      $res['error'] = 0;
       // 多文件上传?
       if (is_array($up->getFileName())) {
         foreach ($up->getFileName() AS $k => $v) {
-          $res['filepath'][] = '/admin/uploads/'.$v;
+          $res['data'][] = '/admin/uploads/'.date('Y-m-d').'/'.$v;
         }
-        //$res['cover_path'] = serialize($res['cover_path']);
       } else {
-        $res['filepath'] = '/admin/uploads/'.$up->getFileName();
+        $res['data'] = '/admin/uploads/'.date('Y-m-d').'/'.$up->getFileName();
       }
     } else {
-      $res['error'] = 1;
+      $res['code'] = 400;
       $res['msg'] = $up->getErrorMsg();
     }
     return $res;

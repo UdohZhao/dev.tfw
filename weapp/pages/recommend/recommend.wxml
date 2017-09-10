@@ -2,30 +2,32 @@
 <view class="page__bd my_availability">
   <view class="weui-panel weui-panel_access">
     <view class="weui-panel__bd">
-      <block wx:for="{{my_availability}}" wx:key="*this">
-        <navigator url="../housedetails/housedetails" class="weui-media-box weui-media-box_appmsg">
+      <block wx:for="{{nhcData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
+        <view data-id="{{v.id}}" data-type="0" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="{{item.image}}" />
-            <view class="house_status">{{item.status}}</view>
+            <image class="weui-media-box__thumb" src="{{domain}}{{v.slideshow}}" />
+            <!-- <view class="house_status">{{v.house_type}}</view> -->
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">{{item.title}}</view>
-            <view class="weui-media-box__desc">{{item.address}}<text class="money_unit">{{item.money_unit}}</text><text class="money">{{item.money}}</text></view>
+            <view class="weui-media-box__title">{{v.title}}</view>
+            <view class="weui-media-box__desc">{{v.cid}} - {{v.community}}<text class="money">{{v.show_price}}</text></view>
             <view class="weui-media-box__desc">
-              <view class="introduction" wx:for="{{item.introduce}}" wx:for-item="introduce" wx:key="introduce">
-                {{introduce.name}}
-              </view>
+              建面：{{v.area}}㎡
             </view>
-            <view class="weui-media-box__desc">{{item.status}}</view>
+            <view class="weui-media-box__desc">
+              <block wx:for="{{v.trait}}" wx:key="ii" wx:for-index="kk" wx:for-item="vv">
+              <view class="trait-item">{{vv}}</view>
+              </block>
+            </view>
           </view>
-        </navigator>
+        </view>
       </block>
-      <view class="page__bd">
+      <!-- <view class="page__bd">
         <view class="weui-loadmore">
             <view class="weui-loading"></view>
             <view class="weui-loadmore__tips">正在加载</view>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
 </view>

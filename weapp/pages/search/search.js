@@ -1,10 +1,14 @@
 // search.js
+var App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    hcid: 1,
+    hctype: 0,
+    domain: App.data.domain,
     //地点选择
     selectPerson: true,
     firstPerson: '新房',
@@ -38,32 +42,6 @@ Page({
       selectArea: false,
     })
   },
-  //搜索框
-  bindInput: function (e) {
-    this.setData({
-      inputValue: e.detail.value
-    })
-    console.log('bindInput' + this.data.inputValue)
-  },
-  setSearchStorage: function () {
-    let data;
-    console.log(data)
-    let localStorageValue = [];
-    if (this.data.inputValue != '') {
-      //调用API从本地缓存中获取数据
-      var searchData = wx.getStorageSync('searchData') || []
-      searchData.push(this.data.inputValue)
-      wx.setStorageSync('searchData', searchData)
-      wx.navigateTo({
-        url: '../search/search'
-      })
-      console.log('马上就要跳转了！')
-    } else {
-      console.log('空白的你搜个jb')
-    }
-    
-    // this.onLoad();
-  },
   modalChangeConfirm: function () {
     wx.setStorageSync('searchData', [])
     this.setData({
@@ -95,12 +73,12 @@ Page({
     })
     console.log('search is onshow')
   },
-  onHide: function () {
-    console.log('search is onHide')
-    wx.redirectTo({
-      url: '../oldhouse/oldhouse'
-    })
-  },
+  // onHide: function () {
+  //   console.log('search is onHide')
+  //   wx.redirectTo({
+  //     url: '../oldhouse/oldhouse'
+  //   })
+  // },
   bindchange: function (e) {
     console.log('bindchange')
   },
@@ -114,6 +92,52 @@ Page({
    */
   onLoad: function (options) {
   
+    var that = this;
+
+    // 请求首页数据
+    wx.request({
+      url: App.data.domain + '/index/index',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data);
+
+        // if 
+        if (res.data.code == 200) {
+
+          // 去除卖房
+          res.data.data.hcData.pop();
+
+          that.setData({
+            hcData: res.data.data.hcData,
+          });
+
+          console.log(that.data.hcData);
+
+        } else {
+          // 提示
+          wx.showModal({
+            title: '提示',
+            content: '未知错误 :(',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/index/index'
+                })
+              }
+            }
+          })
+        }
+
+      },
+      fail: function (e) {
+        console.log(e);
+      }
+    })
+
+
   },
 
   /**
@@ -148,5 +172,92 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 去往房屋条目
+   */
+  gotoHouse: function (e) {
+
+    var that = this;
+
+    var selectPerson = that.data.selectPerson;
+
+    if (selectPerson == true) {
+      that.setData({
+        selectArea: true,
+        selectPerson: false,
+      })
+    } else {
+      that.setData({
+        selectArea: false,
+        selectPerson: true,
+      })
+    }
+
+    that.setData({
+      firstPerson: e.currentTarget.dataset.val,
+      selectPerson: true,
+      selectArea: false,
+    })
+
+    // 获取房屋类别主键id，房屋类别
+    console.log(e.currentTarget.dataset.id);
+    console.log(e.currentTarget.dataset.type);
+
+    that.setData({
+      hcid: e.currentTarget.dataset.id,
+      hctype: e.currentTarget.dataset.type
+    });
+
+  },
+
+  /** 
+   * 搜索框
+   */
+  bindInput: function (e) {
+
+    var that = this;
+
+    that.setData({
+      inputValue: e.detail.value
+    })
+
+    console.log('搜索值：' + this.data.inputValue)
+
+  },
+
+  /** 
+   * 搜索按钮
+   */
+  setSearchStorage: function (e) {
+
+    var that = this;
+
+    // 获取房类别id，房类型，搜索值
+    console.log(that.data.hcid);
+    console.log(that.data.hctype);
+    console.log(that.data.inputValue);
+
+    // 搜索值不能为空
+    if (that.data.inputValue == '' || that.data.inputValue == false) {
+
+      // 提示
+      wx.showModal({
+        title: '提示',
+        content: '搜索关键字不能为空 :(',
+        showCancel: false
+      })
+
+    } else {
+
+      wx.navigateTo({
+        url: "/pages/newhouse/newhouse?hcid=" + that.data.hcid + "&hctype=" + that.data.hctype + "&search=" + that.data.inputValue
+      })
+
+    }
+
   }
+
+
 })

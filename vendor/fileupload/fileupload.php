@@ -5,7 +5,7 @@ namespace vendor\fileupload;
 		本类的实例对象用于处理上传文件，可以上传一个文件，也可同时处理多个文件上传
 	*/
 	class FileUpload {
-		private $path = "./uploads/";   				   	//上传文件保存的路径
+		private $path = ICUNJI."/admin/uploads";   				   	//上传文件保存的路径
 		private $allowtype = array('jpg','gif','png','jpeg'); 	//设置限制上传文件的类型
 		private $maxsize = 1000000;  					//限制文件上传大小（字节）
 		private $israndname = true;   					//设置是否随机重命名文件， false不随机
@@ -225,7 +225,7 @@ namespace vendor\fileupload;
 		/* 复制上传文件到指定的位置 */
 		private function copyFile() {
 			if(!$this->errorNum) {
-				$path = rtrim($this->path, '/').'/';
+				$path = rtrim($this->path, '/').'/'.date('Y-m-d').'/';
 				$path .= $this->newFileName;
 				if (@move_uploaded_file($this->tmpFileName, $path)) {
 					return true;

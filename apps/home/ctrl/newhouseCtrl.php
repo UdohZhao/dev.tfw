@@ -46,7 +46,10 @@ class newhouseCtrl extends baseCtrl{
       // 读取面积
       $data['areaData'] = conf::get('AREA','admin');
       // 搜索条件
-      $search = '';
+      $search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
+      if ($search == 'undefined') {
+        $search = '';
+      }
       // 筛选条件
       $filtrate = '';
       if (IS_POST === true) {

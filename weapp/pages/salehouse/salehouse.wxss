@@ -69,7 +69,7 @@ button::after{
   box-sizing: border-box;
 }
 .next_step button{
-  background-color: #ccc;
+  background-color: #CB1B45;
   color: #fff;
 }
 .sellers-quantity{

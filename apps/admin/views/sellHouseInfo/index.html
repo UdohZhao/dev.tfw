@@ -53,9 +53,7 @@
                         <th>姓名</th>
                         <th>联系电话</th>
                         <th>时间</th>
-                         {% if status ==0  %}
                         <th>操作</th>
-                        {% endif %}
                     </tr>
                     </thead>
                     <tbody>
@@ -66,9 +64,9 @@
                            <img src="{{ v.house_img }}" class="img-responsive" style="width: 90px; height: 90px;">
                         </td>
                         <td>{{ v.community }}</td>
-                        <td>{{ v.area }}</td>
+                        <td>{{ v.area }}㎡</td>
                         <td>{{ v.house_type }}</td>
-                        <td>{{ v.selling_price }}</td>
+                        <td>{{ v.selling_price }}万</td>
                         <td>{{ v.htype }}</td>
                         <td>{{ v.orientation }}</td>
                         <td>
@@ -85,15 +83,17 @@
                             否
                         {% endif %}
                         </td>
-                        
+
                         <td>{{ v.cname }}</td>
                         <td>{{ v.phone }}</td>
                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
-                        {% if status ==0  %}
                         <td>
+                        <button type="button" class="btn btn-info btn-xs" onclick="lookInfo({{ v.id }});">查看详细</button>
+                        {% if status ==0  %}
                             <button type="button" class="btn btn-primary btn-xs" onclick="shInfo({{ v.id }});">已读</button>
-                        </td>
                         {% endif %}
+                        </td>
+
                     </tr>
                     {% endfor %}
                     {% else %}

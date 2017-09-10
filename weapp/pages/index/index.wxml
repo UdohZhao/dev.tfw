@@ -117,9 +117,9 @@
           </view>
         </view>
        </block> 
-    <view hidden="{{completedata}}" class="complete_data">
+    <!-- <view hidden="{{completedata}}" class="complete_data">
       到底啦！
-    </view>
+    </view> -->
     </scroll-view>
     <!-- <loading hidden="{{hidden}}">
         加载中...

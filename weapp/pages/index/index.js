@@ -76,6 +76,7 @@ Page({
 
   },
   onLoad: function (options) {
+    
     var that = this;
 
     // 友好的用户体验开始
@@ -271,6 +272,7 @@ Page({
       inputVal: e.detail.value
     });
   },
+  
   /**
    * 去往房屋详细
    */

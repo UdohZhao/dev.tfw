@@ -234,14 +234,18 @@ Page({
 
     var that = this;
 
-    // 获取房屋类别主键id，房屋类别
+    // 获取房屋类别主键id，房屋类别，搜索条件
     console.log(options.hcid);
     console.log(options.hctype);
+    console.log(options.search);
 
     that.setData({
       hcid: options.hcid,
-      hctype: options.hctype
+      hctype: options.hctype,
+      searchVal: options.search
     });
+
+    console.log(that.data.searchVal);
 
     // 友好的用户体验开始
     wx.showLoading({
@@ -253,7 +257,8 @@ Page({
       url: App.data.domain + '/newhouse/index',
       data: {
         hcid: that.data.hcid,
-        hctype: that.data.hctype
+        hctype: that.data.hctype,
+        search: that.data.searchVal
       },
       header: {
         'content-type': 'application/json'

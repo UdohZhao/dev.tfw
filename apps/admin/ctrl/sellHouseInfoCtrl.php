@@ -30,19 +30,19 @@ public function update(){
       $qwe = $this->cdb->getInfo($this->id);
       $this->assign('date',$qwe);
      }
-     
-     $this->display('sellHouseInfo','add.html');  
+
+     $this->display('sellHouseInfo','add.html');
 die;
 
 }
-  
+
      public function index(){
       //小区
       $community = isset($_POST['community']) ? htmlspecialchars($_POST['community']) : '';
       //售价
       $selling_price = isset($_POST['selling_price']) ? htmlspecialchars($_POST['selling_price']) : '';
       $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
-      
+
           //面积
         $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
         $status=isset($_GET['status'])?$_GET['status']:0;
@@ -51,13 +51,12 @@ die;
         $num = $this->db->cou($status);
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
-       
+
           $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$community,$selling_price,$area);
-          
+
                 // ,bcsub($p->page,1,0),$p->pagesize
         foreach ($res as $k=>$v){
-            $res[$k]['house_img'] = unserialize($v['house_img']);
-
+            $res[$k]['house_img'] = explode(',', $v['house_img']);
             $res[$k]['house_img'] = $res[$k]['house_img'][0];
         }
         // var_dump($res[0]['house_img']);
@@ -75,7 +74,7 @@ die;
             $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
             $res = $this->db->up_status($id);
-          
+
 
 
             if ($res) {
@@ -83,7 +82,25 @@ die;
             } else {
                 echo json_encode(false);
             }
-    
+
+
+     }
+
+     /**
+      * 查看详细
+      */
+     public function lookInfo(){
+      // Get
+      if (IS_GET === true) {
+        // 读取详细数据
+        $houseImg = $this->db->getHouseImg($this->id);
+        $houseImg = explode(',', $houseImg);
+        // assign
+        $this->assign('data',$houseImg);
+        // display
+        $this->display('sellHouseInfo','lookInfo.html');
+        die;
+      }
 
      }
 }

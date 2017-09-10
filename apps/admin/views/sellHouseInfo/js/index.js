@@ -25,3 +25,8 @@ function shInfo(id){
             }
           });
 }
+
+// 查看详细
+function lookInfo(id){
+  window.location.href = "/admin/sellHouseInfo/lookInfo/id/"+id;
+}
