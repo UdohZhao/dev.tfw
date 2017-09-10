@@ -21,7 +21,7 @@ class loanCtrl extends baseCtrl{
 	}
 
 	public function index(){
-		 
+
       $num = $this->db->sel_num($this->status);
       //搜索条件
       $types = isset($_POST['types']) ? htmlspecialchars($_POST['types']) : '';
@@ -31,7 +31,7 @@ class loanCtrl extends baseCtrl{
         $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
         // 必传$this->userinfo['？'];
       $data = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$this->status,bcsub($p->page,1,0),$p->pagesize,$types,$phone);
-      
+
      $this->assign('status',$this->status);
      $this->assign('page',$p->showpage());
 		$this->assign('data',$data);
@@ -68,16 +68,16 @@ class loanCtrl extends baseCtrl{
       }else{
          $res = $this->db->add($data);
       }
-    
+
       if ($res) {
         echo "<script>alert('保存成功');
-         window.location.href='http://'+window.location.host+'/admin/loan/index';</script>";
-      
+         window.location.href='/admin/loan/index';</script>";
+
         die;
       } else {
           echo "<script>alert('保存失败，尝试刷新后再试');
-         location.reload()";
-      
+         location.reload()</script>";
+
         die;
       }
 
@@ -86,7 +86,7 @@ class loanCtrl extends baseCtrl{
   public function statu(){
       $id = isset($_GET['id']) ? $_GET['id'] : 0;
       $res = $this->db->up_status($id);
-      
+
             if ($res) {
                 echo json_encode(true);
             } else {
@@ -101,7 +101,7 @@ class loanCtrl extends baseCtrl{
   		echo json_encode(true);
   	}else{
   		echo json_encode(false);
-  	}	
+  	}
   	}
   }
 }

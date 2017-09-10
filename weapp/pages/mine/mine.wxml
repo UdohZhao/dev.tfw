@@ -7,9 +7,9 @@
   </view>
 </view>
 <view class="abortus">
-  <view class="title">
+  <!-- <view class="title">
     特房网
-  </view>
+  </view> -->
   <view class="abort_content">
    
       <view class="each_class">    <template is="wxParse" data="{{wxParseData:content.nodes}}"/> </view>

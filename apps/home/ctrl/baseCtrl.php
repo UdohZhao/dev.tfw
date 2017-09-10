@@ -19,7 +19,7 @@ class baseCtrl extends \core\icunji{
       echo J(R(200,'受影响的操作 :)',$res['data']));
       die;
     } else {
-      echo J(R(400,'图片上传失败 :(',false));
+      echo J(R(400,'上传的文件不能超过1MB :(',false));
       die;
     }
 

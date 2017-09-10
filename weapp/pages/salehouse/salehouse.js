@@ -179,14 +179,7 @@ Page({
                 wx.showModal({
                   title: '提示',
                   content: data.msg,
-                  showCancel: false,
-                  success: function (res) {
-                    if (res.confirm) {
-                      wx.reLaunch({
-                        url: '/pages/index/index'
-                      })
-                    }
-                  }
+                  showCancel: false
                 })
 
               }
