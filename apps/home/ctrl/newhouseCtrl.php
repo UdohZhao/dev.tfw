@@ -52,6 +52,8 @@ class newhouseCtrl extends baseCtrl{
             AND
                   title like '%$search%'
         ";
+      } else {
+        $search = '';
       }
       // 筛选条件
       $filtrate = '';
