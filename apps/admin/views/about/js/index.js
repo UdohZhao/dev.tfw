@@ -41,5 +41,5 @@ function del(id){
 }
 // 修改密码
 function edit(id){
-    window.location.href='http://'+window.location.host+'/admin/about/add?id='+id;
+    window.location.href='/admin/about/add?id='+id;
 }

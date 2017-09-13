@@ -5,7 +5,7 @@ class indexCtrl extends baseCtrl{
   // 构造方法
   public function _auto(){
      if (isset($_SESSION['userinfo']) == null) {
-          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          echo "<script>window.location.href='/admin/login/index'</script>";
           die;
       }
   }

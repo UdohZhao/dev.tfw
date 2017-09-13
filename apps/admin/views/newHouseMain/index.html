@@ -24,7 +24,12 @@
             <th>特点</th>
             <th>价格</th>
             <th>建筑面积</th>
+            {% if status == 0  %}
             <th>操作</th>
+            {% endif %}
+            {% if status == 2  %}
+            <th>操作</th>
+            {% endif %}
           </tr>
         </thead>
         <tbody>
@@ -38,9 +43,13 @@
             <td>{{ v.cname }}</td>
             <td>{{ v.trait }}</td>
             <td>{{ v.price }}万/套</td>
-            <td>{{ v.covered_area }}</td>
+            <td>{{ v.covered_area }}㎡</td>
             <td>
             {% if status == 0 %}
+              <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
+              <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
+           {% endif %}
+           {% if status == 2 %}
               <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
               <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
            {% endif %}

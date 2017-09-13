@@ -9,7 +9,7 @@ class propertyConsultantCtrl extends baseCtrl{
   // 构造方法
   public function _auto(){
       if (isset($_SESSION['userinfo']) == null) {
-          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          echo "<script>window.location.href='/admin/login/index'</script>";
           die;
       }elseif($_SESSION['userinfo']['type'] !=0 ){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
@@ -67,11 +67,11 @@ class propertyConsultantCtrl extends baseCtrl{
     $hpPath = isset($_POST['hpPath']) ? $_POST['hpPath'] : '';
     if (!$hpPath) {
       $res = upFiles('head_portrait');
-      if ($res['error'] == 1) {
+      if ($res['code'] == 400) {
         echo json_encode($res['msg']);
         die;
       } else {
-        $data['head_portrait'] = $res['filepath'];
+        $data['head_portrait'] = $res['data'];
       }
     } else {
         $data['head_portrait'] = $hpPath;

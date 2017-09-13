@@ -15,7 +15,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
     // 构造方法
     public function _auto(){
         if (isset($_SESSION['userinfo']) == null) {
-          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          echo "<script>window.location.href='/admin/login/index'</script>";
           die;
       }elseif($_SESSION['userinfo']['type'] !=3 && $_SESSION['userinfo']['type'] !=0){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
@@ -82,13 +82,13 @@ class usedHouseCatalogCtrl extends baseCtrl{
                 if ($this->id) {
                     if ($this->id != $id) {
                         $result['error'] = 202;
-                        $result['msg'] = '请勿重复添加 :(';
+                        $result['msg'] = '标题请勿重复添加 :(';
                         echo json_encode($result);
                         die;
                     }
                 } else {
                     $result['error'] = 202;
-                    $result['msg'] = '请勿重复添加 :(';
+                    $result['msg'] = '标题请勿重复添加 :(';
                     echo json_encode($result);
                     die;
                 }

@@ -1,5 +1,5 @@
 function edit(id){
-    window.location.href='http://'+window.location.host+'/admin/buyHouseCatagory/add_article?article_id='+id;
+    window.location.href='/admin/buyHouseCatagory/add_article?article_id='+id;
 }
 
 // 删除

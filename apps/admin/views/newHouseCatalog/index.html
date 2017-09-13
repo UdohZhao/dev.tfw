@@ -81,6 +81,7 @@
                 {% if v.status == 0 %}
                 <button type="button" class="btn btn-default btn-xs" onclick="commit_status({{ v.id }});">提交审核</button>
                 <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
                 {% elseif v.status == 1 %}
          
                 {% elseif v.status == 2 %}

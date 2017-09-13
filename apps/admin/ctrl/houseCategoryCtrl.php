@@ -9,7 +9,7 @@ class houseCategoryCtrl extends baseCtrl{
   // 构造方法
   public function _auto(){
       if (isset($_SESSION['userinfo']) == null) {
-          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          echo "<script>window.location.href='/admin/login/index'</script>";
           die;
       }elseif($_SESSION['userinfo']['type'] !=0 ){
           echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
@@ -66,11 +66,11 @@ class houseCategoryCtrl extends baseCtrl{
     $ipPath = isset($_POST['ipPath']) ? $_POST['ipPath'] : '';
     if (!$ipPath) {
       $res = upFiles('icon_path');
-      if ($res['error'] == 1) {
+      if ($res['code'] == 400) {
         echo json_encode($res['msg']);
         die;
       } else {
-        $data['icon_path'] = $res['filepath'];
+        $data['icon_path'] = $res['data'];
       }
     } else {
         $data['icon_path'] = $ipPath;

@@ -11,7 +11,7 @@ class sellHouseInfoCtrl extends baseCtrl{
     public function _auto(){
         //资料审核员可以查看
         if (isset($_SESSION['userinfo']) == null) {
-          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          echo "<script>window.location.href='/admin/login/index'</script>";
           die;
       }elseif($_SESSION['userinfo']['type'] !=0 && $_SESSION['userinfo']['type'] !=1){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";
@@ -94,9 +94,15 @@ die;
       if (IS_GET === true) {
         // 读取详细数据
         $houseImg = $this->db->getHouseImg($this->id);
-        $houseImg = explode(',', $houseImg);
+       
+       
+        $t =  date("Y-m-d H:i",$houseImg['ctime']);
+        $dada = $houseImg["house_img"];
+        $res = explode(',', $dada);
         // assign
-        $this->assign('data',$houseImg);
+        $this->assign('res',$houseImg);
+        $this->assign('ctime',$t);
+        $this->assign('data',$res);
         // display
         $this->display('sellHouseInfo','lookInfo.html');
         die;

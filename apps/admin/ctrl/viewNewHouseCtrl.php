@@ -13,7 +13,7 @@ class viewNewHouseCtrl extends baseCtrl{
     public $nhcdb;
     public function _auto(){
         if (isset($_SESSION['userinfo']) == null) {
-          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          echo "<script>window.location.href='/admin/login/index'</script>";
           die;
       }elseif($_SESSION['userinfo']['type'] !=1 && $_SESSION['userinfo']['type'] !=0){
             echo "<script>alert('没有权限');window.location.href='/admin/index/index'</script>";

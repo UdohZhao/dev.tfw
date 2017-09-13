@@ -8,7 +8,6 @@ class newHouseMain extends model{
   public function checkUser($data){
     return $this->get($this->table,'*',['username'=>$data['username'],'password'=>$data['password']]);
   }
-
   // getUsername
   public function getUsername($username){
     return $this->count($this->table,['username'=>$username]);

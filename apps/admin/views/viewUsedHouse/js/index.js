@@ -1,7 +1,7 @@
 
 //审核
 function detail_info(id){
-    window.location.href='http://'+window.location.host+'/admin/viewUsedHouse/view_house?id='+id;
+    window.location.href='/admin/viewUsedHouse/view_house?id='+id;
 }
 
 // 新房详细信息

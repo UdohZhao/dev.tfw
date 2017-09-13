@@ -1,5 +1,5 @@
 function update_info(id){
-    window.location.href='http://'+window.location.host+'/admin/loan/add?id='+id;
+    window.location.href='/admin/loan/add?id='+id;
 }
   //已读
 function status(id){

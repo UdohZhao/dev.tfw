@@ -60,7 +60,7 @@ class sellHouseInfo extends model{
      * 读取详细信息
      */
     public function getHouseImg($id){
-      return $this->get($this->table,'house_img',['id'=>$id]);
+      return $this->get($this->table,'*',['id'=>$id]);
     }
 
 }

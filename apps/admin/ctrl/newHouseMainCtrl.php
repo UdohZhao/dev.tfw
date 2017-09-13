@@ -11,7 +11,7 @@ class newHouseMainCtrl extends baseCtrl{
   // 构造方法
   public function _auto(){
     if (isset($_SESSION['userinfo']) == null) {
-          echo "<script>alert('请登录进入');window.location.href='/admin/login/index'</script>";
+          echo "<script>window.location.href='/admin/login/index'</script>";
           die;
       }
   
@@ -36,16 +36,16 @@ class newHouseMainCtrl extends baseCtrl{
     if (IS_AJAX === true) {
       // result
       $result = array();
-      $result['error'] = 0;
+      $result['code'] = 400;
       $result['msg'] = '';
       // 封面图片上传
       $res = upFiles('cover_path');
-      if ($res['error'] == 1) {
+      if ($res['code'] == 400) {
         echo json_encode($res);
         die;
       }
       // data
-      $data = $this->getData($res['filepath']);
+      $data = $this->getData($res['data']);
       $cres = $this->db->save($this->id,$data);
       if ($cres) {
         $result['msg'] = '恭喜你修改成功 :)';
@@ -75,12 +75,12 @@ class newHouseMainCtrl extends baseCtrl{
       $result['msg'] = '';
       // 封面图片上传
       $res = upFiles('cover_path');
-      if ($res['error'] == 1) {
+      if ($res['code'] == 400) {
         echo json_encode($res);
         die;
       }
       // data
-      $data = $this->getDat($res['filepath']);
+      $data = $this->getDat($res['data']);
       $cres = $this->db->save($this->id,$data);
       if ($cres) {
         $result['msg'] = '恭喜你修改成功 :)';

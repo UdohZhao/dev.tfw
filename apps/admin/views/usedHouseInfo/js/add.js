@@ -71,7 +71,7 @@ $(function(){
                         // res
                         if (res.error == 0) {
                             swal("提交成功", '', "success");
-                            window.location.href='http://'+window.location.host+'/admin/usedHouseCatalog/index';
+                            window.location.href='/admin/usedHouseCatalog/index';
                         } else if (res.error == 201) {
                             swal("提交失败", res.msg, "error");
                         } else if (res.error == 202) {

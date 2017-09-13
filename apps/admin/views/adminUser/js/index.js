@@ -36,7 +36,7 @@ $(function(){
                 swal("提交成功", "受影响的操作 :)", "success");
                 window.setTimeout("window.location.reload();",2000);
               } else {
-                swal("提交失败", "请尝试刷新页面后重试 :(", "error");
+                swal("提交失败", "密码不能同上次一样 :(", "error");
               }
             },
             error:function(e){
