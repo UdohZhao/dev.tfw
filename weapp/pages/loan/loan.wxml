@@ -17,7 +17,7 @@
   </view>
 </view>
 <view class="application_loan">
-  <button bindtap="application_loan">申请贷款</button>
+  <button bindtap="application_loan">申 请 贷 款</button>
 </view>
 <modal class="loan_modal" hidden="{{hidden}}" title="金融贷款" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
      <view class="weui-cells weui-cells_after-title">
@@ -26,7 +26,7 @@
               <view class="weui-label">名字</view>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入名字"  maxlength="10" value="" name="cname" bindinput="getCname" />
+              <input class="weui-input loans-input" placeholder="请输入名字"  maxlength="10" value="" name="cname" bindinput="getCname" />
           </view>
       </view>
       <view class="weui-cell weui-cell_input">
@@ -34,20 +34,22 @@
               <view class="weui-label">电话</view>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入电话" maxlength="11" value="" name="phone"  bindinput="getPhone"/>
+              <input class="weui-input loans-input" placeholder="请输入手机号码" maxlength="11" value="" name="phone"  bindinput="getPhone"/>
           </view>
       </view>
-      <view class="phone_one" bindtap="clickPerson" >
-  <view class="phone_personal">{{firstPerson}}</view>
-  <image src="../../images/下拉三角形(1).png" class="personal_image {{selectArea ? 'rotateRight' :''}}"></image>
-  </view>
-  <view class="person_box">
-    <view class="phone_select" hidden="{{selectPerson}}">
-    <view class="select_one" bindtap="mySelect" data-type="0" data-me="抵押贷款"  name="types">抵押贷款</view>
-    <view class="select_one" bindtap="mySelect" data-type="1" data-me="信用贷款"  name="types">信用贷款</view>
-    <view class="select_one" bindtap="mySelect" data-type="2" data-me="组合贷款"  name="types">组合贷款</view>
-  </view>
-  </view>
+
+      <view class="weui-cells__title t-title">* 选择贷款类型</view>
+      <radio-group bindchange="radioChange">
+          <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
+              <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+
+              <view class="weui-cell__bd">{{item.name}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
+                  <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+              </view>
+          </label>
+      </radio-group>
+
       <view>
       </view>
   </view>

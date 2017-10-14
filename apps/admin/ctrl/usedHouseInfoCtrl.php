@@ -33,7 +33,7 @@ class usedHouseInfoCtrl extends baseCtrl{
         if (IS_GET === true) {
             // 读取置业顾问
             $pcData = $this->pcdb->selpc();
-        
+
             // assign
             $this->assign('pcData',$pcData);
             // display
@@ -73,7 +73,7 @@ class usedHouseInfoCtrl extends baseCtrl{
 
     public function index(){
         if(IS_GET === true){
-            
+
             $data = $this->uhdb->sel_info($this->uhcid);
              $t = date( "Y-m-d H:i",$data['ctime']);
              // date("Y-m-d H:i:s",$caInfo['ctime']);
@@ -88,7 +88,7 @@ class usedHouseInfoCtrl extends baseCtrl{
             $this->assign('pcInfo',$pcInfo);
            // display
             $this->display('usedHouseInfo','index.html');
-            
+
         }
     }
 }

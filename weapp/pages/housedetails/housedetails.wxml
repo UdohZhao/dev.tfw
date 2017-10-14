@@ -49,6 +49,7 @@
             </view>
             <view class="list_title">{{v.cname}}</view>
             <view class="list_style">{{v.house_type_name}}：{{v.covered_area}}</view>
+              <image class="hint-img" src="/images/click.png"></image>
           </navigator>
         </block>
       </view>

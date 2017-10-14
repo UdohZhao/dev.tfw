@@ -14,7 +14,7 @@ class newHouseMainCtrl extends baseCtrl{
           echo "<script>window.location.href='/admin/login/index'</script>";
           die;
       }
-  
+
     $this->nhcid = isset($_GET['nhcid']) ? intval($_GET['nhcid']) : 0;
     $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $this->assign('nhcid',$this->nhcid);
@@ -22,7 +22,7 @@ class newHouseMainCtrl extends baseCtrl{
     $this->db = new newHouseMain();
 
   }
-  
+
 
   // 新房添加主力户型页面
   public function add(){
@@ -53,7 +53,7 @@ class newHouseMainCtrl extends baseCtrl{
         $result['error'] = false;
         $result['msg'] = '请尝试刷新页面后重试 :(';
       }
-      
+
       // 写入数据表
       $res = $this->db->add($data);
       if ($res) {
@@ -88,7 +88,7 @@ class newHouseMainCtrl extends baseCtrl{
         $result['error'] = false;
         $result['msg'] = '请尝试刷新页面后重试 :(';
       }
-      
+
       echo json_encode($result);
       die;
     }
@@ -138,12 +138,12 @@ class newHouseMainCtrl extends baseCtrl{
     if (IS_GET === true) {
       // 读取主力户型
       $data = $this->db->sel($this->nhcid);
-      
+
       $status = $this->db->status($this->nhcid);
         $qqq = $status[0][0];
       // 读取新房条目名称
       $title = $this->nhcdb->getTitle($this->nhcid);
-       
+
             // assign
       $this->assign('data',$data);
       $this->assign('status',$qqq);
@@ -169,5 +169,5 @@ class newHouseMainCtrl extends baseCtrl{
       }
     }
   }
-  
+
 }

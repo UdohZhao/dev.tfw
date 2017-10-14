@@ -85,9 +85,10 @@
             <view class="weui-label">房屋特点</view>
         </view>
         <view class="weui-cell__bd">
-            <picker name="sdhspr" bindchange="bindSdhsprChange" value="{{sdhsprIndex}}" range="{{sdhspr}}">
+          <input type="text" name="characteristic" class="weui-input" placeholder="交通方便,采光好"/>
+            <!-- <picker name="sdhspr" bindchange="bindSdhsprChange" value="{{sdhsprIndex}}" range="{{sdhspr}}">
                 <view class="weui-select weui-select_in-select-after">{{sdhspr[sdhsprIndex]}}</view>
-            </picker>
+            </picker> -->
         </view>
     </view>
 </view>
@@ -97,11 +98,11 @@
         <view class="weui-cell__hd">
             <view class="weui-label">房屋类型</view>
         </view>
-        <view class="weui-cell__bd">
-            <picker name="htype" bindchange="bindHtypeChange" value="{{htypeIndex}}" range="{{shiData.ptype}}">
-                <view class="weui-select weui-select_in-select-after">{{shiData.ptype[htypeIndex]}}</view>
+         <view class="weui-cell__bd"> 
+            <picker name="prtype" bindchange="bindHtypeChange" value="{{prtypeIndex}}" range="{{shiData.prtype}}">
+                <view style="border:0;" class="weui-select weui-select_in-select-after">{{shiData.prtype[prtypeIndex]}}</view>
             </picker>
-        </view>
+         </view> 
     </view>
 </view>
 
@@ -112,7 +113,7 @@
         </view>
         <view class="weui-cell__bd">
             <picker name="orientation" bindchange="bindOrientationChange" value="{{orientationIndex}}" range="{{shiData.orientation}}">
-                <view class="weui-select weui-select_in-select-after">{{shiData.orientation[orientationIndex]}}</view>
+                <view style="border:0;" class="weui-select weui-select_in-select-after">{{shiData.orientation[orientationIndex]}}</view>
             </picker>
         </view>
     </view>
@@ -173,7 +174,7 @@
 
 </view>
 
-<view class="weui-cells__tips sh-tips">请如实填写，谢谢您的配合！</view>
+<view class="weui-cells__tips sh-tips">* 请如实填写，工作人员会尽快给您打电话核实，谢谢您的配合！</view>
 
 <view class="next_step">
   <!-- <navigator url="../nextstep/nextstep">

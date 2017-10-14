@@ -54,6 +54,12 @@
         "iconPath": "images/我的.png",
         "pagePath": "pages/mine/mine",
         "text": "关于我们"
+      },
+      {
+        "selectedIconPath": "images/loans-2.png",
+        "iconPath": "images/loans-1.png",
+        "pagePath": "pages/loan/loan",
+        "text": "金融贷款"
       }
     ]
   },

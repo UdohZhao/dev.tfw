@@ -92,7 +92,6 @@ Page({
       },
       success: function (res) {
         console.log(res.data);
-
         // if 
         if (res.data.code == 200) {
         

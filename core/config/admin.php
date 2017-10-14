@@ -20,6 +20,11 @@ return array(
       '4'   =>  '小产权房',
       '5'   =>  '其他'
   ),
+  // 新房产权类型
+  'NEW_PRTYPE'  =>  array(
+      '0'   =>  '大产权房',
+      '1'   =>  '其他'
+  ),
   // 房屋类型
   'HOUSE_TYPE'  =>  array(
       '0'   =>  '期房',
@@ -215,17 +220,17 @@ return array(
   'NHFILTRATE' => array(
       '0' =>  '区域',
       '1' =>  '价格',
-      '2' =>  '户型',
-      '3' =>  '产权类型',
-      '4' =>  '面积',
+      // '2' =>  '户型',
+      // '3' =>  '产权类型',
+      // '4' =>  '面积',
   ),
   // 新房筛选条目active
   'NHFILTRATEACTIVE' => array(
       '0' =>  true,
       '1' =>  true,
-      '2' =>  true,
-      '3' =>  true,
-      '4' =>  true,
+      // '2' =>  true,
+      // '3' =>  true,
+      // '4' =>  true,
   ),
   // 二手房筛选条目
   'UHFILTRATE' => array(

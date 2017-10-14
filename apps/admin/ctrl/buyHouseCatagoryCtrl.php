@@ -40,7 +40,7 @@ class buyHouseCatagoryCtrl extends baseCtrl{
                 $data['pcname']=$this->db->getInfo($this->pid)['cname'];
                 $data['pid']=$this->pid;
                 $this->assign('data',$data);
-                  
+
             }
             // display
             $this->display('buyHouseCatagory','add.html');
@@ -114,7 +114,6 @@ class buyHouseCatagoryCtrl extends baseCtrl{
         $this->assign('data',$data);
         $this->assign('page',$page->showpage());
         // display
-
         $this->display('buyHouseCatagory','index.html');
         die;
     }
@@ -155,7 +154,7 @@ class buyHouseCatagoryCtrl extends baseCtrl{
         }
     }
 
-   
+
     // del
   public function del(){
     // Ajax
@@ -167,14 +166,14 @@ class buyHouseCatagoryCtrl extends baseCtrl{
         die;
       }
       $res= $this->db->hecid($this->id);
-        if($res) {    
+        if($res) {
         echo json_encode(false);
         die;
       }
       // 删除
       $res = $this->db->del($this->id);
 
-     if($res) {    
+     if($res) {
         echo json_encode(true);
         die;
       } else {
@@ -230,9 +229,17 @@ class buyHouseCatagoryCtrl extends baseCtrl{
 
     //查看文章列表
     public function article_list(){
+        // search
+        $search = isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '';
         $id=isset($_GET['id'])?intval($_GET['id']):0;
-        $data=$this->db->show_article($id);
+        $this->assign('id',$id);
+        // 总记录数
+        $totalRows = $this->db->totalRows($id);
+        // 数据分页
+        $page = new Page($totalRows,conf::get('LIMIT','admin'));
+        $data=$this->db->show_article($id,$search,$page->limit);
         $this->assign('data',$data);
+        $this->assign('page',$page->showpage());
         $this->display('buyHouseCatagory','article_list.html');
     }
 

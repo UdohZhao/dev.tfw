@@ -17,8 +17,8 @@ class sellHouseInfoCtrl extends baseCtrl{
     if (IS_GET === true) {
       // 读取总记录数
       $data['totalData'] = $this->db->totalData();
-      // 读取物业类型
-      $data['ptype'] = conf::get('PTYPE','admin');
+      // 读取产权类型
+      $data['prtype'] = conf::get('PRTYPE','admin');
       // 读取房屋朝向
       $data['orientation'] = conf::get('ORIENTATION','admin');
       echo J(R(200,'受影响的操作 :)',$data));
@@ -49,26 +49,16 @@ class sellHouseInfoCtrl extends baseCtrl{
     $data['area'] = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
     $data['house_type'] = isset($_POST['house_type']) ? htmlspecialchars($_POST['house_type']) : '';
     $data['selling_price'] = isset($_POST['selling_price']) ? htmlspecialchars($_POST['selling_price']) : '';
-    $data['htype'] = isset($_POST['htype']) ? htmlspecialchars($_POST['htype']) : 0;
+    $data['prtype'] = isset($_POST['prtype']) ? htmlspecialchars($_POST['prtype']) : 0;
     // 读取物业类型
-    $ptype = conf::get('PTYPE','admin');
-    $data['htype'] = $ptype[$data['htype']];
+    $prtype = conf::get('PRTYPE','admin');
+    $data['prtype'] = $prtype[$data['prtype']];
     $data['orientation'] = isset($_POST['orientation']) ? htmlspecialchars($_POST['orientation']) : 0;
     // 读取房屋朝向
     $orientation = conf::get('ORIENTATION','admin');
     $data['orientation'] = $orientation[$data['orientation']];
-    // 0>无 1>学区房 2>特价房
-    $sdhspr = isset($_POST['sdhspr']) ? htmlspecialchars($_POST['sdhspr']) : 0;
-    if ($sdhspr == 0) {
-      $data['sdh'] = 1;
-      $data['spr'] = 1;
-    } else if ($sdhspr == 1) {
-      $data['sdh'] = 0;
-      $data['spr'] = 1;
-    } else if ($sdhspr == 2) {
-      $data['sdh'] = 1;
-      $data['spr'] = 0;
-    }
+    // 房屋特点
+    $data['characteristic'] = isset($_POST['characteristic']) ? htmlspecialchars($_POST['characteristic']) : '';
     $data['house_img'] = isset($_POST['files']) ? htmlspecialchars($_POST['files']) : '';
     $data['himg'] = '';
     $data['introduce'] = isset($_POST['introduce']) ? htmlspecialchars($_POST['introduce']) : '';

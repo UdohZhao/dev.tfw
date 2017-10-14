@@ -5,7 +5,7 @@ page{
 }
 .top_bcg{
   position: relative;
-  height: 260rpx;
+  height: 360rpx;
 }
 .top_bcg .bcg_img{
   width: 100%;
@@ -46,12 +46,13 @@ page{
   font-size: 12px;
 }
 .application_loan{
-  padding: 20px 15px;
+  padding: 40rpx;
 }
 .application_loan button{
   background-color: #00ce3c;
   color: #fff;
-  font-size: 14px;
+  font-size: 20px;
+  padding: 10rpx;
 }
 .loan_modal .weui-cells{
   background-color: #fafafc;
@@ -136,4 +137,12 @@ page{
 }
 .rotateRight{
   transform: rotate(180deg);  /*//180°旋转图片。*/
+}
+.t-title{
+  color: #FF0000;
+}
+.loans-input{
+  border:0!important;
+  border-bottom:2rpx solid #eee!important;
+  border-radius: 0!important;
 }

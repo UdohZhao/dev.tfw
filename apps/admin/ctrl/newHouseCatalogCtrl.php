@@ -44,7 +44,7 @@ class newHouseCatalogCtrl extends baseCtrl{
 
       // 获取配置信息（户型，产权类型，房屋类型，物业类型）
       $htype = conf::get('HTYPE','admin');
-      $prtype = conf::get('PRTYPE','admin');
+      $prtype = conf::get('NEW_PRTYPE','admin');
       $house_type = conf::get('HOUSE_TYPE','admin');
       $ptype = conf::get('PTYPE','admin');
       // assign

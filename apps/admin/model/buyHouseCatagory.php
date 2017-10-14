@@ -19,7 +19,7 @@ class buyHouseCatagory extends model{
         $res = $this->insert($this->table,$data);
         return $this->id();
     }
- 
+
     // sel
     public function sel($search,$limit,$pid){
         // sql
@@ -32,7 +32,7 @@ class buyHouseCatagory extends model{
         ON tb1.pid=tb2.id
         WHERE
                 1 = 1
-        AND 
+        AND
                tb1.pid=$pid
         AND
                 tb1.cname like '%$search%'
@@ -115,9 +115,33 @@ class buyHouseCatagory extends model{
         return $this->insert('house_encyclopedia_article',$data);
     }
 
+    /**
+     * 读取统计相关文章记录数
+     */
+    public function totalRows($id){
+        return $this->count('house_encyclopedia_article',['hecid'=>$id]);
+    }
+
     //获取文章内容
-    public function show_article($id){
-        return $this->select('house_encyclopedia_article','*',['hecid'=>$id]);
+    public function show_article($id,$search,$limit){
+        // sql
+        $sql = "
+            SELECT
+                    *
+            FROM
+                    `house_encyclopedia_article`
+            WHERE
+                    1 = 1
+            AND
+                    hecid = '$id'
+            AND
+                    title like '%$search%'
+            ORDER BY
+                    ctime DESC
+            {$limit}
+        ";
+        return $this->query($sql)->fetchAll(2);
+        //return $this->select('house_encyclopedia_article','*',['hecid'=>$id]);
     }
 
     //获取单条文章内容

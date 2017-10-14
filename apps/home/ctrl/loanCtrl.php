@@ -10,45 +10,51 @@ class loanCtrl extends baseCtrl{
 	public $id;
   public $status;
 	public function _auto(){
-    
+
 	  $this->db = new loan();
 	  $this->con = new about();
     $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
       $this->status = isset($_GET['status']) ? intval($_GET['status']) : 0;
 	}
 
-	private function getData(){
-    // data
-    $data = array();
-    $data['cname'] = $_POST['cname'];
-    $data['phone'] = $_POST['phone'];
-    $data['ctime'] = time();
-    $data['type']  = $_POST['type'];
-    return $data;
-
+  /**
+   * 添加贷款记录
+   */
+	public function add(){
+    // Post
+    if (IS_POST == true) {
+      // data
+      $data = $this->getData();
+      // 写入数据
+      $res = $this->db->add($data);
+      if ($res) {
+        echo J(R(0,'受影响的操作 :)',true));
+        die;
+      } else {
+        echo J(R(1,'请尝试刷新小程序后重试 :(',false));
+        die;
+      }
+    }
   }
 
-	public function add(){
-      // data
-       $data = $this->getData();  
-      // insert
-         $res = $this->db->add($data);
-        
-        if ($data) {
-      echo J(R(200,'成功',$data));
-    } else {
-      echo J(R(400,'数据加载异常 :(',false));
-    }
+  /**
+   * 初始化数据
+   */
+  private function getData(){
+    $data['cname'] = isset($_POST['cname']) ? htmlspecialchars($_POST['cname']) : '';
+    $data['phone'] = isset($_POST['phone']) ? $_POST['phone'] : '';
+    $data['ctime'] = time();
+    $data['type']  = isset($_POST['type']) ? $_POST['type'] : 0;
+    $data['status'] = 0;
+    return $data;
   }
 
   public function sel(){
-      $data = $this->con->sel();
-
-          if ($data) {
+    $data = $this->con->sel();
+    if ($data) {
       echo J(R(200,'成功',$data));
     } else {
       echo J(R(400,'数据加载异常 :(',false));
     }
-
   }
 }

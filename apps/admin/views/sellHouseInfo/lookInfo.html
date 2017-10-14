@@ -17,15 +17,14 @@
         <div class="row">
         <table style="font-size: 20px;">
 
-          
+
           <br><tr>小区:：</tr><tr>{{ res.community }}</tr></br>
           <br><tr>面积:：</tr><tr>{{ res.area }}㎡</tr></br>
           <br><tr>房型:：</tr><tr>{{ res.house_type }}</tr></br>
           <br><tr>售价:：</tr><tr>{{ res.selling_price }}</tr></br>
-          <br><tr>房屋类型:：</tr><tr>{{ res.htype }}</tr></br>
+          <br><tr>房屋类型:：</tr><tr>{{ res.prtype }}</tr></br>
+          <br><tr>房屋特点:：</tr><tr>{{ res.characteristic }}</tr></br>
           <br><tr>朝向:：</tr><tr>{{ res.orientation }}</tr></br>
-          <br><tr>学区房:：</tr><tr>{% if res.sdh ==0 %}是{% else %}否{% endif %} </tr></br>
-          <br><tr>特价房:：</tr><tr>{% if v.spr ==0 %}是{% else %}否{% endif %}</tr></br>
           <br><tr>姓名:：</tr><tr>{{ res.cname }}</tr></br>
           <br><tr>联系电话:：</tr><tr>{{ res.phone }}</tr></br>
           <br><tr>时间:：</tr><tr>{{ ctime }}</tr></br>

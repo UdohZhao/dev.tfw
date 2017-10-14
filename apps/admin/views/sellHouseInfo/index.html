@@ -47,9 +47,8 @@
                         <th>房型</th>
                         <th>售价</th>
                         <th>房屋类型</th>
+                        <th>房屋特点</th>
                         <th>朝向</th>
-                        <th>学区房</th>
-                        <th>特价房</th>
                         <th>姓名</th>
                         <th>联系电话</th>
                         <th>时间</th>
@@ -67,23 +66,9 @@
                         <td>{{ v.area }}㎡</td>
                         <td>{{ v.house_type }}</td>
                         <td>{{ v.selling_price }}万</td>
-                        <td>{{ v.htype }}</td>
+                        <td>{{ v.prtype }}</td>
+                        <td>{{ v.characteristic }}</td>
                         <td>{{ v.orientation }}</td>
-                        <td>
-                        {% if v.sdh ==0 %}
-                            是
-                        {% else %}
-                            否
-                        {% endif %}
-                        </td>
-                        <td>
-                        {% if v.spr ==0 %}
-                            是
-                        {% else %}
-                            否
-                        {% endif %}
-                        </td>
-
                         <td>{{ v.cname }}</td>
                         <td>{{ v.phone }}</td>
                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>

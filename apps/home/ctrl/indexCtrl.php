@@ -26,14 +26,15 @@ class indexCtrl extends baseCtrl{
       $data['hcData'] = $this->hcdb->getAll();
       // 最新新房房源
       $data['nhcData'] = $this->nhcdb->getNewest();
-      foreach ($data['nhcData'] AS $k => $v) {
-        $data['nhcData'][$k]['slideshow'] = unserialize($v['slideshow']);
-        $data['nhcData'][$k]['slideshow'] = $data['nhcData'][$k]['slideshow'][0];
-        $data['nhcData'][$k]['trait'] = explode(',', commaEn($v['trait']));
-        // 获取城市名称
-        $data['nhcData'][$k]['cid'] = $this->cdb->getCname($v['cid']);
+      if ($data['nhcData']) {
+        foreach ($data['nhcData'] AS $k => $v) {
+          $data['nhcData'][$k]['slideshow'] = unserialize($v['slideshow']);
+          $data['nhcData'][$k]['slideshow'] = $data['nhcData'][$k]['slideshow'][0];
+          $data['nhcData'][$k]['trait'] = explode(',', commaEn($v['trait']));
+          // 获取城市名称
+          $data['nhcData'][$k]['cid'] = $this->cdb->getCname($v['cid']);
+        }
       }
-
       ###
       echo J(R(200,'受影响的操作 :)',$data));
       die;

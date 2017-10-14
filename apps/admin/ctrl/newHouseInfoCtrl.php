@@ -35,7 +35,7 @@ class newHouseInfoCtrl extends baseCtrl{
     if (IS_GET === true) {
       // 读取置业顾问
       $pcData = $this->pcdb->selpc();
-      
+
       // assign
       $this->assign('pcData',$pcData);
       // display
@@ -75,8 +75,10 @@ class newHouseInfoCtrl extends baseCtrl{
     $data['nhcid'] = $this->nhcid;
     $data['pcid'] = $_POST['pcid'];
     foreach ($_POST['k'] AS $k => $v) {
-      $_POST['k'][$k] = htmlspecialchars($v);
-      $_POST['v'][$k] = htmlspecialchars($v);
+      if ($v) {
+        $_POST['k'][$k] = htmlspecialchars($v);
+        $_POST['v'][$k] = htmlspecialchars($v);
+      }
     }
     $data['k'] = serialize($_POST['k']);
     $data['v'] = serialize($_POST['v']);
@@ -100,10 +102,10 @@ class newHouseInfoCtrl extends baseCtrl{
       // 读取新房条目名称
       $title = $this->nhcdb->getTitle($data['nhcid']);
 
-      //DateUtils.getDateToString(时间戳); 
+      //DateUtils.getDateToString(时间戳);
       // 读取相关置业顾问信息
       $pcInfo = $this->pcdb->getInfo($data['pcid']);
-      
+
 }
       if(!$rem){
           $this->assign('rem','');
@@ -112,7 +114,7 @@ class newHouseInfoCtrl extends baseCtrl{
         }
       //反序列化
       $rem['slideshow'] = unserialize($rem['slideshow']);
-     
+
        $and = $rem['prtype'];
       if($and == 0){
         $prtype = "回迁房";
@@ -143,7 +145,7 @@ class newHouseInfoCtrl extends baseCtrl{
       //将时间戳转换成时间
       $caInfo = $this->pcdb->catalog($rem['cid']);
       $t =  date("Y-m-d H:i",$caInfo['ctime']);
-      
+
       // date("Y-m-d H:i:s",$caInfo['ctime']);
       // assign
       $this->assign('rem',$rem);

@@ -6,7 +6,7 @@ page{
 }
 .top_bcg{
   position: relative;
-  height: 260rpx;
+  height: 360rpx;
 }
 .top_bcg .bcg_img{
   width: 100%;

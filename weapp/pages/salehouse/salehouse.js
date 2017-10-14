@@ -229,7 +229,7 @@ Page({
     console.log(e.detail.value);
 
     that.setData({
-      htypeIndex: e.detail.value
+      prtypeIndex: e.detail.value
     })
 
   },
@@ -263,8 +263,8 @@ Page({
     console.log(e.detail.value.house_type);
     console.log(e.detail.value.selling_price);
     console.log(e.detail.value.introduce);
-    console.log(e.detail.value.sdhspr);
-    console.log(e.detail.value.htype);
+    console.log(e.detail.value.characteristic);
+    console.log(e.detail.value.prtype);
     console.log(e.detail.value.orientation);
     console.log(e.detail.value.cname);
     console.log(e.detail.value.phone);
@@ -330,13 +330,13 @@ Page({
         content: '请输入正确的手机号码 :(',
         showCancel: false
       })
-    } else if (e.detail.value.sdhspr == null) {
+    } else if (e.detail.value.characteristic == '' || e.detail.value.characteristic == false) {
       wx.showModal({
         title: '提示',
-        content: '请选择房屋特点 :(',
+        content: '房屋特点不能为空',
         showCancel: false
       })
-    } else if (e.detail.value.htype == null) {
+    } else if (e.detail.value.prtype == null) {
       wx.showModal({
         title: '提示',
         content: '请选择房屋类型 :(',
@@ -362,8 +362,8 @@ Page({
       console.log(e.detail.value.house_type);
       console.log(e.detail.value.selling_price);
       console.log(e.detail.value.introduce);
-      console.log(e.detail.value.sdhspr);
-      console.log(e.detail.value.htype);
+      console.log(e.detail.value.characteristic);
+      console.log(e.detail.value.prtype);
       console.log(e.detail.value.orientation);
       console.log(e.detail.value.cname);
       console.log(e.detail.value.phone);
@@ -383,8 +383,8 @@ Page({
           house_type: e.detail.value.house_type,
           selling_price: e.detail.value.selling_price,
           introduce: e.detail.value.introduce,
-          sdhspr: e.detail.value.sdhspr,
-          htype: e.detail.value.htype,
+          characteristic: e.detail.value.characteristic,
+          prtype: e.detail.value.prtype,
           orientation: e.detail.value.orientation,
           cname: e.detail.value.cname,
           phone: e.detail.value.phone,

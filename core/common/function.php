@@ -113,10 +113,6 @@ function J($data){
  * 返回结果
  */
 function R($code,$msg = '',$data = ''){
-  if (!intval($code)) {
-    return false;
-  }
-  $result = array();
   $result['code'] = $code; //反码状态，200正常，400往上都属错误
   $result['msg'] = $msg;
   $result['data'] = $data;
