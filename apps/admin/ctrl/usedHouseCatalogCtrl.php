@@ -2,7 +2,7 @@
 namespace apps\admin\ctrl;
 use core\lib\conf;
 use apps\admin\model\usedHouseCatalog;
-use apps\admin\model\usedHouseinfo;
+use apps\admin\model\usedHouseInfo;
 use apps\admin\model\city;
 use apps\admin\model\houseCategory;
 use vendor\page\Page;
@@ -156,7 +156,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
         $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
       $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
       $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
-        
+
 
          $num = $this->db->sel_num($status);
         // 数据分页
@@ -166,7 +166,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
 
         //结果集
         $res = $this->db->sel($this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
-        
+
         $this->assign('page',$p->showpage());
         $this->assign('data',$res);
         $this->assign('status',$status);
@@ -218,7 +218,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
         public function commit_status()
         {
             $status = isset($_GET['status']) ? $_GET['status'] : 0;
-           
+
             $id = isset($_GET['id']) ? $_GET['id'] : 0;
             if ($this->db->up_status($status,$id)) {
                 echo json_encode(true);
