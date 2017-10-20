@@ -26,7 +26,7 @@ class viewUsedHouseCtrl extends baseCtrl{
 
         //获取数据条数
         $search=isset($_GET['search'])?$_GET['search']:'';
-    
+
            //获取数据条数
         $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
       $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
@@ -67,13 +67,13 @@ class viewUsedHouseCtrl extends baseCtrl{
                 $data = $this->db->getInfo($id);
                 $data['cid'] = $this->cdb->getCname($data['cid']);
                 $data['htype'] = explode(',', $data['htype']);
-               
+
                 $data['slideshow'] = unserialize($data['slideshow']);
                 // assign
                 $this->assign('data',$data);
             }
             // display
-            $this->display('viewUsedHouse','checkhouse.html');
+            $this->display('viewUsedHouse','checkHouse.html');
             die;
         }
     }
@@ -84,16 +84,16 @@ class viewUsedHouseCtrl extends baseCtrl{
         $id= isset($_GET['uhcid']) ? $_GET['uhcid'] : 0;
         $data = $this->db->sel_info($id);
         $t = date('Y-m-d H:i',$data['ctime']);
-        
+
         $pcInfo = $this->pcdb->getInfo($data['pcid']);
-        
+
         $title = $this->db->title($id);
 
         $this->assign('pcInfo',$pcInfo);
         $this->assign('ctime',$t);
         $this->assign('title',$title);
         $this->assign('data',$data);
-    
+
         $this->display('viewUsedHouse','houseDetail.html');
     }
 
