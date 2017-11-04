@@ -60,6 +60,8 @@
 }
 .trait-item{
   display: inline-block;
-  background: greenyellow;
   margin-right: 10rpx;
+  border: 4rpx solid #eee;
+  border-radius: 6rpx;
+  padding: 3rpx;
 }
