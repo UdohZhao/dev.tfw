@@ -38,6 +38,15 @@
           </view>
       </view>
 
+       <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+              <view class="weui-label">预算</view>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="weui-input loans-input" placeholder="请输入预计贷款额度" name="money"  bindinput="getMoney"/>
+          </view>
+      </view>
+
       <view class="weui-cells__title t-title">* 选择贷款类型</view>
       <radio-group bindchange="radioChange">
           <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">

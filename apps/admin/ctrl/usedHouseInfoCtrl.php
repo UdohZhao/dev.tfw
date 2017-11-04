@@ -29,18 +29,7 @@ class usedHouseInfoCtrl extends baseCtrl{
         $this->uhdb = new usedHouseInfo();
     }
     public function add(){
-        // Get
-        if (IS_GET === true) {
-            // 读取置业顾问
-            $pcData = $this->pcdb->selpc();
-
-            // assign
-            $this->assign('pcData',$pcData);
-            // display
-            $this->display('usedHouseInfo','add.html');
-            die;
-        }
-
+        // Ajax
         if(IS_AJAX === true){
             $data=$this->getData();
             $result=array();
@@ -50,7 +39,33 @@ class usedHouseInfoCtrl extends baseCtrl{
 
           }
           echo json_encode($result);
+          die;
         }
+        // search
+        $search = '';
+        if (isset($_POST['cname']) && $_POST['cname'] != '' && isset($_POST['belong_company']) && $_POST['belong_company'] != '') {
+          $cname = htmlspecialchars($_POST['cname']);
+          $belong_company = htmlspecialchars($_POST['belong_company']);
+          $search = " AND cname like '%$cname%' AND belong_company like '%$belong_company%'";
+        }
+        else if (isset($_POST['cname']) && $_POST['cname'] != '')
+        {
+          $cname = htmlspecialchars($_POST['cname']);
+          $search = " AND cname like '%$cname%'";
+        }
+        else if (isset($_POST['belong_company']) && $_POST['belong_company'] != '')
+        {
+          $belong_company = htmlspecialchars($_POST['belong_company']);
+          $search = " AND belong_company like '%$belong_company%'";
+        }
+        // 读取置业顾问
+        $pcData = $this->pcdb->getSrows($search);
+        // assign
+        $this->assign('pcData',$pcData);
+        // display
+        $this->display('usedHouseInfo','add.html');
+        die;
+
     }
 
     private function getData(){

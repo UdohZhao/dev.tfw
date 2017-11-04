@@ -4,7 +4,7 @@ use core\lib\model;
 class newHouseInfo extends model{
   public $table = 'new_house_info';
   public $tables = 'new_house_catalog';
-  
+
   // add
   public function add($data){
     $res = $this->insert($this->table,$data);
@@ -38,7 +38,7 @@ class newHouseInfo extends model{
   public function catalog($nhcid){
     return $this->get($this->tables,'*',['id'=>$nhcid]);
   }
-  
+
   // ePass
   public function ePass($id,$password){
     $res = $this->update($this->table,['password'=>$password],['id'=>$id]);
@@ -66,6 +66,13 @@ class newHouseInfo extends model{
   public function delnhcid($nhcid){
     $res = $this->delete($this->table,['nhcid'=>$nhcid]);
     return $res->rowCount();
+  }
+
+  /**
+   * 读取单条记录
+   */
+  public function getRow($nhcid){
+    return $this->get($this->table,'*',['nhcid'=>$nhcid]);
   }
 
 }

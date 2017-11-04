@@ -43,6 +43,7 @@ class loanCtrl extends baseCtrl{
   private function getData(){
     $data['cname'] = isset($_POST['cname']) ? htmlspecialchars($_POST['cname']) : '';
     $data['phone'] = isset($_POST['phone']) ? $_POST['phone'] : '';
+    $data['money'] = isset($_POST['money']) ? htmlspecialchars($_POST['money']) : '';
     $data['ctime'] = time();
     $data['type']  = isset($_POST['type']) ? $_POST['type'] : 0;
     $data['status'] = 0;

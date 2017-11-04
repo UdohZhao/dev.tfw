@@ -55,19 +55,19 @@ class newHouseCatalog extends model{
                $where
         AND
                 NHC.status = '$status'
-        AND    
-               $title       
+        AND
+               $title
         ORDER BY
                 NHC.ctime DESC
         LIMIT
-                $currPage , $subPages  
+                $currPage , $subPages
     ";
     return $this->query($sql)->fetchAll();
   }
  // public function selling($search,$status){
- //   // $sql = "SELECT a.community,a.cid,a.area,a.show_price FROM $this->table as a left join $this->table1 as b on a.cid = b.id WHERE a.status = '$status' or community like '%$search%'  or cid like '%$search%' or area like '%$search%' or show_price like '%$search%' " ;  
-       
- //       $sql = "SELECT community,cid,area,show_price,status FROM $this->table WHERE status = $status and community like '%$search%'  or cid like '%$search%' or area like '%$search%' or show_price like '%$search%' " ;  
+ //   // $sql = "SELECT a.community,a.cid,a.area,a.show_price FROM $this->table as a left join $this->table1 as b on a.cid = b.id WHERE a.status = '$status' or community like '%$search%'  or cid like '%$search%' or area like '%$search%' or show_price like '%$search%' " ;
+
+ //       $sql = "SELECT community,cid,area,show_price,status FROM $this->table WHERE status = $status and community like '%$search%'  or cid like '%$search%' or area like '%$search%' or show_price like '%$search%' " ;
  //        return $this->query($status)->fetchAll();
  //            }
   //getInfo
@@ -119,6 +119,13 @@ class newHouseCatalog extends model{
     public function up_status($status,$id){
         $res = $this->update($this->table,['status'=>$status],['id'=>$id]);
         return $res->rowCount();
+    }
+
+    /**
+     * 读取单条记录
+     */
+    public function getRow($id){
+      return $this->get($this->table,'*',['id'=>$id]);
     }
 }
 

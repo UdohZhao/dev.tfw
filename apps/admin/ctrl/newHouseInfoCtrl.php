@@ -31,17 +31,6 @@ class newHouseInfoCtrl extends baseCtrl{
 
   // 添加新房详细信息页面
   public function add(){
-    // Get
-    if (IS_GET === true) {
-      // 读取置业顾问
-      $pcData = $this->pcdb->selpc();
-
-      // assign
-      $this->assign('pcData',$pcData);
-      // display
-      $this->display('newHouseInfo','add.html');
-      die;
-    }
     // Ajax
     if (IS_AJAX === true) {
       // result
@@ -66,6 +55,30 @@ class newHouseInfoCtrl extends baseCtrl{
       echo json_encode($result);
       die;
     }
+    // search
+    $search = '';
+    if (isset($_POST['cname']) && $_POST['cname'] != '' && isset($_POST['belong_company']) && $_POST['belong_company'] != '') {
+      $cname = htmlspecialchars($_POST['cname']);
+      $belong_company = htmlspecialchars($_POST['belong_company']);
+      $search = " AND cname like '%$cname%' AND belong_company like '%$belong_company%'";
+    }
+    else if (isset($_POST['cname']) && $_POST['cname'] != '')
+    {
+      $cname = htmlspecialchars($_POST['cname']);
+      $search = " AND cname like '%$cname%'";
+    }
+    else if (isset($_POST['belong_company']) && $_POST['belong_company'] != '')
+    {
+      $belong_company = htmlspecialchars($_POST['belong_company']);
+      $search = " AND belong_company like '%$belong_company%'";
+    }
+    // 读取置业顾问
+    $pcData = $this->pcdb->getSrows($search);
+    // assign
+    $this->assign('pcData',$pcData);
+    // display
+    $this->display('newHouseInfo','add.html');
+    die;
   }
 
   // 初始化数据
@@ -86,7 +99,7 @@ class newHouseInfoCtrl extends baseCtrl{
   }
 
   // 新房详细信息页面
-  public function index(){
+  public function index_demo(){
     // Get
     if (IS_GET === true) {
       // 读取详细信息
@@ -97,16 +110,15 @@ class newHouseInfoCtrl extends baseCtrl{
             $this->display('newHouseInfo','index.html');
             die;
         }else{
-      $data['k'] = unserialize($data['k']);
-      $data['v'] = unserialize($data['v']);
-      // 读取新房条目名称
-      $title = $this->nhcdb->getTitle($data['nhcid']);
+        $data['k'] = unserialize($data['k']);
+        $data['v'] = unserialize($data['v']);
+        // 读取新房条目名称
+        $title = $this->nhcdb->getTitle($data['nhcid']);
 
-      //DateUtils.getDateToString(时间戳);
-      // 读取相关置业顾问信息
-      $pcInfo = $this->pcdb->getInfo($data['pcid']);
-
-}
+        //DateUtils.getDateToString(时间戳);
+        // 读取相关置业顾问信息
+        $pcInfo = $this->pcdb->getInfo($data['pcid']);
+      }
       if(!$rem){
           $this->assign('rem','');
           $this->display('newHouseInfo','index.html');
@@ -160,6 +172,41 @@ class newHouseInfoCtrl extends baseCtrl{
       $this->display('newHouseInfo','index.html');
       die;
     }
+  }
+
+  /**
+   * 新房详细信息页面
+   */
+  public function index(){
+    // Get
+    if (IS_GET === true) {
+      // 读取新房类别信息
+      $data['nhcData'] = $this->nhcdb->getRow($this->nhcid);
+      if ($data['nhcData']) {
+        // 产权类型
+        $prtype = conf::get('NEW_PRTYPE','admin');
+        if ($data['nhcData']['prtype'] > 1) {
+          $data['nhcData']['prtype'] = 0;
+        }
+        $data['nhcData']['prtype'] = $prtype[$data['nhcData']['prtype']];
+        // 房屋类型
+        $house_type = conf::get('HOUSE_TYPE','admin');
+        $data['nhcData']['house_type'] = $house_type[$data['nhcData']['house_type']];
+        // 读取详细信息
+        $data['nhiData'] = $this->db->getRow($this->nhcid);
+        if ($data['nhiData']) {
+          $data['nhiData']['k'] = unserialize($data['nhiData']['k']);
+          $data['nhiData']['v'] = unserialize($data['nhiData']['v']);
+          $data['pcData'] = $this->pcdb->getInfo($data['nhiData']['pcid']);
+        }
+      }
+      // assign
+      $this->assign('data',$data);
+      // display
+      $this->display('newHouseInfo','index.html');
+      die;
+    }
+
   }
 
 

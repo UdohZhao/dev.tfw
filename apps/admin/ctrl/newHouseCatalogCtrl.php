@@ -167,26 +167,23 @@ die;
 
   // 新房条目列表
   public function index(){
+    // 获取状态
+    $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
+    // search 搜索条件
+    $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
+    $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
+    $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
 
-      // 获取状态
-      $status = isset($_GET['status']) ? intval($_GET['status']) : 0;
-      // search 搜索条件
-      $show_price = isset($_POST['show_price']) ? htmlspecialchars($_POST['show_price']) : '';
-      $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
-      $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
-
-      //获取数据条数
-      $num = $this->db->cou($status);
-      // 数据分页
-      $page = isset($_GET['page']) ? $_GET['page'] : 1;
-      $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
+    //获取数据条数
+    $num = $this->db->cou($status);
+    // 数据分页
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $p = new Page($num,conf::get('PAGES','admin'),$page,conf::get('LIMIT','admin'));
 
     // 获取新房主键id
     $hcid = $this->hcdb->getId('新房');
     // 结果集
-
-      $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
-
+    $data = $this->db->sel($hcid,$this->userinfo['type'],$this->userinfo['id'],$status,bcsub($p->page,1,0),$p->pagesize,$show_price,$area,$cid);
     // assign
     $this->assign('data',$data);
     $this->assign('status',$status);

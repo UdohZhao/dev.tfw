@@ -312,6 +312,26 @@ Page({
       url: url
     })
 
+  },
+
+  /**
+   * 去往购房百科
+   */
+  gotoEncyclopedia: function (e) {
+    console.log(e);
+    wx.navigateTo({
+      url: '/pages/encyclopedia/encyclopedia?pid=0&type=0'
+    })
+  },
+
+  /**
+   * 去往金融贷款
+   */
+  gotoLoan: function (e) {
+    console.log(e);
+    wx.reLaunch({
+      url: '/pages/loan/loan'
+    })
   }
 
 })
