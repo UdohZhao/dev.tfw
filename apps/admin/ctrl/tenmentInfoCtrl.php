@@ -26,17 +26,7 @@ class tenmentInfoCtrl extends baseCtrl{
         $this->thdb = new tenmentInfo();
     }
     public function add(){
-        // Get
-        if (IS_GET === true) {
-            // 读取置业顾问
-            $pcData = $this->pcdb->selpc();
-            // assign
-            $this->assign('pcData',$pcData);
-            // display
-            $this->display('tenmentInfo','add.html');
-            die;
-        }
-
+        // Ajax
         if(IS_AJAX === true){
 
             $data=$this->getData();
@@ -47,7 +37,32 @@ class tenmentInfoCtrl extends baseCtrl{
 
             }
             echo json_encode($result);
+            die;
         }
+        // search
+        $search = '';
+        if (isset($_POST['cname']) && $_POST['cname'] != '' && isset($_POST['belong_company']) && $_POST['belong_company'] != '') {
+          $cname = htmlspecialchars($_POST['cname']);
+          $belong_company = htmlspecialchars($_POST['belong_company']);
+          $search = " AND cname like '%$cname%' AND belong_company like '%$belong_company%'";
+        }
+        else if (isset($_POST['cname']) && $_POST['cname'] != '')
+        {
+          $cname = htmlspecialchars($_POST['cname']);
+          $search = " AND cname like '%$cname%'";
+        }
+        else if (isset($_POST['belong_company']) && $_POST['belong_company'] != '')
+        {
+          $belong_company = htmlspecialchars($_POST['belong_company']);
+          $search = " AND belong_company like '%$belong_company%'";
+        }
+        // 读取置业顾问
+        $pcData = $this->pcdb->getSrows($search);
+        // assign
+        $this->assign('pcData',$pcData);
+        // display
+        $this->display('tenmentInfo','add.html');
+        die;
     }
 
     private function getData(){
@@ -66,12 +81,12 @@ class tenmentInfoCtrl extends baseCtrl{
 
 
     public function index(){
-       
+
         if(IS_GET === true){
-            
+
 
              $data = $this->thdb->sel_info($this->tcid);
-                   
+
             $t = date("Y-m-d H:i",$data['ctime']);
             // date ("Y-m-d H:i:s")
             // assign
@@ -85,7 +100,7 @@ class tenmentInfoCtrl extends baseCtrl{
             $this->display('tenmentInfo','index.html');
             die;
         }
-        
+
     }
     // public function index(){
     //     // 总记录数
@@ -104,7 +119,7 @@ class tenmentInfoCtrl extends baseCtrl{
     //     $this->assign('page',$p->showpage());
     //     $this->display('about','index.html');
 
-        
+
     // }
 
 }

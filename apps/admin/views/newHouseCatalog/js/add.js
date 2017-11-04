@@ -103,15 +103,15 @@ $(function(){
               dataType:"json",
               success:function(res){
                 // res
-                if (res.error == 0 || res.error == 2) {
-                  window.location.href = "/admin/newHouseInfo/add/nhcid/"+res.msg;
-                } else if (res.error == 201) {
+                if (res.error == 201) {
                   swal("提交失败", res.msg, "error");
                 } else if (res.error == 202) {
                   swal("提交失败", res.msg, "error");
                 } else if (res.error == 401) {
                   swal("提交成功", "受影响的操作 :)", "success");
                   setTimeout("window.location.href = document.referrer;",2000);
+                } else if (res.error == 0 || res.error == 2) {
+                  window.location.href = "/admin/newHouseInfo/add/nhcid/"+res.msg;
                 } else {
                   swal("提交失败", "请尝试刷新页面后重试 :(", "error");
                 }

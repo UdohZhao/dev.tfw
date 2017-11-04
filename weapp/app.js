@@ -1,8 +1,8 @@
 //app.js
 App({
   data:{
-    //domain: 'http://dev.tfw.local',
-    domain: 'https://weapp.icunji.com',
+    //domain: 'http://dev.tefangw.vag',
+    domain: 'https://tefangw.com',
     technicalSupport: '重庆存己科技提供技术支持'
   },
   onLaunch: function () {

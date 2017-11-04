@@ -11,22 +11,28 @@
   <div class="page-content">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">@ 添加新房详细</h3>
+        <h3 class="panel-title"><!-- @ 添加新房详细 --></h3>
       </div>
       <div class="panel-body">
+       <form action="/admin/newHouseInfo/add/nhcid/{{ nhcid }}" method="post">
+          <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
+            <input type="text" class="form-control" name="cname" placeholder="请输入置业顾问姓名">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+            </span>
+          </div>
+          <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
+            <input type="text" class="form-control" name="belong_company" placeholder="请输入所属地产公司">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary"><i class="icon wb-search" aria-hidden="true"></i></button>
+            </span>
+          </div>
+       </form>
       <form id="newHouseInfoForm" action="/admin/newHouseInfo/add/nhcid/{{ nhcid }}" method="post">
-        <div class="row" id="column">
-          <div class="col-md-6 form-group">
-            <input type="text" class="form-control" name="k[]" placeholder="请输入键名">
-          </div>
-          <div class="col-md-6 form-group">
-            <input type="text" class="form-control" name="v[]" placeholder="请输入键值">
-          </div>
-        </div>
         <div class="row">
           <div class="col-md-12 form-group">
             <h4>选择置业顾问：</h4>
-            <select multiple class="form-control" name="pcid">
+            <select multiple class="form-control" name="pcid" style="height: 300px;">
             {% for k,v in pcData %}
               {% if k == 0 %}
                 <option value="{{ v.id }}" selected="selected">{{ v.cname }} # {{ v.phone }} # {{ v.belong_company }}</option>
@@ -35,6 +41,17 @@
               {% endif %}
             {% endfor %}
             </select>
+          </div>
+        </div>
+        <blockquote>
+          <p>添加新房详细</p>
+        </blockquote>
+        <div class="row" id="column">
+          <div class="col-md-6 form-group">
+            <input type="text" class="form-control" name="k[]" placeholder="请输入键名">
+          </div>
+          <div class="col-md-6 form-group">
+            <input type="text" class="form-control" name="v[]" placeholder="请输入键值">
           </div>
         </div>
         <button type="submit" class="btn btn-success">下一步</button>

@@ -219,6 +219,7 @@ CREATE TABLE `loan`(
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `cname` varchar(25) NOT NULL COMMENT '姓名',
   `phone` varchar(25) NOT NULL COMMENT '电话号码',
+  `money` varchar(25) NOT NULL COMMENT '预计贷款费用',
   `ctime` int(10) UNSIGNED NOT NULL COMMENT '时间',
   `type` tinyint(1) UNSIGNED NOT NULL COMMENT '类型？0>抵押贷款，1>信用贷款，2>组合贷款',
   `status` tinyint(1) UNSIGNED NOT NULL COMMENT '状态？0>未读，1>已读',

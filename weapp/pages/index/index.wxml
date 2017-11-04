@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="top_search">
-  <image class="top_bcg" src="../../images/topBackground.png"></image>
+   <image class="top_bcg" src="../../images/topBackground.jpg"></image> 
   <view class="phone_one" bindtap="clickPerson">
     <view class="phone_personal">{{cityData[0].cname}}</view>
       <image src="../../images/tcPulldown.png" class="personal_image {{selectArea ? 'rotateRight' :''}}"></image>
@@ -58,7 +58,7 @@
   </view>
 </view>
 <view class="page__bd my_encyclopedia">
-    <navigator url="../encyclopedia/encyclopedia?pid=0&type=0" class="encyclopedia_list">
+    <view bindtap="gotoEncyclopedia" class="encyclopedia_list">
       <view class="list_box">
         <view class="list_box_left">
           <view class="title">购房百科</view>
@@ -71,8 +71,8 @@
         <view class="left_sanjiao"></view>
         <view class="words">新</view>
       </view>
-    </navigator>
-    <navigator url="../loan/loan" class="encyclopedia_list">
+    </view>
+    <view class="encyclopedia_list" bindtap="gotoLoan">
       <view class="list_box">
         <view class="list_box_left">
           <view class="title">金融贷款</view>
@@ -85,7 +85,7 @@
         <view class="right_sanjiao"></view>
         <view class="words">热</view>
       </view>
-    </navigator>
+    </view>
     <view class="clear"></view>
 </view>
 <view class="page__bd my_availability">

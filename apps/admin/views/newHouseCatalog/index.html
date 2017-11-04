@@ -14,7 +14,7 @@
         <h3 class="panel-title">@ 新房条目列表</h3>
       </div>
       <form action="/admin/newHouseCatalog/index/status/{{ status }}" method="POST">
-        
+
         <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
           <input type="text" class="form-control" name="area" placeholder="请输入面积">
           <span class="input-group-btn">
@@ -83,12 +83,12 @@
                 <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
                 <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
                 {% elseif v.status == 1 %}
-         
+
                 {% elseif v.status == 2 %}
                <button type="button" class="btn btn-primary btn-xs" onclick="edit({{ v.id }});">修改</button>
                 <button type="button" class="btn btn-default btn-xs" onclick="del({{ v.id }});">删除</button>
                 {% elseif v.status == 3 %}
-            
+
                 {% if v.type == 0 %}
                   <button type="button" class="btn btn-danger btn-xs" onclick="flag({{ v.id }},1);">隐藏</button>
                 {% else %}

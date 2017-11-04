@@ -4,6 +4,7 @@ $(function(){
 
 // 新房详细信息
 function nhInfo(id){
+  console.log(id);
   window.location.href = "/admin/newHouseInfo/index/nhcid/"+id;
 }
 
@@ -150,5 +151,5 @@ function commit_status(id){
             swal("取消了", "当前操作未发生改变 :)", "error");
         }
     });
-            
+
 }

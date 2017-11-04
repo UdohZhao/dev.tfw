@@ -29,7 +29,10 @@ class indexCtrl extends baseCtrl{
       if ($data['nhcData']) {
         foreach ($data['nhcData'] AS $k => $v) {
           $data['nhcData'][$k]['slideshow'] = unserialize($v['slideshow']);
-          $data['nhcData'][$k]['slideshow'] = $data['nhcData'][$k]['slideshow'][0];
+          if (is_array($data['nhcData'][$k]['slideshow']))
+          {
+            $data['nhcData'][$k]['slideshow'] = $data['nhcData'][$k]['slideshow'][0];
+          }
           $data['nhcData'][$k]['trait'] = explode(',', commaEn($v['trait']));
           // 获取城市名称
           $data['nhcData'][$k]['cid'] = $this->cdb->getCname($v['cid']);

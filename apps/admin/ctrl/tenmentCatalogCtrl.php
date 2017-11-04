@@ -28,7 +28,7 @@ class tenmentCatalogCtrl extends baseCtrl{
         $this->thidb = new tenmentInfo();
 
         $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-        
+
     }
     public function add(){
         if (IS_GET === true) {
@@ -105,8 +105,10 @@ class tenmentCatalogCtrl extends baseCtrl{
                     }
                 }
                 $res = $this->db->save($this->id,$data);
+                unset($_SESSION['uploadPath']);
 
             } else {
+                unset($_SESSION['uploadPath']);
                 // 写入数据表
                 $res = $this->db->add($data);
             }
@@ -118,6 +120,7 @@ class tenmentCatalogCtrl extends baseCtrl{
                 }
                 $result['msg'] = $res;
             } else {
+                unset($_SESSION['uploadPath']);
                 $result['error'] = 1;
                 $result['msg'] = '请尝试刷新页面后重试 :(';
             }
@@ -155,7 +158,7 @@ class tenmentCatalogCtrl extends baseCtrl{
       $show_rent = isset($_POST['show_rent']) ? htmlspecialchars($_POST['show_rent']) : '';
       $cid = isset($_POST['cid']) ? htmlspecialchars($_POST['cid']) : '';
       $area = isset($_POST['area']) ? htmlspecialchars($_POST['area']) : '';
-       
+
             $num = $this->db->sel_num($status);
 
         // 数据分页
@@ -195,7 +198,7 @@ class tenmentCatalogCtrl extends baseCtrl{
             }
         }
     }
-    
+
   //租房flae
   public function flae(){
     // Ajax
@@ -217,7 +220,7 @@ class tenmentCatalogCtrl extends baseCtrl{
     public function commit_status()
         {
             $status = isset($_GET['status']) ? $_GET['status'] : 0;
-           
+
             $id = isset($_GET['id']) ? $_GET['id'] : 0;
             if ($this->db->up_status($status,$id)) {
                 echo json_encode(true);

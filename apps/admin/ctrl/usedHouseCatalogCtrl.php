@@ -95,6 +95,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
             }
             // id
             if ($this->id) {
+                unset($_SESSION['uploadPath']);
                 // 更新数据表
                 if(isset($data['slideshow'])){
                     //若有照片更新
@@ -107,6 +108,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
                 }
                 $res = $this->db->save($this->id,$data);
             } else {
+                unset($_SESSION['uploadPath']);
                 // 写入数据表
                 $res = $this->db->add($data);
             }
@@ -118,6 +120,7 @@ class usedHouseCatalogCtrl extends baseCtrl{
                 }
                 $result['msg'] = $res;
             } else {
+                unset($_SESSION['uploadPath']);
                 $result['error'] = 1;
                 $result['msg'] = '请尝试刷新页面后重试 :(';
             }

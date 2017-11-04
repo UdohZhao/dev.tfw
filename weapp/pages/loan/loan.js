@@ -198,6 +198,19 @@ Page({
   },
 
   /**
+   * 获取预计贷款费用
+   */
+  getMoney: function (e) {
+    var that = this;
+    //获取电话号码
+    console.log(e);
+    that.setData({
+      money: e.detail.value
+    });
+    console.log(that.data.money);
+  },
+
+  /**
    * 确定提交
    */
   confirmDemo: function (e) {
@@ -205,6 +218,7 @@ Page({
     // 获取用户输入的姓名和电话和类型
     console.log(that.data.cname);
     console.log(that.data.phone);
+    console.log(that.data.money);
     console.log(that.data.loansType);
 
     return false;
@@ -280,22 +294,36 @@ Page({
     // 获取用户输入的姓名和电话和类型
     console.log(that.data.cname);
     console.log(that.data.phone);
+    console.log(that.data.money);
     console.log(that.data.loansType);
 
     // 验证提交信息
-    if (that.data.cname == undefined || that.data.cname == '' || that.data.cname == false) {
+    if (that.data.cname == undefined || that.data.cname == '' || that.data.cname == false) 
+    {
       wx.showModal({
         title: '提示',
         content: '姓名不能为空 :(',
         showCancel: false
       })
-    } else if (!(/^1[34578]\d{9}$/.test(that.data.phone))) {
+    } 
+    else if (!(/^1[34578]\d{9}$/.test(that.data.phone))) 
+    {
       wx.showModal({
         title: '提示',
         content: '请输入有效的手机号码 :(',
         showCancel: false
       })
-    } else {
+    }  
+    else if (that.data.money == undefined || that.data.money == '' || that.data.money == false) 
+    {
+      wx.showModal({
+        title: '提示',
+        content: '预计贷款额度不能为空 :(',
+        showCancel: false
+      })
+    }
+    else 
+    {
 
       // 友好的用户体验开始
       wx.showLoading({
@@ -308,6 +336,7 @@ Page({
         data: {
           cname: that.data.cname,
           phone: that.data.phone,
+          money: that.data.money,
           type: that.data.loansType
         },
         header: {

@@ -38,7 +38,7 @@ class propertyConsultant extends model{
         WHERE
                 1 = 1
         AND
-              $search 
+              $search
         ORDER BY
                 ctime DESC
         {$limit}
@@ -66,7 +66,7 @@ class propertyConsultant extends model{
     $res = $this->delete($this->table,['id'=>$id]);
     return $res->rowCount();
   }
- 
+
   // cou
   public function cou(){
     return $this->count($this->table);
@@ -81,6 +81,29 @@ class propertyConsultant extends model{
   // 读取启用的置业顾问
   public function selpc(){
     return $this->select($this->table,'*',['status'=>0]);
+  }
+
+  /**
+   * 模糊读取记录
+   */
+  public function getSrows($search){
+    // sql
+    $sql = "
+        SELECT
+                *
+        FROM
+                `$this->table`
+        WHERE
+                1 = 1
+        AND
+                status = '0'
+
+        {$search}
+
+        ORDER BY
+                ctime DESC
+    ";
+    return $this->query($sql)->fetchAll(2);
   }
 
 }

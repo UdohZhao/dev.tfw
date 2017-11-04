@@ -10,40 +10,48 @@
   <div class="page-content">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">@ （{{ caInfo.title }}）新房详细信息</h3>
+        <h3 class="panel-title">@ 新房详细信息 -> {{data.nhcData.title}}</h3>
       </div>
       <div class="panel-body">
-        {% if caInfo == '' %}
-        没有详细信息数据
+        {% if data %}
+          <blockquote>
+            <p>* 基本信息</p>
+          </blockquote>
+          <blockquote>
+            <p>小区：{{data.nhcData.community}}</p>
+            <p>价格：¥{{data.nhcData.price}}</p>
+            <p>展示价格：{{data.nhcData.show_price}}</p>
+            <p>特点：{{data.nhcData.trait}}</p>
+            <p>户型：{{data.nhcData.htype}}</p>
+            <p>产权类型：{{data.nhcData.prtype}}</p>
+            <p>面积：{{data.nhcData.area}}</p>
+            <p>房屋类型：{{data.nhcData.house_type}}</p>
+            <p>物业类型：{{data.nhcData.ptype}}</p>
+            <p>地址：{{data.nhcData.address}}</p>
+            <p>时间：{{data.nhcData.ctime|date('Y-m-d H:i')}}</p>
+            <p>备注：{{data.nhcData.remark}}</p>
+          </blockquote>
+          <blockquote>
+            <p>* 详细信息</p>
+          </blockquote>
+          <blockquote>
+            {% for k,v in data.nhiData.k %}
+            <p>{{data.nhiData.k[k]}} : {{data.nhiData.v[k]}}</p>
+            {% endfor %}
+          </blockquote>
+          <blockquote>
+            <p>* 置业顾问</p>
+          </blockquote>
+          <blockquote>
+            <p><img src="{{data.pcData.head_portrait}}" style="width: 90px; height: 90px;"></p>
+            <p>姓名：{{data.pcData.cname}}</p>
+            <p>所属地产公司：{{data.pcData.belong_company}}</p>
+            <p>手机号码：{{data.pcData.phone}}</p>
+          </blockquote>
         {% else %}
-        <ul class="list-group list-group-bordered">
-        <li class="list-group-item"><h4>详细信息</h4></li>
-        <li class="list-group-item">=
-        <table style="font-size: 20px;">
-          <br><tr>小　　区:：</tr><tr>{{ caInfo.community}}</tr></br>
-          <br><tr>价　　格:：</tr><tr>{{ caInfo.price }}</tr></br>
-          <br><tr>展示价格:：</tr><tr>{{ caInfo.show_price }}</tr></br>
-          <br><tr>特　　点:：</tr><tr>{{ caInfo.trait }}</tr></br>
-          <br><tr>户　　型:：</tr><tr>{{ caInfo.htype }}</tr></br>
-          <br><tr>产权类型:：</tr><tr>{{ prtype }}</tr></br>
-          <br><tr>面　　积:：</tr><tr>{{ caInfo.area }}m²</tr></br>
-          <br><tr>房屋类型:：</tr><tr>{{ house_type }}</tr></br>
-          <br><tr>物业类型:：</tr><tr>{{ caInfo.ptype }}</tr></br>
-          <br><tr>地　　址:：</tr><tr>{{ caInfo.address }}</tr></br>
-          <br><tr>时　　间:：</tr><tr>{{ ctime }}</tr></br>
-          <br><tr>备　　注:：</tr><tr>{{ caInfo.remark }}</tr></br>
-        </table>
-        </li>
-        {% for k,v in data.k %}
-          <li class="list-group-item">{{ data.k[k] }} : {{ data.v[k] }}</li>
-        {% endfor %}
-        <li class="list-group-item"><h4>置业顾问</h4></li>
-        <li class="list-group-item">
-          <img src="{{ pcInfo.head_portrait }}" class="img-responsive" style="width: 90px; height: 90px;">
-          <div style="font-size: 20px;">{{ pcInfo.cname }}:({{ pcInfo.belong_company }})</div>
-          <div style="font-size: 20px;">{{ pcInfo.phone }}</div>
-        </li>
-        </ul>
+          <blockquote>
+            <p>暂无数据</p>
+          </blockquote>
         {% endif %}
       </div>
     </div>

@@ -16,7 +16,7 @@
             <ul class="nav nav-pills" style="margin-left: 25px;">
                 <li role="presentation" {% if status == 0 %}class="active"{% endif %}><a href="/admin/loan/index/status/0">未读</a></li>
                 <li role="presentation" {% if status == 1 %}class="active"{% endif %}><a href="/admin/loan/index/status/1">已读</a></li>
-           
+
             <form action="/admin/loan/index/status/{{ status }}" method="POST">
         <div class="input-group" style="width: 250px;float: right;margin-right: 30px;">
           <input type="text" class="form-control" name="types" placeholder="贷款类型">
@@ -39,6 +39,7 @@
                         <th>#</th>
                         <th>姓名</th>
                         <th>联系电话</th>
+                        <th>预计贷款费用</th>
                         <th>贷款类型</th>
                         <th>时间</th>
                         <th>操作</th>
@@ -57,20 +58,21 @@
                             {% endif %}
                             {% endif %}
                         </td>
-                        
+
                         <td>{{ v.cname }}</td>
                         <td>{{ v.phone }}</td>
+                        <td>{{v.money}}</td>
                         <td>
                          {% if v.type == 0%}
-                        
+
                         <span>抵押贷款</span>
                          {% elseif v.type == 1%}
                          <span>信用贷款</span>
                          {% else %}
                          <span>组合贷款</span>
                           {% endif %}
-                           
-                          
+
+
 
                         </td>
                         <td>{{ v.ctime|date("Y-m-d H:i") }}</td>
@@ -81,7 +83,7 @@
                         {% elseif v.status == 1 %}
                               <button type="button" class="btn btn-default btn-xs" onclick="del_info({{ v.id }});">删除</button>
                             {% endif %}
-                        
+
 
                         </td>
                     </tr>
