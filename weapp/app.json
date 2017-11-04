@@ -23,7 +23,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00ce3c",
-    "navigationBarTitleText": "特房网i",
+    "navigationBarTitleText": "特房网",
     "navigationBarTextStyle": "black"
   },
   "networkTimeout": {
