@@ -45,23 +45,6 @@ class newhouseCtrl extends baseCtrl{
       array_unshift($data['prtypeData'], '不限');
       // 读取面积
       $data['areaData'] = conf::get('AREA','admin');
-      // 1>二手房，4>法拍房，5>回迁房
-      if ($this->hctype == 1)
-      {
-          $flag = true;
-      }
-      else if ($this->hctype == 4)
-      {
-          $flag = true;
-      }
-      else if ($this->hctype == 5)
-      {
-          $flag = true;
-      }
-      else
-      {
-          $flag = false;
-      }
       // 搜索条件
       $search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
       if ($search != 'undefined' && $search != '') {
@@ -112,7 +95,7 @@ class newhouseCtrl extends baseCtrl{
               AND
                     (area BETWEEN '$startArea' AND '$endArea')
             ";
-          } else if ($flag) {
+          } else if ($this->hctype == 1) {
             $sPrice = 'selling_price';
             $sHtype = 'htype';
             $sPrtype = 'prtype';
@@ -393,14 +376,14 @@ class newhouseCtrl extends baseCtrl{
       }
 
       // 二手房
-      if ($flag) {
+      if ($this->hctype == 1) {
          // 读取二手房筛选条目
         $data['nhfiltrateData']['filtrate'] = conf::get('UHFILTRATE','admin');
         $data['nhfiltrateData']['active'] = conf::get('UHFILTRATEACTIVE','admin');
         // 读取售价
         $data['priceData'] = conf::get('SELLINGPRICE','admin');
         // 读取二手房数据
-        $data['hData'] = $this->uhcdb->getCorrelation(2,$search,$filtrate);
+        $data['hData'] = $this->uhcdb->getCorrelation($this->hcid,$search,$filtrate);
         if ($data['hData']) {
           foreach ($data['hData'] AS $k => $v) {
             $data['hData'][$k]['slideshow'] = unserialize($v['slideshow']);
