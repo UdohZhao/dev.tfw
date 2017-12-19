@@ -38,8 +38,6 @@ class housedetailsCtrl extends baseCtrl{
     // 4>法拍房，5>回迁房
     if ($this->hctype == 4 || $this->hctype == 5)
     {
-        // 转换为二手房
-        $this->hcid = 2; // 二手房主键id
         $this->hctype = 1; // 二手房类型
     }
   }
