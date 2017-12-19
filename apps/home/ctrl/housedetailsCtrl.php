@@ -35,6 +35,13 @@ class housedetailsCtrl extends baseCtrl{
     $this->tidb = new tenementInfo();
     $this->id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $this->hctype = isset($_GET['hctype']) ? intval($_GET['hctype']) : 0;
+    // 4>法拍房，5>回迁房
+    if ($this->hctype == 4 || $this->hctype == 5)
+    {
+        // 转换为二手房
+        $this->hcid = 2; // 二手房主键id
+        $this->hctype = 1; // 二手房类型
+    }
   }
 
   /**
