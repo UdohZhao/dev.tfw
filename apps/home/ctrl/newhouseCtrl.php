@@ -87,6 +87,22 @@ class newhouseCtrl extends baseCtrl{
           $endArea = isset($_POST['endArea']) ? $_POST['endArea'] : '';
 
           // 条件不同？ 0>新房，1>二手房，2>租房
+          if ($this->hctype == 1)
+          {
+              $flag = true;
+          }
+          elseif ($this->hctype == 4)
+          {
+              $flag = true;
+          }
+          elseif ($this->hctype == 5)
+          {
+              $flag = true;
+          }
+          else
+          {
+              $flag = false;
+          }
           if ($this->hctype == 0) {
             $sPrice = 'price';
             $sHtype = 'htype';
@@ -95,7 +111,7 @@ class newhouseCtrl extends baseCtrl{
               AND
                     (area BETWEEN '$startArea' AND '$endArea')
             ";
-          } else if ($this->hctype == 1 || $this->hctype == 4 || $this->hctype == 5) {
+          } else if ($flag) {
             $sPrice = 'selling_price';
             $sHtype = 'htype';
             $sPrtype = 'prtype';
@@ -376,7 +392,7 @@ class newhouseCtrl extends baseCtrl{
       }
 
       // 二手房
-      if ($this->hctype == 1 && $this->hctype == 4 && $this->hctype == 5) {
+      if ($flag) {
         $data['test'] = 111;
          // 读取二手房筛选条目
         $data['nhfiltrateData']['filtrate'] = conf::get('UHFILTRATE','admin');
