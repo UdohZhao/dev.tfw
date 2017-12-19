@@ -394,7 +394,7 @@ class newhouseCtrl extends baseCtrl{
 
       // 二手房
       if ($flag) {
-        $data['test'] = 111;
+        $data['test'] = $flag;
          // 读取二手房筛选条目
         $data['nhfiltrateData']['filtrate'] = conf::get('UHFILTRATE','admin');
         $data['nhfiltrateData']['active'] = conf::get('UHFILTRATEACTIVE','admin');
@@ -411,7 +411,7 @@ class newhouseCtrl extends baseCtrl{
             $data['hData'][$k]['cid'] = $this->cdb->getCname($v['cid']);
           }
         } else {
-          $data['test'] = 222;
+          $data['test'] = $flag;
           $data['hData'] = false;
         }
       }
