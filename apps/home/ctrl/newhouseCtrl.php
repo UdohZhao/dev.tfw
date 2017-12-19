@@ -80,6 +80,8 @@ class newhouseCtrl extends baseCtrl{
       // 筛选条件
       $filtrate = '';
       if (IS_POST === true) {
+        // 法拍房，回迁房条件为空
+        $this->prtypeFlag = '';
         // 搜索值
         $search = isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '';
         if ($search != 'undefined' && $search != '') {
