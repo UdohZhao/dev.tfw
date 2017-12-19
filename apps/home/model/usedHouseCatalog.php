@@ -6,7 +6,7 @@ class usedHouseCatalog extends model{
   /**
    * 读取相关数据
    */
-  public function getCorrelation($hcid,$search,$filtrate){
+  public function getCorrelation($hcid,$search,$filtrate,$prtypeFlag){
     // sql
     $sql = "
         SELECT
@@ -21,6 +21,8 @@ class usedHouseCatalog extends model{
                 type = '0'
         AND
                 hcid = '$hcid'
+
+        {$prtypeFlag}
 
         {$search}
 

@@ -12,6 +12,7 @@ class newhouseCtrl extends baseCtrl{
   public $tcdb;
   public $hcid;
   public $hctype;
+  public $prtypeFlag = '';
   // 构造方法
   public function _auto(){
     $this->cdb = new city();
@@ -21,11 +22,25 @@ class newhouseCtrl extends baseCtrl{
     $this->hcid = isset($_GET['hcid']) ? intval($_GET['hcid']) : 0;
     $this->hctype = isset($_GET['hctype']) ? intval($_GET['hctype']) : 0;
     // 4>法拍房，5>回迁房
-    if ($this->hctype == 4 || $this->hctype == 5)
+    if ($this->hctype == 4)
     {
         // 转换为二手房
         $this->hcid = 2; // 二手房主键id
         $this->hctype = 1; // 二手房类型
+        $this->prtypeFlag = "
+            AND
+                    prtype = '2'
+        ";
+    }
+    if ($this->hctype == 5)
+    {
+        // 转换为二手房
+        $this->hcid = 2; // 二手房主键id
+        $this->hctype = 1; // 二手房类型
+        $this->prtypeFlag = "
+            AND
+                    prtype = '0'
+        ";
     }
   }
 
@@ -390,7 +405,7 @@ class newhouseCtrl extends baseCtrl{
         // 读取售价
         $data['priceData'] = conf::get('SELLINGPRICE','admin');
         // 读取二手房数据
-        $data['hData'] = $this->uhcdb->getCorrelation($this->hcid,$search,$filtrate);
+        $data['hData'] = $this->uhcdb->getCorrelation($this->hcid,$search,$filtrate,$this->prtypeFlag);
         if ($data['hData']) {
           foreach ($data['hData'] AS $k => $v) {
             $data['hData'][$k]['slideshow'] = unserialize($v['slideshow']);
