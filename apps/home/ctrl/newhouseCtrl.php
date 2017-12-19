@@ -376,7 +376,7 @@ class newhouseCtrl extends baseCtrl{
       }
 
       // 二手房
-      if ($this->hctype == 1 || $this->hctype == 4 || $this->hctype == 5) {
+      if ($this->hctype == 1 && $this->hctype == 4 && $this->hctype == 5) {
         $data['test'] = 111;
          // 读取二手房筛选条目
         $data['nhfiltrateData']['filtrate'] = conf::get('UHFILTRATE','admin');
