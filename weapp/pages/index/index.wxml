@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="top_search">
-   <image class="top_bcg" src="../../images/topBackground.jpg"></image> 
+   <image class="top_bcg" src="../../images/topBackground.jpg"></image>
   <view class="phone_one" bindtap="clickPerson">
     <view class="phone_personal">{{cityData[0].cname}}</view>
       <image src="../../images/tcPulldown.png" class="personal_image {{selectArea ? 'rotateRight' :''}}"></image>
@@ -45,7 +45,7 @@
 </view>
 <view class="page__bd my_grids">
   <view class="weui-grids">
-    
+
     <!-- 房屋类别遍历体 start -->
     <block wx:for="{{hcData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
       <view class="weui-grid" hover-class="weui-grid_active"  data-id="{{v.id}}" data-type="{{k}}" bindtap="gotoHouse">
@@ -54,7 +54,7 @@
       </view>
     </block>
     <!-- 房屋类别遍历体 end -->
-      
+
   </view>
 </view>
 <view class="page__bd my_encyclopedia">
@@ -94,7 +94,7 @@
       <view class="hd_title">最新房源</view>
     </view>
     <scroll-view class="list" style="height: 366px; width: 100%;" lower-threshold="5px" scroll-y="true" bindscrolltolower="lower">
-       <block wx:for="{{nhcData}}" wx:key="i" wx:for-index="k" wx:for-item="v"> 
+       <block wx:for="{{nhcData}}" wx:key="i" wx:for-index="k" wx:for-item="v">
         <view data-id="{{v.id}}" data-type="0" bindtap="gotoHd" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" src="{{domain}}{{v.slideshow}}" style="width:100%;height:100%;" />
@@ -116,7 +116,7 @@
             <!-- <view class="weui-media-box__desc">666</view> -->
           </view>
         </view>
-       </block> 
+       </block>
     <!-- <view hidden="{{completedata}}" class="complete_data">
       到底啦！
     </view> -->
