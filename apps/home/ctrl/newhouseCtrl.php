@@ -45,6 +45,23 @@ class newhouseCtrl extends baseCtrl{
       array_unshift($data['prtypeData'], '不限');
       // 读取面积
       $data['areaData'] = conf::get('AREA','admin');
+      // 1>二手房，4>法拍房，5>回迁房
+      if ($this->hctype == 1)
+      {
+          $flag = true;
+      }
+      else if ($this->hctype == 4)
+      {
+          $flag = true;
+      }
+      else if ($this->hctype == 5)
+      {
+          $flag = true;
+      }
+      else
+      {
+          $flag = false;
+      }
       // 搜索条件
       $search = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
       if ($search != 'undefined' && $search != '') {
@@ -87,22 +104,6 @@ class newhouseCtrl extends baseCtrl{
           $endArea = isset($_POST['endArea']) ? $_POST['endArea'] : '';
 
           // 条件不同？ 0>新房，1>二手房，2>租房
-          if ($this->hctype == 1)
-          {
-              $flag = true;
-          }
-          elseif ($this->hctype == 4)
-          {
-              $flag = true;
-          }
-          elseif ($this->hctype == 5)
-          {
-              $flag = true;
-          }
-          else
-          {
-              $flag = false;
-          }
           if ($this->hctype == 0) {
             $sPrice = 'price';
             $sHtype = 'htype';
