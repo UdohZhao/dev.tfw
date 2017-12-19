@@ -394,14 +394,13 @@ class newhouseCtrl extends baseCtrl{
 
       // 二手房
       if ($flag) {
-        $data['test'] = $flag;
          // 读取二手房筛选条目
         $data['nhfiltrateData']['filtrate'] = conf::get('UHFILTRATE','admin');
         $data['nhfiltrateData']['active'] = conf::get('UHFILTRATEACTIVE','admin');
         // 读取售价
         $data['priceData'] = conf::get('SELLINGPRICE','admin');
         // 读取二手房数据
-        $data['hData'] = $this->uhcdb->getCorrelation($this->hcid,$search,$filtrate);
+        $data['hData'] = $this->uhcdb->getCorrelation(2,$search,$filtrate);
         if ($data['hData']) {
           foreach ($data['hData'] AS $k => $v) {
             $data['hData'][$k]['slideshow'] = unserialize($v['slideshow']);
@@ -411,7 +410,6 @@ class newhouseCtrl extends baseCtrl{
             $data['hData'][$k]['cid'] = $this->cdb->getCname($v['cid']);
           }
         } else {
-          $data['test'] = $flag;
           $data['hData'] = false;
         }
       }
