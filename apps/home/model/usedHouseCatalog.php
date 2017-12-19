@@ -10,7 +10,7 @@ class usedHouseCatalog extends model{
     // sql
     $sql = "
         SELECT
-                id, cid, slideshow, title, community, show_price, trait, area
+                id, cid, slideshow, title, community, show_price, trait, area, prtype
         FROM
                 `$this->table`
         WHERE
@@ -31,7 +31,7 @@ class usedHouseCatalog extends model{
         LIMIT
                 0 , 15
     ";
-    return $this->query($sql)->fetchAll();
+    return $this->query($sql)->fetchAll(2);
   }
 
   /**

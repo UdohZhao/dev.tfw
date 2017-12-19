@@ -146,6 +146,11 @@ Page({
     // 获取房屋id，类型
     console.log(options);
 
+    // 4>法拍房，5>回迁房
+    if (options.hctype == 4 || options.hctype == 5) {
+      options.hctype = 1; // 二手房类型
+    }
+
     that.setData({
       id: options.id,
       hctype: options.hctype

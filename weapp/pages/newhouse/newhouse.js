@@ -239,6 +239,18 @@ Page({
     console.log(options.hctype);
     console.log(options.search);
 
+    // 4>法拍房，5>回迁房
+    if (options.hctype == 4) {
+      that.setData({
+        prtypeIndex: 3,
+      });
+    }
+    if (options.hctype == 5) {
+      that.setData({
+        prtypeIndex: 1,
+      });
+    }
+
     that.setData({
       hcid: options.hcid,
       hctype: options.hctype,
